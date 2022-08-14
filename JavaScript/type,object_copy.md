@@ -79,8 +79,8 @@ for (let key in user) {
 } //for문을 이용해 하나하나 복사
 
 admin.name = "Seo";
-console.log(admin.name); //output: Seo
-console.log(user.name); //output: SDK
+console.log(admin.name); //Seo
+console.log(user.name); //SDK
 ```
 
 ##### 1.2. Object.assign() 함수를 이용한 복사
@@ -94,8 +94,8 @@ let user = {
 let admin = Object.assign({}, user); //Object.assign함수를 이용해 할당
 
 admin.name = "Seo";
-console.log(admin.name); //output: Seo
-console.log(user.name); //output: SDK
+console.log(admin.name); //Seo
+console.log(user.name); //SDK
 ```
 
 ##### 1.3. ES6에서부터 지원하는 전개연산자(Spread Operator)를 이용한 복사(제일 좋음!)
@@ -109,8 +109,8 @@ let user = {
 let admin = { ...user }; //전개연산자를 이용해 새로운 공간을 만들어서 그 공간으로 복사
 
 admin.name = "Seo";
-console.log(admin.name); //output: Seo
-console.log(user.name); //output: SDK
+console.log(admin.name); //Seo
+console.log(user.name); //SDK
 ```
 
 #### 2. 깊은 복사(Deep copy)
@@ -140,7 +140,7 @@ function copy(user) {
     }
   }
   return result;
-} //재귀함수를 이용한 깊은 복사
+}
 
 admin = copy(user);
 
@@ -168,7 +168,7 @@ let user = {
 };
 
 let admin = JSON.parse(JSON.stringify(user));
-//stringify를 이용해 user객체를 문자열로 만들고, parse를 이용해 문자열을 다시 객체로 만들어서 admin에 넣음. 이 과정에서 원본 객체와의 참조가 끊김.
+//stringify를 이용해 user객체를 문자열로 만들고, parse를 이용해 문자열을 다시 객체로 만들어서 admin에 넣음.
 
 admin.sizes.weight++;
 --admin.sizes.height;
