@@ -18,6 +18,28 @@
 
 `const func = function (arg1,arg2,…,argN)=>expression;`
 
+```javascript
+//함수 선언식
+function add_1(x, y) {
+  return x + y;
+}
+
+//함수 표현식
+const add_2 = function (x, y) {
+  return x + y;
+};
+
+//화살표 함수
+const add_3 = (x, y) => x + y;
+
+const add_4 = add_1;
+
+console.log(add_4(1, 3));
+
+console.log(add_2 == add_1); //false //동작은 같지만 주소값이 다름
+console.log(add_4 == add_1); //true //주소값도 복사되어 같으므로
+```
+
 ## 함수 호출
 
 - 자바스크립트 함수는 매개변수와 인수의 개수가 일치하는지 확인하지 않으므로, 달라도 에러 뜨지 않음
