@@ -1,6 +1,7 @@
 ## Collection
 
-- 구조 또는 비구조화 형태로 프로그래밍 언어가 제공하는 값을 담을 수 있는 공간
+> 구조 또는 비구조화 형태로 프로그래밍 언어가 제공하는 값을 담을 수 있는 공간
+
 - 자바스크립트에서 제공하는 Collection
   - Indexed Collection
     - Array
@@ -12,41 +13,42 @@
     - Weak Map
     - Weak Set
 
-### Map
+### 1. Map
 
-- 다양한 자료형의 key를 허용하고, keys⇒values 형태의 자료형을 저장할 수 있는 Collection
-- Map은 Object 대비 다양한 key의 사용을 허용하고, 값의 추가/삭제 시 ‘{}’, ‘.’이 아닌 메서드를 통해 수행 가능
-- 대표 속성(property) 및 메서드(method)
+> 다양한 자료형의 key를 허용하고, keys⇒values 형태의 자료형을 저장할 수 있는 Collection  
+> Map은 Object 대비 다양한 key의 사용을 허용하고, 값의 추가/삭제 시 ‘{}’, ‘.’이 아닌 메서드를 통해 수행 가능
 
-  - 생성자: `new Map()`
-  - 개수 확인: `Map.size`
-  - 요소 추가: `Map.set(keye, value)`  
-    : 호출 시 map이 반환되므로 체이닝(chaning) 가능
-  - 요소 접근: `Map.get(key)`
-  - 요소 삭제: `Map.delete(key)`
-  - 전체 삭제: `Map.clear()`
-  - 요소 존재 여부 확인: `Map.has(key)`
-  - 그 밖의 메서드: `Map.keys()`, `Map.values()`, `Map.entires()`
+#### 1.1. 대표 속성(property) 및 메서드(method)
 
-  ```javascript
-  let map = new Map();
+- 생성자: `new Map()`
+- 개수 확인: `Map.size`
+- 요소 추가: `Map.set(keye, value)`  
+  : 호출 시 map이 반환되므로 체이닝(chaning) 가능
+- 요소 접근: `Map.get(key)`
+- 요소 삭제: `Map.delete(key)`
+- 전체 삭제: `Map.clear()`
+- 요소 존재 여부 확인: `Map.has(key)`
+- 그 밖의 메서드: `Map.keys()`, `Map.values()`, `Map.entires()`
 
-  map.set("name", "john"); //string key
-  map.set(123, 456); //numbet key
-  map.set(true, "bool_type"); //boolean key
+```javascript
+let map = new Map();
 
-  console.log(map); //Map(3) { 'name' => 'john', 123 => 456, true => 'bool_type' }
-  console.log(map.get(123)); //456
-  console.log(map.get("name")); //john
-  console.log(map.size); //3
+map.set("name", "john"); //string key
+map.set(123, 456); //numbet key
+map.set(true, "bool_type"); //boolean key
 
-  map.clear();
-  console.log(map); //Map(0) {}
-  map.set("name", "alice").set(123, 456).set(false, "bool_type"); //이런식으로도 추가 가능
-  console.log(map); //Map(3) { 'name' => 'alice', 123 => 456, false => 'bool_type' }
-  ```
+console.log(map); //Map(3) { 'name' => 'john', 123 => 456, true => 'bool_type' }
+console.log(map.get(123)); //456
+console.log(map.get("name")); //john
+console.log(map.size); //3
 
-- Map 반복문: Collection 객체인 Map의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능
+map.clear();
+console.log(map); //Map(0) {}
+map.set("name", "alice").set(123, 456).set(false, "bool_type"); //이런식으로도 추가 가능
+console.log(map); //Map(3) { 'name' => 'alice', 123 => 456, false => 'bool_type' }
+```
+
+#### 1.2. Map 반복문: Collection 객체인 Map의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능
 
 ```javascript
 let recipe_juice = new Map([
@@ -69,8 +71,9 @@ console.log(recipe_juice); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice'
 console.log(recipe_juice.entries); //[Function: entries]s
 ```
 
-- Map-Object 변환  
-  : `Object.entry(Object)`, `Object.fromEntres(Map)`를 통해 Map, Object 간 변환이 가능
+#### 1.3. Map-Object 변환
+
+> `Object.entry(Object)`, `Object.fromEntres(Map)`를 통해 Map, Object 간 변환이 가능
 
 ```javascript
 let recipe_juice = new Map([
@@ -89,41 +92,44 @@ console.log(recipe_juice_kv); //[ [ 'strawberry', 50 ], [ 'banana', 100 ], [ 'ic
 console.log(recipe_juice_map); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice' => 150 }
 ```
 
-### Set
+### 2. Set
 
-- value만을 저장하며 중복을 허용하지 않는 Collection
-- 대표 속성(property) 및 메서드(method)
+> value만을 저장하며 중복을 허용하지 않는 Collection
 
-  - 생성자: `new Set()`
-  - 개수 확인: `Set.size`
-  - 요소 추가: `Set.add(value)`  
-    : 호출 시 set이 반환되므로 체이닝(chaning) 가능
-  - 요소 삭제: `Set.delete(value)`
-  - 전체 삭제: Set.clear
-  - 요소 존재 여부 확인: `Set.has(key)`
-  - 그 밖의 메서드: `Set.keys()`, `Set.values()`, `Set.entires()`
+#### 2.1. 대표 속성(property) 및 메서드(method)
 
-  ```javascript
-  let set = new Set();
-  let num = new Set([1, 2, 3, 4, 5]);
-  let str = new Set("Hello!");
+- 생성자: `new Set()`
+- 개수 확인: `Set.size`
+- 요소 추가: `Set.add(value)`  
+  : 호출 시 set이 반환되므로 체이닝(chaning) 가능
+- 요소 삭제: `Set.delete(value)`
+- 전체 삭제: Set.clear
+- 요소 존재 여부 확인: `Set.has(key)`
+- 그 밖의 메서드: `Set.keys()`, `Set.values()`, `Set.entires()`
 
-  console.log(set); //Set(0) {}
-  console.log(num); //Set(5) { 1, 2, 3, 4, 5 }
-  console.log(str); //Set(5) { 'H', 'e', 'l', 'o', '!' } //중복된 값은 제거됨
+```javascript
+let set = new Set();
+let num = new Set([1, 2, 3, 4, 5]);
+let str = new Set("Hello!");
 
-  set.add(1).add(1).add(10).add(20);
-  console.log(set); //Set(3) { 1, 10, 20 }
+console.log(set); //Set(0) {}
+console.log(num); //Set(5) { 1, 2, 3, 4, 5 }
+console.log(str); //Set(5) { 'H', 'e', 'l', 'o', '!' } //중복된 값은 제거됨
 
-  console.log(set.has(10)); //true
-  console.log(set.has(2)); //false
+set.add(1).add(1).add(10).add(20);
+console.log(set); //Set(3) { 1, 10, 20 }
 
-  set.delete(1);
-  set.delete(-1);
-  console.log(set); //Set(2) { 10, 20 }
-  ```
+console.log(set.has(10)); //true
+console.log(set.has(2)); //false
 
-- Set 반복문: Collection 객체인 Set의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능
+set.delete(1);
+set.delete(-1);
+console.log(set); //Set(2) { 10, 20 }
+```
+
+#### 2.2. Set 반복문
+
+> Collection 객체인 Set의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능
 
 ```javascript
 let str = new Set("Hello!");
