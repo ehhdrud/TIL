@@ -81,12 +81,12 @@ console.log(fruits.length); //3
 
 ##### 1.4.1. 배열 추가/삭제
 
-- Back LIFO(Last In First Out: 마지막에 들어온 것이 먼저 나간다)  
-  :배열 추가: `Array.push(element)`  
-  :배열 삭제: `Array.pop()`
-- Front LIFO(Last In First Out: 마지막에 들어온 것이 먼저 나간다)  
-  :배열 추가: `Array.unShift(element)`  
-  :배열 삭제: `Array.Shift()`
+- Back LIFO(Last In First Out: 마지막에 들어온 것이 먼저 나간다)
+  - 배열 추가: `Array.push(element)`
+  - 배열 삭제: `Array.pop()`
+- Front LIFO(Last In First Out: 마지막에 들어온 것이 먼저 나간다)
+  - 배열 추가: `Array.unShift(element)`
+  - 배열 삭제: `Array.Shift()`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -158,24 +158,24 @@ console.log(fruits.concat(["cherry", "banana"], "mango")); //[ 'apple', 'orange'
   - for … in(key 접근)
     :(ex)`for (let key in fruits){console.log(fruits[key]);}`
 
-  ```javascript
-  let fruits = ["apple", "orange", "melon"];
+```javascript
+let fruits = ["apple", "orange", "melon"];
 
-  //index 접근
-  for (let i = 0; i < fruits.length; i++) {
-    console.log(fruits[i]); //apple   orange   melon
-  }
+//index 접근
+for (let i = 0; i < fruits.length; i++) {
+  console.log(fruits[i]); //apple   orange   melon
+}
 
-  //element 접근
-  for (let fruit of fruits) {
-    console.log(fruit); //apple   orange   melon
-  }
+//element 접근
+for (let fruit of fruits) {
+  console.log(fruit); //apple   orange   melon
+}
 
-  //key 접근
-  for (let key in fruits) {
-    console.log(fruits[key]); //apple   orange   melon
-  }
-  ```
+//key 접근
+for (let key in fruits) {
+  console.log(fruits[key]); //apple   orange   melon
+}
+```
 
 #### 1.6. 배열 탐색
 
