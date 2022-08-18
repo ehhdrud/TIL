@@ -20,8 +20,8 @@
 
   - 생성자: `new Map()`
   - 개수 확인: `Map.size`
-  - 요소 추가: `Map.set(keye, value)`
-    - 호출 시 map이 반환되므로 체이닝(chaning) 가능
+  - 요소 추가: `Map.set(keye, value)`  
+    : 호출 시 map이 반환되므로 체이닝(chaning) 가능
   - 요소 접근: `Map.get(key)`
   - 요소 삭제: `Map.delete(key)`
   - 전체 삭제: `Map.clear()`
@@ -69,26 +69,25 @@ console.log(recipe_juice); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice'
 console.log(recipe_juice.entries); //[Function: entries]s
 ```
 
-- Map-Object 변환
+- Map-Object 변환  
+  : `Object.entry(Object)`, `Object.fromEntres(Map)`를 통해 Map, Object 간 변환이 가능
 
-  - `Object.entry(Object)`, `Object.fromEntres(Map)`를 통해 Map, Object 간 변환이 가능
+```javascript
+let recipe_juice = new Map([
+  ["strawberry", 50],
+  ["banana", 100],
+  ["ice", 150],
+]);
 
-  ```javascript
-  let recipe_juice = new Map([
-    ["strawberry", 50],
-    ["banana", 100],
-    ["ice", 150],
-  ]);
+let recipe_juice_obj = Object.fromEntries(recipe_juice); //object로 변환
+let recipe_juice_kv = Object.entries(recipe_juice_obj); //keys&values로 변환
+let recipe_juice_map = new Map(recipe_juice_kv);
 
-  let recipe_juice_obj = Object.fromEntries(recipe_juice); //object로 변환
-  let recipe_juice_kv = Object.entries(recipe_juice_obj); //keys&values로 변환
-  let recipe_juice_map = new Map(recipe_juice_kv);
-
-  console.log(recipe_juice); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice' => 150 }
-  console.log(recipe_juice_obj); //{ strawberry: 50, banana: 100, ice: 150 }
-  console.log(recipe_juice_kv); //[ [ 'strawberry', 50 ], [ 'banana', 100 ], [ 'ice', 150 ] ]
-  console.log(recipe_juice_map); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice' => 150 }
-  ```
+console.log(recipe_juice); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice' => 150 }
+console.log(recipe_juice_obj); //{ strawberry: 50, banana: 100, ice: 150 }
+console.log(recipe_juice_kv); //[ [ 'strawberry', 50 ], [ 'banana', 100 ], [ 'ice', 150 ] ]
+console.log(recipe_juice_map); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice' => 150 }
+```
 
 ### Set
 
@@ -97,8 +96,8 @@ console.log(recipe_juice.entries); //[Function: entries]s
 
   - 생성자: `new Set()`
   - 개수 확인: `Set.size`
-  - 요소 추가: `Set.add(value)`
-    - 호출 시 set이 반환되므로 체이닝(chaning) 가능
+  - 요소 추가: `Set.add(value)`  
+    : 호출 시 set이 반환되므로 체이닝(chaning) 가능
   - 요소 삭제: `Set.delete(value)`
   - 전체 삭제: Set.clear
   - 요소 존재 여부 확인: `Set.has(key)`
