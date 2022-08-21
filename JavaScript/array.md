@@ -401,7 +401,7 @@ let find_age = users.filter(function (user) {
 console.log(find_age); //[ { name: 'dong', age: 26, job: false }, { name: 'seo', age: 29, job: true } ] //filter는 모든 값 반환
 ```
 
-#### 2.6. 누적 결과값 변환: `Array.reduce(function(accumulator,item, index, array){});`
+### 2.6. 누적 결과값 변환: `Array.reduce(function(accumulator,item, index, array){});`
 
 > 요소 별 함수 수행 후 누적된 결과값을 반환  
 > `accumulator`: 이전 함수 결과, `accumulator_initial:` acuumulator의 초기값 설정 가능, 없다면 1부터 시작
