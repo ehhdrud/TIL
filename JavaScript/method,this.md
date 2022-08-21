@@ -1,8 +1,8 @@
-## Method
+# Method
 
-- 배열의 요소(element), 객체의 속성(property)에 함수를 정의하여 저장 가능
-- 객체에 저장된 값이 함수인 경우, 이를 메서드(Method)라고 부름
-- 객체에 대한 주소 값을 가지고, 객체 내 함수도 다시 주소값을 가짐(다른 속성들은 주소값 없음)
+> 배열의 요소(element), 객체의 속성(property)에 함수를 정의하여 저장 가능  
+> 객체에 저장된 값이 함수인 경우, 이를 메서드(Method)라고 부름  
+> 객체에 대한 주소 값을 가지고, 객체 내 함수도 다시 주소값을 가짐(다른 속성들은 주소값 없음)
 
 ```javascript
 //함수 선언식으로 정의
@@ -73,10 +73,10 @@ console.log(hello_func == obj.func); //false //변경되어 더이상 같지 않
 console.log(hi_func == obj.func); //true //변경되어 같음
 ```
 
-## this
+# this
 
-- 메서드에서 객체 내부의 속성 값에 접근할 수 있도록 하는 지시자
-- this를 사용하는 method는 추가 가능하며, 이 때 this는 runtime에 결정되어 호출한 객체에 따라 다름
+> 메서드에서 객체 내부의 속성 값에 접근할 수 있도록 하는 지시자  
+> this를 사용하는 method는 추가 가능하며, 이 때 this는 runtime에 결정되어 호출한 객체에 따라 다름
 
 ```javascript
 let user = {

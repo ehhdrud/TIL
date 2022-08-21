@@ -1,4 +1,4 @@
-## Collection
+# Collection
 
 > 구조 또는 비구조화 형태로 프로그래밍 언어가 제공하는 값을 담을 수 있는 공간
 
@@ -13,12 +13,12 @@
     - Weak Map
     - Weak Set
 
-### 1. Map
+## 1. Map
 
 > 다양한 자료형의 key를 허용하고, keys⇒values 형태의 자료형을 저장할 수 있는 Collection  
 > Map은 Object 대비 다양한 key의 사용을 허용하고, 값의 추가/삭제 시 ‘{}’, ‘.’이 아닌 메서드를 통해 수행 가능
 
-#### 1.1. 대표 속성(property) 및 메서드(method)
+### 1.1. 대표 속성(property) 및 메서드(method)
 
 - 생성자: `new Map()`
 - 개수 확인: `Map.size`
@@ -48,7 +48,7 @@ map.set("name", "alice").set(123, 456).set(false, "bool_type"); //이런식으�
 console.log(map); //Map(3) { 'name' => 'alice', 123 => 456, false => 'bool_type' }
 ```
 
-#### 1.2. Map 반복문: Collection 객체인 Map의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능
+### 1.2. Map 반복문: Collection 객체인 Map의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능
 
 ```javascript
 let recipe_juice = new Map([
@@ -71,7 +71,7 @@ console.log(recipe_juice); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice'
 console.log(recipe_juice.entries); //[Function: entries]s
 ```
 
-#### 1.3. Map-Object 변환
+### 1.3. Map-Object 변환
 
 > `Object.entry(Object)`, `Object.fromEntres(Map)`를 통해 Map, Object 간 변환이 가능
 
@@ -92,11 +92,11 @@ console.log(recipe_juice_kv); //[ [ 'strawberry', 50 ], [ 'banana', 100 ], [ 'ic
 console.log(recipe_juice_map); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice' => 150 }
 ```
 
-### 2. Set
+## 2. Set
 
 > value만을 저장하며 중복을 허용하지 않는 Collection
 
-#### 2.1. 대표 속성(property) 및 메서드(method)
+### 2.1. 대표 속성(property) 및 메서드(method)
 
 - 생성자: `new Set()`
 - 개수 확인: `Set.size`
@@ -127,7 +127,7 @@ set.delete(-1);
 console.log(set); //Set(2) { 10, 20 }
 ```
 
-#### 2.2. Set 반복문
+### 2.2. Set 반복문
 
 > Collection 객체인 Set의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능
 
