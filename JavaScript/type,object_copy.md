@@ -142,7 +142,7 @@ function copy(user) {
   return result;
 }
 
-let admin = copy(user);
+letadmin = copy(user);
 
 admin.sizes.weight++;
 --admin.sizes.height;

@@ -92,7 +92,7 @@ console.log(text.substr(2, 6)); //llo, w //index:2부터 길이6 출력
 console.log(text.substr(-5, 3)); //ld! //뒤에서 5번째부터 길이3 출력
 ```
 
-### 7. 문자열 분할: `String.split()`
+### 7. 문자열을 배열로 분할: `String.split()`
 
 ```javascript
 let fruits = "apple banana melon";

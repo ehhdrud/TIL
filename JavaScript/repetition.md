@@ -140,5 +140,5 @@ for (let i = 0; i < 10; i++) {
   if (i == 3) continue; //3일때 조건문 의 뒤 코드를 수행하지 않고 for문으로 돌아감
   text += i;
 }
-console.log(text);
+console.log(text); //012456789
 ```
