@@ -2,16 +2,15 @@
 
 > 구조 또는 비구조화 형태로 프로그래밍 언어가 제공하는 값을 담을 수 있는 공간
 
-- 자바스크립트에서 제공하는 Collection
-  - Indexed Collection
-    - Array
-    - Typed Array
-  - keyed Collection:
-    - Object
-    - Map
-    - Set
-    - Weak Map
-    - Weak Set
+- Indexed Collection
+  - Array
+  - Typed Array
+- keyed Collection:
+  - Object
+  - Map
+  - Set
+  - Weak Map
+  - Weak Set
 
 ## 1. Map
 
@@ -123,7 +122,6 @@ console.log(set.has(10)); //true
 console.log(set.has(2)); //false
 
 set.delete(1);
-set.delete(-1);
 console.log(set); //Set(2) { 10, 20 }
 ```
 

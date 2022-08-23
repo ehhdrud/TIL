@@ -5,6 +5,8 @@
 > 객체에 대한 주소 값을 가지고, 객체 내 함수도 다시 주소값을 가짐(다른 속성들은 주소값 없음)
 
 ```javascript
+//주소값 이해하기
+
 //함수 선언식으로 정의
 function add_1(x, y) {
   return x + y;
@@ -17,8 +19,6 @@ const add_2 = function (x, y) {
 const add_3 = (x, y) => x + y;
 
 const add_4 = add_1;
-
-console.log(add_4(1, 3));
 
 console.log(add_2 == add_1); //false //동작은 같지만 주소값이 달라서 거짓
 console.log(add_4 == add_1); //true //주소값도 복사되어 같으므로 참
@@ -92,9 +92,9 @@ function hello_func() {
   console.log("hello" + this.name);
 }
 
-user.func = hello_func; //this->user
-admin.func = hello_func; //this->admin
+user.func = hello_func;
+admin.func = hello_func;
 
-user.func(); //helloSDK
-admin.func(); //helloSEO
+user.func(); //helloSDK //this->user
+admin.func(); //helloSEO //this->admin
 ```

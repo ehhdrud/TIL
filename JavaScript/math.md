@@ -37,7 +37,6 @@ console.log(Math.max(nums)); //NaN //values만 인자로 받기 때문에 배열
 ### 3. 절대값: `Math.abs(x)`
 
 ```javascript
-//ABS
 console.log(Math.abs(1)); //1
 console.log(Math.abs(-1)); //1
 console.log(Math.abs(-Infinity)); //Infinity
@@ -58,7 +57,7 @@ for (let i = 0; i < 10; i++) {
 
 ### 5. 제곱과 제곱근
 
-- 제곱: `Math.pow(x,y)`(ES6부터는 그냥 ‘\*\*’ 쓰면 됨)
+- 제곱: ~~`Math.pow(x,y)`~~(ES6부터는 그냥 `**` 쓰면 됨)
 - 제곱근: `Math.sqrt(x)`
 
 ```javascript

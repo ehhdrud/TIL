@@ -29,8 +29,8 @@ console.log("done");
 ```javascript
 let age = 20;
 
-msg = age < 19 ? "The user is not adult." : "The user is adult.";
-console.log(msg);
+let msg = age < 19 ? "The user is not adult." : "The user is adult.";
+console.log(msg); //The user is adult.
 ```
 
 ## 3. switch문

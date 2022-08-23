@@ -33,7 +33,7 @@ for (let x = 0; x < 3; x++) {
 ### 1.1. for in문
 
 > `for(key in object){}`  
-> 객체의 key, value형태를 반복하여 수행하는데 최적화된 유형  
+> 객체의 key: value형태를 반복하여 수행하는데 최적화된 유형  
 > 첫 번째부터 마지막까지, 객체의 key 개수만큼 반복
 
 ```javascript
@@ -51,7 +51,7 @@ console.log(text); //DongKyeongSeo28
 ### 1.2. for of문
 
 > `for(variable of iterable){}`  
-> Collection 객체가 Symbol.iterator속성를 가지고 있어야 동작 가능한 유형<br>(Symbol.iterator속성을 가지고 있어야 value들이 반복되는 iteration 동작을 정의하는 것을 허용함)  
+> Collection 객체가 Symbol.iterator속성를 가지고 있어야 동작 가능한 유형(Symbol.iterator속성을 가지고 있어야 value들이 반복되는 iteration 동작을 정의하는 것을 허용함)
 > ES6에 새로 추가된 Collection 기반의 반복 구문
 
 ```javascript
@@ -60,7 +60,7 @@ let text = "";
 
 for (let x of language) {
   text += x; //text = text + x
-  console.log(x); //J a v a s c r i p t(한글자씩 가져온다는 것을 알 수 있음)
+  console.log(x); //J a v a s c r i p t //한 글자씩 가져온다는 것을 알 수 있음
 }
 console.log(text); //Javascript
 ```

@@ -39,7 +39,7 @@
 > 두개 이상의 복잡한 개체(원시형 데이터 타입) 저장 가능  
 > `Object()` 혹은 중괄호(`{}`)를 통해 생성 가능  
 > object의 개체는 key: value 형태로 표현하며(ex>`name: “”`), 접근은 object.key 형태로 표현(ex>`user.weight`), 삭제는 `delete` 명령을 통해  
-> object 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 얕은 복사(Shallow copy)와 깊은 복사(Deep copy)를 통해 대상 전체를 복사해야 함
+> object 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 [얕은 복사(Shallow copy)](#1-얕은-복사shallow-copybr)와 [깊은 복사(Deep copy)](#2-깊은-복사deep-copy)를 통해 대상 전체를 복사해야 함
 
 ```javascript
 let user = {
@@ -72,11 +72,11 @@ let user = {
   age: 28,
 };
 
-let admin = {}; //admin변수에 빈 {}를 만들어준다
+let admin = {}; //1. 빈 객체를 만들어준다
 
 for (let key in user) {
   admin[key] = user[key];
-} //for문을 이용해 하나하나 복사
+} //2. for...in문을 이용해 하나하나 복사
 
 admin.name = "Seo";
 console.log(admin.name); //Seo
@@ -142,7 +142,7 @@ function copy(user) {
   return result;
 }
 
-admin = copy(user);
+let admin = copy(user);
 
 admin.sizes.weight++;
 --admin.sizes.height;

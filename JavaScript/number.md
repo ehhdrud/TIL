@@ -12,7 +12,7 @@
 
 - 지수 표기법
 
-  - `e`: 0의 숫자 대체가능(ex1→1000000000>1e9, ex2→micro sec>1e-6)
+  - `e`: 0의 숫자 대체가능((ex1)1000000000=>1e9, (ex2)micro sec=>1e-6)
 
 - 진수 표기법
 
@@ -30,7 +30,7 @@ let us = 1e-6;
 console.log(us.toString()); //0.000001
 console.log(typeof us.toString()); //string
 console.log(typeof String(us)); //string
-console.log(typeof (us + "")); //string //괄호처리 해줘야 함
+console.log(typeof (us + "")); //string
 ```
 
 ### 2. 특정 자리수까지 제한하여 숫자 표현: `Number.toFixed()`,`Number.toPrecision()`

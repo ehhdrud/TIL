@@ -1,8 +1,8 @@
 # String
 
-- 텍스트 길이에 상관없이 문자열 형태로 저장되는 자료형
-- 자바스크립트에는 문자열 하나만 저장할 수 있는 char 자료형이 없음
-- 자바스크립트에서 문자열은 페이지 인코딩 방식과 상관없이 항상 UTF-16 형식을 따름
+> 텍스트 길이에 상관없이 문자열 형태로 저장되는 자료형  
+> 자바스크립트에는 문자열 하나만 저장할 수 있는 char 자료형이 없음  
+> 자바스크립트에서 문자열은 페이지 인코딩 방식과 상관없이 항상 UTF-16 형식을 따름
 
 ## 대표 속성(property)과 메서드(method)
 
@@ -21,7 +21,7 @@ let str = "hello";
 
 console.log(str.charAt(1)); //e
 console.log(str[1]); //e
-console.log(str.charCodeAt(1)); //101
+console.log(str.charCodeAt(1)); //101 //index의 UTF-16 코드를 나타내는 0부터 65535 사이의 정수를 반환
 ```
 
 ### 3. 문자열 검색: `String.indexOf()`, `String.lastIndexOf()`, `String.includes()`, `String.startWith()` 등
@@ -30,11 +30,11 @@ console.log(str.charCodeAt(1)); //101
 let text = "hello world!!!";
 
 console.log(text.indexOf("l")); //2 //첫번째로 만난 l의 위치를 리턴함
-console.log(text.indexOf("l", 3)); //3 //3번째("hel")까지 건너뛰고 검색해서 두번째 l의 위치 리턴함
-console.log(text.lastIndexOf("l")); //9 //뒤에서부터 시작해서 첫번째로 만난 l의 위치 리턴함
+console.log(text.indexOf("l", 3)); //3 //index=3부터 검색해서 l의 위치 리턴함
+console.log(text.lastIndexOf("l")); //9 //뒤에서부터 역방향으로 검색해서 첫번째로 만난 l의 위치 리턴함
 
-console.log(text.includes("HELLO")); //false //대소문자 구분해서 false 리턴
-console.log(text.startsWith("ello", 1)); //true //ello로 시작하지 않으면 false 리턴. 그래서 첫번째("h") 건너뛰고 검색해서 true 리턴
+console.log(text.includes("HELLO")); //false //대소문자 구분하는 것을 확인할 수 있음
+console.log(text.startsWith("ello", 1)); //true //원래는 ello로 시작하지 않으므로 false 리턴. 그러나 index=1부터 검색해서 true가 리턴됨
 console.log(text.endsWith("world")); //false //world로 끝나지 않으므로 false 리턴
 ```
 
@@ -54,15 +54,14 @@ let changed_text = "";
 
 changed_text = text.replace("world", "earth");
 
-console.log(changed_text);
-console.log(text);
+console.log(changed_text); //helLo, earth!!!
+console.log(text); //helLo, world!!!
 
-console.log(text.replace("!", "?"));
-console.log(text.replace("l", "i"));
+console.log(text.replace("!", "?")); //helLo, world?!!
+console.log(text.replace("l", "i")); //heiLo, world!!!
 ```
 
-- 정규 표현식을 활용한 문자열 치환 방법  
-  : 치환 문자열에 정규 표현식 기입(`/치환문자열/g(전체)i(대소문자구분X)`)
+- 정규 표현식을 활용한 문자열 치환 방법: `/치환문자열/g(전체)i(대소문자구분X)`
 
 ```javascript
 let text = "helLo, world!!!";
@@ -79,18 +78,18 @@ console.log(text.replace(/l/gi, "i")); //heiio, worid!!!
 ```javascript
 let text = "hello, world!!!";
 
-console.log(text.slice(0, 5)); //hello //0번-4번 자리 출력
-console.log(text.slice(4, 5)); //o //4번 자리 출력
-console.log(text.slice(4)); //o, world!!! //4번자리 이후 출력
-console.log(text.slice(-4)); //d!!! //-n이면 뒤에서n번째자리 이후 출력
+console.log(text.slice(0, 5)); //hello //index:0-4 출력
+console.log(text.slice(4, 5)); //o //index:4 출력
+console.log(text.slice(4)); //o, world!!! //index:4부터 출력
+console.log(text.slice(-4)); //d!!! //-n => 뒤에서 n번째부터 출력
 
 console.log(text.slice(2, 6)); //llo,
-console.log(text.slice(6, 2)); //   //출력안됨
+console.log(text.slice(6, 2)); //출력안됨
 console.log(text.substring(2, 6)); //llo,
 console.log(text.substring(6, 2)); //llo, //substring은 내부적으로 (2, 6)으로 변환하여 출력
 
-console.log(text.substr(2, 6)); //llo, w //2번 자리부터 6글자 출력
-console.log(text.substr(-5, 3)); //ld! //-5번 자리부터 3글자 출력
+console.log(text.substr(2, 6)); //llo, w //index:2부터 길이6 출력
+console.log(text.substr(-5, 3)); //ld! //뒤에서 5번째부터 길이3 출력
 ```
 
 ### 7. 문자열 분할: `String.split()`
@@ -112,7 +111,7 @@ console.log(result); //[ 'h', 'e', 'l', 'l', 'o' ]
 console.log(result.length); //5
 console.log(result[0]); //h
 
-result = text.split("", 3);
+result = text.split("", 3); //분할하고 3개만 리턴
 console.log(result); //[ 'h', 'e', 'l' ]
 console.log(result.length); //3
 ```

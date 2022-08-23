@@ -58,8 +58,8 @@ console.log(date.getMinutes()); //0
 console.log(date.getSeconds()); //0
 console.log(date.getMilliseconds()); //0
 
-//getTime:(now-date(0)) milliseconds
-//getTimezonOffset:(UTC+0 - currentZone) minutes
+//getTime: (now-date(0)) milliseconds
+//getTimezonOffset: (UTC+0 - currentZone) minutes
 console.log(date.getTime()); //820195200000 //계산을 위해 ms단위로 시간값을 받음
 console.log(date.getTimezoneOffset()); //-540 //UTC와 얼마나 차이나는지 보여줌
 ```
@@ -96,8 +96,12 @@ console.log(date); //1995-11-30T13:35:22.871Z
 - `Date.getTimezoneOffset()`: UTC와 얼마나 차이나는지 보여줌
 
 ```javascript
-//getTime:(now-date(0)) milliseconds
-//getTimezonOffset:(UTC+0 - currentZone) minutes
+let date = new Date(Date.UTC(1995, 11, 29));
+
+console.log(date); //1995-12-29T00:00:00.000Z
+
+//getTime: (now-date(0)) milliseconds
+//getTimezonOffset: (UTC+0 - currentZone) minutes
 console.log(date.getTime()); //820195200000
 console.log(date.getTimezoneOffset()); //-540
 ```
