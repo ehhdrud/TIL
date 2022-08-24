@@ -31,11 +31,11 @@ console.log(nums.length); //2
 - 반복문 문법
 
   - for … length(index 접근)
-    :(ex)`for (let i = 0; i < fruits.length; i++){console.log(fruits[i]);}`
+    :(ex)`for (let i = 0; i < arr.length; i++){console.log(arr[i]);}`
   - for … of(element 접근)
-    :(ex)`for (let fruit of fruits){console.log(fruit);}`
+    :(ex)`for (let element of arr){console.log(element);}`
   - for … in(key 접근)
-    :(ex)`for (let key in fruits){console.log(fruits[key]);}`
+    :(ex)`for (let key in arr){console.log(arr[key]);}`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
