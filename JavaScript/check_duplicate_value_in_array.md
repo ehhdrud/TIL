@@ -56,7 +56,7 @@ if (arr.length !== set.size) {
 
 ## 3. Array.filter 이용
 
-### 3.1. Array.indexOf와 결합
+### 3.1. Array.filter \* Array.indexOf
 
 > `Array.indexOf` 메서드의 배열에서 첫 번째에 해당하는 Index를 반환하는 특성을 이용  
 > 해당 값을 찾아서 첫번째로 해당하는 값만 `Array.filter`를 이용하여 반환
@@ -66,10 +66,10 @@ const arr = ["a", "b", "c", "b", "c"];
 
 const result = arr.filter((value, index) => arr.indexOf(value) === index);
 
-console.log(result);
+console.log(result); //[ 'a', 'b', 'c' ]
 ```
 
-### 3.2. Array.findIndex와 결합
+### 3.2. Array.filter \* Array.findIndex
 
 > `Array.indexOf` 메서드는 객체의 값까지는 판단하지 못하므로, `Array.findIndex` 메서드를 이용하여 객체의 특정 값을 지정하여 해당 값의 첫 번째 위치를 찾아 비교
 
@@ -87,4 +87,21 @@ const result = arr.filter(
 ); //❗❓
 
 console.log(result); //[ { name: 'a' }, { name: 'b' }, { name: 'c' } ]
+```
+
+### 4. Array.reduce \* Array.indexOf
+
+> `Array.reduce`메서드는 배열 요소들을 순차적으로 순회하면서 하나의 값을 만드는 함수  
+> `Array.indexOf`메서드를 이용해 추가가 안된 요소라면 추가하고, 그렇지 않으면 추가하지 않음
+
+```javascript
+const arr = ["a", "b", "c", "d", "e"];
+
+const initialValue = [];
+
+const result = arr.reduce(
+  (acc, obj) => (acc.includes(obj) ? acc : [...acc, obj]), //❗❓
+  initialValue
+);
+console.log(result); //[ 'a', 'b', 'c' ]
 ```
