@@ -115,11 +115,11 @@ console.log(fruits.length); //3
 #### 3.3.1. 배열 추가/삭제
 
 - Back/LIFO(Last In First Out: 마지막에 들어온 것이 먼저 나간다)
-  - 배열 추가: `Array.push(element)` => 추가한 배열의 크기 리턴
-  - 배열 삭제: `Array.pop()` => 삭제한 element 리턴
+  - 배열 추가: `Array.push(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
+  - 배열 삭제: `Array.pop()` => Array에서 요소 삭제, 삭제한 element 리턴
 - Front/LIFO(Last In First Out: 마지막에 들어온 것이 먼저 나간다)
-  - 배열 추가: `Array.unShift(element)` => 추가한 배열의 크기 리턴
-  - 배열 삭제: `Array.Shift()` => 삭제한 element 리턴
+  - 배열 추가: `Array.unShift(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
+  - 배열 삭제: `Array.Shift()` => Array에서 요소 삭제, 삭제한 element 리턴
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
