@@ -53,6 +53,21 @@ console.log(Number.isFinite(123)); //true
 console.log(Number.isFinite("hello")); //false //문자열은 Finite하지 않다고 봄
 ```
 
+※ `Number.isNaN()`과 `isNaN()`의 차이
+
+- `Number.isNaN()`: 엄격한 검사
+- `isNaN()`: 비교적 느슨한 검사
+
+```javascript
+console.log(Number.isNaN(undefined)); //false
+console.log(Number.isNaN({})); //false
+console.log(Number.isNaN("문자열")); //false
+
+console.log(isNaN(undefined)); //true
+console.log(isNaN({})); //true
+console.log(isNaN("문자열")); //true
+```
+
 - `Number.parseInt()`, `Number.parseFloat()`:정수(n진수로도 명시적으로 변환 가능), 실수로 변환
 
 ```javascript
