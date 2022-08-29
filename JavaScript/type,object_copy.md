@@ -10,7 +10,9 @@
 `null`
 
 > 존재하지 않거나 유효하지 않는 주소를 표시하는 데이터 타입  
-> nothing, empty, unknown 값을 나타내는데 사용
+> nothing, empty, unknown 값을 나타내는데 사용  
+> `typeof`를 이용한 검사 시 object라고 출력되지만 이것은 자바스크립트의 초기 설계 오류  
+> 대신 `instanceof`를 이용해 검사하면 Object의 인스턴스가 아니라고 출력됨
 
 `undefined`
 
@@ -32,7 +34,7 @@
 
 > 문자열과 함께 객체 property로 사용(ES6에 추가)
 
-## 2. 객체 타입(Object Type)
+## 2. 객체 타입(Object Type) 또는 참조 타입(Reference Type)
 
 `object`
 
@@ -55,6 +57,14 @@ console.log(user); //{ name: 'SDK', age: 28, weight: 83 }
 delete user.age; //삭제
 console.log(user); //{ name: 'SDK', weight: 83 }
 ```
+
+`array`
+
+> 여러 개체(Entity)값을 순차적으로 나열한 자료구조
+
+`function`
+
+> 함수는 다수의 명령문을 코드 블록으로 감싸고, 하나의 실행 단위로 만들 실행 집합이자, 유사한 동작을 하는 코드를 하나로 묶어 범용성을 확대시킨 블록 코드
 
 # 객체 복사
 
