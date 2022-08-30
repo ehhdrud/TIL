@@ -16,6 +16,9 @@
 
 ### 1.3. 화살표 함수
 
+> ECMAScript2015(ES6)에 추가된 문법  
+> 기존 함수와 다르게 arguments가 존재하지 않고 this의 동작 방식이 다름
+
 `const func = (arg1,arg2,…,argN)=>expression;`
 
 ```javascript
