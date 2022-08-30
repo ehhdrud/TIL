@@ -59,10 +59,19 @@ for (let key in fruits) {
 ## 3. 대표 속성(property)과 메서드(method)
 
 - `Array.isArray()`: 배열 여부 확인
+- `Array.from()`: 유사 배열 객체(array like object)나 반복 가능한 객체(iterable object)를 얕게 복사해 새로운 배열 객체를 생성
 
 ```javascript
-console.log(Array.isArray(arguments)); //false //유사 백열 객체(Array like Object)
-console.log(Array.isArray(NodeList)); //false //유사 배열 객체(Array like Object)
+console.log(Array.isArray(arguments)); //false //유사 백열 객체
+console.log(Array.isArray(NodeList)); //false //유사 배열 객체
+```
+
+```javascript
+console.log(Array.isArray(arguments)); //false //유사 백열 객체
+arguments.push("hi"); //TypeError: arguments.push is not a function
+
+const arr1 = Array.from(arguments);
+arr1.push("hi"); //Array.push 메서드 잘 동작함
 ```
 
 - `Array.length()`: 배열의 크기 확인
