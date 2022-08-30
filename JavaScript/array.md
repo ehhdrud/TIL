@@ -58,8 +58,15 @@ for (let key in fruits) {
 
 ## 3. 대표 속성(property)과 메서드(method)
 
-- `Array.length()`, `Array.isArray()`: 배열의 크기 및 배열 여부 확인
-- `Array.()`, `Array.pop()`, `Array.unShift()`, `Array.Shift()`, `Array.splice()`, `Array.slice()` 등: 배열 추가, 삭제
+- `Array.isArray()`: 배열 여부 확인
+
+```javascript
+console.log(Array.isArray(arguments)); //false //유사 백열 객체(Array like Object)
+console.log(Array.isArray(NodeList)); //false //유사 배열 객체(Array like Object)
+```
+
+- `Array.length()`: 배열의 크기 확인
+- `Array.push()`, `Array.pop()`, `Array.unShift()`, `Array.Shift()`, `Array.splice()`, `Array.slice()` 등: 배열 추가, 삭제
 - `Array.indexOf()`, `Array.lastIndexOf()`, `Array.includes()`: 배열 탐색
 - `Array.sort()`, `Array.reverse()`, `Array.join`: 배열 변형(callback 미사용)
 
