@@ -28,5 +28,5 @@ const person = {
   },
 };
 
-console.log(person.firstName);
-console.log(person.fullName);
+console.log(person.firstName); //SEO
+console.log(person.fullName); //seo dong-kyeong
