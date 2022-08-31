@@ -81,7 +81,37 @@ searchButten.classList.contains("seo-dong-kyeong"); //true
 //DOM 조작 예시2
 const linkDirect = document.querySelector(".link_direct");
 linkDirect.textContent; //'연예'
-linkDirect.textContent = "seodongkyeong"; //'seodongkyeong'
+linkDirect.textContent = "seodongkyeong"; //'seodongkyeong'으로 변경
+```
+
+```javascript
+//DOM 조작 예시3
+const partnerBox = document.querySelector(".partner_box");
+const ele = document.querySelector(".link_partner");
+partnerBox.removeChild(ele); //'크리에이터' 삭제
+
+const ele2 = document.querySelector("div"); //div 태그 생성
+ele2.textContent = "seo-dong-kyeong";
+partnerBox.appendChild(ele2); //뒤쪽에 'seodongkyeong' 추가
+
+partnerBox.innerHTML = `<h3 class="title">SEO-DONG-KYEONG</h3>`; //innerHTML을 통해 DOM을 생성하는 과정없이 타이틀을 'SEO-DONG-KYEONG'으로 변경
 ```
 
 # Event
+
+> 이벤트란 웹페이지에서 발생하는 키보드 입력, 마우스 입력 등의 사용자의 동작을 의미
+> 이벤트 객체란 이벤트 정보를 담은 객체, DOM의 Node가 이벤트 객체를 가지고 있음  
+> 이벤트 객체에는 property와 method가 담겨 있음
+> 이벤트 핸들러란 이벤트가 발생했을 때 실행되는 함수, 이벤트 핸들러 선언 시 첫번째 매개변수에 이벤트 객체를 명시적으로 선언해야 함
+
+```javascript
+const resetButton = document.querySelector(".reset");
+
+resetButton.addEventListener("click", function () {
+  alert("안녕하세요");
+}); //"click"이라는 이벤트가 감지되면 함수를 실행
+
+resetButton.addEventListener("click", function (event) {
+  console.dir(event);
+}); //"click"할 때마다 이벤트 객체 목록을 보여주는 이벤트 핸들러
+```
