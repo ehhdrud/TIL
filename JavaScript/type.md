@@ -40,7 +40,7 @@
 
 > 두개 이상의 복잡한 개체(원시형 데이터 타입) 저장 가능  
 > `Object()` 혹은 중괄호(`{}`)를 통해 생성 가능  
-> object의 개체는 key: value 형태로 표현하며(ex>`name: “”`), 접근은 object.key 형태로 표현(ex>`user.weight`), 삭제는 `delete` 명령을 통해 가능  
+> object의 개체는 key: value 형태로 표현
 > 객체는 특정 공간에 메모리를 차지하고 있고 이를 인스턴스(Instance)라고 지칭함
 
 `array`
