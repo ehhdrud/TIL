@@ -1,63 +1,35 @@
-# 자료형
+# 객체(Object)
 
-## 1. 원시 타입(Primitive Type)
+## 1.객체 생성
 
-`boolean`
+### 1.1. 싱글 리터럴 객체 생성
 
-> 논리적 값인 true, false를 갖는 데이터 타입  
-> 주로 조건문에서 동작 판단의 기준으로 사용
-
-`null`
-
-> 존재하지 않거나 유효하지 않는 주소를 표시하는 데이터 타입  
-> nothing, empty, unknown 값을 나타내는데 사용  
-> `typeof`를 이용한 검사 시 object라고 출력되지만 이것은 자바스크립트의 초기 설계 오류  
-> 대신 `instanceof`를 이용해 검사하면 Object의 인스턴스가 아니라고 출력됨
-
-`undefined`
-
-> 선언 후 값을 할당하지 않은 변수를 표시하는 데이터 타입
-
-`number`
-
-> 정수, 실수 등 숫자를 표시하는 데이터 타입  
-> 정수의 한계는 ±2^53(그 이상은 `bigint`라는 자료형 사용)  
-> `NaN`, `Infinity`도 포함
-
-`string`
-
-> 빈 문자열이나 글자들을 표현하는 데이터 타입  
-> 큰 따옴표, 작은 따옴표, 역 따옴표(백틱)을 통해 표현 가능  
-> 백틱 안에 `${}`를 넣어서 문자열 안에서 변수를 넣을 수 있음
-
-`symbol`
-
-> 문자열과 함께 객체 property로 사용(ES6에 추가)
-
-## 2. 객체 타입(Object Type) 또는 참조 타입(Reference Type)
-
-`object`
-
-> 두개 이상의 복잡한 개체(원시형 데이터 타입) 저장 가능  
-> `Object()` 혹은 중괄호(`{}`)를 통해 생성 가능  
-> object의 개체는 key: value 형태로 표현하며(ex>`name: “”`), 접근은 object.key 형태로 표현(ex>`user.weight`), 삭제는 `delete` 명령을 통해  
-> object 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 [얕은 복사(Shallow copy)](#1-얕은-복사shallow-copybr)와 [깊은 복사(Deep copy)](#2-깊은-복사deep-copy)를 통해 대상 전체를 복사해야 함
+> 보편적인 객체 생성 방법
 
 ```javascript
-//1. 싱글 리터럴 객체 생성
-const obj1 = {
+const obj = {
   property: "value",
   method: function () {},
 };
+```
 
-//2. new연산자를 통한 객체 생성
+### 1.2. `new`연산자를 통한 객체 생성
+
+> 주로 여러 유사한 객체를 만들 때 사용
+
+```javascript
 function NewObject(name) {
   this.name = name;
 }
-const obj2 = new NewObject("seo");
+const obj = new NewObject("seo");
+```
 
-//3. Object.create([프로토타입],[객체서술자])를 통한 객체 생성: 만들 떄부터 자세하게 만들고 싶을 때
-const obj3 = Object.create(Object.prototype, {
+### 1.3. `Object.create([프로토타입],[객체서술자])`를 통한 객체 생성
+
+> 주로 만들 떄부터 자세하게 만들고 싶은 경우 사용
+
+```javascript
+const obj = Object.create(Object.prototype, {
   name: {
     value: "seo",
     writable: true, //덮어쓸 수 있는지
@@ -67,8 +39,9 @@ const obj3 = Object.create(Object.prototype, {
 });
 ```
 
+## 2. 객체의 추가, 삭제
+
 ```javascript
-//객체의 추가,삭제
 let user = {
   name: "SDK",
   age: 28,
@@ -84,23 +57,53 @@ delete user.age; //삭제
 console.log(user); //{ name: 'SDK', height: 183, weight: 83 }
 ```
 
-`array`
+## 3. 객체를 특정 배열로 반환
 
-> 여러 개체(Entity)값을 순차적으로 나열한 자료구조
+### 3.1. `Object.keys()`: key값을 배열로 반환
 
-`function`
+```javascript
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
 
-> 함수는 다수의 명령문을 코드 블록으로 감싸고, 하나의 실행 단위로 만들 실행 집합이자, 유사한 동작을 하는 코드를 하나로 묶어 범용성을 확대시킨 블록 코드
+console.log(Object.keys(obj)); //[ 'a', 'b', 'c' ]
+```
 
-# 객체 복사
+### 3.2. `Object.values()`: value값을 배열로 반환
 
-> object 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 얕은 복사(Shallow copy)와 깊은 복사(Deep copy)를 통해 대상 전체를 복사해야 한다
+```javascript
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
 
-## 1. 얕은 복사(Shallow copy)<br>
+console.log(Object.values(obj)); //[ 1, 2, 3 ]
+```
+
+### 3.3. `Object.entries()`: key, value값를 이중 배열 형태로 반환
+
+```javascript
+const obj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+console.log(Object.entries(obj)); //[ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
+```
+
+## 객체 복사
+
+> 객체 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 [얕은 복사(Shallow copy)](#1-얕은-복사shallow-copybr)와 [깊은 복사(Deep copy)](#2-깊은-복사deep-copy)를 통해 대상 전체를 복사해야 함
+
+### 1. 얕은 복사(Shallow copy)<br>
 
 > 객체 내부에 또 다른 객체가 없을 경우의 복사 방법
 
-### 1.1. 반복문 for문을 통한 객체 복사
+#### 1.1. 반복문 for문을 통한 객체 복사
 
 ```javascript
 let user = {
@@ -119,7 +122,7 @@ console.log(admin.name); //Seo
 console.log(user.name); //SDK
 ```
 
-### 1.2. Object.assign() 함수를 이용한 복사
+#### 1.2. Object.assign() 함수를 이용한 복사
 
 ```javascript
 let user = {
@@ -134,7 +137,7 @@ console.log(admin.name); //Seo
 console.log(user.name); //SDK
 ```
 
-### 1.3. ES6에서부터 지원하는 전개연산자(Spread Operator)를 이용한 복사(제일 좋음!)
+#### 1.3. ES6에서부터 지원하는 전개연산자(Spread Operator)를 이용한 복사(제일 좋음!)
 
 ```javascript
 let user = {
@@ -149,11 +152,11 @@ console.log(admin.name); //Seo
 console.log(user.name); //SDK
 ```
 
-## 2. 깊은 복사(Deep copy)
+### 2. 깊은 복사(Deep copy)
 
 > 객체 내부에 또 다른 객체가 있을 경우의 복사 방법
 
-### 2.1. 재귀 함수를 이용한 깊은 복사
+#### 2.1. 재귀 함수를 이용한 깊은 복사
 
 ```javascript
 let user = {
@@ -189,7 +192,7 @@ console.log(user.sizes.height); //output:183
 console.log(user.sizes.weight); //output:83
 ```
 
-### 2.2. JSON 객체를 이용한 깊은 복사
+#### 2.2. JSON 객체를 이용한 깊은 복사
 
 ```javascript
 let user = {
@@ -213,7 +216,7 @@ console.log(user.sizes.height); //output:183
 console.log(user.sizes.weight); //output:83
 ```
 
-### 2.3. 라이브러리를 이용한 깊은 복사
+#### 2.3. 라이브러리를 이용한 깊은 복사
 
 ```javascript
 import _ from "lodash";
