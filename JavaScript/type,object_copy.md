@@ -44,6 +44,31 @@
 > object 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 [얕은 복사(Shallow copy)](#1-얕은-복사shallow-copybr)와 [깊은 복사(Deep copy)](#2-깊은-복사deep-copy)를 통해 대상 전체를 복사해야 함
 
 ```javascript
+//1. 싱글 리터럴 객체 생성
+const obj1 = {
+  property: "value",
+  method: function () {},
+};
+
+//2. new연산자를 통한 객체 생성
+function NewObject(name) {
+  this.name = name;
+}
+const obj2 = new NewObject("seo");
+
+//3. Object.create([프로토타입],[객체서술자])를 통한 객체 생성: 만들 떄부터 자세하게 만들고 싶을 때
+const obj3 = Object.create(Object.prototype, {
+  name: {
+    value: "seo",
+    writable: true, //덮어쓸 수 있는지
+    enumerable: true, //열거할 수 있는지
+    configurable: true, //객체 서술자를 수정할 수 있는지
+  },
+});
+```
+
+```javascript
+//객체의 추가,삭제
 let user = {
   name: "SDK",
   age: 28,
@@ -51,11 +76,12 @@ let user = {
 
 console.log(user); //{ name: 'SDK', age: 28 }
 
-user.weight = 83; //추가
-console.log(user); //{ name: 'SDK', age: 28, weight: 83 }
+user.height = 183; //추가
+user["weight"] = 83; //추가
+console.log(user); //{ name: 'SDK', age: 28, height: 183, weight: 83 }
 
 delete user.age; //삭제
-console.log(user); //{ name: 'SDK', weight: 83 }
+console.log(user); //{ name: 'SDK', height: 183, weight: 83 }
 ```
 
 `array`
