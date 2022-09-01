@@ -67,7 +67,6 @@ console.log(Array.isArray(NodeList)); //false //유사 배열 객체
 ```
 
 ```javascript
-console.log(Array.isArray(arguments)); //false //유사 백열 객체
 arguments.push("hi"); //TypeError: arguments.push is not a function
 
 const arr1 = Array.from(arguments);
@@ -126,14 +125,14 @@ console.log(fruits); //[ 'apple', <1 empty item>, 'melon' ]
 console.log(fruits.length); //3
 ```
 
-### 3.3. 배열 조작
+### 3.3. 원본 데이터에 영향이 있는 배열 조작
 
 #### 3.3.1. 배열 추가/삭제
 
-- Back/LIFO(Last In First Out: 마지막에 들어온 것이 먼저 나간다)
+- 뒤에서 추가, 삭제
   - 배열 추가: `Array.push(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
   - 배열 삭제: `Array.pop()` => Array에서 요소 삭제, 삭제한 element 리턴
-- Front/LIFO(Last In First Out: 마지막에 들어온 것이 먼저 나간다)
+- 앞에서 추가, 삭제
   - 배열 추가: `Array.unShift(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
   - 배열 삭제: `Array.Shift()` => Array에서 요소 삭제, 삭제한 element 리턴
 
@@ -158,7 +157,7 @@ console.log(fruits); //[ 'watermelon', 'orange', 'melon' ]
 console.log(ret); //3
 ```
 
-#### 3.3.2. 원본 데이터에 영향있는 삭제: `Array.splice(index[,deleteCount, elem1,…,elemN])`
+#### 3.3.2. 특정 위치 배열 삭제,추가: `Array.splice(index,deleteCount,elem1,…,elemN)`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -173,7 +172,9 @@ console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터
 console.log(fruits); //[ 'apple', 'mango', 'kiwi', 'strawberry' ]
 ```
 
-#### 3.3.3. 원본데이터에 영향없는 삭제: `Array.slice(start,end)`
+### 3.4. 원본 데이터에 영향이 있는 배열 조작
+
+#### 3.4.1 특정 위치 배열 삭제: `Array.slice(start,end)`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -185,7 +186,7 @@ console.log(fruits.slice(1, 2)); //[ 'orange' ] //index:1부터 2까지(즉 1만
 console.log(fruits.slice(-2)); //[ 'orange', 'melon' ] //뒤에서 두 번째부터 리턴
 ```
 
-#### 3.3.4. 배열 병합: `Array.concat(arg1, arg2…)`
+#### 3.4.2. 배열 병합: `Array.concat(arg1, arg2…)`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -193,9 +194,19 @@ let fruits = ["apple", "orange", "melon"];
 console.log(fruits.concat("strawberry")); //[ 'apple', 'orange', 'melon', 'strawberry' ]
 console.log(fruits.concat(["cherry", "banana"])); //[ 'apple', 'orange', 'melon', 'cherry', 'banana' ]
 console.log(fruits.concat(["cherry", "banana"], "mango")); //[ 'apple', 'orange', 'melon', 'cherry', 'banana', 'mango' ]
+console.log(["grape"].concat(fruits)); //[ 'grape', 'apple', 'orange', 'melon' ]
 ```
 
-### 3.4. 배열 탐색
+**※ 배열 구조 분해를 이용한 배열 병합**
+
+```javascript
+let Lengs = ["JS", "HTML", "CSS"];
+let otherLengs = ["React", "TS"];
+let arr = [...Leng, ...otherLeng, "Node.js", "ReactNative", "Swift"];
+console.log(arr); //['JS','HTML','CSS','React','TS','Node.js','ReactNative','Swift']
+```
+
+### 3.5. 배열 탐색
 
 - index 탐색(앞에서부터): `Array.indexOf(item, from)`
 - index 탐색(앞에서부터): `Array.lastIndexOf(item, from)`
@@ -216,7 +227,7 @@ console.log(fruits.includes("Banana")); //false
 console.log(fruits.includes(0)); //false
 ```
 
-### 3.5. 배열 변형
+### 3.6. 배열 변형
 
 - 배열 정렬: `Array.sort()`
 - 배열 반전: `Array.reverse()`
@@ -261,15 +272,19 @@ console.log(nums.reverse()); // [4, 20, 12, 10, 1, 0, -1] //4가 10,12,20보다 
 - 0 -> 순서를 변경하지 않는다
 
 ```javascript
-//구현1(오름차순) //x,y의 순서 바꿔주면 내림차순
+//구현1(오름차순), 문자는 정렬 불가
+//x,y의 순서 바꿔주면 내림차순
+
 return x - y;
 
-//구현2(오름차순) //x,y의 순서 바꿔주면 내림차순
+//구현2(오름차순)
+//x,y의 순서 바꿔주면 내림차순
 if (x > y) return 1;
 else if (x < y) return -1;
 else return 0;
 
-//구현3(오름차순) //x,y의 순서 바꿔주면 내림차순
+//구현3(오름차순)
+//x,y의 순서 바꿔주면 내림차순
 return x > y ? 1 : -1;
 ```
 
@@ -344,6 +359,17 @@ console.log(fruits.sort(ascending_order)); //[ 'apple', 'melon', 'orange', 'Oran
 console.log(fruits.sort(decending_order)); //[ 'Orange', 'orange', 'melon', 'apple' ]
 ```
 
+```javascript
+//localCapare()를 이용한 문자 정렬
+let char = ["b", "c", "a", "d", "e"];
+
+let orderChar = char.sort(function (a, b) {
+  return a.localeCompare(b);
+});
+
+console.log(orderChar); //[ 'a', 'b', 'c', 'd', 'e' ]
+```
+
 ### 4.2. 반복 작업: `Array.forEach(function(item, index, array){});`
 
 > 배열에 포함되는 요소를 차례대로 꺼내 콜백 함수에 전달하여 처리  
@@ -369,17 +395,17 @@ nums.forEach(function (i) {
 let nums = [1, 2, 3, 4, 5];
 
 //use for loop
-let use_for_loop = [];
+let useForLoop = [];
 for (let i = 0; i < nums.length; i++) {
-  use_for_loop.push(nums[i] * 2);
+  useForLoop.push(nums[i] * 2);
 }
-console.log(use_for_loop); //[ 2, 4, 6, 8, 10 ]
+console.log(useForLoop); //[ 2, 4, 6, 8, 10 ]
 
 //use map
-let use_map = nums.map(function (item) {
+let useMap = nums.map(function (item) {
   return item * 2;
 });
-console.log(use_map); //[ 2, 4, 6, 8, 10 ]
+console.log(useMap); //[ 2, 4, 6, 8, 10 ]
 ```
 
 ### 4.4. 조건 만족하는 값을 반환
@@ -404,7 +430,18 @@ let find_age = users.find(function (user) {
 console.log(find_age); //{ name: 'dong', age: 26, job: false }
 ```
 
-#### 4.4.2. 모든 값을 배열로 변환: `Array.filter(function(item, index, array){});`
+#### 4.4.2. 하나의 값의 위치를 반환: `Array.findIndex(function(item){})`
+
+```javascript
+let members = ["엄마", "아빠", "누나", "동경"];
+
+let result = members.findIndex(function (member) {
+  return member === "동경";
+});
+console.log(result); //3
+```
+
+#### 4.4.3. 모든 값을 배열로 변환: `Array.filter(function(item){});`
 
 ```javascript
 let users = [
