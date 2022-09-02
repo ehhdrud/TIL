@@ -32,10 +32,10 @@ console.log(nums.length); //2
 
   - for … length(index 접근)
     :(ex)`for (let i = 0; i < arr.length; i++){console.log(arr[i]);}`
-  - for … of(element 접근)
-    :(ex)`for (let element of arr){console.log(element);}`
   - for … in(key 접근)
     :(ex)`for (let key in arr){console.log(arr[key]);}`
+  - for … of(element 접근)
+    :(ex)`for (let element of arr){console.log(element);}`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -45,26 +45,29 @@ for (let i = 0; i < fruits.length; i++) {
   console.log(fruits[i]); //apple   orange   melon
 }
 
-//element 접근
-for (let fruit of fruits) {
-  console.log(fruit); //apple   orange   melon
-}
-
 //key 접근
 for (let key in fruits) {
   console.log(fruits[key]); //apple   orange   melon
+}
+
+//element 접근
+for (let fruit of fruits) {
+  console.log(fruit); //apple   orange   melon
 }
 ```
 
 ## 3. 대표 속성(property)과 메서드(method)
 
+### 3.1. 배열 여부 확인, 배열로 변경
+
 - `Array.isArray()`: 배열 여부 확인
-- `Array.from()`: 유사 배열 객체(array like object)나 반복 가능한 객체(iterable object)를 얕게 복사해 새로운 배열 객체를 생성
 
 ```javascript
 console.log(Array.isArray(arguments)); //false //유사 백열 객체
 console.log(Array.isArray(NodeList)); //false //유사 배열 객체
 ```
+
+- `Array.from()`: 유사 배열 객체(array like object)나 반복 가능한 객체(iterable object)를 얕게 복사해 새로운 배열 객체를 생성
 
 ```javascript
 arguments.push("hi"); //TypeError: arguments.push is not a function
@@ -73,12 +76,7 @@ const arr1 = Array.from(arguments);
 arr1.push("hi"); //Array.push 메서드 잘 동작함
 ```
 
-- `Array.length()`: 배열의 크기 확인
-- `Array.push()`, `Array.pop()`, `Array.unShift()`, `Array.Shift()`, `Array.splice()`, `Array.slice()` 등: 배열 추가, 삭제
-- `Array.indexOf()`, `Array.lastIndexOf()`, `Array.includes()`: 배열 탐색
-- `Array.sort()`, `Array.reverse()`, `Array.join`: 배열 변형(callback 미사용)
-
-### 3.1. 배열 선언/접근/속성
+### 3.2. 배열 선언/접근/속성
 
 - 선언: `new Array()` 혹은 `[]`를 통해 선언하며, 사이즈 혹은 값을 입력하여 초기화 가능
 - 접근 방법: `Array[index]`를 통해 index를 통하여 접근
@@ -103,7 +101,7 @@ fruits[1] = "kiwi";
 console.log(fruits); //[ 'apple', 'kiwi', 'melon' ]
 ```
 
-### 3.2. 배열 타입 확인 및 요소 삭제
+### 3.3. 배열 타입 확인 및 요소 삭제
 
 - 배열 타입 확인: `Array.isArray(value)`
 - 배열 요소 삭제: ~~`delete array[index]`~~(삭제해도 배열 사이즈가 그대로인 문제점 발생 -> `Array.pop`, `Array.shift`를 주로 사용)
@@ -125,9 +123,9 @@ console.log(fruits); //[ 'apple', <1 empty item>, 'melon' ]
 console.log(fruits.length); //3
 ```
 
-### 3.3. 원본 데이터에 영향이 있는 배열 조작
+### 3.4. 원본 데이터에 영향이 있는 배열 조작
 
-#### 3.3.1. 배열 추가/삭제
+#### 3.4.1. 배열 추가/삭제
 
 - 뒤에서 추가, 삭제
   - 배열 추가: `Array.push(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
@@ -157,7 +155,7 @@ console.log(fruits); //[ 'watermelon', 'orange', 'melon' ]
 console.log(ret); //3
 ```
 
-#### 3.3.2. 특정 위치 배열 삭제,추가: `Array.splice(index,deleteCount,elem1,…,elemN)`
+#### 3.4.2. 특정 위치 배열 삭제,추가: `Array.splice(index,deleteCount,elem1,…,elemN)`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -172,9 +170,9 @@ console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터
 console.log(fruits); //[ 'apple', 'mango', 'kiwi', 'strawberry' ]
 ```
 
-### 3.4. 원본 데이터에 영향이 있는 배열 조작
+### 3.5. 원본 데이터에 영향이 있는 배열 조작
 
-#### 3.4.1 특정 위치 배열 삭제: `Array.slice(start,end)`
+#### 3.5.1 특정 위치 배열 삭제: `Array.slice(start,end)`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -186,7 +184,7 @@ console.log(fruits.slice(1, 2)); //[ 'orange' ] //index:1부터 2까지(즉 1만
 console.log(fruits.slice(-2)); //[ 'orange', 'melon' ] //뒤에서 두 번째부터 리턴
 ```
 
-#### 3.4.2. 배열 병합: `Array.concat(arg1, arg2…)`
+#### 3.5.2. 배열 병합: `Array.concat(arg1, arg2…)`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -206,7 +204,7 @@ let arr = [...Leng, ...otherLeng, "Node.js", "ReactNative", "Swift"];
 console.log(arr); //['JS','HTML','CSS','React','TS','Node.js','ReactNative','Swift']
 ```
 
-### 3.5. 배열 탐색
+### 3.6. 배열 탐색
 
 - index 탐색(앞에서부터): `Array.indexOf(item, from)`
 - index 탐색(앞에서부터): `Array.lastIndexOf(item, from)`
@@ -227,7 +225,7 @@ console.log(fruits.includes("Banana")); //false
 console.log(fruits.includes(0)); //false
 ```
 
-### 3.6. 배열 변형
+### 3.7. 배열 변형
 
 - 배열 정렬: `Array.sort()`
 - 배열 반전: `Array.reverse()`
