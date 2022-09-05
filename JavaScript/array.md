@@ -1,15 +1,15 @@
 # Array
 
-> 여러 개체(Entity)값을 순차적으로 나열한 자료구조  
-> 배열 내 값을 요소(Element)라고 하며, 배열 요소는 Index로 접근
+> 여러 개체(Entity)값을 순차적으로 나열한 자료구조.  
+> 배열 내 값을 요소(Element)라고 하며, 배열 요소는 Index로 접근.
 
 ## 1. 배열의 실체
 
-> 자바스크립트의 배열은 다른 언어의 일반적인 배열이 아닌 Hash 기반의 객체  
-> 메모리가 연속적인 밀집 배열(dense array)이 아닌 비연속적인 희소 배열(sparse array)  
-> 단순히 연속적인 배열이 아니라서 [0], [1], [once], [twice]와 같이 Hash 기반 작성이 가능, 길이는 [index]만 계산  
-> 장점: 특정 요소를 탐색하거나 배열 요소를 삽입 또는 삭제하기에 용이  
-> 단점: 배열 요소에 접근하는 경우 일반적인 배열보다 느림
+> 자바스크립트의 배열은 다른 언어의 일반적인 배열이 아닌 Hash 기반의 객체.  
+> 메모리가 연속적인 밀집 배열(Dense Array)이 아닌 비연속적인 희소 배열(Sparse Array).  
+> 단순히 연속적인 배열이 아니라서 [0], [1], [once], [twice]와 같이 Hash 기반 작성이 가능, 길이는 [index]만 계산.  
+> 장점: 특정 요소를 탐색하거나 배열 요소를 삽입 또는 삭제하기에 용이.  
+> 단점: 배열 요소에 접근하는 경우 일반적인 배열보다 느림.
 
 ```javascript
 let nums = [];
@@ -27,15 +27,12 @@ console.log(nums.length); //2
 
 ## 2. 배열 반복문
 
-- 반복문을 통해 배열 요소에 접근 가능
-- 반복문 문법
-
-  - for … length(index 접근)
-    :(ex)`for (let i = 0; i < arr.length; i++){console.log(arr[i]);}`
-  - for … in(key 접근)
-    :(ex)`for (let key in arr){console.log(arr[key]);}`
-  - for … of(element 접근)
-    :(ex)`for (let element of arr){console.log(element);}`
+- for … length(index 접근)
+  :(ex)`for (let i = 0; i < arr.length; i++){console.log(arr[i]);}`
+- for … in(key 접근)
+  :(ex)`for (let key in arr){console.log(arr[key]);}`
+- for … of(element 접근)
+  :(ex)`for (let element of arr){console.log(element);}`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -127,10 +124,10 @@ console.log(fruits.length); //3
 
 #### 3.4.1. 배열 추가/삭제
 
-- 뒤에서 추가, 삭제
+- 뒤에서 추가/삭제
   - 배열 추가: `Array.push(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
   - 배열 삭제: `Array.pop()` => Array에서 요소 삭제, 삭제한 element 리턴
-- 앞에서 추가, 삭제
+- 앞에서 추가/삭제
   - 배열 추가: `Array.unShift(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
   - 배열 삭제: `Array.Shift()` => Array에서 요소 삭제, 삭제한 element 리턴
 
@@ -170,7 +167,7 @@ console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터
 console.log(fruits); //[ 'apple', 'mango', 'kiwi', 'strawberry' ]
 ```
 
-### 3.5. 원본 데이터에 영향이 있는 배열 조작
+### 3.5. 원본 데이터에 영향이 없는 배열 조작
 
 #### 3.5.1 특정 위치 배열 삭제: `Array.slice(start,end)`
 
@@ -250,11 +247,11 @@ console.log(str_separator); //orange;melon;banana;apple
 
 ## 4. 배열 고차 함수
 
-> 하나 이상의 함수를 매개 변수로 취하거나 함수를 결과로 반환하는 함수(매개 변수로 전달되는 함수는 콜백함수)
+> 하나 이상의 함수를 매개 변수로 취하거나 함수를 결과로 반환하는 함수(매개 변수로 전달되는 함수는 콜백함수).
 
 ### 4.1. 임의정렬: `Array.sort(function)`
 
-> 기존 정렬의 문제점: sort, reverse는 배열의 요소가 일시적으로 문자열로 변경되어 정렬되어 제대로 정렬이 안되는 경우 발생
+> 기존 정렬의 문제점: sort, reverse는 배열의 요소가 일시적으로 문자열로 변경되어 정렬되어 제대로 정렬이 안되는 경우 발생.
 
 ```javascript
 let nums = [1, -1, 4, 0, 10, 20, 12];
@@ -263,7 +260,7 @@ console.log(nums.sort()); //[-1, 0, 1, 10, 12, 20, 4] //4가 10,12,20보다 높�
 console.log(nums.reverse()); // [4, 20, 12, 10, 1, 0, -1] //4가 10,12,20보다 높은 수로 취급
 ```
 
-> 해결책: 오름차순, 내림차순 함수를 정의하고 콜백함수로 불러들여 해결
+> 해결책: 오름차순, 내림차순 함수를 정의하고 콜백함수로 불러들임.
 
 - 0보다 큰 값 -> y가 x보다 앞에 오도록 정렬한다
 - 0보다 작은 값 -> x가 y보다 앞에 오도록 정렬한다
@@ -461,8 +458,9 @@ console.log(find_age); //[ { name: 'dong', age: 26, job: false }, { name: 'seo',
 
 ### 4.5. 누적 결과값 변환: `Array.reduce(function(accumulator, item, index, array){},accumulator_initial);`
 
-> 요소 별 함수 수행 후 누적된 결과값을 반환  
-> `accumulator`: 이전 함수 결과, `accumulator_initial:` acuumulator의 초기값 설정 가능, 없다면 1부터 시작
+> 요소 별 함수 수행 후 누적된 결과값을 반환.
+> `accumulator`: 이전 함수 결과.  
+> `accumulator_initial:` acuumulator의 초기값 설정 가능, 없다면 1부터 시작.
 
 ```javascript
 let nums = [1, 2, 3, 4, 5];
@@ -488,8 +486,8 @@ console.log(sum); //15
 
 ## 5. N차원 Array
 
-> 배열 안에 N개 만큼의 배열이 존재하는 객체  
-> 2/3차원 지도 정보, RGB를 저장하는 2차원 사진 파일 등을 표현할 때 활용 가능
+> 배열 안에 N개 만큼의 배열이 존재하는 객체.  
+> 2/3차원 지도 정보, RGB를 저장하는 2차원 사진 파일 등을 표현할 때 활용 가능.
 
 ```javascript
 //2차원 배열 예제
