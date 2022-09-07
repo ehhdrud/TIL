@@ -1,8 +1,8 @@
 # Method
 
-> 배열의 요소(element), 객체의 속성(property)에 함수를 정의하여 저장 가능  
-> 객체에 저장된 값이 함수인 경우, 이를 메서드(Method)라고 부름  
-> 객체에 대한 주소 값을 가지고, 객체 내 함수도 다시 주소값을 가짐(다른 속성들은 주소값 없음)
+> 배열의 요소(element), 객체의 속성(property)에 함수를 정의하여 저장 가능.  
+> 객체에 저장된 값이 함수인 경우, 이를 메서드(Method)라고 부름.  
+> 객체에 대한 주소 값을 가지고, 객체 내 함수도 다시 주소값을 가짐(다른 속성들은 주소값 없음).
 
 ```javascript
 //주소값 이해하기
@@ -75,8 +75,8 @@ console.log(hi_func == obj.func); //true //변경되어 같음
 
 # this
 
-> 메서드에서 객체 내부의 속성 값에 접근할 수 있도록 하는 지시자  
-> this를 사용하는 method는 추가 가능하며, 이 때 this는 runtime에 결정되어 호출한 객체에 따라 다름
+> 메서드에서 객체 내부의 속성 값에 접근할 수 있도록 하는 지시자.  
+> 주로 함수에서의 this는 전역 공간을 가르키고, 메서드에서의 this는 호출한 객체의 공간을 가르킴.
 
 ```javascript
 let user = {
@@ -98,3 +98,7 @@ admin.func = hello_func;
 user.func(); //helloSDK //this->user
 admin.func(); //helloSEO //this->admin
 ```
+
+> 그럼에도 불구하고 this는 예측이 어렵게 동작(암시적 바인딩)하므로 명시적 바인딩이 필요.
+
+-
