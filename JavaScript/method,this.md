@@ -101,4 +101,36 @@ admin.func(); //helloSEO //this->admin
 
 > 그럼에도 불구하고 this는 예측이 어렵게 동작(암시적 바인딩)하므로 명시적 바인딩이 필요.
 
--
+- `function.call([this가 가르킬 객체],[function의 매개변수])`
+- `function.apply([this가 가르킬 객체],[function의 매개변수를 배열로 넣어줌])`
+- `function.bind([this가 가르킬 객체])`: 함수를 실행하지 않고 바인딩된 함수를 리턴
+
+```javascript
+const me = {
+  name: "동경",
+  sayName: function () {
+    return this.name + "입니다.";
+  },
+};
+
+const you = {
+  name: "현석",
+  sayName: function () {
+    return this.name + "입니다.";
+  },
+};
+
+function sayFullName(firstName) {
+  return firstName + this.sayName();
+}
+
+const result1 = sayFullName.call(me, "서");
+console.log(result1); //서동경입니다.
+
+const result2 = sayFullName.apply(me, ["서"]);
+console.log(result2); //서동경입니다.
+
+const boundSay = sayFullName.bind(me);
+const result3 = boundSay("서");
+console.log(result3); //서동경입니다.
+```
