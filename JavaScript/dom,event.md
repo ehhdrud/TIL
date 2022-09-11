@@ -1,4 +1,4 @@
-# 1. DOM
+# 1. DOM(Document Object Model)
 
 > HTML은 문서이므로 자바스크립트로 조작이 불가능.  
 > 이를 가능하도록 하기 위해 HTML을 자바스크립트의 객체로 모델링해서 조작.  
@@ -95,7 +95,7 @@ partnerBox.appendChild(ele2); //뒤쪽에 'seodongkyeong' 추가
 partnerBox.innerHTML = `<h3 class="title">SEO-DONG-KYEONG</h3>`; //innerHTML을 통해 DOM을 생성하는 과정없이 타이틀을 'SEO-DONG-KYEONG'으로 변경
 ```
 
-# 2. Event
+# 2. 이벤트(Event)
 
 > 이벤트란 웹페이지에서 발생하는 키보드 입력, 마우스 입력 등의 사용자의 동작을 의미.  
 > 이벤트 객체란 이벤트 정보를 담은 객체, DOM의 Node가 이벤트 객체를 가지고 있음.  
@@ -137,13 +137,27 @@ resetButton.addEventListener("click", function (event) {
 > 하위 요소마다 이벤트를 붙이지 않고, 상위 요소에서 하위 요소의 이벤트를 제어하는 방식.  
 > 각 요소마다 이벤트 핸들러를 추가한다면 메모리 측면에서 효율이 떨어짐.
 
-## 3. debounce
+## 3. 이벤트 루프(Event loop)
+
+> 자바스크립트는 싱글 스레드 언어이기에 비동기적 처리가 어려움 -> 브라우저에서 비동기 방식의 동시성을 지원하기 위한 방법.  
+> Heap, Call Stack(Last In First Out)으로 구성된 자바스크립트 엔진과 Web API, Task Queue(First In First Out)가 이벤트 루프를 통해 동작.
+
+- 동작 순서
+
+1. 자바스크립트 함수가 Call Stack에서 쌓이면서 후입선출 방식으로 동작
+2. SetTimmeout같은 비동기 작업은 Web API에 위임
+3. Web API가 호출한 자바스크립트 함수는 Task Queue에서 대기
+4. Call Stack이 empty상태가 되면 대기중인 함수가 선입선출 방식으로 이벤트 루프를 통해 Call Stack으로 넘어가서 동작
+
+## 4.debounce & throttle
+
+## 4.1. debounce
 
 > 이벤트를 그룹화하여 특정 시간이 지난 후, 마지막 이벤트만 발생하도록 하는 기술.  
 > 매개변수는 *실행시킬 함수*와 _지연시킬 밀리세컨드_.  
 > 이벤트가 실행되었을 때 일정 시간을 기다렸다가 이벤트를 수행하도록 만들고, 일정 시간 내에 같은 이벤트가 또 들어오면 이전 요청을 취소하는 방식으로 구현.
 
-## 4. throttle
+## 4.2. throttle
 
 > 일정 시간동안 일어난 이벤트를 차단하고 단 한 번만 실행하는 기술.  
 > 매개변수는 *실행시킬 함수*와 _차단시킬 밀리세컨드_.  
