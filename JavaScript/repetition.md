@@ -51,8 +51,8 @@ console.log(text); //DongKyeongSeo28
 ### 1.2. for of문
 
 > `for(variable of iterable){}`  
-> Collection 객체가 Symbol.iterator속성를 가지고 있어야 동작 가능한 유형(Symbol.iterator속성을 가지고 있어야 value들이 반복되는 iteration 동작을 정의하는 것을 허용함).  
-> ES6에 새로 추가된 Collection 기반의 반복 구문.
+> ES6에 새로 추가된 Collection 기반의 반복 구문이다.  
+> Collection 객체가 Symbol.iterator속성를 가지고 있어야 동작이 가능하다. Symbol.iterator속성을 가지고 있어야 value들이 반복되는 iteration 동작을 정의하는 것을 허용하기 때문이다.
 
 ```javascript
 let language = "JavaScript"; //문자열(string)도 Symbol.iterator속성을 가지고 있음
