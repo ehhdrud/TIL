@@ -1,6 +1,6 @@
 # Collection
 
-> 구조 또는 비구조화 형태로 프로그래밍 언어가 제공하는 값을 담을 수 있는 공간
+> 구조 또는 비구조화 형태로 프로그래밍 언어가 제공하는 값을 담을 수 있는 공간.
 
 - Indexed Collection
   - Array
@@ -14,8 +14,8 @@
 
 ## 1. Map
 
-> 다양한 자료형의 key를 허용하고, keys⇒values 형태의 자료형을 저장할 수 있는 Collection  
-> Map은 Object 대비 다양한 key의 사용을 허용하고, 값의 추가/삭제 시 ‘{}’, ‘.’이 아닌 메서드를 통해 수행 가능
+> 다양한 자료형의 key를 허용하고, keys⇒values 형태의 자료형을 저장할 수 있는 Collection.  
+> Map은 Object 대비 다양한 key의 사용을 허용하고, 값의 추가/삭제 시 ‘{}’, ‘.’이 아닌 메서드를 통해 수행 가능.
 
 ### 1.1. 대표 속성(property) 및 메서드(method)
 
@@ -93,7 +93,7 @@ console.log(recipe_juice_map); //Map(3) { 'strawberry' => 50, 'banana' => 100, '
 
 ## 2. Set
 
-> value만을 저장하며 중복을 허용하지 않는 Collection
+> value만을 저장하며 중복을 허용하지 않는 Collection.
 
 ### 2.1. 대표 속성(property) 및 메서드(method)
 
@@ -127,7 +127,7 @@ console.log(set); //Set(2) { 10, 20 }
 
 ### 2.2. Set 반복문
 
-> Collection 객체인 Set의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능
+> Collection 객체인 Set의 iterator 속성을 이용하여 `for … of` 구문을 통해 반복문 수행 가능.
 
 ```javascript
 let str = new Set("Hello!");

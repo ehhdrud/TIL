@@ -1,11 +1,11 @@
 # 반복문
 
-> 프로그램 내에서 똑같은 명령을 일정 횟수만큼 반복하여 수행하도록 제어하는 명령문
+> 프로그램 내에서 똑같은 명령을 일정 횟수만큼 반복하여 수행하도록 제어하는 명령문.
 
 ## 1. for문
 
-> `for(선언문; 조건문; 증감문)` 형태로 이루어짐, 각 자리에 공백 입력 가능  
-> 조건문이 fail이 되기 전까지 반복 수행
+> `for(선언문; 조건문; 증감문)` 형태로 이루어짐, 각 자리에 공백 입력 가능.  
+> 조건문이 fail이 되기 전까지 반복 수행.
 
 ```javascript
 //for문
@@ -33,8 +33,8 @@ for (let x = 0; x < 3; x++) {
 ### 1.1. for in문
 
 > `for(key in object){}`  
-> 객체의 key: value형태를 반복하여 수행하는데 최적화된 유형  
-> 첫 번째부터 마지막까지, 객체의 key 개수만큼 반복
+> 객체의 key: value형태를 반복하여 수행하는데 최적화된 유형.  
+> 첫 번째부터 마지막까지, 객체의 key 개수만큼 반복.
 
 ```javascript
 const person = { fname: "DongKyeong", lname: "Seo", age: 28 };
@@ -51,8 +51,8 @@ console.log(text); //DongKyeongSeo28
 ### 1.2. for of문
 
 > `for(variable of iterable){}`  
-> Collection 객체가 Symbol.iterator속성를 가지고 있어야 동작 가능한 유형(Symbol.iterator속성을 가지고 있어야 value들이 반복되는 iteration 동작을 정의하는 것을 허용함)
-> ES6에 새로 추가된 Collection 기반의 반복 구문
+> Collection 객체가 Symbol.iterator속성를 가지고 있어야 동작 가능한 유형(Symbol.iterator속성을 가지고 있어야 value들이 반복되는 iteration 동작을 정의하는 것을 허용함).  
+> ES6에 새로 추가된 Collection 기반의 반복 구문.
 
 ```javascript
 let language = "JavaScript"; //문자열(string)도 Symbol.iterator속성을 가지고 있음
@@ -67,9 +67,9 @@ console.log(text); //Javascript
 
 ## 2. while
 
-> 조건문이 true일 때 코드 블록을 계속해서 반복 수행하는 반복문  
-> for문에 비해 선언문과 증감문 없이 loop를 수행하며, 무한 loop 수행 시 많이 사용  
-> 최소 한번 수행이 필요할 때 조건문을 코드 블록보다 아래로 옮긴 `do … while` 반복문 사용
+> 조건문이 true일 때 코드 블록을 계속해서 반복 수행하는 반복문.  
+> for문에 비해 선언문과 증감문 없이 loop를 수행하며, 무한 loop 수행 시 많이 사용.  
+> 최소 한번 수행이 필요할 때 조건문을 코드 블록보다 아래로 옮긴 `do … while` 반복문 사용.
 
 ```javascript
 //while문 예제
@@ -93,9 +93,9 @@ do {
 
 ### 3.1 `break`
 
-> 반복문 수행 시, 코드 블록을 탈출할 때 쓰는 식별자  
-> 다중 반복문의 경우 가장 안쪽의 반복문을 제어  
-> Label을 통하여 다중 반복문을 한번에 종료 가능
+> 반복문 수행 시, 코드 블록을 탈출할 때 쓰는 식별자.  
+> 다중 반복문의 경우 가장 안쪽의 반복문을 제어.  
+> Label을 통하여 다중 반복문을 한번에 종료 가능.
 
 ```javascript
 //break 예제
@@ -130,8 +130,8 @@ end: for (let i = 0; i < 3; i++) {
 
 ### 3.2. `continue`
 
-> 반복문 수행 시, 코드 블록 실행을 해당 라인에서 중지하고 블록 코드를 종료시킨 후 반복문 내 명시된 조건 판단
-> 특정 조건의 뒤의 코드를 스킵하려고 할 때 많이 사용
+> 반복문 수행 시, 코드 블록 실행을 해당 라인에서 중지하고 블록 코드를 종료시킨 후 반복문 내 명시된 조건 판단.  
+> 특정 조건의 뒤의 코드를 스킵하려고 할 때 많이 사용.
 
 ```javascript
 let text = "";
