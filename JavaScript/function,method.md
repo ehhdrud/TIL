@@ -164,3 +164,52 @@ let add = function (b) {
 add(a);
 console.log(a); //2
 ```
+
+# Method
+
+> 배열의 요소(element), 객체의 속성(property)에 함수를 정의하여 저장이 가능하고, 이 저장된 함수를 메서드(Method)라고 부른다.  
+> 객체에 대한 주소 값을 가지고, 객체 내 함수도 다시 주소값을 가짐(다른 속성들은 주소값 없음).
+
+```javascript
+let list = [
+  "SDK",
+  28,
+  function hello_func() {
+    console.log("hello");
+  }, //배열의 요소(element)에 저장된 함수 -> Method
+];
+
+let obj = {
+  name: "SDK",
+  age: 27,
+  hello_func() {
+    console.log("hello");
+  }, //객체의 속성(property)에 저장된 함수 -> Method
+};
+
+obj.hello_func(); //hello
+list[2](); //hello
+```
+
+```javascript
+function hello_func() {
+  console.log("hello");
+}
+
+function hi_func() {
+  console.log("hi");
+}
+
+let obj = {
+  name: "SDK",
+  age: 28,
+  func: hello_func,
+};
+
+hello_func(); //hello
+obj.func(); //hello
+console.log(hello_func == obj.func); //true
+
+obj.func = hi_func; //이런식으로 메소드 변경이 가능하다
+obj.func(); //hi
+```
