@@ -79,12 +79,12 @@ console.log(Array.isArray(NodeList)); //false //NodeList는 유사 배열 객체
 arguments.push("hi"); //TypeError: arguments.push is not a function
 
 const arr1 = Array.from(arguments);
-arr1.push("hi"); //Array.push 메서드 잘 동작함
+arr1.push("hi"); //Array.push 메서드가 잘 동작한다.
 ```
 
 ### 3.2. 배열 선언/접근/속성
 
-- 선언: `new Array()` 혹은 `[]`를 통해 선언하며, 사이즈 혹은 값을 입력하여 초기화 가능
+- 선언: `new Array()` 혹은 `[]`를 통해 선언하며, 사이즈 혹은 값을 입력하여 초기화
 - 접근 방법: `Array[index]`를 통해 index를 통하여 접근
 - 배열 속성: `Array.length`를 통해 배열 요소의 개수 확인 가능
 
@@ -116,7 +116,7 @@ console.log(fruits); //[ 'apple', 'kiwi', 'melon' ]
   - 배열 삭제: `Array.pop()` => Array에서 요소 삭제, 삭제한 element 리턴
 - 앞에서 추가/삭제
   - 배열 추가: `Array.unShift(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
-  - 배열 삭제: `Array.Shift()` => Array에서 요소 삭제, 삭제한 element 리턴
+  - 배열 삭제: `Array.shift()` => Array에서 요소 삭제, 삭제한 element 리턴
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -154,13 +154,13 @@ console.log(fruits.length); //3
 ```javascript
 let fruits = ["apple", "orange", "melon"];
 
-console.log(fruits.splice(1)); //[ 'orange', 'melon' ] //index:1부터 삭제해서 리턴
-console.log(fruits); //[ 'apple' ] //index=0만 살아남음
+console.log(fruits.splice(1)); //[ 'orange', 'melon' ] //index:1부터 삭제해서 반환한다
+console.log(fruits); //[ 'apple' ] //원본 배열은 index:0만 남았다
 
 fruits = ["apple", "orange", "melon", "strawberry"];
-console.log(fruits.splice(1, 1)); //[ 'orange' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 리턴
+console.log(fruits.splice(1, 1)); //[ 'orange' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 반환한다
 console.log(fruits); //[ 'apple', 'melon', 'strawberry' ]
-console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 리턴, 그 자리엔 mango, kiwi 삽입
+console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 반환하고 그 자리엔 mango, kiwi를 삽입한다
 console.log(fruits); //[ 'apple', 'mango', 'kiwi', 'strawberry' ]
 ```
 
@@ -171,11 +171,11 @@ console.log(fruits); //[ 'apple', 'mango', 'kiwi', 'strawberry' ]
 ```javascript
 let fruits = ["apple", "orange", "melon"];
 
-console.log(fruits.slice(1)); //[ 'orange', 'melon' ] //index:1부터 리턴
-console.log(fruits); //[ 'apple', 'orange', 'melon' ] //원본데이터에는 영향을 안줌
+console.log(fruits.slice(1)); //[ 'orange', 'melon' ] //index:1부터 반환한다
+console.log(fruits); //[ 'apple', 'orange', 'melon' ] //원본데이터에는 영향X!
 
-console.log(fruits.slice(1, 2)); //[ 'orange' ] //index:1부터 2까지(즉 1만) 리턴
-console.log(fruits.slice(-2)); //[ 'orange', 'melon' ] //뒤에서 두 번째부터 리턴
+console.log(fruits.slice(1, 2)); //[ 'orange' ] //index:1만 반환한다
+console.log(fruits.slice(-2)); //[ 'orange', 'melon' ] //뒤에서 2번째부터 반환한다
 ```
 
 #### 3.4.2. 배열 병합: `Array.concat(arg1, arg2…)`
@@ -207,11 +207,11 @@ console.log(arr); //['JS','HTML','CSS','React','TS','Node.js','ReactNative','Swi
 ```javascript
 let fruits = ["apple", "orange", "banana", "orange", "melon"];
 console.log(fruits.indexOf("orange")); //1
-console.log(fruits.indexOf("Orange")); //-1 //존재하지 않는다면 -1이 출력
-console.log(fruits.indexOf("orange", 2)); //3 //index:2부터 탐색
+console.log(fruits.indexOf("Orange")); //-1 //존재하지 않는다면 -1이 출력된다
+console.log(fruits.indexOf("orange", 2)); //3 //index:2부터 탐색한다
 
 console.log(fruits.lastIndexOf("orange")); //3
-console.log(fruits.lastIndexOf("orange", -3)); //1 //뒤에서 세 번째부터 역방향으로 검색
+console.log(fruits.lastIndexOf("orange", -3)); //1 //뒤에서 3번째부터 역방향으로 탐색한다
 console.log(fruits.lastIndexOf("orange", 0)); //-1 //0을 입력하면 그 역방향으로는 어떠한 orange도 없으므로 -1 출력
 
 console.log(fruits.includes("banana")); //true
@@ -234,9 +234,9 @@ let fruits = ["apple", "orange", "banana", "melon"];
 console.log(fruits.sort()); //[ 'apple', 'banana', 'melon', 'orange' ]
 console.log(fruits.reverse()); //[ 'orange', 'melon', 'banana', 'apple' ]
 
-let str = fruits.join(); //separator에 아무것도 안쓰면 기본값 ','를 사용해서 분리
+let str = fruits.join(); //separator에 아무것도 안쓰면 기본값 ','를 사용해서 분리,변환한다.
 console.log(str); //orange,melon,banana,apple
-let str_separator = fruits.join(";"); //';'를 사용해서 분리
+let str_separator = fruits.join(";"); //';'를 사용해서 분리,변환한다.
 console.log(str_separator); //orange;melon;banana;apple
 ```
 
@@ -246,7 +246,7 @@ console.log(str_separator); //orange;melon;banana;apple
 
 ### 4.1. 임의정렬: `Array.sort(function)`
 
-기존 정렬의 문제점: sort, reverse는 배열의 요소가 일시적으로 문자열로 변경되어 정렬되어 제대로 정렬이 안되는 경우 발생.
+> 기존 정렬의 문제점: sort, reverse는 배열의 요소가 일시적으로 문자열로 변경되어 정렬되어 제대로 정렬이 안되는 경우가 발생한다.
 
 ```javascript
 let nums = [1, -1, 4, 0, 10, 20, 12];
@@ -255,10 +255,10 @@ console.log(nums.sort()); //[-1, 0, 1, 10, 12, 20, 4] //4가 10,12,20보다 높�
 console.log(nums.reverse()); // [4, 20, 12, 10, 1, 0, -1] //4가 10,12,20보다 높은 수로 취급
 ```
 
-해결책: 아래 case에 따라 오름차순 함수 또는 내림차순 함수를 구현하고 sort의 콜백함수로 불러들임.  
-case1. 반환값이 0보다 큰 값 -> y가 x보다 앞에 오도록 정렬한다.  
-case2. 반환값이 0보다 작은 값 -> x가 y보다 앞에 오도록 정렬한다.  
-case3. 반환값이 0 -> 순서를 변경하지 않는다.
+> 해결책: 아래 case에 따라 오름차순 함수 또는 내림차순 함수를 구현하고 sort의 콜백함수로 불러들인다.  
+> case1. 반환값이 0보다 큰 값 -> y가 x보다 앞에 오도록 정렬한다.  
+> case2. 반환값이 0보다 작은 값 -> x가 y보다 앞에 오도록 정렬한다.  
+> case3. 반환값이 0 -> 순서를 변경하지 않는다.
 
 ```javascript
 //구현1(오름차순) //x,y의 순서 바꿔주면 내림차순
@@ -296,7 +296,7 @@ console.log(nums.sort(decending_order)); //[20, 12, 10, 4, 1, 0, -1]
 //구현2 예제
 let fruits = ["apple", "Orange", "orange", "melon"];
 
-//오름차순 함수, String method를 통해 모두 대문자로 치환하고 오름차순 정렬
+//오름차순 함수
 let ascending_order = function (x, y) {
   x = x.toUpperCase();
   y = y.toUpperCase();
@@ -306,7 +306,7 @@ let ascending_order = function (x, y) {
   else return 0;
 };
 
-//내림차순 함수, String method를 통해 모두 대문자로 치환하고 내림차순 정렬
+//내림차순 함수
 let decending_order = function (x, y) {
   x = x.toUpperCase();
   y = y.toUpperCase();
@@ -445,7 +445,7 @@ console.log(find_age); //[ { name: 'dong', age: 26, job: false }, { name: 'seo',
 ### 4.5. 누적 결과값 변환: `Array.reduce(function(accumulator, item, index, array){},accumulator_initial);`
 
 > 요소 별 함수 수행 후 누적된 결과값을 반환한다.  
-> `accumulator`: 이전 함수 결과, `accumulator_initial:` acuumulator의 초기값 설정 가능, 입력이 없다면 1부터 시작.
+> `accumulator`: 이전 함수 결과, `accumulator_initial:` acuumulator의 초기값 설정 가능, 입력이 없다면 1부터 시작한다.
 
 ```javascript
 let nums = [1, 2, 3, 4, 5];
@@ -456,7 +456,7 @@ let sum = nums.reduce(function (accumulator, item, index, array) {
   console.log(accumulator, "\t\t", item, "\t\t", index);
   call_count++;
   return accumulator + item;
-}, 0); //만약 initial이 없다면 index 1부터 시작 -> value:2부터 시작하게 됨
+}, 0);
 /*
 result	value	index
 0 		 1 		 0
