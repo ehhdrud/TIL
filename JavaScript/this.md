@@ -12,7 +12,7 @@ let admin = {
   name: "Seo",
 };
 
-//함수 내부 this값은 런타임에 결정된다
+//함수 내부 this값은 런타임에 결정된다.
 function hello_func() {
   console.log("hello" + this.name);
 }
@@ -24,7 +24,7 @@ user.func(); //helloSDK //this->user
 admin.func(); //helloSEO //this->admin
 ```
 
-## 바인딩
+## 1. 바인딩
 
 > this는 예측이 어렵게 동작하므로 명시적 바인딩, 즉 this의 객체를 명시적으로 지정해주는 과정이 필요하다.
 
@@ -60,4 +60,130 @@ console.log(result2); //서동경입니다.
 const boundSay = sayFullName.bind(me);
 const result3 = boundSay("서");
 console.log(result3); //서동경입니다.
+```
+
+## 2. this의 사용
+
+### 2.1. 전역에 선언된 함수의 this
+
+#### 2.1.1. function -> 전역(window, global)인 경우
+
+```javascript
+function myFn() {
+  return this;
+}
+myFn(); // window 객체 출력
+```
+
+#### 2.1.2. new연산자를 사용해 생성자 함수 방식으로 인스턴스를 생성한 경우
+
+```javascript
+function MyFn() {
+  this.title = "Hello World!";
+  return this;
+}
+// new 연산자를 이용해서 새로운 객체를 얻는다.
+const myfn = new MyFn();
+myfn; // MyFn {title: 'Hello World!'}
+```
+
+### 2.2. 객체에 선언된 메서드의 this
+
+#### 2.2.1. 해당 객체를 바로 가르키는 경우
+
+> showTitle() 메소드는 fn 객체의 메소드이기 때문에 this는 fn 객체를 참조한다.
+
+```javascript
+const fn = {
+  title: "Hello World!",
+  showTitle() {
+    console.log(this.title);
+  },
+};
+fn.showTitle(); // 'Hello World!'
+```
+
+#### 2.2.2. 고차함수의 콜백함수 안에서의 this
+
+##### 2.2.2.1. 문제점
+
+> 콜백함수가 일반함수이므로 전역 객체를 참조한다.
+
+```javascript
+const fn = {
+  title: "Hello World!",
+  tags: [1, 2, 3],
+  showTags() {
+    this.tags.forEach(function (tag) {
+      console.log(tag);
+      console.log(this); // window
+    });
+  },
+};
+fn.showTags();
+/**
+ * output:
+ * 1
+ * window 객체 출력
+ * 2
+ * window 객체 출력
+ * 3
+ * window 객체 출력
+ */
+```
+
+##### 2.2.2.1. 해결방법
+
+> 콜백함수 다음 인자로 참조할 객체를 전달해준다.
+
+```javascript
+const fn = {
+  title: "Hello World!",
+  tags: [1, 2, 3],
+  showTags() {
+    this.tags.forEach(function (tag) {
+      console.log(tag);
+      console.log(this); // fn
+    }, this); // 여기는 일반 함수 바깥, 즉 fn 객체를 참조할 수 있다.
+  },
+};
+fn.showTags();
+/**
+ * output:
+ * 1
+ * fn 객체 출력
+ * 2
+ * fn 객체 출력
+ * 3
+ * fn 객체 출력
+ */
+```
+
+#### 2.2.3. 화살표 함수에서의 this
+
+> function 키워드로 생성한 일반함수와 화살표 함수의 가장 큰 차이점이 바로 this이다.  
+> 화살표 함수에서의 this는 언제나 상위 스코프(Lexcical Scope 또는 Static Scope: 함수가 어디서 호출되었는지가 아니라 어디서 선언되었는지에 따라 스코프가 결정)의 this이다. 이를 Lexical this라고 한다. 즉, 일반함수는 함수를 *호출*할 때 바인딩할 객체가 동적으로 정해진다면, 화살표 함수는 함수를 *선언*할 때 바인딩할 객체가 정적으로 정해진다.  
+> 화살표 함수의 this는 `call`, `apply`, `bind`를 통해 변경할 수 없다.
+
+```javascript
+const fn = {
+  title: "Hello World!",
+  tags: [1, 2, 3],
+  showTags() {
+    this.tags.forEach((tag) => {
+      console.log(tag);
+      console.log(this); // fn
+    });
+  },
+};
+fn.showTags();
+/**
+ * output:
+ * 1
+ * fn 객체 출력
+ * 2
+ * fn 객체 출력
+ * 3
+ * fn 객체 출력
+ */
 ```
