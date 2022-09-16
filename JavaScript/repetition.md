@@ -1,11 +1,11 @@
 # 반복문
 
-> 프로그램 내에서 똑같은 명령을 일정 횟수만큼 반복하여 수행하도록 제어하는 명령문.
+> 반복문이란 프로그램 내에서 똑같은 명령을 일정 횟수만큼 반복하여 수행하도록 제어하는 명령문이다.
 
 ## 1. for문
 
-> `for(선언문; 조건문; 증감문)` 형태로 이루어짐, 각 자리에 공백 입력 가능.  
-> 조건문이 fail이 되기 전까지 반복 수행.
+> `for([선언문]; [조건문]; [증감문]){}` 형태로 이루어지고 각 자리에 공백 입력도 가능하다.  
+> 조건문이 fail이 되기 전까지 반복 수행한다.
 
 ```javascript
 //for문
@@ -33,8 +33,8 @@ for (let x = 0; x < 3; x++) {
 ### 1.1. for in문
 
 > `for(key in object){}`  
-> 객체의 key: value형태를 반복하여 수행하는데 최적화된 유형.  
-> 첫 번째부터 마지막까지, 객체의 key 개수만큼 반복.
+> 객체의 key: value 형태를 반복하여 수행하는데 최적화된 유형이다.  
+> 첫 번째부터 마지막까지 객체의 key 개수만큼 반복한다.
 
 ```javascript
 const person = { fname: "DongKyeong", lname: "Seo", age: 28 };
@@ -42,7 +42,7 @@ const person = { fname: "DongKyeong", lname: "Seo", age: 28 };
 let text = "";
 
 for (let x in person) {
-  text += person[x]; //text = text + person[x] (객체 person의 각 key의 값(value)들이 for문을 통해 할당되고 더해짐)
+  text += person[x];
 }
 
 console.log(text); //DongKyeongSeo28
@@ -67,9 +67,9 @@ console.log(text); //Javascript
 
 ## 2. while
 
-> 조건문이 true일 때 코드 블록을 계속해서 반복 수행하는 반복문.  
-> for문에 비해 선언문과 증감문 없이 loop를 수행하며, 무한 loop 수행 시 많이 사용.  
-> 최소 한번 수행이 필요할 때 조건문을 코드 블록보다 아래로 옮긴 `do … while` 반복문 사용.
+> `while([조건문]){}` 형태로 이루어진다.  
+> 조건문이 true일 때 코드 블록을 계속해서 반복 수행하는 반복문으로, for문에 비해 선언문과 증감문 없이 loop를 수행하며 주로 무한루프 수행 시 사용한다.  
+> 최소 한번 수행이 필요할 때 조건문을 코드 블록보다 아래로 옮긴 `do {} while([조건문])`을 사용할 수 있다.
 
 ```javascript
 //while문 예제
@@ -78,6 +78,14 @@ while (i < 5) {
   console.log(i);
   i++;
 }
+/**
+ * output:
+ * 0
+ * 1
+ * 2
+ * 3
+ * 4
+ */
 ```
 
 ```javascript
@@ -87,22 +95,26 @@ do {
   console.log(i);
   i++;
 } while (i < 101);
+/**
+ * output:
+ * 100
+ */
 ```
 
 ## 3. 제어 방법
 
 ### 3.1 `break`
 
-> 반복문 수행 시, 코드 블록을 탈출할 때 쓰는 식별자.  
-> 다중 반복문의 경우 가장 안쪽의 반복문을 제어.  
-> Label을 통하여 다중 반복문을 한번에 종료 가능.
+> 반복문 수행 시 코드 블록을 탈출할 때 사용하는 식별자이다.  
+> 다중 반복문의 경우 가장 안쪽의 반복문을 제어한다.  
+> Label을 사용하면 다중 반복문을 한번에 종료할 수 있다.
 
 ```javascript
 //break 예제
 let text = "";
 
 for (let i = 0; i < 10; i++) {
-  if (i == 3) break; //3일때 for문에서 빠져나옴!
+  if (i == 3) break; //3일때 for문에서 빠져나온다.
   text += i;
 }
 console.log(text);
@@ -115,29 +127,39 @@ console.log(text);
 for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
     console.log(i + "*" + j + "=" + i * j);
-    break; //0*0=0, 1*0=0, 2*0=0
+    break;
   }
 }
+/**
+ * output:
+ * 0*0=0
+ * 1*0=0
+ * 2*0=0
+ */
 
 //Label 사용
 end: for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
     console.log(i + "*" + j + "=" + i * j);
-    break end; //0*0=0
+    break end;
   }
 }
+/**
+ * output:
+ * 0*0=0
+ */
 ```
 
 ### 3.2. `continue`
 
-> 반복문 수행 시, 코드 블록 실행을 해당 라인에서 중지하고 블록 코드를 종료시킨 후 반복문 내 명시된 조건 판단.  
-> 특정 조건의 뒤의 코드를 스킵하려고 할 때 많이 사용.
+> 반복문 수행 시 코드 블록 실행을 해당 라인에서 중지하고 블록 코드를 종료시킨 후 반복문 내 명시된 조건을 판단하는 식별자이다.  
+> 특정 조건의 코드를 스킵하려고 할 때 주로 사용한다.
 
 ```javascript
 let text = "";
 
 for (let i = 0; i < 10; i++) {
-  if (i == 3) continue; //3일때 조건문 의 뒤 코드를 수행하지 않고 for문으로 돌아감
+  if (i == 3) continue; //3일때 조건문 의 뒤 코드를 수행하지 않고 for문으로 돌아간다.
   text += i;
 }
 console.log(text); //012456789
