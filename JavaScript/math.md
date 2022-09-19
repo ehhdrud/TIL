@@ -1,26 +1,26 @@
 # Math
 
-> 표준 bulit-in 객체로써 수학적인 연산을 위한 속성값과 메서드를 제공하는 객체.  
-> Math는 생성자 함수가 아니며, 모든 속성과 메서드는 정적이기에 Math.function()으로 언제든 호출 가능.
+> 표준 bulit-in 객체로써 수학적인 연산을 위한 속성값과 메서드를 제공하는 객체이다.  
+> Math는 생성자 함수가 아니며, 모든 속성과 메서드는 정적이기에 `Math.function()`으로 언제든 호출 가능하다.
 
 ## 대표 속성 및 메서드
 
 ### 1. 고유 값 표시
 
-- 오일러 상수: `Math E`
-- PI(3.14…): `Math.PI`
+- `Math E`: 오일러 상수
+- `Math.PI`: 파이
 
 ```javascript
-console.log(Math.E); //2.718281828459045 //오일러상수
-console.log(Math.PI); //3.141592653589793 //파이값
+console.log(Math.E); //2.718281828459045
+console.log(Math.PI); //3.141592653589793
 ```
 
 ### 2. 최대값, 최소값
 
 > 배열을 인수로 받아 최대, 최소로 산출하려면 함수 혹은 스프레드 문법 사용 필요.
 
-- 최대값: `Math.max(x)`
-- 최소값: `Math.min(x)`
+- `Math.max()`: 최댓값
+- `Math.min()`: 최솟값
 
 ```javascript
 //MAX, MIN
@@ -31,10 +31,10 @@ console.log(Math.max(1, -1, 5, 23, 17, -4)); //23
 console.log(Math.min(1, -1, 5, 23, 17, -4)); //-4
 
 let nums = [1, -1, 5, 23, 17, -4];
-console.log(Math.max(nums)); //NaN //values만 인자로 받기 때문에 배열을 받을 수 없음
+console.log(Math.max(nums)); //NaN //배열은 인자로 받을 수 없다.
 ```
 
-### 3. 절대값: `Math.abs(x)`
+### 3. `Math.abs(x)`: 절댓값
 
 ```javascript
 console.log(Math.abs(1)); //1
@@ -42,7 +42,7 @@ console.log(Math.abs(-1)); //1
 console.log(Math.abs(-Infinity)); //Infinity
 ```
 
-### 4. 랜덤 난수 값: `Math.random()`
+### 4. `Math.random()`: 랜덤 난수 값
 
 ```javascript
 console.log(Math.random()); //0.3658909807700941
@@ -57,8 +57,8 @@ for (let i = 0; i < 10; i++) {
 
 ### 5. 제곱과 제곱근
 
-- 제곱: ~~`Math.pow(x,y)`~~(ES6부터는 그냥 `**` 쓰면 됨)
-- 제곱근: `Math.sqrt(x)`
+- `Math.pow(x,y)`: 제곱 -> ES6부터는 `**`로 대체 가능!
+- `Math.sqrt(x)`; 제곱근
 
 ```javascript
 //pow
