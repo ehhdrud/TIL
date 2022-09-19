@@ -1,28 +1,30 @@
 # Number
 
-> 자바스크립트에서 일반적인 숫자는 64비트 형식의 IEEE-754 표준 기반 형태로 저장되는 자료형.  
-> 10진수 외에도 16진수, 8진수, 2진수의 다양한 진수 사용.
+> 자바스크립트에서 일반적인 숫자는 64비트 형식의 IEEE-754 표준 기반 형태로 저장되는 자료형이다.  
+> 10진수 외에도 16진수, 8진수, 2진수의 다양한 진수를 사용할 수 있다.
 
-- 대표 상수값
+대표 상수값
 
-  - `Number.[MAX|MIN]_VALUE`:지수로 표시되는 양수의 최대/최소값
-  - `Number.[MAX|MIN]_SAFE_INTEGER`:안전하게 표시되는 최대(양수)/최소(음수)값
-  - `Number.[POSITIVE|NEGATIVE]_INFINITY`:무한대의 양수/음수값
-  - `Number.NaN`:부동 소수점 산술에서 정의되지 않거나 표현할 수 없는 값으로 해석될 수 있는 데이터 유형
+- `Number.MAX|MIN_VALUE`: 지수로 표시되는 양수의 최대/최소값
+- `Number.MAX|MIN_SAFE_INTEGER` :안전하게 표시되는 최대(양수)/최소(음수)값
+- `Number.POSITIVE|NEGATIVE_INFINITY`: 무한대의 양수/음수값
+- `Number.NaN`: 부동 소수점 산술에서 정의되지 않거나 표현할 수 없는 값으로 해석될 수 있는 데이터 유형
 
-- 지수 표기법
+지수 표기법
 
-  - `e`: 0의 숫자 대체가능((ex1)1000000000=>1e9, (ex2)micro sec=>1e-6)
+- `e`로 0의 숫자를 대체할 수 있다.  
+  (ex1) 1e9: 1000000000  
+  (ex2) 1e-6: micro sec
 
-- 진수 표기법
+진수 표기법
 
-  - `0x`(hexadecimal): 16진수 표기
-  - `0o`(octal): 8진수 표기
-  - `0b`(binary): 2진수 표기
+- `0x`(hexadecimal): 16진수 표기
+- `0o`(octal): 8진수 표기
+- `0b`(binary): 2진수 표기
 
 ## 대표 속성 및 메서드
 
-### 1. 문자열로 변환: `Number.toString()`, `String(Number)`, `Number+""`
+### 1. 문자열로 변환: `Number.toString()`, `String(Number)`, `Number + ""`
 
 ```javascript
 let us = 1e-6;
@@ -50,10 +52,10 @@ console.log((num_1 - num_2).toPrecision(3)); //1.54
 console.log(Number.isNaN(123)); //false
 console.log(!Number.isNaN(123 / "hello")); //false
 console.log(Number.isFinite(123)); //true
-console.log(Number.isFinite("hello")); //false //문자열은 Finite하지 않다고 봄
+console.log(Number.isFinite("hello")); //false //문자열은 Finite하지 않다고 본다.
 ```
 
-※ `Number.isNaN()`과 `isNaN()`의 차이
+**※ `Number.isNaN()`과 `isNaN()`의 차이**
 
 - `Number.isNaN()`: 엄격한 검사
 - `isNaN()`: 비교적 느슨한 검사
@@ -68,12 +70,12 @@ console.log(isNaN({})); //true
 console.log(isNaN("문자열")); //true
 ```
 
-- `Number.parseInt()`, `Number.parseFloat()`:정수(n진수로도 명시적으로 변환 가능), 실수로 변환
+- `Number.parseInt()`, `Number.parseFloat()`: 정수(n진수로도 명시적으로 변환 가능), 실수로 변환
 
 ```javascript
-console.log(Number.parseInt("123px")); //123 //문자열이 섞여도 정수만 뽑아냄
-console.log(Number.parseFloat("1.25em")); //1.25
-console.log(Number.parseInt("1.25em")); //1
-console.log(Number.parseInt("t125")); //NaN //앞에 섞이면 못 뽑아냄
+console.log(Number.parseInt("123seo")); //123 //문자열이 섞여도 정수만 뽑아낸다.
+console.log(Number.parseFloat("1.25seo")); //1.25
+console.log(Number.parseInt("1.25seo")); //1
+console.log(Number.parseInt("seo125")); //NaN //앞에 문자열이 섞이면 못 뽑아낸다.
 console.log(Number.parseInt("0f", 16)); //15
 ```

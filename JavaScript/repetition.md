@@ -55,12 +55,12 @@ console.log(text); //DongKyeongSeo28
 > Collection 객체가 Symbol.iterator속성를 가지고 있어야 동작이 가능하다. Symbol.iterator속성을 가지고 있어야 value들이 반복되는 iteration 동작을 정의하는 것을 허용하기 때문이다.
 
 ```javascript
-let language = "JavaScript"; //문자열(string)도 Symbol.iterator속성을 가지고 있음
+let language = "JavaScript"; //문자열(string)도 Symbol.iterator속성을 가지고 있다.
 let text = "";
 
 for (let x of language) {
   text += x; //text = text + x
-  console.log(x); //J a v a s c r i p t //한 글자씩 가져온다는 것을 알 수 있음
+  console.log(x); //J a v a s c r i p t
 }
 console.log(text); //Javascript
 ```
