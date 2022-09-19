@@ -53,7 +53,7 @@ user["weight"] = 83; //추가
 console.log(user); //{ name: 'SDK', age: 28, height: 183, weight: 83 }
 ```
 
-### 2.2. 삭제: `delete object.key`: 삭제
+### 2.2. `delete object.key`: 삭제
 
 ```javascript
 let user = {

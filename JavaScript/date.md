@@ -27,7 +27,7 @@ console.log(Date.UTC(2021, 0, 1)); //2021-01-01T00:00:00.000Z //UTC 메서드를
 
 #### 2. 세부 정보 얻기
 
-- `~~Date.getYear()~~`(비표준), `Date.getFullYear()`, `Date.getMonth()`, `Date.getDate()`, `Date.getDay()`: 년/월/일/요일
+- ~~`Date.getYear()`~~(비표준), `Date.getFullYear()`, `Date.getMonth()`, `Date.getDate()`, `Date.getDay()`: 년/월/일/요일
 - `Date.getHours()`, `Date.getMinutes()`, `Date.getSeconds()`, `Date.getMilliseconds()`: 시/분/초/ms
 
 ```javascript
