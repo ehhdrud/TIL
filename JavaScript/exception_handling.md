@@ -1,12 +1,12 @@
-# 예외처리(Exception Handling)
+# 예외 처리(Exception Handling)
 
-> 코드 실행 중 에러가 발생했을 때, 코드 실행의 흐름을 복구할 수 있는 기능.
+> 코드 실행 중 에러가 발생했을 때, 코드 실행의 흐름을 복구할 수 있는 기능을 추가해야 한다.
 
 ## `try`-`catch`-`finally`
 
-- `try`: 실행될 구문
-- `catch`: 에러가 발생되면 실행되는 구문
-- `fanally`: 언제나 실행되는 구문
+> `try`: 실행될 구문을 정의한다.  
+> `catch`: 에러가 발생되면 실행되는 구문을 정의한다.  
+> `fanally`: 언제나 실행되는 구문을 정의한다.
 
 ```javascript
 try {
@@ -20,7 +20,7 @@ try {
 
 ## `throw`
 
-: 예외를 강제로 발생시켜야 할 경우에 사용.
+> 예외를 강제로 발생시켜야 할 경우에 사용한다.
 
 ```javascript
 function login(id, pw) {
@@ -28,7 +28,7 @@ function login(id, pw) {
     return true;
   }
 
-  throw new Error("로그인 실패"); //개발자가 에러를 정의
+  throw new Error("로그인 실패"); //개발자가 에러를 정의한다.
 }
 
 try {
@@ -43,7 +43,7 @@ try {
 
 ## `stack`
 
-: 에러를 추적하고자 할 때 사용.
+> 에러를 추적하고자 할 때 사용한다.
 
 ```javascript
 function x() {
@@ -52,14 +52,13 @@ function x() {
 try {
   a();
 } catch (err) {
-  console.error(err.stack); //ReferenceError: a is not defined at ... //스택 형식으로 에러가 쌓임(❗)
+  console.error(err.stack); //ReferenceError: a is not defined at ... //스택 형식으로 에러가 쌓인다.(❗)
 }
 ```
 
 ## 커스텀 에러
 
-> 에러 객체에서 확장한 커스텀 에러 객체를 정의.  
-> 더 많은 에러를 다룰 수 있음.
+> 에러 객체에서 확장한 *커스텀 에러 객체*를 정의하여 더 많은 에러를 다룰 수 있다.
 
 ```javascript
 //❗
@@ -81,7 +80,7 @@ function login(id, pw) {
     throw new LoginError("패스워드 불일치");
   }
 
-  throw new Error("로그인 실패"); //개발자가 에러를 정의
+  throw new Error("로그인 실패"); //개발자가 에러를 정의한다.
 }
 
 try {
