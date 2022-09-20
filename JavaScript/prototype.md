@@ -1,30 +1,29 @@
 # 프로토타입(Prototype)
 
-> 자바스크립트는 클래스 기반 언어와는 다르게 프로토타입 기반 언어.  
-> ECMAScript2015(ES6)에서 추가된 클래스는 문법적인 양념일 뿐, 여전히 프로토타입 언어.  
-> 그러나 아래 문법들은 잘 쓰이지 않음 -> 클래스가 주로 사용.
+> 자바스크립트는 클래스 기반 언어가 아닌 프로토타입 기반 언어이다. ES6에서 추가된 클래스는 문법적인 양념일 뿐, 여전히 프로토타입 언어이다.  
+> 하지만 클래스의 편리성으로 아래 문법은 잘 사용되진 않지만 프로토타입의 이해를 위해 알아두는 것이 좋다.
 
-- `constructor`
+- `constructor` 속성: 어떤 생성자 객체를 통해 생겨난 인스턴스인지를 알려주는 역할을 한다.
 
 ```javascript
-//constructor.name 예제
-function Me(lname, age) {
-  this.lname = lname;
+//constructor 예제
+function Me(lastName, age) {
+  this.lastName = lastName;
   this.age = age;
 }
 
-const seo = new Me("Seo", 90);
-const jang = new Me("Jang", 10);
+const dongkyeong = new Me("Seo", 28);
+const hyangja = new Me("Kim", 55);
 
-console.log(seo); //Me { lname: 'Seo', age: 90 }
-console.log(jang); //Me { lname: 'Jang', age: 10 }
+console.log(dongkyeong); //Me { lastName: 'Seo', age: 28 }
+console.log(hyangja); //Me { lastName: 'Kim', age: 55 }
 
-console.log(seo.constructor.name); //Me
-console.log(jang.constructor.name); //Me
+console.log(dongkyeong.constructor.name); //Me
+console.log(hyangja.constructor.name); //Me
 ```
 
 ```javascript
-//constructor.name, instanceof를 통한 프로토타입 확인
+//constructor.name, instanceof를 통한 프로토타입 확인 방법
 const obj = {};
 const arr = [];
 const func = function () {};
@@ -34,23 +33,20 @@ console.log(obj.constructor.name); //Object
 console.log(arr.constructor.name); //Array
 console.log(func.constructor.name); //Function
 console.log(str.constructor.name); //String
-//사실은 이러한 값들이 프로토타입을 통해서 생성된 것들이라는 것을 유추할 수 있음
+//사실은 이러한 값들이 프로토타입을 통해서 생성된 것들이라는 것을 유추할 수 있다.
 
 console.log(obj instanceof Object); //true
 console.log(arr instanceof Array); //true
 console.log(func instanceof Function); //true
-console.log(str instanceof String); //false //래퍼(Wrapper)로 만들지 않아서 false //`new String("str")`방식으로 만들면 true
+console.log(str instanceof String); //false //래퍼(Wrapper)로 만들지 않아서 false! //new String("str") 방식으로 만들면 true가 출력된다.
 ```
 
-- `_proto_`,`Object.getPrototypeOf`, `Object.setPrototypeOf`
-
-> 프로토타입을 확인하거나 조작하고 싶을 때 사용.  
-> `_proto_`는 비표준이며 브라우저 및 자바스크립트 엔진에서 추천되지 않으므로, 표준 문법인`Object.getPrototypeOf`, `Object.setPrototypeOf`를 사용할 것이 권장됨.
+- ~~`_proto_`~~(비표준), `Object.getPrototypeOf`, `Object.setPrototypeOf`: 프로토타입을 확인하거나 조작하고 싶을 때 사용한다.
 
 ## 1. 프로토타입 체인(chaining, 연결)
 
-> **(ex1)**array는 Array 프로토타입이면서 동시에 Object 프로토타입이다. 즉 array > Array > Object로 체이닝.  
-> **(ex2)**`[B] = Object.create([A])`와 같은 방식을 통해 A와 B를 체이닝.
+> **(ex1)** array는 Array 프로토타입이면서 동시에 Object 프로토타입이다. 즉 array > Array > Object로 체이닝된다.  
+> **(ex2)** `[B] = Object.create([A])`와 같은 방식을 통해 A와 B를 체이닝된다.
 
 ```javascript
 const animal = {
@@ -65,8 +61,6 @@ console.log(dog.sayName()); //ANIMAL
 ```
 
 ## 2. 프로토타입 확장(extends, 상속)
-
-> ES6부터는 클래스의 개념이 들어왔기 때문에 클래스를 통한 확장이 권장됨.
 
 ```javascript
 //Super Class(부모)

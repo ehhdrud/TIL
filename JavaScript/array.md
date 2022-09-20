@@ -26,11 +26,11 @@ console.log(nums.length); //2
 ## 2. 배열 반복문
 
 - for … length(index 접근)
-  : (ex)`for (let i = 0; i < arr.length; i++){console.log(arr[i]);}`
+  : **(ex)**`for (let i = 0; i < arr.length; i++){console.log(arr[i]);}`
 - for … of(element 접근)
-  : (ex)`for (let element of arr){console.log(element);}`
+  : **(ex)**`for (let element of arr){console.log(element);}`
 - for … in(key 접근)
-  : (ex)`for (let key in arr){console.log(arr[key]);}`
+  : **(ex)**`for (let key in arr){console.log(arr[key]);}`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -85,8 +85,8 @@ arr1.push("hi"); //Array.push 메서드가 잘 동작한다.
 ### 3.2. 배열 선언/접근/속성
 
 - 선언: `new Array()` 혹은 `[]`를 통해 선언하며, 사이즈 혹은 값을 입력하여 초기화
-- 접근 방법: `Array[index]`를 통해 index를 통하여 접근
-- 배열 속성: `Array.length`를 통해 배열 요소의 개수 확인 가능
+- `Array[index]`: index를 통해 접근한다.
+- `Array.length`: 배열 요소의 개수를 확인한다.
 
 ```javascript
 let arr_1 = new Array(10);
@@ -112,11 +112,11 @@ console.log(fruits); //[ 'apple', 'kiwi', 'melon' ]
 #### 3.3.1. 배열 추가/삭제
 
 - 뒤에서 추가/삭제
-  - 배열 추가: `Array.push(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
-  - 배열 삭제: `Array.pop()` => Array에서 요소 삭제, 삭제한 element 리턴
+  - `Array.push(element)` => Array에 요소 추가, 추가한 배열의 크기를 반환한다.
+  - `Array.pop()` => Array에서 요소 삭제, 삭제한 element를 반환한다.
 - 앞에서 추가/삭제
-  - 배열 추가: `Array.unShift(element)` => Array에 요소 추가, 추가한 배열의 크기 리턴
-  - 배열 삭제: `Array.shift()` => Array에서 요소 삭제, 삭제한 element 리턴
+  - `Array.unShift(element)` => Array에 요소 추가, 추가한 배열의 크기를 반환한다.
+  - `Array.shift()` => Array에서 요소 삭제, 삭제한 element를 반환한다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -200,9 +200,9 @@ console.log(arr); //['JS','HTML','CSS','React','TS','Node.js','ReactNative','Swi
 
 ### 3.5. 배열 탐색
 
-- 앞에서 해당 item의 index 탐색: `Array.indexOf(item, from)`
-- 뒤에서 해당 item의 index 탐색: `Array.lastIndexOf(item, from)`
-- 값 포함 여부 확인: `Array.includes(item, from)`
+- `Array.indexOf(item, from)`: 앞에서 해당 item의 index를 탐색한다.
+- `Array.lastIndexOf(item, from)`: 뒤에서 해당 item의 index를 탐색한다.
+- `Array.includes(item, from)`: 값 포함 여부를 확인한다.
 
 ```javascript
 let fruits = ["apple", "orange", "banana", "orange", "melon"];
@@ -221,9 +221,9 @@ console.log(fruits.includes(0)); //false
 
 ### 3.6. 배열 변형
 
-- 배열 정렬: `Array.sort()`
-- 배열 반전: `Array.reverse()`
-- 배열을 문자열로 변환: `Array.join("separator")`
+- `Array.sort()`: 배열을 정렬한다.
+- `Array.reverse()`: 배열을 반전시킨다.
+- `Array.join("separator")`: 배열을 문자열로 변환한다.
 
 ```javascript
 let nums = [1, -1, 4, 5, 2, 0];
