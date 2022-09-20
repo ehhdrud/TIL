@@ -37,7 +37,7 @@ define(["./[path]"], function(module){
 
 ## 4. ESM(ECMAScript Modules)
 
-> ECMA2015(ES6)에서는 최신 브라우저에서 모듈 시스템을 사용할 수 있도록 지원한다.
+> ES6에서는 최신 브라우저에서 모듈 시스템을 사용할 수 있도록 지원한다.
 
 ### 4.1. 내보내기
 
