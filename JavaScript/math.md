@@ -32,6 +32,7 @@ console.log(Math.min(1, -1, 5, 23, 17, -4)); //-4
 
 let nums = [1, -1, 5, 23, 17, -4];
 console.log(Math.max(nums)); //NaN //배열은 인자로 받을 수 없다.
+console, log(Math.max(...nums)); //23 //전개연산자를 이용하면 가능하다.
 ```
 
 ### 3. `Math.abs(x)`: 절댓값
