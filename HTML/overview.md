@@ -58,4 +58,4 @@ HTML5부터 비슷한 특징을 가진 요소들끼리 묶어서 7가지 카테�
 **임베디드 컨텐츠**: 이미지나 비디오 등 외부 소스를 가져오거나 삽입할 때 사용하는 요소이다.  
 **인터렉티브 컨텐츠**: 사용자와의 상호작용을 위한 컨텐츠 요소이다.
 
-[![image.png](https://postimg.cc/14njjXvM)](<[content-categories.png](https://postimg.cc/14njjXvM)>)
+![content_categories](./img/content_categories.png)
