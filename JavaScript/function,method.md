@@ -102,7 +102,7 @@ function factorial(num) {
 console.log(factorial(3)); //6
 ```
 
-[![image.png](https://i.postimg.cc/T3DDHhVh/image.png)](https://postimg.cc/w19M1qbd)
+[![recursive_function](/img/recursive_function.png)
 
 ## 5. 콜백 함수, 고차 함수
 
