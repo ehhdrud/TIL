@@ -30,10 +30,7 @@
   </div>
 
   <div>
-    <label
-      >색깔:
-      <input type="text" name="color" />
-    </label>
+    <label>색깔: <input type="text" name="color" /> </label>
   </div>
   <button type="submit">제출</button>
 </form>
