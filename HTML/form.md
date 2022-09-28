@@ -12,7 +12,7 @@
 
 양식을 제출할 때 사용할 HTTP 메서드를 정의한다.
 
-- `post`메서드: 양식 데이터를 숨겨서 서버에 요청한다. 즉 양식 데이터가 노출되지 않으므로, 보안과 관련된 정보들을 처리할 때 주로 사용한다.
+- `post`메서드: 양식 데이터를 숨겨서 서버(요청 본문)에 요청한다. 즉 양식 데이터가 노출되지 않으므로, 보안과 관련된 정보들을 처리할 때 주로 사용한다.
 - `get`메서드: 양식 데이터를 *URL의 ?구분자 뒤*에 이어 붙여서 전송한다. 즉 양식 데이터가 URL에 노출되므로, 보안과 관련없는 정보들을 처리할 때 주로 사용한다.
 
 ## 2. `<label>`
@@ -35,7 +35,7 @@
       <input type="text" name="color" />
     </label>
   </div>
-  <button type="summit">제출</button>
+  <button type="submit">제출</button>
 </form>
 <!-- 실제 코드 작성 시에는 <label>과 <input>의 양식을 통일해주는 것이 좋다. -->
 ```
@@ -76,7 +76,7 @@
       <input type="text" name="color" id="colorID" />
     </div>
   </fieldset>
-  <button type="summit">제출</button>
+  <button type="submit">제출</button>
 </form>
 ```
 
@@ -152,4 +152,117 @@
 
 ### 4.2. 모든 타입에 적용 가능한 속성
 
-#### 4.2.1. `name`
+#### 4.2.1. `name`속성
+
+input의 이름을 지정하여 어떤 데이터인지 구분하기 위해 사용한다.
+
+#### 4.2.2. `placeholder`속성
+
+양식이 비어있을 때 양식에 내용을 나타낸다.  
+주로 어떤 값을 넣어야하는지 미리보기·힌트를 주는 역할을 한다.
+
+#### 4.2.3. `autocomplete`속성
+
+`"on"`을 입력하면 이전에 입력했던 내용의 자동 완성 기능을 추가한다.
+
+#### 4.2.4. `required`속성
+
+해당 input을 필수 입력으로 지정한다.
+
+#### 4.2.5. `disabled`속성
+
+해당 input의 입력을 막는다.  
+단순히 값을 넣지 않았을 때는 `name`은 활성화되고 값만 없지만, `disabled`속성을 사용하면 `name`자체가 비활성화된다.
+
+#### 4.2.6. `readonly`속성
+
+해당 input을 읽기 전용으로 지정한다.  
+`value`속성을 통해 값을 미리 지정하고 읽기 전용란을 만들 때 유용하다.  
+`disabled`와는 달리 `name`은 활성화된다.
+
+### 4.3. 숫자와 관련된 타입(number, range)에 적용 가능한 속성
+
+#### 4.3.1. `step`속성
+
+스피너의 이동 간격을 지정한다.
+
+#### 4.3.2. `min`속성
+
+최저값을 지정한다.
+
+#### 4.3.3. `max`속성
+
+최고값을 지정한다.
+
+## 5. `<button>`
+
+클릭 가능한 버튼을 나타낸다.  
+`<input>`의 `submit`, `reset`, `button`타입으로 만든 버튼들과 동일한 특성을 사용할 수 있다.  
+`<button>`의 타입으로도 위 `submit`, `reset`, `button`를 사용할 수 있다.  
+`<input>`타입의 버튼은 `value`속성을 통해 문자열로 버튼 이름을 변경할 수 있지만, `<button>`타입의 버튼은 태그 내부에 자식 요소로서 이름을 입력하면 해당 이름으로 버튼이 나타난다. 자식 요소를 가진다는 점에서 `<button>`으로 버튼을 생성하는 것이 스타일링 측면에서 유리하다.
+
+## 6. `<select>`, `<option>`, `<optgroup>`
+
+`<select>`는 자식 태그로 `<option>`을 가져서 옵션 메뉴을 제공하는 컨트롤을 나타낸다.  
+`<option>`에 `selected`속성을 넣으면 선택 시 초기값으로 설정된다. `checked`속성과 같은 기능을 한다.  
+`<optgroup>`을 통해 옵션들을 묶어줄 수 있고, `label`속성을 이용해 옵션 그룹의 이름을 지정할 수 있다.
+
+```html
+<form action="" method="get">
+  <label for="movie">좋아하는 영화</label>
+
+  <select id="movie" name="movie" required>
+    <option value="">--Please choose an option--</option>
+    <!-- 해당 옵션을 선택시 빈 문자열이 전송될텐데, 빈 문자열은 없는 값으로 취급이 돼서 <select>의 required옵션에 의해 전송에 실패한다. -->
+    <optgroup label="animation">
+      <option value="toystory">토이스토리</option>
+      <option value="zootopia">주토피아</option>
+      <option value="insideout">인사이드아웃</option>
+    </optgroup>
+
+    <optgroup label="s/f">
+      <option value="jurassicworld">쥬라기월드</option>
+      <option value="matrix">매트릭스</option>
+    </optgroup>
+    <!-- 만약 value값이 없다면 내부에 있는 값을 value값으로 사용해 서버로 전송한다. -->
+  </select>
+
+  <input type="submit" />
+</form>
+```
+
+## 7. `<datalist>`
+
+추천하는 선택지를 나타내는 옵션 메뉴를 나타낸다.  
+`<select>`와 달리 선택지가 고정되어 있지 않고 추천만 해준다.  
+`<input>`의 `list`속성과 같이 쓰인다. `list`값과 `<datalist>`의 `id`값이 일치해야 한다.
+
+<form action="" method="get">
+      <label for="movie">좋아하는 영화</label>
+      <input type="text" id="movie" name="movie" list="movie-list" />
+
+      <datalist id="movie-list">
+        <option>주토피아</option>
+        <option>인사이드아웃</option>
+        <option>토이스토리1</option>
+        <option>토이스토리2</option>
+        <option>토이스토리3</option>
+      </datalist>
+
+      <input type="submit" />
+    </form>
+
+## 8. `<textarea>`
+
+멀티 라인 일반 텍스트 편집 컨트롤을 나타낸다.  
+출력되는 텍스트는 태그 내부의 형식을 그대로 유지한다. `<pre>`와 유사하다.  
+`<input>`의 `text`타입과 달리 자식요소를 가질 수 있다.  
+`rows`·`cols`속성을 통해 보여지는 행·열의 개수를 늘릴 수 있다. 하지만 폰트에 따라 사이즈가 조절되므로 CSS를 이용하여 크기를 조절하는 것이 좋다. 특히 `cols`는 CSS를 이용하는 것이 권장된다.
+
+```html
+<form action="" method="get">
+  <label for="comment">댓글</label>
+  <textarea name="comment" id="comment" rows="5" cols="15">~~~</textarea>
+  <input type="submit" />
+</form>
+```
