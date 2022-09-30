@@ -1,7 +1,8 @@
 # this
 
-> this란 예약어다.  
-> 주로 함수에서의 this는 전역 공간을 가르키고, 메서드에서의 this는 호출한 객체의 공간을 가르킨다.
+this란 예약어다.
+
+주로 함수에서의 this는 전역 공간을 가르키고, 메서드에서의 this는 호출한 객체의 공간을 가르킨다.
 
 ```javascript
 let user = {
@@ -26,11 +27,11 @@ admin.func(); //helloSEO //this->admin
 
 ## 1. 바인딩
 
-> this는 예측이 어렵게 동작하므로 명시적 바인딩, 즉 this의 객체를 명시적으로 지정해주는 과정이 필요하다.
+this는 예측이 어렵게 동작하므로 명시적 바인딩, 즉 this의 객체를 명시적으로 지정해주는 과정이 필요하다.
 
 - `function.call([this가 가르킬 객체],[function의 매개변수])`
-- `function.apply([this가 가르킬 객체],[function의 매개변수를 배열로 넣어줌])` -> 매개변수로 배열을 넘기고 싶을 때 사용!
-- `function.bind([this가 가르킬 객체])` -> 함수를 실행하지 않고 바인딩된 함수를 리턴하여 영구적인 지정이 가능!
+- `function.apply([this가 가르킬 객체],[function의 매개변수를 배열로 넣어줌])` → 매개변수로 배열을 넘기고 싶을 때 사용!
+- `function.bind([this가 가르킬 객체])` → 함수를 실행하지 않고 바인딩된 함수를 리턴하여 영구적인 지정이 가능!
 
 ```javascript
 const me = {
@@ -66,7 +67,7 @@ console.log(result3); //서동경입니다.
 
 ### 2.1. 전역에 선언된 함수의 this
 
-#### 2.1.1. function -> 전역(window, global)인 경우
+#### 2.1.1. function → 전역(window, global)인 경우
 
 ```javascript
 function myFn() {
@@ -91,7 +92,7 @@ myfn; // MyFn {title: 'Hello World!'}
 
 #### 2.2.1. 해당 객체를 바로 가르키는 경우
 
-> showTitle() 메소드는 fn 객체의 메소드이기 때문에 this는 fn 객체를 참조한다.
+showTitle() 메소드는 fn 객체의 메소드이기 때문에 this는 fn 객체를 참조한다.
 
 ```javascript
 const fn = {
@@ -107,7 +108,7 @@ fn.showTitle(); // 'Hello World!'
 
 ##### 2.2.2.1. 문제점
 
-> 콜백함수가 일반함수이므로 전역 객체를 참조한다.
+콜백함수가 일반함수이므로 전역 객체를 참조한다.
 
 ```javascript
 const fn = {
@@ -132,9 +133,9 @@ fn.showTags();
  */
 ```
 
-##### 2.2.2.1. 해결방법
+##### 2.2.2.1. 해결 방법
 
-> 콜백함수 다음 인자로 참조할 객체를 전달해준다.
+콜백함수 다음 인자로 참조할 객체를 전달해준다.
 
 ```javascript
 const fn = {
@@ -161,9 +162,11 @@ fn.showTags();
 
 #### 2.2.3. 화살표 함수에서의 this
 
-> function 키워드로 생성한 일반함수와 화살표 함수의 가장 큰 차이점이 바로 this이다.  
-> 화살표 함수에서의 this는 언제나 상위 스코프(Lexcical Scope 또는 Static Scope: 함수가 어디서 호출되었는지가 아니라 어디서 선언되었는지에 따라 스코프가 결정)의 this이다. 이를 Lexical this라고 한다. 즉, 일반함수는 함수를 *호출*할 때 바인딩할 객체가 동적으로 정해진다면, 화살표 함수는 함수를 *선언*할 때 바인딩할 객체가 정적으로 정해진다.  
-> 화살표 함수의 this는 `call`, `apply`, `bind`를 통해 변경할 수 없다.
+function 키워드로 생성한 일반함수와 화살표 함수의 가장 큰 차이점이 바로 this이다.
+
+화살표 함수에서의 this는 언제나 상위 스코프(Lexcical Scope 또는 Static Scope: 함수가 어디서 호출되었는지가 아니라 어디서 선언되었는지에 따라 스코프가 결정)의 this이다. 이를 Lexical this라고 한다. 즉, 일반함수는 함수를 *호출*할 때 바인딩할 객체가 동적으로 정해진다면, 화살표 함수는 함수를 *선언*할 때 바인딩할 객체가 정적으로 정해진다.
+
+화살표 함수의 this는 `call`, `apply`, `bind`를 통해 변경할 수 없다.
 
 ```javascript
 const fn = {
