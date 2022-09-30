@@ -14,7 +14,7 @@ const obj = {
 
 ### 1.2. `new`연산자를 통한 객체 생성
 
-> 여러 유사한 객체를 만들 때 주로 사용한다.
+여러 유사한 객체를 만들 때 사용한다.
 
 ```javascript
 function NewObject(name) {
@@ -25,7 +25,7 @@ const obj = new NewObject("seo");
 
 ### 1.3. `Object.create([프로토타입],[객체서술자])`메서드를 통한 객체 생성
 
-> 만들 떄부터 자세하게 만들고 싶은 경우 주로 사용한다.
+만들 떄부터 자세하게 만들고 싶은 경우에 사용한다.
 
 ```javascript
 const obj = Object.create(Object.prototype, {
@@ -105,11 +105,11 @@ console.log(Object.entries(obj)); //[ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
 
 ## 객체 복사
 
-> 객체 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 [얕은 복사(Shallow copy)](#1-얕은-복사shallow-copybr)와 [깊은 복사(Deep copy)](#2-깊은-복사deep-copy)를 통해 대상 전체를 복사해야 한다.
+객체 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 [얕은 복사(Shallow copy)](#1-얕은-복사shallow-copybr)와 [깊은 복사(Deep copy)](#2-깊은-복사deep-copy)를 통해 대상 전체를 복사해야 한다.
 
 ### 1. 얕은 복사(Shallow copy)
 
-> *객체 내부에 또 다른 객체가 없을 경우*의 복사 방법이다.
+*객체 내부에 또 다른 객체가 없을 경우*의 복사 방법이다.
 
 #### 1.1. 반복문 for문을 통한 객체 복사
 
@@ -162,7 +162,7 @@ console.log(user.name); //SDK
 
 ### 2. 깊은 복사(Deep copy)
 
-> *객체 내부에 또 다른 객체가 있을 경우*의 복사 방법이다.
+*객체 내부에 또 다른 객체가 있을 경우*의 복사 방법이다.
 
 #### 2.1. 재귀 함수를 이용한 깊은 복사
 

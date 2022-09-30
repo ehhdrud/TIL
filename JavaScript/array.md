@@ -1,13 +1,16 @@
 # 배열(Array)
 
-> 여러 개체(Entity)값을 순차적으로 나열한 자료구조를 배열(Array)라고 한다.  
-> 배열 내 값을 요소(Element)라고 하며, 배열 요소는 [Index]로 접근한다.
+여러 개체(Entity)값을 순차적으로 나열한 자료구조를 배열(Array)라고 한다.
+
+배열 내 값을 요소(Element)라고 하며, 배열 요소는 [Index]로 접근한다.
 
 ## 1. 배열의 실체
 
-> 메모리가 연속적인 밀집 배열(Dense Array)이 아닌 비연속적인 희소 배열(Sparse Array)이다.  
-> 자바스크립트의 배열은 다른 언어의 일반적인 배열이 아닌 Hash 기반의 객체이다. 그러므로 [once], [twice]와 같이 Hash 기반 작성이 가능하다. 그러나 길이는 element만 계산한다.  
-> 일반적인 배열에 비해 특정 요소를 탐색하거나 배열 요소를 삽입 또는 삭제하기에 용이하다. 그러나 배열 요소에 접근하는 경우, 일반적인 배열보다 느리다는 단점이 있다.
+메모리가 연속적인 밀집 배열(Dense Array)이 아닌 비연속적인 희소 배열(Sparse Array)이다.
+
+자바스크립트의 배열은 다른 언어의 일반적인 배열이 아닌 Hash 기반의 객체이다. 그러므로 [once], [twice]와 같이 Hash 기반 작성이 가능하다. 그러나 길이는 element만 계산한다.
+
+일반적인 배열에 비해 특정 요소를 탐색하거나 배열 요소를 삽입 또는 삭제하기에 용이하다. 그러나 배열 요소에 접근하는 경우, 일반적인 배열보다 느리다는 단점이 있다.
 
 ```javascript
 let nums = [];
@@ -112,11 +115,11 @@ console.log(fruits); //[ 'apple', 'kiwi', 'melon' ]
 #### 3.3.1. 배열 추가/삭제
 
 - 뒤에서 추가/삭제
-  - `Array.push(element)` => Array에 요소 추가, 추가한 배열의 크기를 반환한다.
-  - `Array.pop()` => Array에서 요소 삭제, 삭제한 element를 반환한다.
+  - `Array.push(element)`: Array에 요소 추가, 추가한 배열의 크기를 반환한다.
+  - `Array.pop()`: Array에서 요소 삭제, 삭제한 element를 반환한다.
 - 앞에서 추가/삭제
-  - `Array.unShift(element)` => Array에 요소 추가, 추가한 배열의 크기를 반환한다.
-  - `Array.shift()` => Array에서 요소 삭제, 삭제한 element를 반환한다.
+  - `Array.unShift(element)`: Array에 요소 추가, 추가한 배열의 크기를 반환한다.
+  - `Array.shift()`: Array에서 요소 삭제, 삭제한 element를 반환한다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -242,11 +245,13 @@ console.log(str_separator); //orange;melon;banana;apple
 
 ## 4. 배열 고차 함수
 
-> 하나 이상의 함수를 매개 변수로 취하거나 또는 함수를 결과로 반환하는 함수(매개 변수로 전달되는 함수는 콜백함수)를 **고차함수**라고 한다.
+하나 이상의 함수를 매개 변수로 취하거나 또는 함수를 결과로 반환하는 함수(매개 변수로 전달되는 함수는 콜백함수)를 고차함수라고 한다.
 
-### 4.1. 임의정렬: `Array.sort(function)`
+### 4.1. 임의 정렬: `Array.sort(function)`
 
-> 기존 정렬의 문제점: sort, reverse는 배열의 요소가 일시적으로 문자열로 변경되어 정렬되어 제대로 정렬이 안되는 경우가 발생한다.
+#### 4.1.1 **기존 정렬의 문제점**
+
+sort, reverse는 배열의 요소가 일시적으로 문자열로 변경되어 정렬되어 제대로 정렬이 안되는 경우가 발생한다.
 
 ```javascript
 let nums = [1, -1, 4, 0, 10, 20, 12];
@@ -255,45 +260,51 @@ console.log(nums.sort()); //[-1, 0, 1, 10, 12, 20, 4] //4가 10,12,20보다 높�
 console.log(nums.reverse()); // [4, 20, 12, 10, 1, 0, -1] //4가 10,12,20보다 높은 수로 취급
 ```
 
-> 해결책: 아래 case에 따라 오름차순 함수 또는 내림차순 함수를 구현하고 sort의 콜백함수로 불러들인다.  
-> case1. 반환값이 0보다 큰 값 -> y가 x보다 앞에 오도록 정렬한다.  
-> case2. 반환값이 0보다 작은 값 -> x가 y보다 앞에 오도록 정렬한다.  
-> case3. 반환값이 0 -> 순서를 변경하지 않는다.
+#### 4.1.2. 해결책
+
+아래 원칙을 이용해 여러가지 방법 중 하나로 오름차순 함수 또는 내림차순 함수를 구현하고 sort의 콜백함수로 불러들인다.
+
+```
+반환값이 0보다 큰 값이면 y가 x보다 앞에 오도록 정렬한다.
+반환값이 0보다 작은 값이면 x가 y보다 앞에 오도록 정렬한다.
+반환값이 0이면 순서를 변경하지 않는다.
+```
 
 ```javascript
-//구현1(오름차순) //x,y의 순서 바꿔주면 내림차순
-//문자는 정렬 불가
+//방법1(문자는 정렬 불가) //x,y의 순서 바꿔주면 내림차순
 return x - y;
 
-//구현2(오름차순) //x,y의 순서 바꿔주면 내림차순
+//방법2 //x,y의 순서 바꿔주면 내림차순
 if (x > y) return 1;
 else if (x < y) return -1;
 else return 0;
 
-//구현3(오름차순) //x,y의 순서 바꿔주면 내림차순
+//방법3 //x,y의 순서 바꿔주면 내림차순
 return x > y ? 1 : -1;
 ```
 
+##### 4.1.2.1. 구현 1
+
 ```javascript
-//구현1 예제
 let nums = [1, -1, 4, 0, 10, 20, 12];
 
 //오름차순 함수
 let ascending_order = function (x, y) {
-  return x - y; //x-y>0이 참이면 두 값의 위치가 바뀜 //(ex)(10,4) -> 10-4=6 > 0 -> true -> (4,10)
+  return x - y; //x-y>0이 참이면 두 값의 위치가 바뀜
 };
 
 //내림차순 함수
 let decending_order = function (x, y) {
-  return y - x; //y-x>0이 참이면 두 값의 위치가 바뀜 //(ex) (4,10) -> 10-4=6 > 0 -> true -> (10,4)
+  return y - x; //y-x>0이 참이면 두 값의 위치가 바뀜
 };
 
 console.log(nums.sort(ascending_order)); //[-1, 0, 1, 4, 10, 12, 20]
 console.log(nums.sort(decending_order)); //[20, 12, 10, 4, 1, 0, -1]
 ```
 
+##### 4.1.2.2. 구현 2
+
 ```javascript
-//구현2 예제
 let fruits = ["apple", "Orange", "orange", "melon"];
 
 //오름차순 함수
@@ -320,8 +331,9 @@ console.log(fruits.sort(ascending_order)); //[ 'apple', 'melon', 'Orange', 'oran
 console.log(fruits.sort(decending_order)); //[ 'Orange', 'orange', 'melon', 'apple' ]
 ```
 
+##### 4.1.2.3. 구현3
+
 ```javascript
-//구현3 예제
 let ascending_order = function (x, y) {
   if (typeof x === "string") x = x.toUpperCase();
   if (typeof y === "string") y = y.toUpperCase();
@@ -359,8 +371,7 @@ console.log(sortArr); //[ 'a', 'b', 'c', 'd', 'e' ]
 
 ### 4.2. 반복 작업: `Array.forEach(function(item, index, array){});`
 
-> 배열에 포함되는 요소를 차례대로 꺼내 콜백 함수에 전달한다.  
-> `item`: 배열 요소, `index`: 배열 위치, `array`: 배열
+배열에 포함되는 요소를 차례대로 꺼내 콜백 함수에 전달한다.
 
 ```javascript
 let nums = [0, 1, 2];
@@ -375,14 +386,6 @@ nums.forEach(function (i) {
 ```javascript
 let nums = [1, 2, 3, 4, 5];
 
-//use for loop
-let useForLoop = [];
-for (let i = 0; i < nums.length; i++) {
-  useForLoop.push(nums[i] * 2);
-}
-console.log(useForLoop); //[ 2, 4, 6, 8, 10 ]
-
-//use map
 let useMap = nums.map(function (item) {
   return item * 2;
 });
@@ -444,8 +447,9 @@ console.log(find_age); //[ { name: 'dong', age: 26, job: false }, { name: 'seo',
 
 ### 4.5. 누적 결과값 변환: `Array.reduce(function(accumulator, item, index, array){},accumulator_initial);`
 
-> 요소 별 함수 수행 후 누적된 결과값을 반환한다.  
-> `accumulator`: 이전 함수 결과, `accumulator_initial:` acuumulator의 초기값 설정 가능, 입력이 없다면 1부터 시작한다.
+요소 별 함수 수행 후 누적된 결과값을 반환한다.
+
+초기값 입력이 없다면 1부터 시작한다.
 
 ```javascript
 let nums = [1, 2, 3, 4, 5];
@@ -471,8 +475,9 @@ console.log(sum); //15
 
 ## 5. N차원 배열
 
-> 배열 안에 N개의 배열이 존재하는 객체이다.  
-> 2,3차원 지도 정보, RGB를 저장하는 2차원 사진 파일 등 표현 시 유용하다.
+배열 안에 N개의 배열이 존재하는 객체이다.
+
+2,3차원 지도 정보, RGB를 저장하는 2차원 사진 파일 등 표현 시 유용하다.
 
 ```javascript
 //2차원 배열 예제

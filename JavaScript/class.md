@@ -1,8 +1,10 @@
 # 클래스(Class)
 
-> 클래스 선언은 프로토타입 기반 상속을 사용하여 주어진 이름의 새로운 클래스를 만든다.  
-> 클래스도 사실 하나의 "특별한 함수"이며 함수처럼 선언식, 표현식이라는 2가지 방식으로 정의할 수 있다. 또한 함수와 마찬가지로 `new`연산자를 통한 정의도 가능하다.
-> 클래스에서 `constructor`메서드는 클래스의 인스턴스 객체를 생성하고 초기화한다.
+클래스 선언은 프로토타입 기반 상속을 사용하여 주어진 이름의 새로운 클래스를 만든다.
+
+클래스도 사실 하나의 "특별한 함수"이며 함수처럼 선언식, 표현식이라는 2가지 방식으로 정의할 수 있다. 또한 함수와 마찬가지로 `new`연산자를 통한 정의도 가능하다.
+
+클래스에서 `constructor`메서드는 클래스의 인스턴스 객체를 생성하고 초기화한다.
 
 ```javascript
 //선언식
@@ -77,7 +79,7 @@ const cat = new Pet("고양이", "야옹");
 console.log(dog.getInfo()); //개가 멍멍소리를 낸다.
 console.log(cat.getInfo()); //고양이가 야옹소리를 낸다.
 
-console.log(dog.constructor.name); //Pet //프로토타입 체이닝과 다르게 Pet에서 파생됨
+console.log(dog.constructor.name); //Pet //프로토타입 체이닝과 다르게 Pet에서 파생.
 
 console.log(dog instanceof Pet); //true
 console.log(dog instanceof Animal); //true
