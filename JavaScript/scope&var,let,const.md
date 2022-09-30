@@ -88,8 +88,7 @@ window 객체는 브라우저에만 존재하는 객체로 브라우저의 창�
 
 ---
 
-#### ※즉시 실행 함수 표현식(IIFE: Immediately Invoked Function Expression)
-
+**※즉시 실행 함수 표현식(IIFE: Immediately Invoked Function Expression)**
 즉시 실행하는 함수로, 숨겨야 할 데이터를 넣을 때 유용하다.  
 블록 스코프를 흉내내는 새로운 스코프를 만들어 낸다.  
 다른 즉시 실행 함수 표현식과 붙여쓸 경우 `;`를 통해 구분한다.  
