@@ -26,18 +26,16 @@
 `<label>`,`<input>`을 블록 요소로 바꾸려면 `<div>`로 감싸준다.
 
 ```html
-<form action="" method="get">
-  <div>
-    <label for="foodID">음식:</label>
-    <input type="text" name="food" id="foodID" />
-  </div>
+<!-- 라벨 작성 방법1 -->
+<div>
+  <label for="foodID">음식:</label>
+  <input type="text" name="food" id="foodID" />
+</div>
 
-  <div>
-    <label>색깔: <input type="text" name="color" /> </label>
-  </div>
-  <button type="submit">제출</button>
-</form>
-<!-- 실제 코드 작성 시에는 <label>과 <input>의 양식을 통일해주는 것이 좋다. -->
+<!-- 라벨 작성 방법2 -->
+<div>
+  <label>색깔: <input type="text" name="color" /> </label>
+</div>
 ```
 
 > **※ `name`과 `id`**
