@@ -192,8 +192,8 @@ console.log(fruits.concat(["cherry", "banana"], "mango")); //[ 'apple', 'orange'
 console.log(["grape"].concat(fruits)); //[ 'grape', 'apple', 'orange', 'melon' ]
 ```
 
-**※ *배열 구조 분해*를 이용한 배열 병합**
-
+> **※ *배열 구조 분해*를 이용한 배열 병합**
+>
 > ```javascript
 > let Lengs = ["JS", "HTML", "CSS"];
 > let otherLengs = ["React", "TS"];
@@ -357,8 +357,8 @@ console.log(fruits.sort(ascending_order)); //[ 'apple', 'melon', 'orange', 'Oran
 console.log(fruits.sort(decending_order)); //[ 'Orange', 'orange', 'melon', 'apple' ]
 ```
 
-**※ localCompare()를 이용한 문자 정렬**
-
+> **※ localCompare()를 이용한 문자 정렬**
+>
 > ```javascript
 > let arr = ["b", "c", "a", "d", "e"];
 >
