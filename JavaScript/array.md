@@ -142,16 +142,6 @@ console.log(fruits); //[ 'watermelon', 'orange', 'melon' ]
 console.log(ret); //3
 ```
 
-**※ 배열 사이즈가 그대로인 배열 요소 삭제: `delete array[index]`**
-
-```javascript
-let fruits = ["apple", "orange", "melon"];
-
-delete fruits[1];
-console.log(fruits); //[ 'apple', <1 empty item>, 'melon' ]
-console.log(fruits.length); //3
-```
-
 #### 3.3.2. 특정 위치 배열 삭제,추가: `Array.splice(index,deleteCount,elem1,…,elemN)`
 
 ```javascript
@@ -165,6 +155,16 @@ console.log(fruits.splice(1, 1)); //[ 'orange' ] //index:1부터 삭제하는데
 console.log(fruits); //[ 'apple', 'melon', 'strawberry' ]
 console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 반환하고 그 자리엔 mango, kiwi를 삽입한다
 console.log(fruits); //[ 'apple', 'mango', 'kiwi', 'strawberry' ]
+```
+
+#### 3.3.3 배열 사이즈가 그대로인 배열 요소 삭제: `delete array[index]`
+
+```javascript
+let fruits = ["apple", "orange", "melon"];
+
+delete fruits[1];
+console.log(fruits); //[ 'apple', <1 empty item>, 'melon' ]
+console.log(fruits.length); //3
 ```
 
 ### 3.4. 원본 데이터에 영향이 없는 배열 조작
@@ -194,12 +194,12 @@ console.log(["grape"].concat(fruits)); //[ 'grape', 'apple', 'orange', 'melon' ]
 
 **※ *배열 구조 분해*를 이용한 배열 병합**
 
-```javascript
-let Lengs = ["JS", "HTML", "CSS"];
-let otherLengs = ["React", "TS"];
-let arr = [...Leng, ...otherLeng, "Node.js", "ReactNative", "Swift"];
-console.log(arr); //['JS','HTML','CSS','React','TS','Node.js','ReactNative','Swift']
-```
+> ```javascript
+> let Lengs = ["JS", "HTML", "CSS"];
+> let otherLengs = ["React", "TS"];
+> let arr = [...Leng, ...otherLeng, "Node.js", "ReactNative", "Swift"];
+> console.log(arr); //['JS','HTML','CSS','React','TS','Node.js','ReactNative','Swift']
+> ```
 
 ### 3.5. 배열 탐색
 
@@ -262,7 +262,7 @@ console.log(nums.reverse()); // [4, 20, 12, 10, 1, 0, -1] //4가 10,12,20보다 
 
 #### 4.1.2. 해결책
 
-아래 원칙을 이용해 여러가지 방법 중 하나로 오름차순 함수 또는 내림차순 함수를 구현하고 sort의 콜백함수로 불러들인다.
+아래 원칙을 이용해 여러가지 방법 중 하나로 오름차순 함수 또는 내림차순 함수를 구현하고, 구현한 함수를 `sort`의 콜백함수로 불러들인다.
 
 ```
 반환값이 0보다 큰 값이면 y가 x보다 앞에 오도록 정렬한다.
@@ -359,15 +359,15 @@ console.log(fruits.sort(decending_order)); //[ 'Orange', 'orange', 'melon', 'app
 
 **※ localCompare()를 이용한 문자 정렬**
 
-```javascript
-let arr = ["b", "c", "a", "d", "e"];
-
-let sortArr = arr.sort(function (a, b) {
-  return a.localeCompare(b);
-});
-
-console.log(sortArr); //[ 'a', 'b', 'c', 'd', 'e' ]
-```
+> ```javascript
+> let arr = ["b", "c", "a", "d", "e"];
+>
+> let sortArr = arr.sort(function (a, b) {
+>   return a.localeCompare(b);
+> });
+>
+> console.log(sortArr); //[ 'a', 'b', 'c', 'd', 'e' ]
+> ```
 
 ### 4.2. 반복 작업: `Array.forEach(function(item, index, array){});`
 
