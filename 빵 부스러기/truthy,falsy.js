@@ -1,4 +1,4 @@
-//truthy(참 같은 값) => 굳이 boolean으로 변환하지 않아도 됨
+//truthy(참 같은 값) => 굳이 boolean으로 변환하지 않아도 true.
 if (true) {
   console.log("참입니다1");
 }
@@ -24,7 +24,7 @@ if (Infinity) {
   console.log("참입니다8");
 }
 
-//falsy => 굳이 boolean으로 변환하지 않아도 됨
+//falsy => 굳이 boolean으로 변환하지 않아도 false.
 if (false) {
 } else {
   console.log("참입니다1");
