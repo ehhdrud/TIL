@@ -120,7 +120,7 @@ resetButton.addEventListener("click", function (event) {
 
 `addEventListener()` 메서드의 세 번째 인자에 `true`를 넣거나 해당 메서드의 객체에 `capture: true`를 넣을 시, 버블링이 아닌 캡처링이 일어난다.
 
-## 2.1.3. 이벤트 위임
+### 2.1.3. 이벤트 위임
 
 각 요소마다 이벤트 핸들러를 추가한다면 메모리 측면에서 효율이 떨어지므로, 하위 요소마다 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트를 제어하는 방식이다.
 
@@ -128,7 +128,7 @@ resetButton.addEventListener("click", function (event) {
 
 클로저 개념을 활용하여 이벤트를 조작할 수 있다.
 
-## 3.1. debounce
+### 3.1. debounce
 
 이벤트를 그룹화하여 특정 시간이 지난 후, 마지막 이벤트만 발생하도록 하는 기술이다.
 
@@ -136,7 +136,7 @@ resetButton.addEventListener("click", function (event) {
 
 이벤트가 실행되었을 때 일정 시간을 기다렸다가 이벤트를 수행하도록 만들고, 일정 시간 내에 같은 이벤트가 또 들어오면 이전 요청을 취소하는 방식으로 구현한다.
 
-## 3.2. throttle
+### 3.2. throttle
 
 일정 시간동안 일어난 이벤트를 차단하고 단 한 번만 실행하는 기술이다.
 

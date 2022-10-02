@@ -4,7 +4,7 @@
 
 정의 부분과 호출 부분으로 구성된다.
 
-## 1. 함수 정의
+## 1. 함수의 정의
 
 ### 1.1. 함수 선언식
 
@@ -22,7 +22,7 @@ ECMAScript2015(ES6)에 추가된 문법으로 기존 정의 방법에 비해 간
 
 `const func = (arg1,arg2,…,argN)=>expression;`
 
-## 2. 함수 호출
+## 2. 함수의 호출
 
 자바스크립트 함수는 매개변수와 인수의 개수가 일치하는지 확인하지 않으므로, 일치하지 않더라도 동작한다.
 
@@ -46,7 +46,7 @@ function print_min() {
 print_min(10, 20, 30); //-10
 ```
 
-## 3. 함수 반환
+## 3. 함수의 반환
 
 `return` 자체의 의미도 있지만 `break` 기능도 병행한다.
 
@@ -70,11 +70,45 @@ let result = add(10, 20);
 console.log(result); //30
 ```
 
-## 4. 재귀 함수
+## 4. 함수의 복사
+
+### 4.1. Call by value: 값에 의한 복사
+
+원시형(number, string, boolian, null, undefined, symbol)을 매개 변수로 넘겼을 때 발생한다.
+
+함수 내에서 매개 변수 값을 변경시켜도 영향을 미치지 않는다.
+
+```javascript
+let a = 1;
+let add = function (b) {
+  b = b + 1;
+};
+add(a);
+console.log(a); //1
+```
+
+### 4.2. Call by reference: 주소에 의한 복사
+
+참조형(object, array, function 등)을 매개 변수로 넘겼을 때 발생한다.
+
+주소값을 갖기 때문에, 함수 내에서 매개 변수 값을 변경시키면 원본 데이터에 영향을 받는다.
+
+```javascript
+let a = { value: 1 };
+let add = function (b) {
+  b.value = b.value + 1;
+};
+add(a);
+console.log(a); //2
+```
+
+## 5. 함수의 종류
+
+### 5.1. 재귀 함수
 
 함수 스스로 자신을 참조해 호출하면서 동일한 코드가 계속적으로 수행되는 함수 호출 방법이다.
 
-재귀 함수는 특정 조건이 됐을 때 자신을 그만 호출하도록 하는 exit code가 필수적이다.
+재귀 함수는 특정 조건이 됐을 때 자신을 그만 호출하도록 하는 "exit code"가 필수적이다.
 
 ```javascript
 //재귀함수 예제1
@@ -107,13 +141,13 @@ function factorial(num) {
 console.log(factorial(3)); //6
 ```
 
-[![recursive_function](/img/recursive_function.png)
+![recursive_function](/img/recursive_function.png)
 
-## 5. 콜백 함수, 고차 함수
+### 5.2 콜백 함수와 고차 함수
 
-콜백 함수란 다른 함수의 매개 변수로 전달되어 수행되어지는 함수이다.
+- **콜백 함수**: 다른 함수의 매개 변수로 전달되어 수행되어지는 함수
 
-고차 함수란 매개변수를 통해 콜백 함수를 받아 호출하는 함수이다.
+- **고차 함수**: 매개변수를 통해 콜백 함수를 받아 호출하는 함수
 
 ```javascript
 //콜백함수
@@ -141,39 +175,7 @@ console.log(calculator(mul, 8, 2)); //16
 console.log(calculator(div, 8, 2)); //4
 ```
 
-# 함수 복사
-
-## 1. Call by value: 값에 의한 복사
-
-원시형(number, string, boolian, null, undefined, symbol)을 매개 변수로 넘겼을 때 발생한다.
-
-함수 내에서 매개 변수 값을 변경시켜도 영향을 미치지 않는다.
-
-```javascript
-let a = 1;
-let add = function (b) {
-  b = b + 1;
-};
-add(a);
-console.log(a); //1
-```
-
-## 2 .Call by reference: 주소에 의한 복사
-
-참조형(object, array, function 등)을 매개 변수로 넘겼을 때 발생한다.
-
-주소값을 갖기 때문에, 함수 내에서 매개 변수 값을 변경시키면 원본 데이터에 영향을 받는다.
-
-```javascript
-let a = { value: 1 };
-let add = function (b) {
-  b.value = b.value + 1;
-};
-add(a);
-console.log(a); //2
-```
-
-# Method
+## 6. 메서드(Method)
 
 배열의 요소(element), 객체의 속성(property)에 함수를 정의하여 저장이 가능하고, 이 저장된 함수를 메서드(Method)라고 부른다.
 
