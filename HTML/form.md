@@ -261,20 +261,22 @@ input의 이름을 지정하여 어떤 데이터인지 구분하기 위해 사�
 
 `<input>`의 `list`속성과 같이 쓰인다. `list`값과 `<datalist>`의 `id`값이 일치해야 한다.
 
+```html
 <form action="" method="get">
-      <label for="movie">좋아하는 영화</label>
-      <input type="text" id="movie" name="movie" list="movie-list" />
+  <label for="movie">좋아하는 영화</label>
+  <input type="text" id="movie" name="movie" list="movie-list" />
 
-      <datalist id="movie-list">
-        <option>주토피아</option>
-        <option>인사이드아웃</option>
-        <option>토이스토리1</option>
-        <option>토이스토리2</option>
-        <option>토이스토리3</option>
-      </datalist>
+  <datalist id="movie-list">
+    <option>주토피아</option>
+    <option>인사이드아웃</option>
+    <option>토이스토리1</option>
+    <option>토이스토리2</option>
+    <option>토이스토리3</option>
+  </datalist>
 
-      <input type="submit" />
-    </form>
+  <input type="submit" />
+</form>
+```
 
 ## 8. `<textarea>`
 
