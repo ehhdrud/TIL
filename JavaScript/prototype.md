@@ -43,7 +43,7 @@ console.log(func instanceof Function); //true
 console.log(str instanceof String); //false //래퍼(Wrapper)로 만들지 않아서 false! //new String("str") 방식으로 만들면 true가 출력된다.
 ```
 
-## 1. 프로토타입 체인(chaining, 연결)
+## 1. 프로토타입 체인(연결)
 
 **[ex1]** array는 Array 프로토타입이면서 동시에 Object 프로토타입이다. 즉 array → Array → Object로 체이닝된다.  
 **[ex2]** `B = Object.create(A)`와 같은 방식을 통해 A와 B를 체이닝할 수 있다.
@@ -60,7 +60,7 @@ const dog = Object.create(animal);
 console.log(dog.sayName()); //ANIMAL
 ```
 
-## 2. 프로토타입 확장(extends, 상속)
+## 2. 프로토타입 확장(상속)
 
 ```javascript
 //Super Class(부모)

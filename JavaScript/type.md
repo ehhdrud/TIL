@@ -1,14 +1,12 @@
-# 자료형
+# 1. 원시 타입(Primitive Type)
 
-## 1. 원시 타입(Primitive Type)
-
-### `boolean`
+## `boolean`
 
 논리적 값인 true, false를 갖는 데이터 타입이다.
 
 주로 조건문에서 동작 판단의 기준으로 사용된다.
 
-### `null`
+## `null`
 
 존재하지 않거나 유효하지 않는 주소를 표시하는 데이터 타입이다.
 
@@ -16,11 +14,11 @@ nothing, empty, unknown 값을 나타내는데 사용된다.
 
 `typeof`를 이용한 검사 시 object라고 출력되지만 이것은 자바스크립트의 초기 설계 오류로, `instanceof`를 이용해 검사하면 Object의 인스턴스가 아니라고 출력된다.
 
-### `undefined`
+## `undefined`
 
 선언 후 값을 할당하지 않은 변수를 표시하는 데이터 타입이다.
 
-### `number`
+## `number`
 
 정수, 실수 등 숫자를 표시하는 데이터 타입이다.
 
@@ -28,7 +26,7 @@ nothing, empty, unknown 값을 나타내는데 사용된다.
 
 `NaN`, `Infinity`도 포함된다.
 
-### `string`
+## `string`
 
 빈 문자열이나 글자들을 표현하는 데이터 타입이다.
 
@@ -36,7 +34,7 @@ nothing, empty, unknown 값을 나타내는데 사용된다.
 
 백틱 안에 `${}`를 넣어서 문자열 안에서 변수를 넣을 수도 있다.
 
-### `symbol`
+## `symbol`
 
 ES6에 추가된 변경 불가능한 자료형이다.
 
@@ -44,9 +42,9 @@ ES6에 추가된 변경 불가능한 자료형이다.
 
 `Symbol()`함수 안에 문자열을 넣을 수 있는데 별다른 뜻은 없고 이름표 역할을 한다.
 
-## 2. 객체 타입(Object Type) 또는 참조 타입(Reference Type)
+# 2. 객체 타입(Object Type) 혹은 참조 타입(Reference Type)
 
-### `object`
+## `object`
 
 두개 이상의 복잡한 개체(원시형 데이터 타입)를 저장 가능하다.
 
@@ -56,4 +54,4 @@ object의 개체는 `key: value`형태로 표현된다.
 
 객체는 특정 공간에 메모리를 차지하고 있고 이를 인스턴스(Instance)라고 지칭한다.
 
-Object 클래스 뿐만 아니라 배열, 함수, 사용자 정의 클래스도 모두 Object에 포함된다.
+Object 클래스 뿐만 아니라 배열, 함수, 사용자 정의 클래스도 모두 객체 타입에 에 포함된다.

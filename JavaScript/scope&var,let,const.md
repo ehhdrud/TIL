@@ -86,7 +86,7 @@ window 객체는 브라우저에만 존재하는 객체로 브라우저의 창�
 
 선언없는 변수도 에러로 판단하려면 Strict Mode(`'use strict'`)를 사용하면 된다.
 
----
+<br>
 
 > **※ 즉시 실행 함수 표현식(IIFE: Immediately Invoked Function Expression)**
 >

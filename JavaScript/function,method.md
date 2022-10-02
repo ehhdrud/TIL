@@ -16,11 +16,11 @@
 
 ### 1.3. 화살표 함수
 
-`const func = (arg1,arg2,…,argN)=>expression;`
-
 ECMAScript2015(ES6)에 추가된 문법으로 기존 정의 방법에 비해 간결하다.
 
 기존 함수와 다르게 `arguments`가 존재하지 않고 `this`의 동작 방식도 다르다.
+
+`const func = (arg1,arg2,…,argN)=>expression;`
 
 ## 2. 함수 호출
 

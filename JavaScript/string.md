@@ -72,8 +72,10 @@ console.log(text.replace(/l/gi, "i")); //heiio, worid!!!
 
 ### 6. 문자열 추출
 
-- 위치 기반 문자열 추출: `String.slice(start, end)`, `String.substring(start, end)`
-- 길이 기반 문자열 추출: `String.sunstr(start, length)`
+#### 6.1. 위치 기반 문자열 추출
+
+- `String.slice(start, end)`: 'start'인덱스부터 'end'인덱스 까지를 반환한다.
+- `String.substring(start, end)`: 위와 동일하지만, 시작점과 끝점의 순서가 바뀌어도 자체적으로 변환하여 반환하고자 할 때 사용한다.
 
 ```javascript
 let text = "hello, world!!!";
@@ -87,6 +89,14 @@ console.log(text.slice(2, 6)); //llo,
 console.log(text.slice(6, 2)); //출력X
 console.log(text.substring(2, 6)); //llo,
 console.log(text.substring(6, 2)); //llo, //substring은 자체적으로 (2, 6)으로 변환한다.
+```
+
+#### 6.2. 길이 기반 문자열 추출: `String.sunstr(start, length)`
+
+'start'인덱스부터 'length'의 길이만큼 반환한다.
+
+```javascript
+let text = "hello, world!!!";
 
 console.log(text.substr(2, 6)); //llo, w //index:2부터 length:6만큼 반환한다.
 console.log(text.substr(-5, 3)); //ld! //뒤에서 5번째부터 length:3만큼 반환한다.

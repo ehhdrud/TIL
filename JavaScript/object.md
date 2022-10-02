@@ -40,7 +40,7 @@ const obj = Object.create(Object.prototype, {
 
 ## 2. 객체의 추가, 삭제
 
-### 2.1. `object.key = value`, `object["key"] = value`: 추가
+### 2.1. 추가: `object.key = value`, `object["key"] = value`:
 
 ```javascript
 let user = {
@@ -53,7 +53,7 @@ user["weight"] = 83; //추가
 console.log(user); //{ name: 'SDK', age: 28, height: 183, weight: 83 }
 ```
 
-### 2.2. `delete object.key`: 삭제
+### 2.2. 삭제: `delete object.key`
 
 ```javascript
 let user = {
@@ -67,7 +67,7 @@ console.log(user); //{ name: 'SDK'}
 
 ## 3. 객체를 특정 배열로 반환
 
-### 3.1. `Object.keys()`: key값을 배열로 반환
+### 3.1. key값을 배열로 반환: `Object.keys()`
 
 ```javascript
 const obj = {
@@ -79,7 +79,7 @@ const obj = {
 console.log(Object.keys(obj)); //[ 'a', 'b', 'c' ]
 ```
 
-### 3.2. `Object.values()`: value값을 배열로 반환
+### 3.2. value값을 배열로 반환" `Object.values()`
 
 ```javascript
 const obj = {
@@ -91,7 +91,7 @@ const obj = {
 console.log(Object.values(obj)); //[ 1, 2, 3 ]
 ```
 
-### 3.3. `Object.entries()`: key, value값를 이중 배열 형태로 반환
+### 3.3. key, value값를 이중 배열 형태로 반환: `Object.entries()`
 
 ```javascript
 const obj = {
@@ -145,7 +145,7 @@ console.log(admin.name); //Seo
 console.log(user.name); //SDK
 ```
 
-#### 1.3. ES6에서부터 지원하는 전개연산자(Spread Operator)를 이용한 복사(제일 좋음!)
+#### 1.3. 전개연산자를 이용한 복사(추천)
 
 ```javascript
 let user = {
