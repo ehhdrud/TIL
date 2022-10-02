@@ -28,12 +28,9 @@ console.log(nums.length); //2
 
 ## 2. 배열 반복문
 
-- for … length(index 접근)
-  : **(ex)**`for (let i = 0; i < arr.length; i++){console.log(arr[i]);}`
-- for … of(element 접근)
-  : **(ex)**`for (let element of arr){console.log(element);}`
-- for … in(key 접근)
-  : **(ex)**`for (let key in arr){console.log(arr[key]);}`
+- for … length(index 접근): `for (let i = 0; i < arr.length; i++){console.log(arr[i]);}`
+- for … of(element 접근): `for (let element of arr){console.log(element);}`
+- for … in(key 접근): `for (let key in arr){console.log(arr[key]);}`
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -72,8 +69,8 @@ for (let key in nums) {
 - `Array.isArray()`: 배열 여부 확인
 
 ```javascript
-console.log(Array.isArray(arguments)); //false //arguments는 유사 백열 객체!
-console.log(Array.isArray(NodeList)); //false //NodeList는 유사 배열 객체!
+console.log(Array.isArray(arguments)); //false //배열이 아닌 유사 배열 객체.
+console.log(Array.isArray(NodeList)); //false //배열이 아닌 유사 배열 객체.
 ```
 
 - `Array.from()`: *유사 배열 객체(Array Like Object)*나 *반복 가능한 객체(Iterable Object)*를 얕게 복사해 새로운 배열 객체를 생성
@@ -114,12 +111,10 @@ console.log(fruits); //[ 'apple', 'kiwi', 'melon' ]
 
 #### 3.3.1. 배열 추가/삭제
 
-- 뒤에서 추가/삭제
-  - `Array.push(element)`: Array에 요소 추가, 추가한 배열의 크기를 반환한다.
-  - `Array.pop()`: Array에서 요소 삭제, 삭제한 element를 반환한다.
-- 앞에서 추가/삭제
-  - `Array.unShift(element)`: Array에 요소 추가, 추가한 배열의 크기를 반환한다.
-  - `Array.shift()`: Array에서 요소 삭제, 삭제한 element를 반환한다.
+##### 3.3.1.1. 뒤에서 추가/삭제
+
+- `Array.push(element)`: Array에 요소 추가, 추가한 배열의 크기를 반환한다.
+- `Array.pop()`: Array에서 요소 삭제, 삭제한 element를 반환한다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -132,6 +127,16 @@ console.log(ret); //4
 ret = fruits.pop();
 console.log(fruits); //[ 'apple', 'orange', 'melon' ]
 console.log(ret); //watermelon
+```
+
+##### 3.3.1.2. 앞에서 추가/삭제
+
+- `Array.unShift(element)`: Array에 요소 추가, 추가한 배열의 크기를 반환한다.
+- `Array.shift()`: Array에서 요소 삭제, 삭제한 element를 반환한다.
+
+```javascript
+let fruits = ["apple", "orange", "melon"];
+let ret;
 
 ret = fruits.shift();
 console.log(fruits); //[ 'orange', 'melon' ]
@@ -147,13 +152,13 @@ console.log(ret); //3
 ```javascript
 let fruits = ["apple", "orange", "melon"];
 
-console.log(fruits.splice(1)); //[ 'orange', 'melon' ] //index:1부터 삭제해서 반환한다
-console.log(fruits); //[ 'apple' ] //원본 배열은 index:0만 남았다
+console.log(fruits.splice(1)); //[ 'orange', 'melon' ] //index:1부터 삭제해서 반환한다.
+console.log(fruits); //[ 'apple' ] //원본 배열은 index:0만 남는다.
 
 fruits = ["apple", "orange", "melon", "strawberry"];
-console.log(fruits.splice(1, 1)); //[ 'orange' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 반환한다
+console.log(fruits.splice(1, 1)); //[ 'orange' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 반환한다.
 console.log(fruits); //[ 'apple', 'melon', 'strawberry' ]
-console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 반환하고 그 자리엔 mango, kiwi를 삽입한다
+console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터 삭제하는데 그중에 1개만 삭제해서 반환하고 그 자리엔 mango, kiwi를 삽입한다.
 console.log(fruits); //[ 'apple', 'mango', 'kiwi', 'strawberry' ]
 ```
 
@@ -174,11 +179,11 @@ console.log(fruits.length); //3
 ```javascript
 let fruits = ["apple", "orange", "melon"];
 
-console.log(fruits.slice(1)); //[ 'orange', 'melon' ] //index:1부터 반환한다
+console.log(fruits.slice(1)); //[ 'orange', 'melon' ] //index:1부터 반환한다.
 console.log(fruits); //[ 'apple', 'orange', 'melon' ] //원본데이터에는 영향X!
 
-console.log(fruits.slice(1, 2)); //[ 'orange' ] //index:1만 반환한다
-console.log(fruits.slice(-2)); //[ 'orange', 'melon' ] //뒤에서 2번째부터 반환한다
+console.log(fruits.slice(1, 2)); //[ 'orange' ] //index:1만 반환한다.
+console.log(fruits.slice(-2)); //[ 'orange', 'melon' ] //뒤에서 2번째부터 반환한다.
 ```
 
 #### 3.4.2. 배열 병합: `Array.concat(arg1, arg2…)`
@@ -210,12 +215,12 @@ console.log(["grape"].concat(fruits)); //[ 'grape', 'apple', 'orange', 'melon' ]
 ```javascript
 let fruits = ["apple", "orange", "banana", "orange", "melon"];
 console.log(fruits.indexOf("orange")); //1
-console.log(fruits.indexOf("Orange")); //-1 //존재하지 않는다면 -1이 출력된다
-console.log(fruits.indexOf("orange", 2)); //3 //index:2부터 탐색한다
+console.log(fruits.indexOf("Orange")); //-1 //존재하지 않는다면 -1이 출력된다.
+console.log(fruits.indexOf("orange", 2)); //3 //index:2부터 탐색한다.
 
 console.log(fruits.lastIndexOf("orange")); //3
-console.log(fruits.lastIndexOf("orange", -3)); //1 //뒤에서 3번째부터 역방향으로 탐색한다
-console.log(fruits.lastIndexOf("orange", 0)); //-1 //0을 입력하면 그 역방향으로는 어떠한 orange도 없으므로 -1 출력
+console.log(fruits.lastIndexOf("orange", -3)); //1 //뒤에서 3번째부터 역방향으로 탐색한다.
+console.log(fruits.lastIndexOf("orange", 0)); //-1 //0을 입력하면 그 역방향으로는 어떠한 orange도 없으므로 -1이 출력된다.
 
 console.log(fruits.includes("banana")); //true
 console.log(fruits.includes("Banana")); //false

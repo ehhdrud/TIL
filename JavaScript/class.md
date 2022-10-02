@@ -52,7 +52,7 @@ console.log(person1.getInfo()); //YongSan에 거주하는 28살 서동경입니�
 console.log(person2.getInfo()); //NorthKorea에 거주하는 31살 곽대철입니다.
 ```
 
-- 클래스 확장(extends, 상속)
+## 클래스 확장(extends, 상속)
 
 ```javascript
 //Super Class(부모)

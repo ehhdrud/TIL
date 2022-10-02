@@ -8,13 +8,13 @@
 
 동기는 다른 말로 '싱글 스레드'라고도 부르는데 이는 하나의 Call Stackt만을 가지고 있음을 의미한다.
 
-이러한 동작은 Memory Heap과 Call Stack으로 이루어진 *자바스크립트 엔진*으로부터 비롯된다.
+이러한 동작은 *Memory Heap*과 *Call Stack*으로 이루어진 *자바스크립트 엔진*으로부터 비롯된다.
 
-- 동작 원리
-
-1. 코드가 실행되면 순서대로 Call Stack에 실행할 함수가 쌓인다(push).
-2. 쌓인 반대 순서로 함수가 실행된다(LIFO).
-3. 실행이 된 함수는 Call Stack에서 제거된다(pop).
+> **동작 원리**
+>
+> 1. 코드가 실행되면 순서대로 Call Stack에 실행할 함수가 쌓인다(push).
+> 2. 쌓인 반대 순서로 함수가 실행된다(LIFO).
+> 3. 실행이 된 함수는 Call Stack에서 제거된다(pop).
 
 ## 2.1. 비동기
 
@@ -22,12 +22,12 @@
 
 이러한 비동기 동작은 *자바스크립트 실행환경(런타임)*으로부터 가능해진다. 자바스크립트 실행환경에서는 DOM, AJAX같은 비동기적 처리를 위한 Web API를 제공하기 때문이다.
 
-- 동작 원리
-
-1. Call Stack에서 비동기 함수가 호출되면 Call Stack에 먼저 쌓였다가 Web API(백 그라운드)로 이동한 후 해당 함수가 등록되고 Call Stack에서 사라진다.
-2. Web API에서 비동기 함수의 이벤트가 발생하면, 해당 콜백 함수는 Callback Queue에 이동된다(push).
-3. 이제 Call Stack이 비어있는지 이벤트 루프(Event Loop)가 확인을 하는데, 만약 비어있으면 Call Stack에 Callback Queue에 있는 콜백 함수를 넘겨준다(push).
-4. Call Stack에 들어온 함수는 실행이 되고 실행이 끝나면 Call Stack에서 사라진다(pop).
+> **동작 원리**
+>
+> 1. Call Stack에서 비동기 함수가 호출되면 Call Stack에 먼저 쌓였다가 Web API(백 그라운드)로 이동한 후 해당 함수가 등록되고 Call Stack에서 사라진다.
+> 2. Web API에서 비동기 함수의 이벤트가 발생하면, 해당 콜백 함수는 Callback Queue에 이동된다(push).
+> 3. 이제 Call Stack이 비어있는지 이벤트 루프(Event Loop)가 확인을 하는데, 만약 비어있으면 Call Stack에 Callback Queue에 있는 콜백 함수를 넘겨준다(push).
+> 4. Call Stack에 들어온 함수는 실행이 되고 실행이 끝나면 Call Stack에서 사라진다(pop).
 
 ## 2. 콜백(Callback)
 
@@ -49,13 +49,13 @@
 
 콜백함수의 인자로 `[resolve]`와 `[reject]`를 사용할 수 있다.
 
-### 3.2. 이행: `[resolve]` → `Promise.then`
+### 3.2. 이행: `[resolve]` & `Promise.then`
 
 콜백 함수의 `[resolve]`인자를 실행하면 이행 상태가 된다.
 
 이행 상태가 되면 `Promise.then`을 통해 처리 결과값을 받을 수 있다.
 
-### 3.3. 실패: `[reject]` → `Promise.catch`
+### 3.3. 실패: `[reject]` & `Promise.catch`
 
 콜백 함수의 `[reject]`인자를 실행하면 실패 상태가 된다.
 

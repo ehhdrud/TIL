@@ -6,23 +6,7 @@ DOM은 Node로 이루어져 있고 이 Node는 Tree 형태로 구성되어 있�
 
 ## 1.1. JS에서 특정 HTML Element를 가져오는 방법
 
-### 1.1.1. ~~`document.getElementById('[id]')`~~(구형)
-
-id를 통해 가져온다.
-
-### 1.1.2. ~~`document.getElementsByClassName('[class name]')`~~(구형)
-
-class name을 통해 가져온다.
-
-주어진 class의 모든 child element의 *HTMLCollection*을 반환한다.
-
-### 1.1.3. ~~`document.getElementsByTagName('[tag name]')`~~(구형)
-
-tag name을 통해 가져온다.
-
-주어진 tag name을 가지는 유효한 element의 *HTMLCollection*을 반환한다.
-
-### 1.1.4. `document.querySelector('')` (최신)
+### 1.1.1. `document.querySelector('')`
 
 처음으로 마주친 유효한 식별자를 하나만 가져온다.
 
@@ -51,11 +35,17 @@ const nav = document.querySelector("#nav-access"); //id: nav-access인 것들만
 nav.querySelector("li"); //문서 전체에서 찾지 않고 id: nav-access인 것 중에서 li 태그를 찾음
 ```
 
-### 1.1.5. `document.querySelectorAll('')` (최신)
+### 1.1.2. `document.querySelectorAll('')`
 
 유효한 식별자 모두를 _Nodelist_ 형태로 가져온다.
 
 tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있다.
+
+> **※ 현재는 안쓰이는 문법들**
+>
+> - `document.getElementById('[id]')`: id를 통해 가져온다.
+> - `document.getElementsByClassName('[class name]')`: class name을 통해 가져온다. 주어진 class의 모든 child element의 *HTMLCollection*을 반환한다.
+> - `document.getElementsByTagName('[tag name]')`: tag name을 통해 가져온다. 주어진 tag name을 가지는 유효한 element의 *HTMLCollection*을 반환한다.
 
 > **※ HTMLCollection과 NodeList의 공통점**
 >
