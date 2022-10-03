@@ -1,6 +1,6 @@
 # HTML 개요
 
-HTML이란 Hyper Text Markup Language의 준말로, World Wide Wep(www)을 위한 마크업 언어이다. 제목이나 문단, 표, 꼬리글 및 기타 요소를 이용하여 콘텐츠의 구조를 정의함으로써 웹 문서를 만드는 기능을 제공한다.
+HTML이란 Hyper Text Markup Language의 약어로, World Wide Wep(www)을 위한 마크업 언어이다. 제목이나 문단, 표, 꼬리글 및 기타 요소를 이용하여 콘텐츠의 구조를 정의함으로써 웹 문서를 만드는 기능을 제공한다.
 
 ## 1. 빈 요소
 
