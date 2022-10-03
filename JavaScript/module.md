@@ -12,7 +12,7 @@
 
 모듈이 로딩된 후 실행, 즉 _동기적_ 작업만 수행한다.
 
-*Server 환경*에서 주로 사용되고 Node.js도 CommonJS의 명세를 따른다.
+_Server_ 환경에서 주로 사용되고 Node.js도 CommonJS의 명세를 따른다.
 
 ```javascript
 module.exports = moduleName;
@@ -24,7 +24,7 @@ const moduleName = require("./[path]]");
 
 CommonJS와는 다르게 *비동기적*으로 필요한 파일을 다운로드하는 방식이다.
 
-*Client 환경*에서 외부 모듈을 가져올 때 유리하다.
+_Client_ 환경에서 외부 모듈을 가져올 때 유리하다.
 
 ```javascript
 //❗
@@ -39,7 +39,7 @@ define(["./[path]"], function(module){
 
 어떤 방식으로 외부 모듈을 로딩하는 것과는 무관하게 각 모듈을 선언하는 방식이다.
 
-CommonJS, AMD 두 방식을 모두 지원. 즉, _Client, Server에서 모두_ 작동한다.
+CommonJS, AMD 두 방식을 모두 지원. 즉, _Client_, *Server*에서 모두 작동한다.
 
 ## 4. ESM(ECMAScript Modules)
 
