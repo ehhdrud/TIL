@@ -43,9 +43,9 @@ tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있�
 
 > **※ 현재는 안쓰이는 문법들**
 >
-> - `document.getElementById('[id]')`: id를 통해 가져온다.
-> - `document.getElementsByClassName('[class name]')`: class name을 통해 가져온다. 주어진 class의 모든 child element의 *HTMLCollection*을 반환한다.
-> - `document.getElementsByTagName('[tag name]')`: tag name을 통해 가져온다. 주어진 tag name을 가지는 유효한 element의 *HTMLCollection*을 반환한다.
+> - `document.getElementById('id')`: id를 통해 가져온다.
+> - `document.getElementsByClassName('class name')`: class name을 통해 가져온다. 주어진 class의 모든 child element의 *HTMLCollection*을 반환한다.
+> - `document.getElementsByTagName('Stag name')`: tag name을 통해 가져온다. 주어진 tag name을 가지는 유효한 element의 *HTMLCollection*을 반환한다.
 
 > **※ HTMLCollection과 NodeList의 공통점**
 >

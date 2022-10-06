@@ -26,7 +26,7 @@ console.log("done");
 
 세 개의 피연산자를 갖는 조건식으로, if-else문에 비해 간결하다.
 
-`[condition] ? [truthy] : [falsy]` condition이 참일 경우 truthy의 값을, 거짓일 경우 falsy의 값을 반환한다.
+`condition ? truthy : falsy` condition이 참일 경우 truthy의 값을, 거짓일 경우 falsy의 값을 반환한다.
 
 ```javascript
 let age = 20;

@@ -29,9 +29,9 @@ admin.func(); //helloSEO //this->admin
 
 this는 예측이 어렵게 동작하므로 명시적 바인딩, 즉 this의 객체를 명시적으로 지정해주는 과정이 필요하다.
 
-- `function.call([this가 가르킬 객체],[function의 매개변수])`
-- `function.apply([this가 가르킬 객체],[function의 매개변수를 가진 배열])`: 매개변수로 배열을 넘기고 싶을 때 사용한다.
-- `function.bind([this가 가르킬 객체])`: 함수를 실행하지 않고 바인딩된 함수를 리턴하여 영구적인 지정이 가능하다.
+- `function.call(this가 가르킬 객체,function의 매개변수)`
+- `function.apply(this가 가르킬 객체,function의 매개변수를 가진 배열)`: 매개변수로 배열을 넘기고 싶을 때 사용한다.
+- `function.bind(this가 가르킬 객체)`: 함수를 실행하지 않고 바인딩된 함수를 리턴하여 영구적인 지정이 가능하다.
 
 ```javascript
 const me = {
