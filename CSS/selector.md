@@ -115,7 +115,7 @@ CSS에서 class는 `.`으로 표현한다.
 - `active`: 마우스를 눌렀을 때 상호작용 중인 요소에 스타일을 적용한다.
 - `focus`: 포커싱이 됐을 때 상호작용 중인 요소에 스타일을 적용한다.
 
-##### 2.1.4.3. `enabled`, `disabled`, `checked`
+##### 2.1.4.3. `:enabled`, `:disabled`, `:checked`
 
 - `enabled`: 활성화되어 있는 요소에 스타일을 적용한다.
 - `disabled`: 활성화되지 않은(`disabled`속성이 포함된) 요소에 스타일을 적용한다.
@@ -138,9 +138,9 @@ CSS에서 class는 `.`으로 표현한다.
 
 #### 2.2.2. `::first-letter`, `::first-line`, `::selection`
 
-- `::first-letter`: 첫 번째 글자에만 스타일을 적용한다. 만약 `before`와 같이 쓰인다면 `before`의 `content`속성에 정의된 문자열의 첫 번째 글자에 적용한다.
-- `::first-line`: 첫 번째 줄에만 스타일을 적용한다.
-- `::selection`: 선택영역(드래그 등)에만 스타일을 적용한다.
+- `first-letter`: 첫 번째 글자에만 스타일을 적용한다. 만약 `before`와 같이 쓰인다면 `before`의 `content`속성에 정의된 문자열의 첫 번째 글자에 적용한다.
+- `first-line`: 첫 번째 줄에만 스타일을 적용한다.
+- `selection`: 선택영역(드래그 등)에만 스타일을 적용한다.
 
 ## 3. 선택자 결합
 
