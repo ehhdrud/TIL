@@ -41,13 +41,13 @@ nav.querySelector("li"); //문서 전체에서 찾지 않고 id: nav-access인 �
 
 tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있다.
 
-> **※ 현재는 안쓰이는 문법들**
+> **📌현재는 안쓰이는 문법들**
 >
 > - `document.getElementById('id')`: id를 통해 가져온다.
 > - `document.getElementsByClassName('class name')`: class name을 통해 가져온다. 주어진 class의 모든 child element의 *HTMLCollection*을 반환한다.
 > - `document.getElementsByTagName('Stag name')`: tag name을 통해 가져온다. 주어진 tag name을 가지는 유효한 element의 *HTMLCollection*을 반환한다.
 
-> **※ HTMLCollection과 NodeList의 공통점**
+> **📌HTMLCollection과 NodeList의 공통점**
 >
 > 이터러블 특성을 가진 유사 배열 객체로, Property와 Method를 가지고 있다.  
 > 배열이 아니므로 배열로 바꿔줘야 배열 메서드를 사용할 수 있다.

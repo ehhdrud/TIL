@@ -9,7 +9,7 @@
 
 ## 1. 크기
 
-### 1.1. `width`, `height`
+### 1.1. `width`, `height` 속성
 
 `auto`는 초기값이다. `width`의 `auto`는 블록 요소에서는 가로 길이 전체를 차지하고 인라인 요소에서는 콘텐츠의 가로 길이만큼만 차지한다. `height`의 `auto`는 블록 요소에서나 인라인 요소에서나 콘텐츠의 세로길이만큼만 차지한다.
 
@@ -17,7 +17,7 @@
 
 상속이 되지 않는 속성이다.
 
-### 1.2. `max-width`, `min-width`, `max-height`, `min-height`
+### 1.2. `max-width`, `min-width`, `max-height`, `min-height` 속성
 
 `min-width`, `min-height`를 사용해 넓이, 높이의 최소값을 지정할 수 있다.
 
@@ -38,15 +38,15 @@
 > 3. **세 개의 값**: **첫 번째**는 **위**, **두 번째**는 **왼쪽과 오른쪽**, **세 번째**는 **아래** 여백을 설정한다.
 > 4. **네 개의 값**: 각각 시계 방향인 **상**, **우**, **하**, **좌** 순서로 여백을 설정한다.
 
-### 2.1. `margin`
+### 2.1. `margin` 단축 속성
 
-네 방향의 바깥 여백을 설정한다. `margin-top`, `margin-right`, `margin-bottom`, `margin-left`의 단축 속성이다.
+네 방향의 바깥 여백을 설정한다. `margin-top`, `margin-right`, `margin-bottom`, `margin-left` 속성의 단축 속성이다.
 
 상속이 되지 않는 속성이다.
 
 속성값의 단위로 `%`를 사용할 때, 부모의 `margin`값이 아닌 부모의 `width`값을 기준으로 함을 주의한다.
 
-> **※ 마진 상쇄(Margin Collapsing)**
+> **📌마진 상쇄(Margin Collapsing)**
 >
 > 각 요소의 마진이 겹치게 되면 각 마진이 가장 큰 크기를 가지는 마진으로 상쇄되는 현상이다.
 >
@@ -58,13 +58,13 @@
 > >    : 부모 블록에 border, padding, inline content가 없고 부모와 자식을 분리할 height가 지정되지 않아 부모와 자식의 margin-bottom이 만나는 경우, 해당 영역이 상쇄된다.
 > > 3. **빈 블록**: border, padding, content가 없고, height 또한 존재하지 않으면, 해당 블록의 margin-top과 margin-bottom이 상쇄된다.
 
-### 2.3. `padding`
+### 2.3. `padding` 단축 속성
 
 네 방향의 안쪽 여백을 설정한다. `padding-top`, `padding-right`, `padding-bottom`, `padding-left`의 단축 속성이다.
 
-속성값의 단위로 `%`를 사용할 때, 부모의 `padding`값이 아닌 부모의 `width`값을 기준으로 함을 주의한다.
-
 `margin`과 다르게 음수값을 사용할 수 없다.
+
+속성값의 단위로 `%`를 사용할 때, 부모의 `padding`값이 아닌 부모의 `width`값을 기준으로 함을 주의한다.
 
 ## 3. 테두리
 
@@ -75,9 +75,11 @@
 > 3. **세 개의 값**: **첫 번째**는 **위**, **두 번째**는 **왼쪽과 오른쪽**, **세 번째**는 **아래** 테두리를 설정한다.
 > 4. **네 개의 값**: 각각 시계 방향인 **상**, **우**, **하**, **좌** 순서로 테두리를 설정한다.
 
-### 3.1. `border-style`
+### 3.1. `border-style` 속성
 
 테두리 네 면의 스타일을 지정한다.
+
+#### 3.1.1. `border-style`의 키워드
 
 - `none`: 기본값으로 테두리가 보이지 않는다.
 - `hidden`: `none`과 마찬가지로 테두리가 보이지 않는다.
@@ -90,21 +92,21 @@
 - `inset`: 요소가 파인 것 같은 선
 - `outset`: 요소가 튀어나온 것 같은 선
 
-### 3.2. `border-width`
+### 3.2. `border-width` 속성
 
 테두리의 굵기를 지정한다.
 
-### 3.3. `border-color`
+### 3.3. `border-color` 속성
 
 테두리의 색상을 지정한다.
 
-### 3.2. `border`
+### 3.2. `border` 단축 속성
 
-테두리를 설정하는 `border-style`, `border-width`, `border-color`의 단축 속성으로 모두 필수 요소는 아니고 옵션이며 순서는 상관이 없다. 하지만 `border-style`을 작성하지 않는다면 테두리가 아예 보이지 않기 때문에 `border-style`은 필수라고 봐도 무방하다.
+테두리를 설정하는 `border-style`, `border-width`, `border-color`의 단축 속성으로, 모두 필수 요소는 아니고 옵션이며 순서는 상관이 없다. 하지만 `border-style`을 작성하지 않는다면 테두리가 아예 보이지 않기 때문에 `border-style`은 필수라고 봐도 무방하다.
 
 외곽선인 `outline`과 유사하지만 `outline`은 요소를 강조하기만 하고 실제 레이아웃에 포함되지는 않는다.
 
-### 3.3. `border-radius`
+### 3.3. `border-radius` 속성
 
 테두리 경계의 꼭짓점을 둥글게 만든다.
 
@@ -112,9 +114,11 @@ length 혹은 % 단위을 사용하여 하나의 값을 사용해 원형 꼭짓�
 
 `border`속성 없이 단독적으로도 사용 가능하다.
 
-## 4. `box-sizing`
+## 4. `box-sizing` 속성
 
 `width`, `height`의 기준을 지정한다.
+
+### 4.1. `box-sizing`의 키워드
 
 - `content-box`: 기본값으로, content 영역을 기준으로 `width`, `height`를 계산한다.
 - `border-box`: padding과 border는 포함하고, margin은 포함하지 않는 영역을 기준으로 `width`, `height`를 계산한다.

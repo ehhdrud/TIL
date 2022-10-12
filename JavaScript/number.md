@@ -56,7 +56,7 @@ console.log(Number.isFinite(123)); //true
 console.log(Number.isFinite("hello")); //false //문자열은 Finite하지 않다고 본다.
 ```
 
-> **※ `Number.isNaN()`과 `isNaN()`의 차이**
+> **📌`Number.isNaN()`과 `isNaN()`의 차이**
 >
 > `Number.isNaN()`: 엄격한 검사  
 > `isNaN()`: 비교적 느슨한 검사

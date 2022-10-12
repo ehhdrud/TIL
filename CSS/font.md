@@ -1,6 +1,6 @@
-# 폰트 관련 속성
+# 폰트(Font)
 
-## 1. `font-size`
+## 1. `font-size` 속성
 
 폰트의 크기를 조절한다.
 
@@ -8,7 +8,7 @@
 
 대부분의 브라우저는 `16px`을 기본값으로 사용한다.
 
-## 2. `font-style`
+## 2. `font-style` 속성
 
 폰트의 스타일을 조작한다.
 
@@ -16,7 +16,7 @@
 
 대부분의 브라우저는 `normal`을 기본값으로 사용한다.
 
-## 3. `font-weight`
+## 3. `font-weight` 속성
 
 폰트의 굵기를 조절한다.
 
@@ -24,7 +24,7 @@
 
 대부분의 브라우저는 `400`을 기본값으로 사용한다.
 
-## 4. `font-family`
+## 4. `font-family` 속성
 
 글꼴을 조작한다.
 
@@ -32,13 +32,13 @@
 
 속성값으로 자주 사용되는 `serif`와 `sans-serif`는 브라우저에 기본값이 저장되어 있다. `serif`는 획의 마지막이 꺾여있는 글꼴이고 `sans-serif`는 획의 마지막이 껶여있지 않은 글꼴이다.
 
-## 5. `line-height`
+## 5. `line-height` 속성
 
 글꼴마다 높이가 다른데, 이를 조절하고자 할 때 사용한다.
 
 기본값인 `normal`값은 1.2~1.5를 주로 사용한다.
 
-## 6. `font`: 단축 속성(shorthand)
+## 6. `font` 단축 속성
 
 `font-size`, `font-family`, `font-style`, `font-variant`, `font-weight`, `line-height`의 단축 속성으로, `font-size`, `font-family`는 필수이고 나머지는 옵션이다. 각 속성은 `spacing`으로 구분하고 순서를 지켜야 한다.
 
@@ -62,13 +62,13 @@ line-height: 1.7
 }
 ```
 
-## 7. `letter-spacing`, `word-spacing`
+## 7. `letter-spacing`, `word-spacing` 속성
 
 글자 혹은 단어 사이에 간격을 조절한다.
 
 기본값이 가독성에 최적화된 값이기 때문에 디자인적 요소로서 꼭 필요하지 않는 한 조작하지 않는다.
 
-## 8. `text-align`,
+## 8. `text-align` 속성
 
 가로 정렬을 설정한다.
 
@@ -76,13 +76,13 @@ line-height: 1.7
 
 가로 길이가 한정된 인라인 요소에는 적용되지 않는다. 이런 경우에는 블록 요소인 태그로 감싸서 `text-align`을 적용한다.
 
-## 9. `text-indent`
+## 9. `text-indent` 속성
 
 들여쓰기의 길이를 설정한다
 
 가로 길이가 한정된 인라인 요소에는 적용되지 않는다. 이런 경우에는 블록 요소인 태그로 감싸서 `text-indent`을 적용한다.
 
-## 10. `text-decoration`: 단축 속성(shorthand)
+## 10. `text-decoration` 단축 속성
 
 `text-decoration-line`, `text-decoration-color`, `text-decoration-style`, `text-decoration-thickness`의 단축 속성으로 `text-decoration-line`은 필수이고 나머지는 옵션이다. 각 속성은 `spacing`으로 구분하고 순서는 상관없다.
 
@@ -118,15 +118,21 @@ text-decoration-thickness: 2px
 }
 ```
 
-## 11. `word-braek`
+## 11. `word-braek` 속성
 
 텍스트가 자기 콘텐츠 박스 밖으로 오버플로우될 때 줄을 바꿀 지 설정한다.
+
+### 11.1. `word-braek`의 키워드
 
 - `normal`: 기본값으로, 기본 줄 바꿈 규칙을 사용한다. 한중일 텍스트의 경우 오버플로우시 자동으로 줄이 바뀐다.
 - `break-all`: 오버플로우를 방지하기 위해서 줄바꿈이 일어난다.
 - `keep-all`: 한중일 텍스트에서 오버플로우 방지를 위한 줄바꿈이 일어나지 않는다. 한중일 텍스트가 아니라면 `normal`과 동일하다.
 
-## 12. `text-transform`
+## 12. `text-transform` 속성
+
+텍스트의 대/소문자를 변환한다.
+
+### 12.1. `text-transform`의 키워드
 
 - `none`: 기본값
 - `capitalize`: 단어의 앞글자가 대문자로 변경된다.
