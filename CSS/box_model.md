@@ -105,3 +105,16 @@
 외곽선인 `outline`과 유사하지만 `outline`은 요소를 강조하기만 하고 실제 레이아웃에 포함되지는 않는다.
 
 ### 3.3. `border-radius`
+
+테두리 경계의 꼭짓점을 둥글게 만든다.
+
+length 혹은 % 단위을 사용하여 하나의 값을 사용해 원형 꼭짓점을, 두 개의 값을 사용해 타원형 꼭짓점을 적용할 수 있다.
+
+`border`속성 없이 단독적으로도 사용 가능하다.
+
+## 4. `box-sizing`
+
+`width`, `height`의 기준을 지정한다.
+
+- `content-box`: 기본값으로, content 영역을 기준으로 `width`, `height`를 계산한다.
+- `border-box`: padding과 border는 포함하고, margin은 포함하지 않는 영역을 기준으로 `width`, `height`를 계산한다.
