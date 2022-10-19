@@ -2,7 +2,7 @@
 
 내부의 요소를 일차원으로 배치하는 레이아웃 모델이다.
 
-요소들을 감싸고 있는 외부의 부모 영역을 **Flex Container**, 내부에서 정렬을 위해 배치된 자식 영역을 **Flex Item**, 주축을 **Main Axis**, 주축과 수직을 이루는 교차축을 **Cross Axis**라고 부른다.
+요소들을 감싸고 있는 외부의 부모 영역을 **Flex Container**, 내부에서 정렬을 위해 배치된 자식 영역을 **Flex Item**이라고 부르고, 주축(Main Axis)과 주축과 수직을 이루는 교차축(Cross Axis)이 있다.
 
 플렉스 아이템 간의 간격이 없도록 배치할 수도 있다.
 
@@ -10,7 +10,7 @@
 
 ### 1.1. `display` 속성의 `flex` 키워드
 
-레이아웃을 변경할 때 사용하는 `display` 속성에는 바깥쪽 레이아웃을 조작하는 `inline`, `block`, `inline-block` 키워드(`display-outside`) 외에, 안쪽 키워드를 조작하는 `flex` 키워드(`display-inside`)를 사용할 수 있다. `display-outside`와 `display-inside`는 다른 개념이므로 `inline-flex`처럼 `-`를 이용해 같이 사용할 수 있다.
+레이아웃을 변경할 때 사용하는 `display` 속성에는 바깥쪽 레이아웃을 조작(`display-outside`)하는 `inline`, `block`, `inline-block` 키워드 외에, 안쪽 레이아웃을 조작(`display-inside`)하는 `flex` 키워드를 사용할 수 있다. `display-outside`와 `display-inside`는 다른 개념이므로 `inline-flex`처럼 `-`를 이용해 같이 사용할 수 있다.
 
 ### 1.2. `flex-direction` 속성
 
