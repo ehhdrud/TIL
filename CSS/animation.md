@@ -64,13 +64,13 @@
 
 > 📌애니메이션 사용법
 >
-> > HTML 파일
+> > 👉HTML 파일
 > >
 > > ```html
 > > <div class="box">😊</div>
 > > ```
 >
-> > CSS 파일
+> > 👉CSS 파일
 > >
 > > ```css
 > > .box {

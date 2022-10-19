@@ -30,13 +30,13 @@
 
 > 📌transition 관련 속성 사용법
 >
-> HTML 파일
+> 👉HTML 파일
 >
 > > ```html
 > > <div class="box">Hover Me!😊</div>
 > > ```
 >
-> CSS 파일
+> 👉CSS 파일
 >
 > > ```css
 > > .box {
@@ -67,13 +67,13 @@
 
 > 📌`transition` 단축 속성 사용법
 >
-> HTML 파일
+> 👉HTML 파일
 >
 > > ```html
 > > <div class="box">Hover Me!😊</div>
 > > ```
 >
-> CSS 파일
+> 👉CSS 파일
 >
 > > ```css
 > > .box {

@@ -72,17 +72,17 @@
 
 > **📌`flex` 단축 속성의 순서**
 >
-> 값이 1개일 때
+> 👉값이 1개일 때
 >
 > > `number`를 지정하면 `flex-grow`이다.  
 > > `length`, `%`를 지정하면 `flex-basis`이다.
 >
-> 값이 2개일 때
+> 👉값이 2개일 때
 >
 > > 첫 번째 값은 `flex-grow`이다.
 > > 두 번째 값은 `number`를 지정하면 `flex-shrink`이고, `length`, `%`를 지정하면 `flex-basis`이다.
 >
-> 값이 3개일 때
+> 👉값이 3개일 때
 >
 > > 첫 번째 값은 `flex-grow`이다.
 > > 두 번째 값은 `flex-shrink`이다.
