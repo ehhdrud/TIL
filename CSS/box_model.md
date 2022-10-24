@@ -121,4 +121,4 @@
 ### 4.1. `box-sizing`의 키워드
 
 - `content-box`: 기본값으로, content 영역을 기준으로 `width`, `height`를 계산한다.
-- `border-box`: padding과 border는 포함하고, margin은 포함하지 않는 영역을 기준으로 `width`, `height`를 계산한다.
+- `border-box`: padding과 border는 포함하고, margin은 포함하지 않는 영역을 기준으로 `width`, `height`를 계산한다. 마진 상쇄를 무시할 수 있다.
