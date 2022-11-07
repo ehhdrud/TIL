@@ -1,6 +1,6 @@
 # `<picture>`
 
-`<picture>` 태그는 `<img>` 태그의 다중 이미지 리소스(multiple image resources)를 위한 컨테이너를 정의할 때 사용한다. 반응형 이미지를 정의할 때 용이하다.
+`<picture>`태그는 `<img>`태그의 다중 이미지 리소스(multiple image resources)를 위한 컨테이너를 정의할 때 사용한다. 반응형 이미지를 정의할 때 용이하다.
 
 > **📌예제 1**
 >
