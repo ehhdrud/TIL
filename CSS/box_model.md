@@ -3,9 +3,9 @@
 ![box_model](/img/box_model.png)
 
 - **content**: 콘텐츠가 표시되는 영역
-- **padding**: contert와 border 사이의 여백
-- **border**: padding과 margin 사이의 테두리
-- **margin**: 가장 바깥 쪽 레이어로, content, padding, border를 둘러싸는 해당 박스와 다른 요소 사이의 공백
+- **padding**: border 안쪽 여백
+- **border**: 테두리
+- **margin**: border 바깥 여백
 
 ## 1. 크기
 
