@@ -5,4 +5,4 @@
 `_parent`: URL을 현재 브라우징 맥락의 부모에 표시합니다. 부모가 존재하지 않으면 \_self와 동일하게 행동합니다.
 `_top`: URL을 최상단 브라우징 맥락(현재 맥락의 부모면서 자신의 부모가 존재하지 않는, 제일 높은 맥락)에 표시합니다. 부모가 존재하지 않으면 \_self와 동일하게 행동합니다.
 
-> `target="_blank"`를 `rel="noreferrer"`와 `rel="noopener"` 없이 사용하면 웹사이트가 window.opener API 악용 공격에 취약해집니다.
+> `target="_blank"`를 `rel="noreferrer"`와 `rel="noopener"` 없이 사용하면 웹사이트가 window.opener API 악용 공격에 취약해진다. 보안 취약점을 개선하려면 이를 모두 써줄 것!
