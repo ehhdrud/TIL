@@ -1,9 +1,9 @@
-> 1st:객체의 노출여부와 표현방식  
-> 2nd:위치와 좌표  
-> 3rd:크기와 여백  
-> 4th:윤곽과 배경  
-> 5th:글자와 정렬  
-> 6th:내용
+1st:객체의 노출여부와 표현방식  
+2nd:위치와 좌표  
+3rd:크기와 여백  
+4th:윤곽과 배경  
+5th:글자와 정렬  
+6th:내용
 
 1. _display_ (1st)
 2. _list-style_ (1st)
@@ -18,3 +18,5 @@
 11. _text-align_ / _vertical-align_(5th)
 12. _white-space_ (5th)
 13. _content_ (6th)
+
+_z-index_, _line-height_, _overflow_ 등은? 비슷한 성격의 속성값 주변에!
