@@ -19,4 +19,4 @@
 12. _white-space_ (5th)
 13. _content_ (6th)
 
-_z-index_, _line-height_, _overflow_ 등은? 비슷한 성격의 속성값 주변에!
+_z-index_, _line-height_, _overflow_, _transition_ 등은? 비슷한 성격의 속성이나 상호작용 중인 속성 주변에!
