@@ -12,22 +12,22 @@
 
 > **동작 원리**
 >
-> 1. 코드가 실행되면 순서대로 Call Stack에 실행할 함수가 쌓인다(push).
-> 2. 쌓인 반대 순서로 함수가 실행된다(LIFO).
-> 3. 실행이 된 함수는 Call Stack에서 제거된다(pop).
+> 1. 코드가 실행되면 순서대로 Call Stack에 실행할 함수가 쌓인다.
+> 2. 쌓인 반대 순서로 코드가 실행된다(Last In First Out).
+> 3. 실행이 된 코드는 Call Stack에서 제거된다.
 
 ## 1.2. 비동기
 
 자바스크립트는 동기식으로 동작하지만 비동기적 작업이 필요하다. 특히 자바스크립트가 웹 사이트에서 동작하려면 빠른 반응을 위해 비동기적 작업이 필수적이다.
 
-이러한 비동기 동작은 *자바스크립트 실행환경(런타임)*으로부터 가능해진다. 자바스크립트 실행환경에서는 DOM, AJAX같은 비동기적 처리를 위한 Web API를 제공하기 때문이다.
+이러한 비동기 동작은 **자바스크립트 실행환경(런타임)**으로부터 가능해진다. 자바스크립트 실행환경에서는 DOM, AJAX같은 비동기적 처리를 위한 **Web API**를 제공하기 때문이다.
 
 > **동작 원리**
 >
-> 1. Call Stack에서 비동기 함수가 호출되면 Call Stack에 먼저 쌓였다가 Web API(백 그라운드)로 이동한 후 해당 함수가 등록되고 Call Stack에서 사라진다.
-> 2. Web API에서 비동기 함수의 이벤트가 발생하면, 해당 콜백 함수는 Callback Queue에 이동된다(push).
-> 3. 이제 Call Stack이 비어있는지 이벤트 루프(Event Loop)가 확인을 하는데, 만약 비어있으면 Call Stack에 Callback Queue에 있는 콜백 함수를 넘겨준다(push).
-> 4. Call Stack에 들어온 함수는 실행이 되고 실행이 끝나면 Call Stack에서 사라진다(pop).
+> 1. Call Stack에서 비동기 함수가 호출되면 Call Stack에 먼저 쌓였다가 Web API로 이동한 후 해당 함수가 등록되고 Call Stack에서 사라진다.
+> 2. Web API에서 비동기 함수의 이벤트가 발생하면, 해당 콜백 함수는 Task Queue에 이동된다.
+> 3. 이제 Call Stack이 비어있는지 이벤트 루프(Event Loop)가 확인을 하는데, 만약 비어있으면 Task Queue에 있는 콜백 함수를 순서대로 Call Stack에 넘겨준다(First In First Out).
+> 4. Call Stack에 들어온 함수는 실행이 되고 실행이 끝나면 Call Stack에서 제거된다.
 
 ## 2. 콜백(Callback)
 
@@ -101,7 +101,7 @@ function foo() {
 
 `await`연산자는 Promise를 기다리기 위해 사용한다.
 
-async function 내부에서만 사용 가능하다.
+`async`로 선언된 함수 내부에서만 사용 가능하다.
 
 `Promise.then`의 기능을 대체할 수 있다.
 
