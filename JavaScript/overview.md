@@ -56,14 +56,14 @@ Heap, Call Stack(Last In First Out)으로 구성된 자바스크립트 엔진과
 
 > **동작 순서**
 >
-> 1. 자바스크립트 함수가 **Call Stack**에서 쌓이면서 _후입선출_ 방식으로 동작
-> 2. SetTimmeout같은 비동기 작업은 **Web API**에 위임
+> 1. 자바스크립트 *함수*가 **Call Stack**에서 쌓이면서 Last in First Out 방식으로 동작
+> 2. SetTimmeout같은 *비동기 작업*은 **Web API**에 위임
 > 3. **Web API**가 호출한 자바스크립트 함수는 **Task Queue**에서 대기
-> 4. **Call Stack**이 empty 상태가 되면 대기중인 함수가 _선입선출_ 방식으로 이벤트 루프를 통해 **Call Stack**으로 넘어가서 동작
+> 4. **Call Stack**이 empty 상태가 되면 대기중인 함수가 First in Fisrt Out 방식으로 이벤트 루프를 통해 **Call Stack**으로 넘어가서 동작
 
 ### 5.2. ❗실행 컨텍스트(Execution Contexts)
 
-실행 자바스크립트 엔진이 읽은 코드가 실행되기 위한 환경을 말한다. _종류_ 또는 *단계*에 따라 구분한다.
+자바스크립트 엔진이 읽은 코드가 실행되기 위한 환경을 말한다. _종류_ 또는 *단계*에 따라 구분한다.
 
 Last In First Out 구조의 스택을 가진다.
 
@@ -79,11 +79,13 @@ Last In First Out 구조의 스택을 가진다.
 
 ##### 5.2.1.2. FEC(Function Execution Contexts)
 
-> 함수 내부의 this, 지역변수 등.
+> 함수 내부의 this, arguments, 매개변수, 지역변수 등.
 
 함수가 호출되어 실행될 때, 실행되는 함수에 대해서 생성되는 컨텍스트이다.
 
 상위 컨텍스트에 접근 가능하다.
+
+##### 5.2.1.3. ~~EVAL Funtion Execution Contexts~~
 
 #### 5.2.2. 실행 컨텍스트의 단계
 
