@@ -121,8 +121,8 @@ resetButton.addEventListener("click", function (event) {
 
 두 가지 방법으로 이벤트 캡처링을 발생시킬 수 있다.
 
-1. `addEventListener()` 메서드의 세 번째 인자에 `true`를 넣는다.
-2. 해당 메서드의 객체에 `capture: true`를 넣는다 버블링이 아닌 캡처링이 일어난다.
+- `addEventListener()` 메서드의 세 번째 인자에 `true`를 넣는다.
+- 해당 메서드의 객체에 `capture: true`를 넣는다 버블링이 아닌 캡처링이 일어난다.
 
 ### 2.1.3. 이벤트 위임(Delegation)
 
