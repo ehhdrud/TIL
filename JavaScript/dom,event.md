@@ -1,19 +1,18 @@
 # 1. DOM(Document Object Model)
 
-HTML은 문서이므로 자바스크립트로 조작이 불가능하다. 이를 가능하도록 하기 위해 문서 객체 모델(DOM)을 통해 HTML을 자바스크립트의 객체로 모델링하여 조작한다.
+HTML은 문서이므로 자바스크립트로 조작이 불가능하다. 이를 가능하도록 하기 위해 DOM을 통해 HTML을 자바스크립트의 객체로 모델링하여 조작한다.
 
 DOM은 Node로 이루어져 있고 이 Node는 Tree 형태로 구성되어 있다. Node는 수많은 Property와 Method를 가지고 있다.
 
 ## 1.1. JS에서 특정 HTML Element를 가져오는 방법
 
-### 1.1.1. `document.querySelector('')`
+### 1.1.1. `document.querySelector("")`
 
-처음으로 마주친 유효한 식별자를 하나만 가져온다.
+처음으로 마주친 유효한 식별자를 한 개를 반환한다. 즉 자바스크립트로 가져온다.
 
 tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있다.
 
 ```javascript
-//DOM을 JS로 뽑아내는 방법: document.querySelector('')
 const li = document.querySelector("li");
 /**
  * 뽑아왔을 때 내부구조:
@@ -31,32 +30,34 @@ const li = document.querySelector("li");
 
 ```javascript
 //활용법
-const nav = document.querySelector("#nav-access"); //id: nav-access인 것들만 뽑아내서 nav에 할당
-nav.querySelector("li"); //문서 전체에서 찾지 않고 id: nav-access인 것 중에서 li 태그를 찾음
+const nav = document.querySelector("#nav-access"); //id: nav-access인 것들만 뽑아내서 자바스크립트 nav 변수에 할당
+nav.querySelector("li"); //문서 전체에서 찾지 않고 nav 변수에 할당한 #nav-access 중에서 li 태그를 찾음
 ```
 
-### 1.1.2. `document.querySelectorAll('')`
+### 1.1.2. `document.querySelectorAll("")`
 
-유효한 식별자 모두를 _Nodelist_ 형태로 가져온다.
+유효한 식별자 모두를 _Nodelist_ 형태로 반환한다. 즉 자바스크립트로 가져온다.
 
 tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있다.
 
 > **📌현재는 안쓰이는 문법들**
 >
-> ❌`document.getElementById('id')`: id를 통해 가져온다.
-> ❌`document.getElementsByClassName('class name')`: class name을 통해 가져온다. 주어진 class의 모든 child element의 *HTMLCollection*을 반환한다.
-> ❌`document.getElementsByTagName('Stag name')`: tag name을 통해 가져온다. 주어진 tag name을 가지는 유효한 element의 *HTMLCollection*을 반환한다.
+> ❌`document.getElementById('id')`: id를 통해 _HTMLElement_ 형태로 반환한다.  
+> ❌`document.getElementsByClassName('class name')`: class name을 통해 _HTMLCollection_ 형태로 반환한다.  
+> ❌`document.getElementsByTagName('tag name')`: tag name을 통해 _HTMLCollection_ 형태로 반환한다.
+>
+> > 실행결과가 하나인 경우는 HTMLElement , 복수인 경우는 HTMLCollection 을 리턴!
 
 > **📌HTMLCollection과 NodeList의 공통점**
 >
-> 이터러블 특성을 가진 유사 배열 객체로, Property와 Method를 가지고 있다.  
-> 배열이 아니므로 배열로 바꿔줘야 배열 메서드를 사용할 수 있다.
+> 이터러블 특성을 가진 **유사 배열 객체**로, Property와 Method를 가지고 있다.  
+> 유사 배열 객체는 배열이 아니므로 배열 메서드를 사용하려면 배열로 바꿔줘야 한다.
 
 ## 1.2. DOM 조작
 
 ```javascript
 //DOM 조작 예시1
-const searchButten = document.querySelector("gNO89b");
+const searchButten = document.querySelector(".gNO89b");
 searchButten.classList.add("seo-dong-kyeong"); //class: gNO89b seo-dong-kyeong
 searchButten.classList.remove("gNO89b"); //class: seo-dong-kyeong
 searchButten.classList.contains("seo-dong-kyeong"); //true
@@ -77,18 +78,18 @@ partnerBox.removeChild(ele); //'크리에이터'가 삭제된다.
 
 const ele2 = document.querySelector("div"); //div 태그를 생성한다.
 ele2.textContent = "seo-dong-kyeong";
-partnerBox.appendChild(ele2); //뒤쪽에 'seodongkyeong'이 추가된다.
+partnerBox.appendChild(ele2); //끝쪽에 'seodongkyeong'이 추가된다.
 
-partnerBox.innerHTML = `<h3 class="title">SEO-DONG-KYEONG</h3>`; //innerHTML을 통해 DOM을 생성하는 과정없이, 타이틀을 'SEO-DONG-KYEONG'으로 변경한다.
+partnerBox.innerHTML = `<h3 class="title">SEO-DONG-KYEONG</h3>`; //DOM을 생성하는 과정없이 innerHTML을 통해 타이틀을 'SEO-DONG-KYEONG'으로 변경한다.
 ```
 
 # 2. 이벤트(Event)
 
 이벤트란 웹페이지에서 발생하는 키보드 입력, 마우스 입력 등의 사용자의 동작을 의미한다.
 
-DOM의 Node는 이벤트의 정보를 담고 있는 이벤트 객체를 가지고 있고, 이벤트 객체에는 Property와 Method가 담겨있다.
+DOM의 Node는 이벤트의 정보를 담고 있는 **이벤트 객체**를 가지고 있고, 이벤트 객체에는 Property와 Method가 담겨있다.
 
-이벤트 핸들러란 이벤트가 발생했을 때 실행되는 함수를 지칭한다. 이벤트 핸들러 선언 시, 첫번째 매개변수에 이벤트 객체를 명시적으로 선언해야 한다.
+**이벤트 핸들러**란 이벤트가 발생했을 때 실행되는 함수를 지칭한다. 이벤트 핸들러 선언 시, 첫번째 매개변수에 이벤트 객체를 명시적으로 선언해야 한다.
 
 ```javascript
 const resetButton = document.querySelector(".reset");
