@@ -194,10 +194,10 @@ letadmin = copy(user);
 admin.sizes.weight++;
 --admin.sizes.height;
 
-console.log(admin.sizes.height); //output:182
-console.log(admin.sizes.weight); //output:84
-console.log(user.sizes.height); //output:183
-console.log(user.sizes.weight); //output:83
+console.log(admin.sizes.height); //182
+console.log(admin.sizes.weight); //84
+console.log(user.sizes.height); //183
+console.log(user.sizes.weight); //83
 ```
 
 #### 2.2. JSON 객체를 이용한 깊은 복사
@@ -218,10 +218,10 @@ let admin = JSON.parse(JSON.stringify(user));
 admin.sizes.weight++;
 --admin.sizes.height;
 
-console.log(admin.sizes.height); //output:182
-console.log(admin.sizes.weight); //output:84
-console.log(user.sizes.height); //output:183
-console.log(user.sizes.weight); //output:83
+console.log(admin.sizes.height); //182
+console.log(admin.sizes.weight); //84
+console.log(user.sizes.height); //183
+console.log(user.sizes.weight); //83
 ```
 
 #### 2.3. 라이브러리를 이용한 깊은 복사
@@ -242,8 +242,8 @@ const admin = _.cloneDeep(user); //cloneDeep함수를 이용하여 복사한다.
 admin.sizes.weight++;
 --admin.sizes.height;
 
-console.log(admin.sizes.height); //output:182
-console.log(admin.sizes.weight); //output:84
-console.log(user.sizes.height); //output:183
-console.log(user.sizes.weight); //output:83
+console.log(admin.sizes.height); //182
+console.log(admin.sizes.weight); //84
+console.log(user.sizes.height); //183
+console.log(user.sizes.weight); //83
 ```

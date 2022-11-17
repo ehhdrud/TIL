@@ -57,7 +57,7 @@ Heap, Call Stack(Last In First Out)으로 구성된 자바스크립트 엔진과
 > **동작 순서**
 >
 > 1. 자바스크립트 *함수*가 **Call Stack**에서 쌓이면서 Last in First Out 방식으로 동작
-> 2. SetTimmeout, EventListener, Ajax 요청같은 *비동기 작업*은 **Web API**에 위임
+> 2. SetTimmeout, addEventListener, Ajax 요청같은 *비동기 작업*은 **Web API**에 위임
 > 3. *Web API가 호출한 비동기 작업*은 **Task Queue**에서 대기
 > 4. **Call Stack**이 empty 상태가 되면 대기중인 코드가 First in Fisrt Out 방식으로 이벤트 루프를 통해 **Call Stack**으로 넘어가서 동작
 

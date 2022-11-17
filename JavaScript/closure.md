@@ -2,9 +2,49 @@
 
 클로저 함수는 특정 데이터를 스코프 안에 가둔 채로 계속 사용할 수 있도록 하는 폐쇠성을 가진다.
 
-클로저 함수를 각각의 변수에 할당하면 각자 독립적으로 사용하고 값을 보존할 수 있기 때문에 데이터와 메서드를 묶어 모듈화·은닉화할 때 용이하다.
+클로저 함수를 변수에 할당하면 독립적으로 사용할 수 있다.
 
-```javascript
+데이터와 메서드의 모듈화·은닉화에 용이하다.
+
+> **📌이해하기**
+>
+> > **👉Closure X**
+> >
+> > ```js
+> > function legDay() {
+> >   const workout = "Squat";
+> >   console.log(workout);
+> > }
+> >
+> > legDay(); //Squat
+> > const getSquat = legDay();
+> > getSquat(); //error: getSquat is not a function
+> > console.log(workout); //error: workout is not defined
+> > ```
+> >
+> > legDay 함수가 실행이 종료되면 workout 변수에는 접근할 수 있는 방법이 없다.
+>
+> > **👉Closure O**
+> >
+> > ```js
+> > function legDay() {
+> >   const workout = "Squat";
+> >   return function closurehahaha() {
+> >     const str = "Shut Up And";
+> >     console.log(str, workout);
+> >   };
+> > }
+> >
+> > const getSquat = legDay();
+> > getSquat(); //Shut Up And Squat //이런 식으로 workout 변수에 접근 가능!
+> > ```
+> >
+> > 하지만! 클로저 함수를 사용하면 이 함수를 통해 간접적으로 workout 변수에 접근할 수 있다.
+>
+> **why❓❓❓**  
+> legDay 함수가 생성될 때 실행 컨텍스트가 생기고 실행 컨텍스트와 함께 Lexical Enviroment(*함수의 지역변수의 정보, 이 함수의 상위 스코프의 대한 정보*가 포함됨)도 함께 생성된다. 실행이 끝나면 실행 컨텍스트도 종료되는데 내부에 함수(클로저)가 선언된다면 Lexical Enviroment가 같이 묶여서 선언되기 때문이다.
+
+```js
 //클로저 예제1
 function returnChar1(x) {
   let outerChar = x;
@@ -27,7 +67,7 @@ console.log(xy); //xy
 console.log(xz); //xz
 ```
 
-```javascript
+```js
 //클로저 예제2
 function sum(num1) {
   return function (num2) {
@@ -47,7 +87,7 @@ console.log(sum10(20)(20)); //50
 
 ## 1. 은닉화
 
-```javascript
+```js
 //은닉화 예제2
 function privateData() {
   let temp = "a";
@@ -68,7 +108,7 @@ private.changeValue("b");
 console.log(private.value()); //b
 ```
 
-```javascript
+```js
 //은닉화 예제2
 function counterApp(initValue) {
   let countValue = initValue ?? 0; //값이 들어오지 않으면 0이 반환된다.
