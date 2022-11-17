@@ -6,6 +6,8 @@
 
 데이터와 메서드의 모듈화·은닉화에 용이하다.
 
+클로저 개념을 활용하여 이벤트를 조작할 수 있다. [dom_event.md👉"이벤트 조작" part 참고!](https://github.com/ehhdrud/TIL/blob/main/JavaScript/dom%2Cevent.md)
+
 > **📌이해하기**
 >
 > > **👉Closure X**
@@ -44,8 +46,11 @@
 > **why❓❓❓**  
 > legDay 함수가 생성될 때 실행 컨텍스트가 생기고 실행 컨텍스트와 함께 Lexical Enviroment(*함수의 지역변수의 정보, 이 함수의 상위 스코프의 대한 정보*가 포함됨)도 함께 생성된다. 실행이 끝나면 실행 컨텍스트도 종료되는데 내부에 함수(클로저)가 선언된다면 Lexical Enviroment가 같이 묶여서 선언되기 때문이다.
 
+### 1. 클로저를 통한 모듈화
+
+**📌모듈화 예제 1**
+
 ```js
-//클로저 예제1
 function returnChar1(x) {
   let outerChar = x;
 
@@ -57,105 +62,91 @@ function returnChar1(x) {
   };
 }
 
-const x = returnChar1("x"); //실행이 보류되고 'x'를 저장한다.
+//변수에 저장해 독립적인 사용이 가능하다.
+const x = returnChar1("Workout: "); //실행이 보류되고 문자열을 저장한다.
 
-//매개변수 2개를 모두 받아야 실행된다.
-const xy = x("y");
-const xz = x("z");
+//매개변수 2개를 모두 받으면 실행된다.
+const upper = x("Upper Body");
+const lower = x("Lowwr Body");
 
-console.log(xy); //xy
-console.log(xz); //xz
+console.log(upper); //Workout: Upper Body
+console.log(lower); //Workout: Lowwr Body
 ```
 
+**📌모듈화 예제 2**
+
 ```js
-//클로저 예제2
-function sum(num1) {
+function rpe10(num1) {
   return function (num2) {
     return function (num3) {
       return num1 + num2 + num3;
     };
   };
 }
-//화살표 함수로 간단하게 표현 가능! → const sum = (num1) => (num2) => (num3) => num1 + num2 + num3;
+//화살표 함수로 간단하게 표현 가능👇
+//const sum = (num1) => (num2) => (num3) => num1 + num2 + num3;
 
-const sum5 = sum(5);
-const sum10 = sum(10);
+const strengthTraining = rpe10(5);
+const hypertrophyTraining = rpe10(12);
 
-console.log(sum5(20)(20)); //45
-console.log(sum10(20)(20)); //50
+console.log(strengthTraining(4)(3)); //12
+console.log(hypertrophyTraining(10)(8)); //30
 ```
 
-## 1. 은닉화
+### 2. 클로저를 통한 은닉화
+
+**📌은닉화 예제 1**
 
 ```js
-//은닉화 예제2
 function privateData() {
-  let temp = "a";
+  let secret = "my squat 1rm is dropped by 3%";
 
   return {
     value: function () {
-      return temp;
+      return secret;
     },
     changeValue: function (newVal) {
-      return (temp = newVal);
+      return (secret = newVal);
     },
   };
 }
 
 const private = privateData();
-console.log(private.value()); //a
-private.changeValue("b");
-console.log(private.value()); //b
+console.log(private.value()); //my squat 1rm is dropped by 3%
+private.changeValue("my squat 1rm is dropped by 5%");
+console.log(private.value()); //my squat 1rm is dropped by 5%
 ```
 
+**📌은닉화 예제 2**
+
 ```js
-//은닉화 예제2
 function counterApp(initValue) {
-  let countValue = initValue ?? 0; //값이 들어오지 않으면 0이 반환된다.
+  let startingPoint = initValue ?? 0;
+  //값이 들어오지 않으면 0이 반환된다.
 
   return {
     value: function () {
-      return countValue;
+      return startingPoint;
     },
-    increment: function () {
-      countValue++;
+    increase: function () {
+      startingPoint++;
     },
     decrement: function () {
-      countValue--;
+      startingPoint--;
     },
   };
 }
 
-const counter1 = counterApp(1);
-const counter2 = counterApp(2);
+const squat = counterApp(5);
+const legExtension = counterApp(12);
 
-console.log(counter1.value()); //1
-console.log(counter2.value()); //2
+console.log(squat.value()); //5
+console.log(legExtension.value()); //12
 
-counter1.increment();
-counter1.increment();
-counter1.increment();
+squat.increase();
+squat.increase();
+squat.increase();
 
-console.log(counter1.value()); //4
-console.log(counter2.value()); //2
+console.log(squat.value()); //8
+console.log(legExtension.value()); //12
 ```
-
-## 2. 클로저의 활용
-
-클로저 개념을 활용하여 이벤트를 조작할 수 있다.
-
-### 2.1. debounce
-
-이벤트를 그룹화하여 특정 시간이 지난 후, 마지막 이벤트만 발생하도록 하는 기술이다.
-
-매개변수는 *실행시킬 함수*와 *지연시킬 밀리세컨드*이다.
-
-이벤트가 실행되었을 때 일정 시간을 기다렸다가 이벤트를 수행하도록 만들고, 일정 시간 내에 같은 이벤트가 또 들어오면 이전 요청을 취소하는 방식으로 구현한다.
-
-### 2.2. throttle
-
-일정 시간동안 일어난 이벤트를 차단하고 단 한 번만 실행하는 기술이다.
-
-매개변수는 *실행시킬 함수*와 *차단시킬 밀리세컨드*이다.
-
-타이머가 없을 경우 타이머를 설정하고, 타이머가 있을 경우 아무런 동작도 하지 않도록 하여 일정 시간 이후에 이벤트가 1번 실행되도록 구현한다.

@@ -197,11 +197,11 @@ resetButton.addEventListener("click", function (event) {
 >
 > 👉리스트 3에도 `alert` 동작!
 
-## 3. 이벤트 조작
+## 2.2. 이벤트 조작
 
 클로저 개념을 활용하여 이벤트를 조작할 수 있다.
 
-### 3.1. debounce
+### 2.2.1. debounce(지연)
 
 이벤트를 그룹화하여 특정 시간이 지난 후, 마지막 이벤트만 발생하도록 하는 기술이다.
 
@@ -209,7 +209,7 @@ resetButton.addEventListener("click", function (event) {
 
 이벤트가 실행되었을 때 일정 시간을 기다렸다가 이벤트를 수행하도록 만들고, 일정 시간 내에 같은 이벤트가 또 들어오면 이전 요청을 취소하는 방식으로 구현한다.
 
-### 3.2. throttle
+### 2.2.2. throttle(차단)
 
 일정 시간동안 일어난 이벤트를 차단하고 단 한 번만 실행하는 기술이다.
 
