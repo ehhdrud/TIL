@@ -87,9 +87,9 @@ partnerBox.innerHTML = `<h3 class="title">SEO-DONG-KYEONG</h3>`; //DOM을 생성
 
 이벤트란 웹페이지에서 발생하는 키보드 입력, 마우스 입력 등의 사용자의 동작을 의미한다.
 
-DOM의 Node는 이벤트의 정보를 담고 있는 **이벤트 객체**를 가지고 있고, 이벤트 객체에는 Property와 Method가 담겨있다.
+DOM의 Node는 이벤트의 정보를 담는 **이벤트 객체**를 가지고 있고, 이벤트 객체에는 Property와 Method가 담겨있다.
 
-**이벤트 핸들러**란 이벤트가 발생했을 때 실행되는 함수를 지칭한다. 이벤트 핸들러 선언 시, 첫번째 매개변수에 이벤트 객체를 명시적으로 선언해야 한다.
+**이벤트 핸들러**란 이벤트가 발생했을 때 실행되는 함수를 지칭한다. 이벤트 핸들러에 전달되는 매개변수는 이벤트 객체 뿐이다.
 
 ```javascript
 const resetButton = document.querySelector(".reset");
@@ -107,23 +107,95 @@ resetButton.addEventListener("click", function (event) {
 
 어떤 element에서 발생한 이벤트는 부모 혹은 자식에게 전파된다.
 
-전파 방향에 따라 버블링(Bubbling),캡처링(Capturing)이라고 불린다.
+전파 방향에 따라 버블링(Bubbling), 캡처링(Capturing)이라고 불린다.
 
-현재 이벤트의 전파를 막으려면 해당 이벤트에 `event.stopPropagation()`을 사용한다.
+이벤트 전파를 막고자 한다면 해당 이벤트에 `event.stopPropagation()`을 사용한다.
 
 ### 2.1.1. 이벤트 버블링(Bubbling)
 
-이벤트가 발생한 element부터 *상위*로 전파되는 현상이다.
+브라우저의 기본적인 특성으로, 이벤트가 발생한 element부터 *상위*로 전파(전달)되는 현상이다.
 
 ### 2.1.2. 이벤트 캡처링(Capturing)
 
-이벤트가 발생한 element부터 *하위*로 전파되는 현상이다.
+이벤트가 발생한 element부터 *하위*로 전파(탐색)되는 현상이다.
 
-`addEventListener()` 메서드의 세 번째 인자에 `true`를 넣거나 해당 메서드의 객체에 `capture: true`를 넣을 시, 버블링이 아닌 캡처링이 일어난다.
+두 가지 방법으로 이벤트 캡처링을 발생시킬 수 있다.
 
-### 2.1.3. 이벤트 위임
+1. `addEventListener()` 메서드의 세 번째 인자에 `true`를 넣는다.
+2. 해당 메서드의 객체에 `capture: true`를 넣는다 버블링이 아닌 캡처링이 일어난다.
 
-각 요소마다 이벤트 핸들러를 추가한다면 메모리 측면에서 효율이 떨어지므로, 하위 요소마다 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트를 제어하는 방식이다.
+### 2.1.3. 이벤트 위임(Delegation)
+
+각 요소마다 이벤트 리스너를 추가한다면 메모리 측면에서 효율이 떨어지므로, 하위 요소마다 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트를 제어하는 방식이다.
+
+이벤트 버블링 효과를 이용하여 상위 요소에 이벤트 리스너를 달아서 하위에서 발생한 이벤트를 감지한다.
+
+#### 2.1.3.1 이벤트 위임 예제
+
+> **📌페이지 구성**
+>
+> **HTML**: 리스트 1,2를 갖는 `<ul>`
+>
+> ```html
+> <ul>
+>   Workout Log
+>   <li>
+>     <input type="checkbox" id="item1" />
+>     <label for="item1">Push Day</label>
+>   </li>
+>   <li>
+>     <input type="checkbox" id="item2" />
+>     <label for="item2">Pull Day</label>
+>   </li>
+> </ul>
+> ```
+>
+> **Javasript**: 리스트 3 추가
+>
+> ```js
+> var itemList = document.querySelector("ul");
+>
+> var li = document.createElement("li");
+> var input = document.createElement("input");
+> var label = document.createElement("label");
+> var labelText = document.createTextNode(" Leg Day");
+>
+> input.setAttribute("type", "checkbox");
+> input.setAttribute("id", "item3");
+> label.setAttribute("for", "item3");
+> label.appendChild(labelText);
+> li.appendChild(input);
+> li.appendChild(label);
+> itemList.appendChild(li);
+> ```
+
+> **📌이벤트 위임을 사용하지 않았을 때**
+>
+> **Javascript**
+>
+> ```js
+> var inputs = document.querySelectorAll("input");
+> inputs.forEach(function (input) {
+>   input.addEventListener("click", function (event) {
+>     alert("이벤트 위임 X");
+>   });
+> });
+> ```
+>
+> 👉리스트 3에는 `alert`가 동작하지 않는다...
+
+> **📌이벤트 위임을 사용했을 때**
+>
+> **Javascript**
+>
+> ```js
+> var itemList = document.querySelector("ul");
+> itemList.addEventListener("click", function () {
+>   alert("이벤트 위임 O");
+> });
+> ```
+>
+> 👉리스트 3에도 `alert` 동작!
 
 ## 3. 이벤트 조작
 
