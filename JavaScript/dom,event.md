@@ -12,7 +12,7 @@ DOM은 Node로 이루어져 있고 이 Node는 Tree 형태로 구성되어 있�
 
 tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있다.
 
-```javascript
+```js
 const li = document.querySelector("li");
 /**
  * 뽑아왔을 때 내부구조:
@@ -24,11 +24,11 @@ const li = document.querySelector("li");
  * ariaChecked: null
  * ariaColCount: null
  * ariaColIndex: null
- * //...Some Code
+ * ...Some Code...
  *
 ```
 
-```javascript
+```js
 //활용법
 const nav = document.querySelector("#nav-access"); //id: nav-access인 것들만 뽑아내서 자바스크립트 nav 변수에 할당
 nav.querySelector("li"); //문서 전체에서 찾지 않고 nav 변수에 할당한 #nav-access 중에서 li 태그를 찾음
@@ -46,7 +46,7 @@ tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있�
 > ❌`document.getElementsByClassName('class name')`: class name을 통해 _HTMLCollection_ 형태로 반환한다.  
 > ❌`document.getElementsByTagName('tag name')`: tag name을 통해 _HTMLCollection_ 형태로 반환한다.
 >
-> > 실행결과가 하나인 경우는 HTMLElement , 복수인 경우는 HTMLCollection 을 리턴!
+> 👉실행결과가 하나인 경우는 HTMLElement를, 복수인 경우는 HTMLCollection을 리턴!
 
 > **📌HTMLCollection과 NodeList의 공통점**
 >
@@ -55,23 +55,26 @@ tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있�
 
 ## 1.2. DOM 조작
 
-```javascript
-//DOM 조작 예시1
+**📌DOM 조작 예시 1**
+
+```js
 const searchButten = document.querySelector(".gNO89b");
 searchButten.classList.add("seo-dong-kyeong"); //class: gNO89b seo-dong-kyeong
 searchButten.classList.remove("gNO89b"); //class: seo-dong-kyeong
 searchButten.classList.contains("seo-dong-kyeong"); //true
 ```
 
-```javascript
-//DOM 조작 예시2
+**📌DOM 조작 예시 2**
+
+```js
 const linkDirect = document.querySelector(".link_direct");
 linkDirect.textContent; //'연예'
 linkDirect.textContent = "seodongkyeong"; //'연예'가 'seodongkyeong'으로 변경된다.
 ```
 
-```javascript
-//DOM 조작 예시3
+**📌DOM 조작 예시 3**
+
+```js
 const partnerBox = document.querySelector(".partner_box");
 const ele = document.querySelector(".link_partner");
 partnerBox.removeChild(ele); //'크리에이터'가 삭제된다.
@@ -91,7 +94,7 @@ DOM의 Node는 이벤트의 정보를 담는 **이벤트 객체**를 가지고 �
 
 **이벤트 핸들러**란 이벤트가 발생했을 때 실행되는 함수를 지칭한다. 이벤트 핸들러에 전달되는 매개변수는 이벤트 객체 뿐이다.
 
-```javascript
+```js
 const resetButton = document.querySelector(".reset");
 
 resetButton.addEventListener("click", function () {
@@ -150,7 +153,7 @@ resetButton.addEventListener("click", function (event) {
 > </ul>
 > ```
 >
-> **Javasript**: 리스트 3 추가
+> **JavaScript**: 리스트 3 추가
 >
 > ```js
 > var itemList = document.querySelector("ul");
@@ -171,7 +174,7 @@ resetButton.addEventListener("click", function (event) {
 
 > **📌이벤트 위임을 사용하지 않았을 때**
 >
-> **Javascript**
+> **js**
 >
 > ```js
 > var inputs = document.querySelectorAll("input");
@@ -186,7 +189,7 @@ resetButton.addEventListener("click", function (event) {
 
 > **📌이벤트 위임을 사용했을 때**
 >
-> **Javascript**
+> **js**
 >
 > ```js
 > var itemList = document.querySelector("ul");
