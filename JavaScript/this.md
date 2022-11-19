@@ -1,8 +1,10 @@
 # this
 
-this란 **예약어**다.
+this란 특정 **객체**에 접근할 수 있는 **지시자**이자 **예약어**이다.
 
 **함수에서의 this**는 **전역 공간**을 가르키고, **메서드**에서의 this는 **호출한 객체의 공간**을 가르킨다.
+
+`new`와 함께 사용하면 비슷한 여러개의 객체를 쉽게 찍어낼 수 있다.
 
 ```js
 let user = {
@@ -13,52 +15,75 @@ let admin = {
   name: "Seo",
 };
 
-//함수 내부 this값은 런타임에 결정된다.
 function hello_func() {
   console.log("hello" + this.name);
 }
+//함수 내부 this값은 런타임에 결정된다.
 
-user.func(); //helloSDK //this->user
-admin.func(); //helloSEO //this->admin
+user.func = hello_func;
+admin.func = hello_func;
+
+user.func(); //helloSDK
+admin.func(); //helloSEO
 ```
 
 ## 1. 바인딩
 
-this는 예측이 어렵게 동작하므로 명시적 바인딩, 즉 this의 객체를 명시적으로 지정해주는 과정이 필요하다.
+### 1.1. 명시적 바인딩
 
-- `function.call(this가 가르킬 객체,function의 매개변수)`
-- `function.apply(this가 가르킬 객체,function의 매개변수를 가진 배열)`: 매개변수로 배열을 넘기고 싶을 때 사용한다.
-- `function.bind(this가 가르킬 객체)`: 함수를 실행하지 않고 바인딩된 함수를 리턴하여 영구적인 지정이 가능하다.
+this는 기본적으로 전역 공간을 가르켜 예측이 어렵게 동작한다. 그러므로 this의 객체를 명시적으로 지정해주는 **명시적 바인딩** 과정이 필요하다.
 
-```js
-const me = {
-  name: "동경",
-  sayName: function () {
-    return this.name + "입니다.";
-  },
-};
+#### 1.1.1. `function.call`
 
-const mom = {
-  name: "향자",
-  sayName: function () {
-    return this.name + "입니다.";
-  },
-};
+**함수를 호출**하는 함수이다.
 
-function sayFullName(firstName) {
-  return firstName + this.sayName();
-}
+첫 번째 인자로 **this가 가르킬 객체**, 두 번째 인자부터는 **함수의 매개변수**를 입력한다.
 
-const result1 = sayFullName.call(me, "서");
-console.log(result1); //서동경입니다.
+#### 1.1.2. `function.apply`
 
-const result2 = sayFullName.apply(me, ["서"]);
-console.log(result2); //서동경입니다.
+**함수를 호출**하는 함수이다.
 
-const boundSay = sayFullName.bind(me);
-const result3 = boundSay("서");
-console.log(result3); //서동경입니다.
-```
+첫 번째 인자로 **this가 가르킬 객체**, 두 번째 인자부터는 **배열인 함수의 매개변수**를 입력한다.
+
+#### 1.1.3. `function.bind`
+
+**함수를 실행하지 않고 지정한 객체로 바인딩된 함수를 리턴**하는 함수이다.
+
+첫 번째 인자로 **this가 가르킬 객체**를 입력한다.
+
+> **📌call, apply, bind 함수 예시**
+>
+> ```js
+> const me = {
+>   name: "동경",
+>   sayName: function () {
+>     return this.name + "입니다.";
+>   },
+> };
+>
+> const mom = {
+>   name: "향자",
+>   sayName: function () {
+>     return this.name + "입니다.";
+>   },
+> };
+>
+> function sayFullName(firstName) {
+>   return firstName + this.sayName();
+> }
+>
+> const result1 = sayFullName.call(me, "서");
+> console.log(result1); //서동경입니다.
+>
+> const result2 = sayFullName.apply(me, ["서"]);
+> console.log(result2); //서동경입니다.
+>
+> const boundSay = sayFullName.bind(me);
+> const result3 = boundSay("서");
+> console.log(result3); //서동경입니다.
+> ```
+
+## 1.2. 암시적 바인딩
 
 ## 2. this의 사용
 
