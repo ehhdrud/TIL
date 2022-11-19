@@ -20,6 +20,9 @@ let legExtension = new Workout(4, 12);
 console.log(squat); //Workout { classification: 'Leg', sets: 3, reps: 5 }
 console.log(legPress); //Workout { classification: 'Leg', sets: 4, reps: 8 }
 console.log(legExtension); //Workout { classification: 'Leg', sets: 4, reps: 12 }
+console.log(squat.reps); //5
+console.log(legPress.reps); //8
+console.log(legExtension.reps); //12
 ```
 
 > **📌`new.target`**
