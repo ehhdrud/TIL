@@ -85,13 +85,13 @@ Promise의 실행 여부와 관계없이 Promise가 처리된 후 무조건 한 
 
 아래 두 코드는 동일한 결과를 갖는다.
 
-```javascript
+```js
 async function foo() {
   return 1;
 }
 ```
 
-```javascript
+```js
 function foo() {
   return Promise.resolve(1);
 }
@@ -107,13 +107,13 @@ function foo() {
 
 아래 두 코드는 동일한 결과를 갖는다.
 
-```javascript
+```js
 async function foo() {
   await 1;
 }
 ```
 
-```javascript
+```js
 function foo() {
   return Promise.resolve(1).then(() => undefined);
 }

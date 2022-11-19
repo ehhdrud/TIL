@@ -4,7 +4,7 @@ this란 **예약어**다.
 
 **함수에서의 this**는 **전역 공간**을 가르키고, **메서드**에서의 this는 **호출한 객체의 공간**을 가르킨다.
 
-```javascript
+```js
 let user = {
   name: "SDK",
 };
@@ -18,9 +18,6 @@ function hello_func() {
   console.log("hello" + this.name);
 }
 
-user.func = hello_func;
-admin.func = hello_func;
-
 user.func(); //helloSDK //this->user
 admin.func(); //helloSEO //this->admin
 ```
@@ -33,7 +30,7 @@ this는 예측이 어렵게 동작하므로 명시적 바인딩, 즉 this의 객
 - `function.apply(this가 가르킬 객체,function의 매개변수를 가진 배열)`: 매개변수로 배열을 넘기고 싶을 때 사용한다.
 - `function.bind(this가 가르킬 객체)`: 함수를 실행하지 않고 바인딩된 함수를 리턴하여 영구적인 지정이 가능하다.
 
-```javascript
+```js
 const me = {
   name: "동경",
   sayName: function () {
@@ -69,7 +66,7 @@ console.log(result3); //서동경입니다.
 
 #### 2.1.1. function이 전역(window, global)인 경우
 
-```javascript
+```js
 function myFn() {
   return this;
 }
@@ -78,7 +75,7 @@ myFn(); // window 객체 출력
 
 #### 2.1.2. new연산자를 사용해 생성자 함수 방식으로 인스턴스를 생성한 경우
 
-```javascript
+```js
 function MyFn() {
   this.title = "Hello World!";
   return this;
@@ -94,7 +91,7 @@ myfn; // MyFn {title: 'Hello World!'}
 
 showTitle() 메소드는 fn 객체의 메소드이기 때문에 this는 fn 객체를 참조한다.
 
-```javascript
+```js
 const fn = {
   title: "Hello World!",
   showTitle() {
@@ -110,7 +107,7 @@ fn.showTitle(); // 'Hello World!'
 
 콜백함수가 일반함수이므로 전역 객체를 참조한다.
 
-```javascript
+```js
 const fn = {
   title: "Hello World!",
   tags: [1, 2, 3],
@@ -137,7 +134,7 @@ fn.showTags();
 
 콜백함수 다음 인자로 참조할 객체를 전달해준다.
 
-```javascript
+```js
 const fn = {
   title: "Hello World!",
   tags: [1, 2, 3],
@@ -172,7 +169,7 @@ function 키워드로 생성한 일반함수와 화살표 함수의 가장 큰 �
 >
 > 함수가 어디서 *호출*되었는지가 아니라 어디서 *선언*되었는지에 따라 상위 스코프가 결정
 
-```javascript
+```js
 const fn = {
   title: "Hello World!",
   tags: [1, 2, 3],

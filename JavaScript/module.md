@@ -166,17 +166,17 @@ export { a, hello };
 
 ### 4.3. 브라우저에서 모듈 사용
 
-```javascript
+```js
 //순서대로 불러오기
 <script type="module" src="[path]"></script>
 ```
 
-```javascript
+```js
 //비동기로 불러오기
 <script async type="module" src="[path]"></script>
 ```
 
-```javascript
+```js
 //인라인 형식으로 불러오기
 <script type="module"></script>;
 import { a, hello } from "[paht]";

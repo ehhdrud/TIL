@@ -6,7 +6,7 @@
 
 클래스에서 `constructor`메서드는 클래스의 인스턴스 객체를 생성하고 초기화한다.
 
-```javascript
+```js
 //선언식
 class Person {
   constructor(name) {
@@ -30,7 +30,7 @@ class Dinosaur {
 const dino = new Dinosaur();
 ```
 
-```javascript
+```js
 //메서드 추가
 class Person {
   constructor(name, age, location) {
@@ -54,7 +54,7 @@ console.log(person2.getInfo()); //NorthKorea에 거주하는 31살 곽대철입�
 
 ## 클래스 확장(상속)
 
-```javascript
+```js
 //Super Class(부모)
 class Animal {
   constructor(name, sound) {
