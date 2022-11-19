@@ -4,7 +4,7 @@
 
 `new`를 사용하는 생성자 함수의 첫 글자는 대문자로 정의한다.
 
-ES6에서 Class 개념의 등장으로 대체가 가능해졌다.
+ES6에서 Class 개념의 등장으로 대체가 가능해졌다. [class.md 참고!](#class)
 
 ```js
 function Workout(sets, reps) {
