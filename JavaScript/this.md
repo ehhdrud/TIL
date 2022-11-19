@@ -29,23 +29,43 @@ admin.func(); //helloSEO
 
 ## 1. 바인딩
 
-### 1.1. 명시적 바인딩
+### 1.1. 암시적 바인딩
 
-this는 기본적으로 전역 공간을 가르켜 예측이 어렵게 동작한다. 그러므로 this의 객체를 명시적으로 지정해주는 **명시적 바인딩** 과정이 필요하다.
+기본적으로 *아래 규칙*처럼 동작한다. 하지만 여러가지 환경적 요소가 암시적 바인딩에 관여하므로 예측하기 매우 어렵다.
 
-#### 1.1.1. `function.call`
+#### 1.1.1. 전역 공간에서의 `this`
+
+**전역 객체**에 바인딩된다. 실행환경마다 전역 객체가 다르기 때문에 브라우저에서는 `window`, node.js에서는 `global`을 가르킨다.
+
+#### 1.1.1.1. 함수에서의 `this`
+
+호출되는 위치에 따라 바인딩된다.
+
+아무것도 명시하지 않고 호출 시 **전역 객체**에 바인딩된다.
+
+`obj.func`처럼 **호출되는 위치**가 있다면 그 위치(`obj`)에 바인딩 된다.
+
+#### 1.1.1.1. 메서드에서의 `this`
+
+호출한 객체의 공간, 즉 **호출되는 위치**를 가르킨다. 을 가르킨다.
+
+### 1.2. 명시적 바인딩
+
+암시적 바인딩이 예측이 어렵게 동작할 때를 대비해, this의 객체를 명시적으로 지정해 줄 수 있다.
+
+#### 1.2.1. `function.call`
 
 **함수를 호출**하는 함수이다.
 
 첫 번째 인자로 **this가 가르킬 객체**, 두 번째 인자부터는 **함수의 매개변수**를 입력한다.
 
-#### 1.1.2. `function.apply`
+#### 1.2.2. `function.apply`
 
 **함수를 호출**하는 함수이다.
 
 첫 번째 인자로 **this가 가르킬 객체**, 두 번째 인자부터는 **배열인 함수의 매개변수**를 입력한다.
 
-#### 1.1.3. `function.bind`
+#### 1.2.3. `function.bind`
 
 **함수를 실행하지 않고 지정한 객체로 바인딩된 함수를 리턴**하는 함수이다.
 
@@ -54,15 +74,8 @@ this는 기본적으로 전역 공간을 가르켜 예측이 어렵게 동작한
 > **📌call, apply, bind 함수 예시**
 >
 > ```js
-> const me = {
+> const user = {
 >   name: "동경",
->   sayName: function () {
->     return this.name + "입니다.";
->   },
-> };
->
-> const mom = {
->   name: "향자",
 >   sayName: function () {
 >     return this.name + "입니다.";
 >   },
@@ -72,18 +85,16 @@ this는 기본적으로 전역 공간을 가르켜 예측이 어렵게 동작한
 >   return firstName + this.sayName();
 > }
 >
-> const result1 = sayFullName.call(me, "서");
+> const result1 = sayFullName.call(user, "서");
 > console.log(result1); //서동경입니다.
 >
-> const result2 = sayFullName.apply(me, ["서"]);
+> const result2 = sayFullName.apply(user, ["서"]);
 > console.log(result2); //서동경입니다.
 >
-> const boundSay = sayFullName.bind(me);
+> const boundSay = sayFullName.bind(user);
 > const result3 = boundSay("서");
 > console.log(result3); //서동경입니다.
 > ```
-
-## 1.2. 암시적 바인딩
 
 ## 2. this의 사용
 
