@@ -104,7 +104,7 @@
 >
 > //부모의 프로토타입 객체에 함수 추가
 > Workout.prototype.getInfo = function () {
->   return this.workoutName + ": " + this.sets + "SET";
+>   return this.workoutName + ": " + this.sets + "SETS";
 > };
 >
 > //자식으로 확장
@@ -126,6 +126,10 @@
 > //동작하는지 확인!
 > console.log(squat.getInfo()); //Squat: 3SET
 > console.log(legPress.getInfo()); //Leg Press: 4SET
+>
+> console.log(squat.constructor.name); //Workout //클래스로 구현한다면 Leg!
+> console.log(squat instanceof Leg); //true
+> console.log(squat instanceof Workout); //true
 > ```
 
 ## 3. 그 외 메서드
