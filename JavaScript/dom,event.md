@@ -8,7 +8,7 @@ DOM은 Node로 이루어져 있고 이 Node는 Tree 형태로 구성되어 있�
 
 ### 1.1.1. `document.querySelector("")`
 
-처음으로 마주친 유효한 식별자를 한 개를 반환한다. 즉 자바스크립트로 가져온다.
+**처음으로 마주친 유효한 식별자를 한 개**를 반환한다. 즉 자바스크립트로 가져온다.
 
 tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있다.
 
@@ -36,7 +36,7 @@ nav.querySelector("li"); //문서 전체에서 찾지 않고 nav 변수에 할�
 
 ### 1.1.2. `document.querySelectorAll("")`
 
-유효한 식별자 모두를 _Nodelist_ 형태로 반환한다. 즉 자바스크립트로 가져온다.
+**유효한 식별자 모두**를 _Nodelist_ 형태로 반환한다. 즉 자바스크립트로 가져온다.
 
 tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있다.
 
@@ -219,3 +219,35 @@ resetButton.addEventListener("click", function (event) {
 매개변수는 *실행시킬 함수*와 *차단시킬 밀리세컨드*이다.
 
 타이머가 없을 경우 타이머를 설정하고, 타이머가 있을 경우 아무런 동작도 하지 않도록 하여 일정 시간 이후에 이벤트가 1번 실행되도록 구현한다.
+
+## 2.3. `Element.classList`
+
+Element의 클래스 목록을 _DOMTokenList_ 형태로 반환하는 읽기 전용 프로퍼티이다.
+
+### 2.3.1. `Element.classList.add(String, ···)`
+
+지정한 클래스 값을 추가한다. 만약 추가하려는 클래스가 엘리먼트의 class 속성에 이미 존재한다면 무시한다.
+
+### 2.3.2. `Element.classList.remove(String, ···)`
+
+지정한 클래스 값을 제거한다.
+
+### 2.3.3. `Element.classList.item(Number)`
+
+콜렉션의 인덱스를 이용하여 클래스 값을 반환한다.
+
+### 2.3.4. `Element.classList.toggle(String, (String))`
+
+클래스 값을 토글링한다.
+
+하나의 인수만 있을 때, 해당 인수의 클래스가 존재한다면 제거하고 false를 반환하고, 존재하지 않으면 추가하고 true를 반환한다.
+
+두 개의 인수가 있을 때, 두 번째 인수가 true면 지정한 클래스 값을 추가하고, false면 제거한다.
+
+### 2.3.5. `Element.classList.contains(String)`
+
+지정한 클래스 값이 엘리먼트의 class 속성에 존재하는지 확인한다.
+
+### 2.3.6. `Element.classList.replace(oldClass, newClass)`
+
+존재하는 클래스를 새로운 클래스로 교체한다.
