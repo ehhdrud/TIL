@@ -6,29 +6,27 @@
 
 하지만 클래스가 도입되고 그 편의성으로 인해 프로토타입 문법은 잘 사용되진 않지만, 프로토타입은 자바스크립트의 기반이기 때문에 자바스크립트의 이해를 위해 알아두는 것이 좋다.
 
-`Object.getPrototypeOf`를 통해 프로토타입을 확인할 수 있고, `Object.setPrototypeOf`를 통해 프로토타입을 조작할 수도 있다.
-
 > **📌프로토타입❓**
 >
 > > **👇`constructor.name`을 통한 프로토타입 확인**
 > >
 > > ```js
-> > function Me(lastName, age) {
-> >   this.lastName = lastName;
-> >   this.age = age;
+> > function Workout(workoutName, sets) {
+> >   this.workoutName = workoutName;
+> >   this.sets = sets;
 > > }
 > >
-> > const dongkyeong = new Me("Seo", 28);
-> > const hyangja = new Me("Kim", 55);
+> > const squat = new Workout("Squat", 3);
+> > const legPress = new Workout("Leg Press", 4);
 > >
-> > console.log(dongkyeong); //Me { lastName: 'Seo', age: 28 }
-> > console.log(hyangja); //Me { lastName: 'Kim', age: 55 }
+> > console.log(squat); //Workout { workoutName: 'Squat', sets: 3 }
+> > console.log(legPress); //Workout { workoutName: 'Leg Press', sets: 4 }
 > >
-> > console.log(dongkyeong.constructor.name); //Me
-> > console.log(hyangja.constructor.name); //Me
+> > console.log(squat.constructor.name); //Workout
+> > console.log(legPress.constructor.name); //Workout
 > > ```
 >
-> > **👇`instanceof를 이용한 프로토타입 확인`**
+> > **👇`instanceof`를 이용한 프로토타입 확인**
 > >
 > > ```js
 > > const obj = {};
@@ -81,51 +79,77 @@
 
 지정된 프로토타입 객체 및 속성을 갖는 새 객체를 만들어 명시적인 체이닝이 가능하다.
 
-**📌기본 동작 매커니즘**
+> **📌`Object.create` 사용 방법**
+>
+> ```js
+> const workout = {
+>   sayMotivation() {
+>     return "No matter what happens, two more";
+>   },
+> };
+> console.log(workout.sayMotivation()); //No matter what happens, two more
+>
+> const leg = Object.create(workout);
+> console.log(leg.sayMotivation()); //No matter what happens, two more
+> ```
 
-```js
-const animal = {
-  sayName() {
-    return "ANIMAL";
-  },
-};
-console.log(animal.sayName()); //ANIMAL
+> **📌*자식으로서 확장된 생성자 함수*로 만든 객체로 확장**
+>
+> ```js
+> //부모 생성자 함수 정의
+> function Workout(workoutName, sets) {
+>   this.workoutName = workoutName;
+>   this.sets = sets;
+> }
+>
+> //부모의 프로토타입 객체에 함수 추가
+> Workout.prototype.getInfo = function () {
+>   return this.workoutName + ": " + this.sets + "SET";
+> };
+>
+> //자식으로 확장
+> function Leg(name, sound) {
+>   Workout.call(this, name, sound);
+>   //Workout 생성자 함수의 기능을 재활용하기 위한 line.
+>   //call을 사용해, this가 "Leg 생성자 함수로 찍어낸 객체"를 가리키게 한다.
+>   //즉 Workout의 this가 뒤에 생성될 squat, legPress 객체를 가르킨다.
+> }
+>
+> //자식에서 부모의 프로토타입 객체에 추가된 함수를 사용하기 위한 프로토타입 체이닝
+> //즉 Workout.prototype의 객체 및 속성을 Leg.prototype도 가지게 하기 위함!
+> Leg.prototype = Object.create(Workout.prototype);
+>
+> //new와 자식으로서 확장된 생성자 함수 이용한 객체 생성
+> const squat = new Leg("Squat", 3);
+> const legPress = new Leg("Leg Press", 4);
+>
+> //동작하는지 확인!
+> console.log(squat.getInfo()); //Squat: 3SET
+> console.log(legPress.getInfo()); //Leg Press: 4SET
+> ```
 
-const dog = Object.create(animal);
-console.log(dog.sayName()); //ANIMAL
-```
+## 3. 그 외 메서드
 
-**📌*자식으로서 확장된 생성자 함수*로 만든 객체로 확장**
+### 3.1. `Object.getPrototypeOf([obj])`
 
-```js
-//부모 생성자 함수 정의
-function Animal(name, sound) {
-  this.name = name;
-  this.sound = sound;
-}
+객체의 프로토타입을 반환한다.
 
-//부모의 프로토타입 객체에 함수 추가
-Animal.prototype.getInfo = function () {
-  return this.name + "가 " + this.sound + "소리를 낸다.";
-};
+### 3.2. `Object.setPrototypeOf([obj]], [프로토타입으로사용할객체또는null])`
 
-//자식으로 확장
-function Pet(name, sound) {
-  Animal.call(this, name, sound);
-  //Animal 생성자 함수의 기능을 재활용하기 위한 line.
-  //call을 사용해, this가 "Pet 생성자 함수로 찍어낸 객체"를 가리키게 한다.
-  //즉 Animal의 this가 뒤에 생성될 dog, cat 객체를 가르킨다.
-}
+객체의 프로토타입을 다른 객체로 설정하거나 null로 설정한다.
 
-//자식에서 부모의 프로토타입 객체에 추가된 함수를 사용하기 위한 프로토타입 체이닝
-//즉 Animal.prototype의 객체 및 속성을 Pet.prototype도 가지게 하기 위함!
-Pet.prototype = Object.create(Animal.prototype);
-
-//new와 자식으로서 확장된 생성자 함수 이용한 객체 생성
-const dog = new Pet("개", "멍멍");
-const cat = new Pet("고양이", "야옹");
-
-//동작하는지 확인!
-console.log(dog.getInfo()); //개가 멍멍소리를 낸다.
-console.log(cat.getInfo()); //고양이가 야옹소리를 낸다.
-```
+> **📌`Object.getPrototypeOf`와 `Object.setPrototypeOf` 사용 방법**
+>
+> ```js
+> let training = {
+>  hypertrophy = true;
+>  strength = false;
+> };
+>
+> let leg = Object.create(training);
+> alert(leg.hypertrophy); //true
+>
+> alert(Object.getPrototypeOf(leg) === training); //true
+>
+> alert(Object.setPrototypeOf(leg, {})); //leg의 프로토타입을 {}으로 바꾼다.
+> ```
