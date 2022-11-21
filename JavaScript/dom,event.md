@@ -99,14 +99,20 @@ const resetButton = document.querySelector(".reset");
 
 resetButton.addEventListener("click", function () {
   alert("안녕하세요");
-}); //"click"이라는 이벤트 타입이 감지되면 함수를 실행한다.
+}); //"click"이라는 이벤트 타입이 감지되면 함수(이벤트 핸들러)를 실행한다.
 
 resetButton.addEventListener("click", function (event) {
   console.dir(event);
 }); //"click"할 때마다 이벤트 객체 목록을 보여주는 이벤트 핸들러를 실행한다.
 ```
 
-## 2.1. 이벤트 전파
+## 2.1. `addEventListener`
+
+`addEventListener("[eventType]", [eventHandler])`메서드는 지정한 유형의 이벤트를 대상이 수신할 때마다 호출할 함수를 설정합니다.
+
+이벤트 유형은 [이벤트 참조 - MDN](https://developer.mozilla.org/ko/docs/Web/Events) 참고!
+
+## 2.2. 이벤트 전파
 
 어떤 element에서 발생한 이벤트는 부모 혹은 자식에게 전파된다.
 
@@ -114,11 +120,11 @@ resetButton.addEventListener("click", function (event) {
 
 이벤트 전파를 막고자 한다면 해당 이벤트에 `event.stopPropagation()`을 사용한다.
 
-### 2.1.1. 이벤트 버블링(Bubbling)
+### 2.2.1. 이벤트 버블링(Bubbling)
 
 브라우저의 기본적인 특성으로, 이벤트가 발생한 element부터 *상위*로 전파(전달)되는 현상이다.
 
-### 2.1.2. 이벤트 캡처링(Capturing)
+### 2.2.2. 이벤트 캡처링(Capturing)
 
 이벤트가 발생한 element부터 *하위*로 전파(탐색)되는 현상이다.
 
@@ -127,7 +133,7 @@ resetButton.addEventListener("click", function (event) {
 - `addEventListener()` 메서드의 세 번째 인자에 `true`를 넣는다.
 - 해당 메서드의 객체에 `capture: true`를 넣는다 버블링이 아닌 캡처링이 일어난다.
 
-### 2.1.3. 이벤트 위임(Delegation)
+### 2.2.3. 이벤트 위임(Delegation)
 
 각 요소마다 이벤트 리스너를 추가한다면 메모리 측면에서 효율이 떨어지므로, 하위 요소마다 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트를 제어하는 방식이다.
 
@@ -200,11 +206,11 @@ resetButton.addEventListener("click", function (event) {
 >
 > 👉리스트 3에도 `alert` 동작!
 
-## 2.2. 이벤트 조작
+## 2.3. 이벤트 조작
 
 클로저 개념을 활용하여 이벤트를 조작할 수 있다.
 
-### 2.2.1. debounce(지연)
+### 2.3.1. debounce(지연)
 
 이벤트를 그룹화하여 특정 시간이 지난 후, 마지막 이벤트만 발생하도록 하는 기술이다.
 
@@ -212,7 +218,7 @@ resetButton.addEventListener("click", function (event) {
 
 이벤트가 실행되었을 때 일정 시간을 기다렸다가 이벤트를 수행하도록 만들고, 일정 시간 내에 같은 이벤트가 또 들어오면 이전 요청을 취소하는 방식으로 구현한다.
 
-### 2.2.2. throttle(차단)
+### 2.3.2. throttle(차단)
 
 일정 시간동안 일어난 이벤트를 차단하고 단 한 번만 실행하는 기술이다.
 
@@ -220,23 +226,23 @@ resetButton.addEventListener("click", function (event) {
 
 타이머가 없을 경우 타이머를 설정하고, 타이머가 있을 경우 아무런 동작도 하지 않도록 하여 일정 시간 이후에 이벤트가 1번 실행되도록 구현한다.
 
-## 2.3. `Element.classList`
+## 2.4. `Element.classList`
 
 Element의 클래스 목록을 _DOMTokenList_ 형태로 반환하는 읽기 전용 프로퍼티이다.
 
-### 2.3.1. `Element.classList.add(String, ···)`
+### 2.4.1. `Element.classList.add(String, ···)`
 
 지정한 클래스 값을 추가한다. 만약 추가하려는 클래스가 엘리먼트의 class 속성에 이미 존재한다면 무시한다.
 
-### 2.3.2. `Element.classList.remove(String, ···)`
+### 2.4.2. `Element.classList.remove(String, ···)`
 
 지정한 클래스 값을 제거한다.
 
-### 2.3.3. `Element.classList.item(Number)`
+### 2.4.3. `Element.classList.item(Number)`
 
 콜렉션의 인덱스를 이용하여 클래스 값을 반환한다.
 
-### 2.3.4. `Element.classList.toggle(String, (String))`
+### 2.4.4. `Element.classList.toggle(String, (String))`
 
 클래스 값을 토글링한다.
 
@@ -244,10 +250,10 @@ Element의 클래스 목록을 _DOMTokenList_ 형태로 반환하는 읽기 전�
 
 두 개의 인수가 있을 때, 두 번째 인수가 true면 지정한 클래스 값을 추가하고, false면 제거한다.
 
-### 2.3.5. `Element.classList.contains(String)`
+### 2.4.5. `Element.classList.contains(String)`
 
 지정한 클래스 값이 엘리먼트의 class 속성에 존재하는지 확인한다.
 
-### 2.3.6. `Element.classList.replace(oldClass, newClass)`
+### 2.4.6. `Element.classList.replace(oldClass, newClass)`
 
 존재하는 클래스를 새로운 클래스로 교체한다.
