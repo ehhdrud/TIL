@@ -55,36 +55,98 @@ tag name(""), id("#"), class name(".")을 모두 활용하여 가져올 수 있�
 
 ## 1.2. DOM 조작
 
-**📌DOM 조작 예시 1**
+### 1.2.1. `document.creatElement("")`
 
-```js
-const searchButten = document.querySelector(".gNO89b");
-searchButten.classList.add("seo-dong-kyeong"); //class: gNO89b seo-dong-kyeong
-searchButten.classList.remove("gNO89b"); //class: seo-dong-kyeong
-searchButten.classList.contains("seo-dong-kyeong"); //true
-```
+지정한 태그명의 HTML 요소를 만들어 반환한다.
 
-**📌DOM 조작 예시 2**
+### 1.2.2. `document.createTextNode("")`
 
-```js
-const linkDirect = document.querySelector(".link_direct");
-linkDirect.textContent; //'연예'
-linkDirect.textContent = "seodongkyeong"; //'연예'가 'seodongkyeong'으로 변경된다.
-```
+텍스트 노드를 민들어 반환한다.
 
-**📌DOM 조작 예시 3**
+### 1.2.3. `Node.appendChild()`
 
-```js
-const partnerBox = document.querySelector(".partner_box");
-const ele = document.querySelector(".link_partner");
-partnerBox.removeChild(ele); //'크리에이터'가 삭제된다.
+지정한 노드를 특정 노드의 자식 리스트 중 마지막 자식으로 추가한다.
 
-const ele2 = document.querySelector("div"); //div 태그를 생성한다.
-ele2.textContent = "seo-dong-kyeong";
-partnerBox.appendChild(ele2); //끝쪽에 'seodongkyeong'이 추가된다.
+만약 주어진 노드가 이미 문서에 존재한다면, 해당 위치에서 새로운 위치로 이동시킨다.
 
-partnerBox.innerHTML = `<h3 class="title">SEO-DONG-KYEONG</h3>`; //DOM을 생성하는 과정없이 innerHTML을 통해 타이틀을 'SEO-DONG-KYEONG'으로 변경한다.
-```
+### 1.2.4. `Node.removeChild()`
+
+지정한 자식 노드를 제거하고 제거된 노드를 반환한다.
+
+여전히 메모리는 존재하지만 더이상 DOM의 일부가 아니다.
+
+### 1.2.5. `Element.setAttribute("","")`
+
+요소의 속성값을 설정한다. 첫 번째 요소에는 "속성"을 두 번째 요소에는 "속성값"을 기입한다.
+
+### 1.2.6. `Element.getAttribute("")`
+
+요소의 속성값을 반환한다.
+
+### 1.2.7. `Element.classList`
+
+Element의 클래스 목록을 _DOMTokenList_ 형태로 반환하는 읽기 전용 프로퍼티이다.
+
+#### 1.2.7.1. `Element.classList.add(String, ···)`
+
+지정한 클래스 값을 추가한다. 만약 추가하려는 클래스가 엘리먼트의 class 속성에 이미 존재한다면 무시한다.
+
+#### 1.2.7.2. `Element.classList.remove(String, ···)`
+
+지정한 클래스 값을 제거한다.
+
+#### 1.2.7.3. `Element.classList.item(Number)`
+
+콜렉션의 인덱스를 이용하여 클래스 값을 반환한다.
+
+#### 1.2.7.4. `Element.classList.toggle(String, (String))`
+
+클래스 값을 토글링한다.
+
+하나의 인수만 있을 때, 해당 인수의 클래스가 존재한다면 제거하고 false를 반환하고, 존재하지 않으면 추가하고 true를 반환한다.
+
+두 개의 인수가 있을 때, 두 번째 인수가 true면 지정한 클래스 값을 추가하고, false면 제거한다.
+
+#### 1.2.7.5 `Element.classList.contains(String)`
+
+지정한 클래스 값이 엘리먼트의 class 속성에 존재하는지 확인한다.
+
+#### 1.2.7.6. `Element.classList.replace(oldClass, newClass)`
+
+존재하는 클래스를 새로운 클래스로 교체한다.
+
+> 📌DOM 조작 예시
+>
+> > **✨예시 1**
+> >
+> > ```js
+> > const searchButten = document.querySelector(".gNO89b");
+> > searchButten.classList.add("seo-dong-kyeong"); //class: gNO89b seo-dong-kyeong
+> > searchButten.classList.remove("gNO89b"); //class: seo-dong-kyeong
+> > searchButten.classList.contains("seo-dong-kyeong"); //true
+> > ```
+>
+> > **✨예시 2**
+> >
+> > ```js
+> > const linkDirect = document.querySelector(".link_direct");
+> > linkDirect.textContent; //'연예'
+> > linkDirect.textContent = "seodongkyeong"; //'연예'가 'seodongkyeong'으로 변경된다.
+> > ```
+>
+> > **✨예시 3**
+> >
+> > ```js
+> > const partnerBox = document.querySelector(".partner_box");
+> > const ele = document.querySelector(".link_partner");
+> > partnerBox.removeChild(ele); //'크리에이터'가 삭제된다.
+> >
+> > const ele2 = document.querySelector("div"); //div 태그를 생성한다.
+> > ele2.textContent = "seo-dong-kyeong";
+> > partnerBox.appendChild(ele2); //끝쪽에 'seodongkyeong'이 추가된다.
+> >
+> > partnerBox.innerHTML = `<h3 class="title">SEO-DONG-KYEONG</h3>`; //DOM을 생성하는 과정없이 innerHTML을 통해 타이틀을 'SEO-DONG-KYEONG'으로 변경한다.
+> > ```
 
 # 2. 이벤트(Event)
 
@@ -225,35 +287,3 @@ resetButton.addEventListener("click", function (event) {
 매개변수는 *실행시킬 함수*와 *차단시킬 밀리세컨드*이다.
 
 타이머가 없을 경우 타이머를 설정하고, 타이머가 있을 경우 아무런 동작도 하지 않도록 하여 일정 시간 이후에 이벤트가 1번 실행되도록 구현한다.
-
-## 2.4. `Element.classList`
-
-Element의 클래스 목록을 _DOMTokenList_ 형태로 반환하는 읽기 전용 프로퍼티이다.
-
-### 2.4.1. `Element.classList.add(String, ···)`
-
-지정한 클래스 값을 추가한다. 만약 추가하려는 클래스가 엘리먼트의 class 속성에 이미 존재한다면 무시한다.
-
-### 2.4.2. `Element.classList.remove(String, ···)`
-
-지정한 클래스 값을 제거한다.
-
-### 2.4.3. `Element.classList.item(Number)`
-
-콜렉션의 인덱스를 이용하여 클래스 값을 반환한다.
-
-### 2.4.4. `Element.classList.toggle(String, (String))`
-
-클래스 값을 토글링한다.
-
-하나의 인수만 있을 때, 해당 인수의 클래스가 존재한다면 제거하고 false를 반환하고, 존재하지 않으면 추가하고 true를 반환한다.
-
-두 개의 인수가 있을 때, 두 번째 인수가 true면 지정한 클래스 값을 추가하고, false면 제거한다.
-
-### 2.4.5. `Element.classList.contains(String)`
-
-지정한 클래스 값이 엘리먼트의 class 속성에 존재하는지 확인한다.
-
-### 2.4.6. `Element.classList.replace(oldClass, newClass)`
-
-존재하는 클래스를 새로운 클래스로 교체한다.
