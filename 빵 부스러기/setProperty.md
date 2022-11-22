@@ -1,4 +1,4 @@
-# `setProperty([propertyName],[value],[priority])`
+# `setProperty([propertyName],[value], ([priority]))`
 
 CSS Style Declaration.
 
