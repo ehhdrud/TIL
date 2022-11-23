@@ -8,19 +8,19 @@ DOM은 Node로 이루어져 있고 이 Node는 Tree 형태로 구성되어 있�
 
 ### 1.1.1. Node
 
-Node 객체는 DOM 객체 가운데 가장 최상위 객체이자 모든 하위 노드 객체들이 상속받는 객체입니다.
+Node 객체는 DOM 객체 가운데 가장 최상위 객체이자 모든 하위 노드 객체들이 상속받는 객체이다.
 
 ### 1.1.2. Element
 
-주석 및 텍스트 Node 를 제외한 Node 입니다.
+주석 및 텍스트 Node 를 제외한 Node이다.
 
 ### 1.1.3. HTMLElement
 
-HTML 문서에만 존재하는 Node 입니다.
+HTML 문서에만 존재하는 Node이다.
 
 ### 1.1.4. Document
 
-Node 객체의 하위 객체로써 HTML 문서 및 XML 문서의 루트 객체입니다.
+Node 객체의 하위 객체로써 HTML 문서 및 XML 문서의 루트 객체이다.
 
 ### 1.1.5. HTMLDocument
 
