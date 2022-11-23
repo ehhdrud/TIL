@@ -227,40 +227,40 @@ resetButton.addEventListener("click", function (event) {
 
 > **📌페이지 구성**
 >
-> **HTML**: 리스트 1,2를 갖는 `<ul>`
+> > **HTML**: 리스트 1,2를 갖는 `<ul>`
+> >
+> > ```html
+> > <ul>
+> >   Workout Log
+> >   <li>
+> >     <input type="checkbox" id="item1" />
+> >     <label for="item1">Push Day</label>
+> >   </li>
+> >   <li>
+> >     <input type="checkbox" id="item2" />
+> >     <label for="item2">Pull Day</label>
+> >   </li>
+> > </ul>
+> > ```
 >
-> ```html
-> <ul>
->   Workout Log
->   <li>
->     <input type="checkbox" id="item1" />
->     <label for="item1">Push Day</label>
->   </li>
->   <li>
->     <input type="checkbox" id="item2" />
->     <label for="item2">Pull Day</label>
->   </li>
-> </ul>
-> ```
->
-> **JavaScript**: 리스트 3 추가
->
-> ```js
-> var itemList = document.querySelector("ul");
->
-> var li = document.createElement("li");
-> var input = document.createElement("input");
-> var label = document.createElement("label");
-> var labelText = document.createTextNode(" Leg Day");
->
-> input.setAttribute("type", "checkbox");
-> input.setAttribute("id", "item3");
-> label.setAttribute("for", "item3");
-> label.appendChild(labelText);
-> li.appendChild(input);
-> li.appendChild(label);
-> itemList.appendChild(li);
-> ```
+> > **JavaScript**: 리스트 3 추가
+> >
+> > ```js
+> > var itemList = document.querySelector("ul");
+> >
+> > var li = document.createElement("li");
+> > var input = document.createElement("input");
+> > var label = document.createElement("label");
+> > var labelText = document.createTextNode(" Leg Day");
+> >
+> > input.setAttribute("type", "checkbox");
+> > input.setAttribute("id", "item3");
+> > label.setAttribute("for", "item3");
+> > label.appendChild(labelText);
+> > li.appendChild(input);
+> > li.appendChild(label);
+> > itemList.appendChild(li);
+> > ```
 
 > **📌이벤트 위임을 사용하지 않았을 때**
 >
