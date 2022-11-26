@@ -42,4 +42,4 @@
 
 <br>
 
-## 👉`new CustomEvent()`를 통한 커스텀 이벤트 정의, `dispatchEvent()`를 통해 커스텀 이벤트 호출을 완료하면 `addEventLisener()`를 통해 "myEventName"이라는 이벤트 타입을 사용할 수 있다!
+## 👉`new CustomEvent()`를 통한 커스텀 이벤트 정의, `dispatchEvent()`를 통해 커스텀 이벤트 호출을 완료하면 `addEventLisener()`를 통해 "myEventName"이라는 이벤트 타입을 사용할 수 있다. 이 때, detail값을 가져올 때는 `e`를 매개변수로 사용하여 `e.detail` 형태로 가져온다.
