@@ -1,6 +1,6 @@
 # `new CustomEvent()`
 
-`new CustomEvent()`를 통해 자바스크립트가 기본적으로 제공하지 않는 커스텀 이벤트를 생성할 수 있다.
+`new CustomEvent()`를 통해 자바스크립트가 기본적으로 제공하지 않는 이벤트가 아닌, **원하는 때**에 이벤트를 발생시킬 수 있다. 그리고 해당 이벤트에 대한 정보를 추가할 수도 있다.
 
 `new CustomEvent([eventName], ([options]))` 문법을 가진다.
 
