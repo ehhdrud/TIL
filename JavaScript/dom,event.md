@@ -194,7 +194,7 @@ resetButton.addEventListener("click", function (event) {
 
 `addEventListener("[eventType]", [eventHandler])`메서드는 지정한 유형의 이벤트를 대상이 수신할 때마다 호출할 함수를 설정합니다.
 
-이벤트 유형은 [이벤트 참조 - MDN](https://developer.mozilla.org/ko/docs/Web/Events) 참고!
+이벤트 타입은 [이벤트 참조 - MDN](https://developer.mozilla.org/ko/docs/Web/Events) 참고!
 
 ## 2.2. 이벤트 전파
 
