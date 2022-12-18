@@ -2,6 +2,8 @@
 
 Intersection Observer API는 타겟 요소와 상위요소 또는 최상위 document의 viewport 사이의 intersection 내의 변화를 비동기적으로 관찰하는 방법이다.
 
+무한 스크롤 등을 구현할 때 용이하다.
+
 📌사용 방법
 
 1. `new IntersectionObserver(callback, option)`로 관찰자 객체를 생성한다.
