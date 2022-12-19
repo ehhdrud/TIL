@@ -14,7 +14,7 @@ const io = new IntersectionObserver(callback, option);
 
 > **✨callback 함수의 특징**
 >
-> 콜백함수는 entries와 io를 매개변수로 갖는다. entries는 관찰중인 모든 대상을 담은 배열이며, 요소 각각을 참조하기 위해서는 forEach를 이용해 개별적으로 접근해야 한다. io는 관찰하고 있는 관찰자 객체를 말한다.
+> 콜백함수는 entries와 io를 매개변수로 갖는다. entries는 관찰중인 모든 대상을 담은 배열이며, 요소 각각을 참조하기 위해서는 `forEach`를 이용해 개별적으로 접근해야 한다. io는 관찰하고 있는 관찰자 객체를 말한다.
 
 > **✨설정 가능한 옵션**
 >
