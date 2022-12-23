@@ -29,59 +29,74 @@
 > 3. 이제 Call Stack이 비어있는지 이벤트 루프(Event Loop)가 확인을 하는데, 만약 비어있으면 Task Queue에 있는 콜백 함수를 순서대로 Call Stack에 넘겨준다(First In First Out).
 > 4. Call Stack에 들어온 함수는 실행이 되고 실행이 끝나면 Call Stack에서 제거된다.
 
-## 2. 콜백(Callback)
+## 2. 비동기 처리 방법
+
+### 2.1. 콜백(Callback)
 
 콜백 함수를 사용하면 순서에 상관없이 호출될 때만 원하는 동작을 실행시킬 수 있다. 이러한 동작은 비동기적 처리를 가능하도록 한다.
 
-콜백 함수를 연속해서 사용하다보면 이른바 "콜백 지옥"에 빠질 수 있는데, 각 콜백 함수를 분리해주거나 `Promise` 혹은 `async`와 `await`를 사용함으로써 해결할 수 있다.
+### 2.2. Promise
 
-## 3. Promise
+자바스크립트 비동기 처리에 사용되는 객체로, *내용은 실행되었지만 결과를 아직 반환하지 않은 객체*이다.
 
-자바스크립트 비동기 처리에 사용되는 객체로, 주로 서버에서 받아온 데이터를 화면에 표시할 때 사용한다.
+주로 서버에서 받아온 데이터를 화면에 표시할 때 사용한다.
 
-비동기 연산이 종료된 이후에 결과값의 상태를 대기(pending),이행(fullfilled),실패(rejected)로 알려준다.
+비동기 연산이 종료된 이후에 결과값의 상태를 pending(대기), fullfilled(이행), rejected(실패)로 알려준다.
 
-`new Promise`를 통해 생성할 수 있다.
+`resolve`와 `reject`는 자바스크립트가 자체적으로 제공하는 콜백함수이다.
 
-### 3.1 대기: `new Promise`
+<!--
+new Promise에 전달되는 함수는 executer라고 부릅니다.
+executor의 인수 resolve와 reject는 자바스크립트가 자체적으로 제공하는 콜백함수입니다. resolve와 reject를 신경 쓰지 않고 executor 안 코드만 작성하면 되지만, executor에선 상황에 따라 인수로 넘겨준 콜백(resolve, reject)중 하나를 반드시 호출해야 합니다.
+ -->
 
-메서드를 생성하는 동시에 대기 상태(초기 상태)가 된다.
+#### 2.2.1. Promise의 3가지 상태
 
-콜백함수의 인자로 `[resolve]`와 `[reject]`를 사용할 수 있다.
+##### 2.2.1.1. pending
 
-### 3.2. 이행: `[resolve]` & `Promise.then`
+`new Promise`를 통해 메서드를 생성하는 동시에 초기 상태인 pending(대기) 상태가 된다.
 
-콜백 함수의 `[resolve]`인자를 실행하면 이행 상태가 된다.
+`resolve`와 `reject` 인자를 사용할 수 있다.
 
-이행 상태가 되면 `Promise.then`을 통해 처리 결과값을 받을 수 있다.
+##### 2.2.1.2. fulfilled
 
-### 3.3. 실패: `[reject]` & `Promise.catch`
+`resolve`인자를 실행하면 fulfilled(이행) 상태가 된다.
 
-콜백 함수의 `[reject]`인자를 실행하면 실패 상태가 된다.
+##### 2.2.1.3. rejected
 
-실패 상태가 되면 `Promise.catch`를 통해 처리 결과값을 받을 수 있다.
+`reject`인자를 실행하면 rejected(실패) 상태가 된다.
 
-### 3.4. `Promise.resolve(value)`
+#### 2.2.2. Promise 메서드
 
-`Promise.resolve` 메서드는 주어진 값(value)으로 이행(fullfill)하는 `Promise.then`객체를 반환한다. 그 값이 Promise인 경우, Promise를 반환한다.
+##### 2.2.2.1. `Promise.then`
 
-### 3.5. `Promise.reject(reason)`
+fullfiled 상태가 되면 `Promise.then`을 통해 처리 결과값을 받을 수 있다.
 
-`Promise.reject` 메서드는 주어진 이유(reason)로 거부(reject)된 Promise를 반환한다.
+##### 2.2.2.2. `Promise.catch`
 
-### 3.6. `Promise.finally`
+rejected 상태가 되면 `Promise.catch`를 통해 처리 결과값을 받을 수 있다.
+
+##### 2.2.2.3. `Promise.resolve(value)`
+
+`Promise.resolve` 메서드는 주어진 값(value)으로 이행하는 `Promise.then` 객체를 반환한다. 그 값이 Promise인 경우, Promise를 반환한다.
+
+##### 2.2.2.4. `Promise.reject(reason)`
+
+`Promise.reject` 메서드는 주어진 이유(reason)로 거부된 Promise를 반환한다.
+
+##### 2.2.2.5. `Promise.finally`
 
 Promise의 실행 여부와 관계없이 Promise가 처리된 후 무조건 한 번은 실행되는 코드이다.
 
 체이닝의 마지막에 작성한다.
 
-## 4. async, await
+## 3. async, await
 
-### 4.1. `async`
+콜백 함수나 Promise를 연속적으로 사용한다면 이른바 "콜백 지옥" 또는 "then 지옥"에 빠질 수 있다.`async`와 `await`를 사용함으로써 해결할 수 있다.
 
-일반적인 함수 선언 앞에 `async`를 붙여주면 AsyncFunction 객체를 반환하는 하나의 비동기 함수를 정의할 수 있다.
+### 3.1. `async`
 
-이 비동기 함수는 Promise를 사용하여 결과를 반환한다.
+일반적인 함수 선언 앞에 `async`를 붙여주면 AsyncFunction 객체를 반환하는 하나의 비동기 함수를 정의할 수 있다. 이 비동기 함수는 Promise를 사용하여 결과를 반환한다.
 
 아래 두 코드는 동일한 결과를 갖는다.
 
@@ -97,7 +112,7 @@ function foo() {
 }
 ```
 
-### 4.2. `await`
+### 3.2. `await`
 
 `await`연산자는 Promise를 기다리기 위해 사용한다.
 
