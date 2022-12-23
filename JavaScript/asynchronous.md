@@ -45,50 +45,59 @@
 
 `resolve`와 `reject`는 자바스크립트가 자체적으로 제공하는 콜백함수이다.
 
-<!--
-new Promise에 전달되는 함수는 executer라고 부릅니다.
-executor의 인수 resolve와 reject는 자바스크립트가 자체적으로 제공하는 콜백함수입니다. resolve와 reject를 신경 쓰지 않고 executor 안 코드만 작성하면 되지만, executor에선 상황에 따라 인수로 넘겨준 콜백(resolve, reject)중 하나를 반드시 호출해야 합니다.
- -->
-
 #### 2.2.1. Promise의 3가지 상태
 
 ##### 2.2.1.1. pending
 
-`new Promise`를 통해 메서드를 생성하는 동시에 초기 상태인 pending(대기) 상태가 된다.
+`new Promise`를 통해 메서드를 생성하는 때의 초기 상태인 "대기" 상태이다
 
 `resolve`와 `reject` 인자를 사용할 수 있다.
 
-##### 2.2.1.2. fulfilled
+##### 2.2.1.2. fulfilled 상태
 
-`resolve`인자를 실행하면 fulfilled(이행) 상태가 된다.
+`resolve`인자를 실행했을 때, 즉 "성공" 상태이다.
 
 ##### 2.2.1.3. rejected
 
-`reject`인자를 실행하면 rejected(실패) 상태가 된다.
+`reject`인자를 실행했을 때, 즉 "실패" 상태이다.
 
-#### 2.2.2. Promise 메서드
+#### 2.2.2. Promise를 "제공"하는 메서드
 
-##### 2.2.2.1. `Promise.then`
+##### 2.2.2.1. `resolve(resolve)`
+
+`resolve(value)`에서 value는 성공적으로 실행했을 때의 반환값을 나타낸다.
+
+실행 시 state는 fulfilled, result에는 value가 들어간다.
+
+##### 2.2.2.2. `reject(error)`
+
+`reject(error)`의 error는 실행에 실패했을 때의 반환값을 나타낸다.
+
+실행 시 state는 rejected, result에는 error가 들어간다.
+
+#### 2.2.3. Promise를 "소비"하는 메서드
+
+##### 2.2.3.1. `then`
 
 fullfiled 상태가 되면 `Promise.then`을 통해 처리 결과값을 받을 수 있다.
 
-##### 2.2.2.2. `Promise.catch`
+##### 2.2.3.2. `catch`
 
 rejected 상태가 되면 `Promise.catch`를 통해 처리 결과값을 받을 수 있다.
 
-##### 2.2.2.3. `Promise.resolve(value)`
+#### 2.2.4. 기타 메서드
 
-`Promise.resolve` 메서드는 주어진 값(value)으로 이행하는 `Promise.then` 객체를 반환한다. 그 값이 Promise인 경우, Promise를 반환한다.
-
-##### 2.2.2.4. `Promise.reject(reason)`
-
-`Promise.reject` 메서드는 주어진 이유(reason)로 거부된 Promise를 반환한다.
-
-##### 2.2.2.5. `Promise.finally`
+##### 2.2.4.1. `finally`
 
 Promise의 실행 여부와 관계없이 Promise가 처리된 후 무조건 한 번은 실행되는 코드이다.
 
 체이닝의 마지막에 작성한다.
+
+##### 2.2.4.2. `all`
+
+배열 형식으로 인자를 받아 한 개 이상의 Promise를 실행할 때 사용한다.
+
+배열 내 Promise 중 어느하나라도 reject라면 `all`의 결과값도 reject를 반환한다.
 
 ## 3. async, await
 
