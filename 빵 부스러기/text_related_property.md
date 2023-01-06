@@ -14,7 +14,7 @@ Elemnet에 포함된 *HTML 또는 XML*을 가져오거나 설정한다.
 
 ### 1.3. `Element.insertAdjacentHTML(position, text)`
 
-insertAdjacentHTML() 메서드는 HTML 또는 XML 같은 특정 텍스트를 파싱하고, 특정 위치에 DOM tree 안에 원하는 node들을 추가한다. 이미 사용중인 element 는 다시 파싱하지 않는다. 그러므로 element 안에 존재하는 element를 건드리지 않는다.(innerHTML과는 좀 다름!)
+insertAdjacentHTML() 메서드는 HTML 또는 XML 같은 특정 텍스트를 파싱하고, 특정 위치에 DOM tree 안에 원하는 node들을 추가한다. 이미 사용중인 Element는 다시 파싱하지 않는다. 그러므로 Element 안에 존재하는 Element는 건드리지 않는다.(innerHTML과는 좀 다름!)
 
 **HTML을 문서(document)에 삽입하고자 할 때 주로 사용한다.**
 
@@ -22,13 +22,13 @@ insertAdjacentHTML() 메서드는 HTML 또는 XML 같은 특정 텍스트를 파
 
 > **📌position의 키워드**
 >
-> `"beforebegin"`: element 앞에
+> `"beforebegin"`: Element 앞에 위치
 >
-> `"afterbegin"`: element 안에 가장 첫번째 child
+> `"afterbegin"`: Element 안에 가장 첫번째 child에 위치
 >
-> `"beforeend"`: element 안에 가장 마지막 child
+> `"beforeend"`: Element 안에 가장 마지막 child에 위치
 >
-> `"afterend"`: element 뒤에
+> `"afterend"`: Element 뒤에 위치
 
 ## 2. Node의 프로퍼티
 
