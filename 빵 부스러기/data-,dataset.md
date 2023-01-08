@@ -1,10 +1,8 @@
-# `data-` 사용자 정의 속성
+# `data-`
 
-접두사로 `data-`를 붙이고 영문으로 작성한다.
+HTML 속성에 접두사로 `data-`를 붙이고 영문으로 작성한다.
 
-HTML/CSS, Javascript에서 모두 사용할 수 있다.
-
-# `dataset` 속성
+# `dataset`
 
 `HTMLElement.dataset.HTML에서정의한속성명` 또는 `HTMLElemnet.dataset[HTML에서정의한속성명]` 형식으로 작성한다.
 
@@ -14,4 +12,4 @@ HTML에 정의한 `data-`뒤에 속성명을 가져올 때, 하나의 단어일 
 
 > **📌요약**
 >
-> `article.dataset.category = "all"` 👉 `<article date-category="all">`
+> HTML: `<article date-category="all">`에 JS:`article.dataset.category`로 접근하면 all이 출력!
