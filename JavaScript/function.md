@@ -221,6 +221,6 @@ hello_func(); //hello
 obj.func(); //hello
 console.log(hello_func == obj.func); //true
 
-obj.func = hi_func; //이런식으로 메소드 변경이 가능하다.
+obj.func = hi_func; //이런식으로 메서드 변경이 가능하다.
 obj.func(); //hi
 ```
