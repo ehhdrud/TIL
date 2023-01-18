@@ -22,13 +22,13 @@ insertAdjacentHTML() 메서드는 HTML 또는 XML 같은 특정 텍스트를 파
 
 > **📌position의 키워드**
 >
-> `"beforebegin"`: Element 앞에 위치
+> `"beforebegin"`: 요소 그 자체의 앞에 삽입
 >
-> `"afterbegin"`: Element 안에 가장 첫번째 child에 위치
+> `"afterbegin"`: 요소 안에 가장 첫번째 child에 위치
 >
-> `"beforeend"`: Element 안에 가장 마지막 child에 위치
+> `"afterend"`: 요소 그 자체의 뒤에 삽입
 >
-> `"afterend"`: Element 뒤에 위치
+> `"beforeend"`: 요소 안에 가장 마지막 child에 위치
 
 ## 2. Node의 프로퍼티
 
