@@ -1,6 +1,6 @@
-# `Element.insertAdjacentElement([position], [element])`
+# `Element.insertAdjacentElement(position, element)`
 
-호출한 요소의 `[postion]`에 따른 위치에 `[element]`를 삽입한다.
+호출한 요소의 postion에 따른 위치에 element를 삽입한다.
 
 > 📌 `Element.insertAdjacentElement`의 position 키워드
 >

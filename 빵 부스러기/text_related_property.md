@@ -1,18 +1,15 @@
-# 텍스트 관련 프로퍼티
+# 텍스트 관련 프로퍼티·메소드
 
-## 1. HTMLElement의 프로퍼티
+### `Node.textContent`
 
-### 1.1. `innerText`
+`HTMLElement.innerText`와는 달리 `<script>`나 `<style>` 태그와 상관없이 해상 노드가 가지고 있는 텍스트 값을 그대로 읽어온다.
 
-Element에서 *사용자에게 보여지는 텍스트*를 나타낸다. 즉 `<script>`와 `<style>` 등의 숨겨진 요소의 텍스트는 나타내지 않는다.(이를 읽어오려면 `Node.textContent`를 활용!)
+### `Node.nodeValue`
 
-### 1.2. `innerHTML(text)`
+현재 노드의 값·콘텐츠를 반환 또는 설정한다.
+` Element.setAttribute("","")``Element.getAttribute("")``Element.classList``Element.replaceWith()``Element.insertAdjacentHTML(position, text) `
 
-Elemnet에 포함된 *HTML 또는 XML*을 가져오거나 설정한다.
-
-*요소(Element)의 내용을 변경하고자 할 때 주로 사용*한다. 불필요한 파싱 작업이 있을 수 있으므로 단순 텍스트 삽입 시에는 사용하지 않는 것이 좋다.(이럴 때는 textContent를 활용하는 것이 좋다!)
-
-### 1.3. `Element.insertAdjacentHTML(position, text)`
+### `Element.insertAdjacentHTML(position, text)`
 
 insertAdjacentHTML() 메서드는 HTML 또는 XML 같은 특정 텍스트를 파싱하고, 특정 위치에 DOM tree 안에 원하는 node들을 추가한다. 이미 사용중인 Element는 다시 파싱하지 않는다. 그러므로 Element 안에 존재하는 Element는 건드리지 않는다.(innerHTML과는 좀 다름!)
 
@@ -30,14 +27,16 @@ insertAdjacentHTML() 메서드는 HTML 또는 XML 같은 특정 텍스트를 파
 >
 > `"beforeend"`: 요소 안에 가장 마지막 child에 위치
 
-## 2. Node의 프로퍼티
+### `Element.innerHTML(text)`
 
-### 2.1. `Node.textContent`
+Elemnet에 포함된 *HTML 또는 XML*을 가져오거나 설정한다.
 
-innetText와는 달리 `<script>`나 `<style>` 태그와 상관없이 해상 노드가 가지고 있는 텍스트 값을 그대로 읽어온다.
+*요소(Element)의 내용을 변경하고자 할 때 주로 사용*한다. 불필요한 파싱 작업이 있을 수 있으므로 단순 텍스트 삽입 시에는 사용하지 않는 것이 좋다.(이럴 때는 textContent를 활용하는 것이 좋다!)
 
-### 2.2. `Node.nodeValue`
+### `HTMLElement.innerText`
 
-# 3. Document의 프로퍼티
+Element에서 *사용자에게 보여지는 텍스트*를 나타낸다. 즉 `<script>`와 `<style>` 등의 숨겨진 요소의 텍스트는 나타내지 않는다.(이를 읽어오려면 `Node.textContent`를 활용!)
 
-### 3.1. `createTextNode`
+### `document.createTextNode("")`
+
+텍스트 Node를 만들어 반환한다.
