@@ -165,7 +165,7 @@ tag-Name(`"~"`), id(`"#~"`), class(`".~"`) 값을 모두 활용하여 가져올 
 
 <br>
 
-> **📌ES6 이후 잘 안 쓰이는 메서드**
+> **📌ES6 이후 잘 안 쓰이는 프로퍼티**
 >
 > ❌`document.getElementsByTagName('tagName')`: tagName을 통해 _HTMLCollection_ 형태로 반환한다.  
 > ❌`document.getElementById('id')`: id를 통해 _HTMLElement_ 형태로 반환한다.  
@@ -173,10 +173,15 @@ tag-Name(`"~"`), id(`"#~"`), class(`".~"`) 값을 모두 활용하여 가져올 
 > 👉실행결과가 하나인 경우는 *HTMLElement*를, 복수인 경우는 *HTMLCollection*을 반환한다.  
 > 👉ES6 이후 `document.querySelector()`, `document.querySelectorAll()`를 통해 tag-Name, id(`#`), class(`.`)를 모두 가져올 수 있기 때문에 잘 쓰이지 않는다.
 
-> **📌HTMLCollection과 NodeList의 공통점**
+> **HTMLCollection과 NodeList❓❓❓**
 >
 > 이터러블 특성을 가진 유사 배열 객체이다. (DOM에서 반환하는 배열, Map, arguments는 모두 이러한 특성을 가짐!)
 > 이터러블 특성으로 인해 순회는 가능하지만 배열은 아니므로 배열 메서드를 사용하려면 배열로 바꿔줘야 한다.
+
+> **`window` vs `document`❓❓❓**
+>
+> `window` 객체: 브라우저의 창이다. window 객체는 HTML 요소가 아니고 그 안에 document 객체가 HTML 요소이다.  
+> `document` 객체: 브라우저 창의 HTML 문서 객체이다. 즉 window객체 안에 document객체가 속성으로 존재한다.
 
 ## 1.3. DOM 조작 메서드
 

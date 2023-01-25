@@ -14,9 +14,7 @@
 
 ### ✨window 객체
 
-브라우저의 창이다.
-
-window 객체는 HTML 요소가 아니고 그 안에 document 객체가 HTML 요소이다.
+브라우저의 창이다. window 객체는 HTML 요소가 아니고 그 안에 document 객체가 HTML 요소이다.
 
 ### ✨document 객체
 
