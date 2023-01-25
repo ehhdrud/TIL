@@ -1,10 +1,10 @@
 # 1. DOM(Document Object Model)
 
-Document는 HTML 요소로, 자바스크립트로 조작이 불가능하다. 이를 가능하도록 하기 위해 **DOM**을 통해서 **원래는 조작이 불가능한 HTML을 자바스크립트의 객체로 모델링하여 조작**한다. 한편, 같은 목적으로 CSS를 자바스크립트로 조작하기 위한 모델을 CSSOM이라고 한다. DOM과 CSSOM이 합쳐져 렌더트리(Render Tree)를 구성하게 되고 이 렌더트리를 토대로 웹 페이지가 빌드된다.
+Document는 HTML 요소로, 자바스크립트로 조작이 불가능하다. 이를 가능하도록 하기 위해 **DOM을 통해서 원래는 조작이 불가능한 HTML을 자바스크립트의 객체로 모델링하여 조작**한다. 한편, 같은 목적으로 CSS를 자바스크립트로 조작하기 위한 모델을 CSSOM이라고 한다. DOM과 CSSOM이 합쳐져 렌더트리(Render Tree)를 구성하게 되고 이 렌더트리를 토대로 웹 페이지가 빌드된다.
 
-DOM은 Node로 이루어져 있고, Node는 루트에서부터 여러 Node들이 가지를 치며 나오는 트리 형태로 구성되어 있다. 즉 `<html>` element부터 여러 element들이 뻗어나오며 최하단 Node에는 각 element의 content가 위치한다.
+DOM은 Node로 이루어져 있고, Node는 루트에서부터 여러 Node들이 가지를 치며 나오는 트리 형태로 구성되어 있다. 즉 `<html>` element부터 여러 element들이 뻗어나오며 최하단 Node에는 각 element의 콘텐츠가 위치한다.
 
-HTML 문서를 제어하기 위한 수많은 프로퍼티와 메서드를 제공한다.
+또한 DOM은 HTML 문서를 제어하기 위한 수많은 프로퍼티(⊃메서드)를 제공한다.
 
 ## 1.1. DOM의 객체
 
@@ -13,7 +13,7 @@ DOM은 최상위 객체로 Node가 존재하고 그 하위에 많은 객체들�
 
 ### 1.1.1. Node
 
-Node는 DOM 객체 가운데 **최상위 객체**(**루트 객체**)이자 모든 하위 Node 객체들이 상속받는 객체이다. 태그는 물론 주석이나 단순 텍스트 등도 Node에 포함된다.
+Node는 **DOM 객체 가운데 최상위 객체**(**루트 객체**)이자 모든 하위 Node 객체들이 상속받는 객체이다. 태그는 물론 comment, text 등도 Node에 포함된다.
 
 Node에 접근하는 기능, Node를 추가·삭제하는 기능, nodeType을 확인하는 기능 등을 하는 프로퍼티를 가진다.
 
@@ -24,7 +24,7 @@ Node에 접근하는 기능, Node를 추가·삭제하는 기능, nodeType을 �
 > - **`Node.NodeValue`**  
 >   : 현재 Node의 값·콘텐츠를 반환 또는 설정한다.
 > - **`Node.childNodes`**  
->   : 현재 요소의 자식 Node가 포함된 NodeList를 반환한다. 이 NodeList에는 element 뿐만 아니라 text, content Node를 포함한다.
+>   : 현재 요소의 자식 Node가 포함된 NodeList를 반환한다. 이 NodeList에는 element 뿐만 아니라 comment, text를 포함한다.
 > - **`Node.hasChildNodes()`**  
 >   : 주어진 Node를 자식 Node로 가지고 있는지, 없는지에 대한 Boolian 값을 반환한다.
 > - **`Node.firstChild`**  
@@ -41,7 +41,7 @@ Node에 접근하는 기능, Node를 추가·삭제하는 기능, nodeType을 �
 > **💫추가, 삭제 관련 주요 프로퍼티**
 >
 > - **`Node.appendChild()`**  
->   : 한 Node를 특정 부모 Node의 자식 Node 리스트 중 마지막 자식으로 붙인다.
+>   : 한 Node를 특정 부모 Node의 마지막 자식으로 붙인다.
 > - **`Node.removeChild()`**  
 >   : 자식 Node를 제거하고 제거된 Node를 반환한다.
 > - **`Node.replaceChild(param1, param2)`**  
@@ -52,19 +52,19 @@ Node에 접근하는 기능, Node를 추가·삭제하는 기능, nodeType을 �
 > - **`Node.nodeType`**  
 >   : nodeType을 상수로 반환받는다.
 >
-> |     | nodeType                    | 예시                                             |
-> | --- | --------------------------- | ------------------------------------------------ |
-> | 1   | ELEMENT_Node                | `<body>`, `<div>`, `<p>`                         |
-> | 3   | TEXT_Node                   | HTML 문서 내 텍스트로 줄바꿈, 공백 등을 포함한다 |
-> | 7   | PROCESSING_INSTRUCTION_Node |                                                  |
-> | 8   | COMENT_Node                 | <--! 주석! -->                                   |
-> | 9   | DOCUMENT_Node               | document                                         |
-> | 10  | DOCUMENT_TYPE_Node          | `<!DOCTYPE html>`                                |
-> | 11  | DOCUMENT_FRAGMENT_Node      |                                                  |
+> | 반환 상수 | 노드 유형                   | 예시                                             |
+> | --------- | --------------------------- | ------------------------------------------------ |
+> | 1         | ELEMENT_Node                | `<body>`, `<div>`, `<p>`                         |
+> | 3         | TEXT_Node                   | HTML 문서 내 텍스트로 줄바꿈, 공백 등을 포함한다 |
+> | 7         | PROCESSING_INSTRUCTION_Node |                                                  |
+> | 8         | COMMENT_Node                | <--! 주석! -->                                   |
+> | 9         | DOCUMENT_Node               | document                                         |
+> | 10        | DOCUMENT_TYPE_Node          | `<!DOCTYPE html>`                                |
+> | 11        | DOCUMENT_FRAGMENT_Node      |                                                  |
 
 ### 1.1.2. Element
 
-coment, text를 제외한 태그로 표현된 Node로, nodeType은 1이다. 하위 객체로 HTMLElemnt가 존재한다.
+**comment, text를 제외한 태그로 표현된 Node**이다. nodeType은 ELEMENT_Node로, 1을 반환한다. 하위 객체로 HTMLElemnt가 존재한다.
 
 태그 이름을 확인하는 기능, 프로퍼티 제거 기능, 속성값을 구하고 설정하는 기능, 이벤트와 관련된 기능 등을 하는 프로퍼티를 갖고, Node의 프로퍼티를 상속한다.
 
@@ -97,7 +97,7 @@ coment, text를 제외한 태그로 표현된 Node로, nodeType은 1이다. 하�
 > - **`Element.insertAdjacentHTML(position, param)`**  
 >   : HTML 또는 XML 같은 특정 텍스트(param)를 파싱하고, 위치 키워드(posistion)에 따른 지정된 위치에 추가한다. 이미 사용중인 element는 다시 파싱하지 않으므로 element 안에 존재하는 element는 건드리지 않는다.(innerHTML과의 차이점!)
 > - **`Element.innerHTML()`**  
->   : element에 포함된 HTML 또는 XML을 가져오거나 설정한다. element의 내용을 변경하고자 할 때 주로 사용한다. 불필요한 파싱 작업이 있을 수 있으므로 단순 텍스트 삽입 시에는 사용하지 않는 것이 좋다.(이럴 때는 textContent를 활용하는 것이 좋음!)
+>   : element에 포함된 HTML 또는 XML을 가져오거나 설정한다. element의 내용을 변경하고자 할 때 주로 사용한다. 불필요한 파싱 작업이 있을 수 있으므로 단순 텍스트 삽입 시에는 사용하지 않는 것이 좋다.(이럴 때는 `Node.textContent`를 활용하는 것이 좋음!)
 
 #### 1.1.2.1. HTMLElement
 
@@ -112,11 +112,11 @@ Element의 생성자이자 하위 객체로, Node, Element 객체의 프로퍼�
 
 ### 1.1.3. Document
 
-HTML 문서 및 XML 문서의 루트 객체로, nodeType은 9이다. 하위 객체로 HTMLDocument가 존재한다.
+**HTML 문서 및 XML 문서의 루트 객체**이다. nodeType은 DOCUMENT_Node로, 9를 반환한다. 하위 객체로 HTMLDocument가 존재한다.
 
 특정 Node를 찾는 기능, Node를 생성하는 기능, 이벤트를 생성하는 기능, 이벤트 모델 기능 등을 하는 프로퍼티를 갖고, Node의 프로퍼티를 상속한다.
 
-> **💫주요 프로퍼티**
+> **💫주요 메서드**
 >
 > - **`document.querySelector()`**  
 >   : 처음으로 마주친 유효한 식별자를 한 개를 반환하여 자바스크립트로 가져온다.
@@ -126,6 +126,7 @@ HTML 문서 및 XML 문서의 루트 객체로, nodeType은 9이다. 하위 객�
 >   : 지정한 태그명의 HTML 요소를 만들어 반환한다.
 > - **`document.createTextNode()`**  
 >   : 텍스트 Node를 만들어 반환한다.
+>
 >   > **📌ES6 이후 잘 안 쓰이는 메서드**
 >   >
 >   > - ❌`document.getElementsByTagName('tagName')`  

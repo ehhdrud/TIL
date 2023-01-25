@@ -2,30 +2,29 @@
 
 ## 1.객체 생성
 
-### 1.1. 싱글 리터럴(객체 리터럴)을 통한 객체 생성
+### 1.1. 객체 리터럴(싱글 리터럴)
+
+가장 간결한 방식으로, 중괄호 안에 key: value 형태의 data를 정의하여 대입한다.
 
 ```javascript
 const obj = {
-  property: "value",
+  key: "value",
   method: function () {},
-  //...
 };
 ```
 
-### 1.2. `new`연산자를 통한 객체 생성
-
-여러 유사한 객체를 만들 때 사용한다.
+### 1.2. Object 생성자 함수
 
 ```javascript
-function NewObject(name) {
-  this.name = name;
-}
-const obj = new NewObject("seo");
+const obj = new Object();
+
+obj.key = "value";
+obj.method = function () {};
 ```
 
-### 1.3. `Object.create(프로토타입,객체서술자)`메서드를 통한 객체 생성
+### 1.3. Object.create()
 
-만들 떄부터 자세하게 만들고 싶은 경우에 사용한다.
+만들 때부터 자세하게 만들고 싶은 경우에 사용한다. 첫 번째 파라미터에 프로토타입, 두 번째 파라미터에 객체 서술자를 입력한다.
 
 ```javascript
 const obj = Object.create(Object.prototype, {
@@ -36,6 +35,17 @@ const obj = Object.create(Object.prototype, {
     configurable: true, //객체 서술자를 수정할 수 있는지?
   },
 });
+```
+
+### 1.4. 생성자 함수(`new`연산자로 호출)
+
+여러 유사한 객체를 만들 때 사용한다. 같은 목적으로 *클래스*를 사용할 수 있다.
+
+```javascript
+function NewObject(name) {
+  this.name = name;
+}
+const obj = new NewObject("seo");
 ```
 
 ## 2. 객체의 추가, 삭제
