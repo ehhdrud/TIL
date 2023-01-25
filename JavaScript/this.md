@@ -6,23 +6,23 @@ this란 특정 **객체**에 접근할 수 있는 **지시자**이자 **예약�
 
 ```js
 let user = {
-  name: "SDK",
+  name: "user",
 };
 
 let admin = {
-  name: "Seo",
+  name: "admin",
 };
 
 function hello_func() {
-  console.log("hello" + this.name);
+  console.log("hello " + this.name);
 }
 //함수 내부 this값은 런타임에 결정된다.
 
 user.func = hello_func;
 admin.func = hello_func;
 
-user.func(); //helloSDK
-admin.func(); //helloSEO
+user.func(); //hello user
+admin.func(); //hello admin
 ```
 
 ## 1. 바인딩

@@ -181,7 +181,7 @@ tag-Name(`"~"`), id(`"#~"`), class(`".~"`) 값을 모두 활용하여 가져올 
 > **`window` vs `document`❓❓❓**
 >
 > `window` 객체: 브라우저의 창이다. window 객체는 HTML 요소가 아니고 그 안에 document 객체가 HTML 요소이다.  
-> `document` 객체: 브라우저 창의 HTML 문서 객체이다. 즉 window객체 안에 document객체가 속성으로 존재한다.
+> `document` 객체: 브라우저 창의 HTML 문서이다. 즉 window객체 안에 document객체가 프로퍼티로 존재한다.
 
 ## 1.3. DOM 조작 메서드
 
