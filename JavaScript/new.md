@@ -7,22 +7,19 @@
 ES6에서 Class 개념의 등장으로 대체가 가능해졌다. [class.md 참고!](#class)
 
 ```js
-function Workout(sets, reps) {
-  this.classification = "Leg";
+function Workout(classification, sets, reps) {
+  this.classification = classification;
   this.sets = sets;
   this.reps = reps;
 }
 
-let squat = new Workout(3, 5);
-let legPress = new Workout(4, 8);
-let legExtension = new Workout(4, 12);
+let squat = new Workout("Leg", 3, 8);
+let benchPress = new Workout("Chest", 3, 10);
+let deadLift = new Workout("Back", 3, 5);
 
-console.log(squat); //Workout { classification: 'Leg', sets: 3, reps: 5 }
-console.log(legPress); //Workout { classification: 'Leg', sets: 4, reps: 8 }
-console.log(legExtension); //Workout { classification: 'Leg', sets: 4, reps: 12 }
-console.log(squat.reps); //5
-console.log(legPress.reps); //8
-console.log(legExtension.reps); //12
+console.log(squat); // Workout { classification: 'Leg', sets: 3, reps: 8 }
+console.log(benchPress); // Workout { classification: 'Chest', sets: 3, reps: 10 }
+console.log(deadLift); // Workout { classification: 'Back', sets: 3, reps: 5 }
 ```
 
 > **📌`new.target`**
