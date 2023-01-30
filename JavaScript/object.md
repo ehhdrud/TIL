@@ -115,7 +115,7 @@ console.log(Object.entries(obj)); //[ [ 'a', 1 ], [ 'b', 2 ], [ 'c', 3 ] ]
 
 ## 객체 복사
 
-객체 복사는 주소값만을 복사하여 결국 같은 공간을 가르키게 되는 문제가 생기므로 [얕은 복사(Shallow copy)](#1-얕은-복사shallow-copybr)와 [깊은 복사(Deep copy)](#2-깊은-복사deep-copy)를 통해 대상 전체를 복사해야 한다.
+객체 복사는 주소값만을 복사하여 결국 같은 공간을 가리키게 되는 문제가 생기므로 [얕은 복사(Shallow copy)](#1-얕은-복사shallow-copybr)와 [깊은 복사(Deep copy)](#2-깊은-복사deep-copy)를 통해 대상 전체를 복사해야 한다.
 
 ### 1. 얕은 복사(Shallow copy)
 
