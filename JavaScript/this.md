@@ -29,20 +29,9 @@ this가 특정 공간을 가리키는 것을 "바인딩"이라고 한다.
 
 ### 1.1. 암시적 바인딩
 
-기본적으로 아래 규칙(1.1.1., 1.1.2., 1.1.3., 1.1.4.)에 따라 암시적으로 동작한다. 하지만 여러가지 환경적 요소가 암시적 바인딩에 관여하므로 예측하기 매우 어렵다.
+기본적으로 아래 규칙에 따라 암시적으로 동작한다. 하지만 여러가지 환경적 요소가 암시적 바인딩에 관여하므로 예측하기 매우 어렵다.
 
-#### 1.1.1. 전역 공간에서의 this
-
-전역 객체에 바인딩된다. 실행환경마다 전역 객체가 다르다. 브라우저에서는 `window`, node.js에서는 `global`이 전역 객체이다.
-
-```js
-function myFn() {
-  return this;
-}
-myFn(); // window 또는 global 객체 출력!
-```
-
-#### 1.1.2. 함수에서의 this
+#### 1.1.1. 함수에서의 this
 
 기본적으로 전역 객체에 바인딩된다.
 
@@ -56,7 +45,7 @@ const func = function () {
 func(); // window
 ```
 
-#### 1.1.3. 메서드에서의 this
+#### 1.1.2. 메서드에서의 this
 
 **호출한 객체**를 가리킨다. 객체가 depth가 있다면 해당 함수를 직접적으로 포함하고 있는 객체와 바인딩된다.
 
@@ -70,7 +59,7 @@ const obj = {
 obj.func(); // Object
 ```
 
-#### 1.1.4. 생성자 함수에서의 this
+#### 1.1.3. 생성자 함수에서의 this
 
 ```js
 function Workout(name) {
@@ -78,7 +67,7 @@ function Workout(name) {
 }
 
 const squat = new Workout("Squat");
-console.log(squat); // // Workout { name: 'Squat' } // 즉 instance를 가르킴 !
+console.log(squat); // // Workout { name: 'Squat' } // 즉 this는 instance인 squat를 가르킴!
 ```
 
 ### 1.2. 명시적 바인딩
@@ -163,7 +152,7 @@ console.log(enduranceTraining);
 
 ## 2. 특수한 상황의 this
 
-### 2.1. 고차함수의 콜백함수 안에서의 this
+### 2.1. 콜백함수 안에서의 this
 
 #### 2.1.1. 문제점
 
@@ -238,7 +227,7 @@ const fn = {
   showTags() {
     this.tags.forEach((tag) => {
       console.log(tag);
-      console.log(this); //fn //화살표 함수가 선언된 위치의 상위 스코프(showTags 함수)의 this는 fn을 가리킨다.
+      console.log(this); //fn //화살표 함수가 선언된 위치의 상위 스코프(showTags())의 this는 fn을 가리킨다.
     });
   },
 };
