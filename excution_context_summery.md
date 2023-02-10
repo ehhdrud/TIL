@@ -63,15 +63,15 @@ FEC는 활성 객체(Activation Object / AO)랑 같다. "함수선언, 매개변
 EEC는 신경쓰지 않아도 된다.
 
 Creation Phase에서는 GO, AO, this가 형성된다. 값이 들어가있지 않은 초기값이 들어간다(var는 undefined로 초기화, let const는 선언만!)
-스코프 체인이 형성된다. 이 때문에 호이스팅이 가능하다. 변수쉐도잉(가장 가까운 변수를 참조하기 때문에 그보다 상위 스코프의 변수는 사라지는것 같다는 의미)이 발생한다.
+스코프 체인이 형성된다. 이 때문에 호이스팅이 가능하다. 변수 쉐도잉(가장 가까운 변수를 참조하기 때문에 그보다 상위 스코프의 변수는 사라지는것 같다는 의미)이 발생한다.
 
-Excution Phase에서는 GO, AO, this에 값을 할당한다. this는 함수 호출 패턴, Lexical Scope에 따라 값이 정해진다.
+Excution Phase에서는 GO, AO, this에 값을 할당한다. this는 함수 호출 방식과 Lexical Scope에 따라 값이 결정된다.
 ```
 
 ```
 <hoo00nn님 벨로그>
 
-Creation Phase에서 두가지 컴포넌트가 생성된다. Variable Environment와 Lexical Environment이다
+Creation Phase에서 두가지 객체가 생성된다. Variable Environment와 Lexical Environment이다
 
 얘네는 모두 Environment Record, Outer Environment Reference, ThisBinding라는 프로퍼티를 가지고 있다.
 

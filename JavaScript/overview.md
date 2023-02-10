@@ -86,8 +86,8 @@ Heap, Call Stack(Last In First Out)으로 구성된 자바스크립트 엔진과
 ##### 5.2.1.2. Function Execution Contexts
 
 > 함수 내부의 this, arguments, 매개변수, 지역변수 등.
-
-함수가 호출되어 실행될 때, 실행되는 함수에 대해서 생성되는 컨텍스트이다.
+> "함수선언, 매개변수(arguments), 변수"
+> 함수가 호출되어 실행될 때, 실행되는 함수에 대해서 생성되는 컨텍스트이다.
 
 활성 객체(Activation Object / AO)를 가리킨다.
 
