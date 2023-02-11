@@ -56,7 +56,7 @@ let, const를 쓰면 역시 변수 호이스팅과 마찬가지로 초기화가 
 여기서 함수란 변수, 매개변수, 내장함수, this이다.
 
 스코프 체인이란 실행 컨텍스트 체인과 같은 말이다. 스코프 체인은 Lexical Environment와 연관이 있다.
-Lexical Environment는 Lexical Scope와 같은 말이다. 이 Lexical Environment에는 Environment Record와 Outer Environment Reference가 있다. 스코프체인과 연관이 있는 Lexical Environment는 "함수가 호출된 순서"가 아닌 "함수가 코드 상으로 쓰여진 순서"애 따라 결정된다. 즉 쌓인 순서는 관련 없고, 안쪽 스코프냐냐 바깥쪽 스코프냐가 관련이 있다.
+Lexical Environment는 Lexical Scope와 같은 말이다. Lexical Scope는 "함수의 호출"이 아닌 "함수의 선언"에 따라 결정된다. (자바스크립트는 렉시컬 스코프 !) 이 Lexical Environment에는 Environment Record와 Outer Environment Reference가 있다.
 
 GEC는 전역 객체(Global Object / GO)랑 같다. 여기에는 window object와 this object가 포함된다. "빌트인객체(Math, String)과 BOM, DOM, 전역변수"로 이루어진다.
 FEC는 활성 객체(Activation Object / AO)랑 같다. "함수선언, 매개변수(arguments), 변수"로 이루어진다.
@@ -82,8 +82,8 @@ Creation Phase에서 두가지 객체가 생성된다. Variable Environment와 L
 
 그럼 똑같은데? 뭐가 다른거지??
 
-Variable Environment: Environment Record는 var, 함수선언문 등 호이스팅을 일으키는 놈들을 저장한다. Outer Environment Reference는 Lexical Environment을 참조한다.
-Lexical Environment: Environment Record는 let, const, 함수표현식 등 호이스팅 안되는 놈들을 저장한다.  Outer Environment Reference는 Variable Environment을 참조한다.
+Variable Environment: Environment Record는 var, 함수선언문 등 호이스팅을 일으키는 놈들을 저장한다.
+Lexical Environment: Environment Record는 let, const, 함수표현식 등 호이스팅 안되는 놈들을 저장한다.
 
 Execution Phase에선 자바스크립트 엔진이 한줄 한줄 위에서 부터 코드를 읽으면서 코드를 실행하며 변수들에 값을 할당한다.
 ```
@@ -98,7 +98,7 @@ parameter와 argurment의 정보(FEC의 경우), 함수 선언(함수 표현식�
 
 1.1. GEC의 경우
 GO를 가르킨다.
-변수객체는 유일하고, 최상위에 위치한다.
+최상위에, 단 하나만 존재한다.
 전역 변수와 전역 함수를 프로퍼티로 갖는다.
 
 1.2. FEC의 경우
