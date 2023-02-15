@@ -4,7 +4,7 @@
 
 한 프로그램에서뿐만 아니라 다른 프로그램에서도 이용할 수 있다.
 
-## 1. CommonJS
+## 1. ⭐CommonJS
 
 자바스크립트를 모듈 단위의 프로그래밍으로 작성할 수 있도록 도와준다.
 
@@ -81,7 +81,7 @@ CommonJS와는 다르게 **비동기적**으로 필요한 파일을 다운로드
 
 CommonJS의 `module.exports`와 `exports`, AMD의 `define`을 사용해 모듈을 추출한다.
 
-## 4. ⭐ESM(ECMAScript Modules)
+## 4. ⭐⭐ESM(ECMAScript Modules)
 
 **ES6**에서는 최신 브라우저에서 최신 스팩의 모듈 시스템을 사용할 수 있도록 지원한다.
 
