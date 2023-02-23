@@ -37,6 +37,8 @@ Elemnet에 포함된 *HTML 또는 XML*을 가져오거나 설정한다.
 
 Element에서 *사용자에게 보여지는 텍스트*를 나타낸다. 즉 `<script>`와 `<style>` 등의 숨겨진 요소의 텍스트는 나타내지 않는다.(이를 읽어오려면 `Node.textContent`를 활용!)
 
+(23.02.22) 문자열을 할당하는 방식으로 사용해도 됨. [ex] AnalogClock 프로젝트의 `time[i].innerText = "|";`
+
 ### `document.createTextNode("")`
 
 텍스트 Node를 만들어 반환한다.
