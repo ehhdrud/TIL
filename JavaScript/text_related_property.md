@@ -4,6 +4,8 @@
 
 `HTMLElement.innerText`와는 달리 `<script>`나 `<style>` 태그와 상관없이 해상 노드가 가지고 있는 텍스트 값을 그대로 읽어온다.
 
+(23.02.24) 문자열을 할당하는 방식으로 사용해도 됨. [ex] StarRating 프로젝트의 `$currentRatings[i].textContent = rating;` (rating 에는 문자열이 할당되어 있음)
+
 ### `Node.nodeValue`
 
 현재 노드의 값·콘텐츠를 반환 또는 설정한다.
@@ -38,6 +40,7 @@ Elemnet에 포함된 *HTML 또는 XML*을 가져오거나 설정한다.
 Element에서 *사용자에게 보여지는 텍스트*를 나타낸다. 즉 `<script>`와 `<style>` 등의 숨겨진 요소의 텍스트는 나타내지 않는다.(이를 읽어오려면 `Node.textContent`를 활용!)
 
 (23.02.22) 문자열을 할당하는 방식으로 사용해도 됨. [ex] AnalogClock 프로젝트의 `time[i].innerText = "|";`
+(23.02.24) [ex] Calendar 프로젝트의 `div.innerText = i + 1;`
 
 ### `document.createTextNode("")`
 
