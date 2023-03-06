@@ -1,6 +1,6 @@
 # `<picture>`
 
-`<picture>`태그는 `<img>`태그의 다중 이미지 리소스(multiple image resources)를 위한 컨테이너를 정의할 때 사용한다. 반응형 이미지를 정의할 때 용이하다.
+`<picture>`는 `<img>`의 다중 이미지 리소스(Multiple image resources)를 위한 컨테이너를 정의할 때 사용한다. 반응형 이미지를 정의할 때 용이한 태그이다.
 
 > **📌예제 1**
 >
@@ -16,7 +16,7 @@
 >   />
 >   <img src="/examples/images/people_200.jpg" alt="People" />
 > </picture>
-> <!-- 여러개의 source 태그를 순차적으로 탐색하여 조건에 맞는 사이즈의 이미지를 가져온다. 모든 조건을 충족하지 않는다면 img 태그의 이미지를 가져온다. -->
+> <!-- 여러개의 <source>를 순차적으로 탐색하여 조건에 맞는 사이즈의 이미지를 가져온다. 모든 조건을 충족하지 않는다면 img 태그의 이미지를 가져온다. -->
 > ```
 >
 > **📌예제 2**
@@ -26,5 +26,5 @@
 >   <source srcset="/assets/logo/logo.webp" type="image/webp" />
 >   <img src="/assets/logo/logo.png" alt="logo" />
 > </picture>
-> <!-- source 태그 내 조건을 만족하면 source 태그의 webp 이미지를, 그렇지 않으면 img 태그의 png 이미지를 가져온다. -->
+> <!-- <source> 내 조건을 만족하면 <source>의 webp 이미지를, 그렇지 않으면 <img>의 png 이미지를 가져온다. -->
 > ```
