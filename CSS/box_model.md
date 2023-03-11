@@ -34,7 +34,7 @@
 > - **세 개의 값**: **첫 번째**는 **위**, **두 번째**는 **왼쪽과 오른쪽**, **세 번째**는 **아래** 여백을 설정한다.
 > - **네 개의 값**: 각각 시계 방향인 **상**, **우**, **하**, **좌** 순서로 여백을 설정한다.
 
-### 2.1. `margin` 단축 속성
+### 2.1. `margin` 속성
 
 `margin-top`, `margin-right`, `margin-bottom`, `margin-left` 속성의 단축 속성으로, 네 방향의 margin을 설정한다.
 
@@ -52,7 +52,7 @@
 > >    : 부모 블록에 border, padding, inline content가 없고 부모와 자식을 분리할 height가 지정되지 않아 부모와 자식의 margin-bottom이 만나는 경우, 해당 영역이 상쇄된다.
 > > 3. **빈 블록**: border, padding, content가 없고, height 또한 존재하지 않으면, 해당 블록의 margin-top과 margin-bottom이 상쇄된다.
 
-### 2.3. `padding` 단축 속성
+### 2.3. `padding` 속성
 
 네 방향의 안쪽 여백을 설정한다. `padding-top`, `padding-right`, `padding-bottom`, `padding-left`의 단축 속성이다.
 
@@ -94,7 +94,7 @@
 
 테두리의 색상을 지정한다.
 
-### 3.4. `border` 단축 속성
+### 3.4. `border` 속성
 
 테두리를 설정하는 `border-style`, `border-width`, `border-color`의 단축 속성으로, 모두 필수 요소는 아니고 순서는 상관이 없다. 하지만 `border-style`을 작성하지 않는다면 테두리가 아예 보이지 않기 때문에 `border-style` 속성은 필수적으로 작성한다.
 
