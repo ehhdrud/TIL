@@ -55,6 +55,9 @@ HTML 문서 외부에 작성된 CSS 파일을 `<link>`를 사용하여 가져온
 
 > **📌 상속되지 않는 속성**
 >
-> - 배경 관련 속성
-> - margin 관련 속성
-> - width,height 관련 속성
+> - 대부분의 박스 모델 속성들: width, height, margin, padding, border, box-sizing 등
+> - 배경(background) 속성들: background-color, background-image, background-repeat, background-position, background-size 등
+> - 위치(position) 속성들: position, top, bottom, left, right 등
+> - 부동 속성(floating)들: float, clear 등
+> - 보이는 여부(visibility)와 투명도(opacity) 속성들: visibility, opacity 등
+> - 기타 다양한 속성들: display, cursor, z-index, table-layout, transform, animation
