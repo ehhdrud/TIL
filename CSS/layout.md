@@ -48,11 +48,11 @@
 > - `visibility: hidden`  
 >   : 요소는 화면에서 숨겨지지만 렌더프리에는 포함되기 때문에 레이아웃 공간은 그대로 유지된다. 따라서 다른 요소가 해당 공간을 차지하지 못한다. 스크린 리더 역시 `visibility: hidden` 속성을 가진 요소를 읽을 수 있다.
 
-### 1.5. `flex`
+### 1.5. `flex`, `grid`
 
-플렉스 박스(flexbox)를 만드는 데 사용되는 속성이다. 플렉스 박스는 요소의 크기와 위치, 간격, 순서 등을 유연하게 조절하여 레이아웃을 구성할 수 있는 방법 중 하나이다.
-
-자세한 설명은 [TIL - CSS - flexbox](https://github.com/ehhdrud/TIL/blob/main/CSS/flexbox.md) 참고 !
+[TIL - CSS - flexbox](https://github.com/ehhdrud/TIL/blob/main/CSS/flexbox.md)  
+[TIL - CSS - grid](https://github.com/ehhdrud/TIL/blob/main/CSS/grid.md)  
+참고 !
 
 ## 2. `float` 속성
 
@@ -136,4 +136,4 @@ CSS3에서 `flex`가 추가됨에 따라 사용빈도는 줄어들었다.
 
 요소와 그 자손 또는 하위 플렉스 아이템의 Z축 순서를 지정한다.
 
-더 큰 값을 가진 요소가 작은 값을 가진 요소 위를 덮는다. 기본값인 `auto`는 '0'으로 설정된다.
+더 큰 값을 가진 요소가 작은 값을 가진 요소 위를 덮는다. 기본값인 `auto`는 '0'이다.
