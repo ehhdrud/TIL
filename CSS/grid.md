@@ -12,7 +12,7 @@
 
 ### 1.2. `grid-templete-rows`와 `grid-templete-columns` 속성
 
-`grid-templete-rows`는 행, `grid-templete-columns`는 열을 설정한다. `length`, `%`, `fr` 등을 통해 크기를 설정한다. 여러개를 만들 때 `spacing`으로 구분한다.
+`grid-templete-rows`는 행, `grid-templete-columns`는 열을 설정한다. length, percentage, fraction 등을 통해 크기를 설정한다. 여러개를 만들 때 `spacing`으로 구분한다.
 
 함수표기법으로 표현할 수 있다. `minmax()`를 사용하면 첫 번째 인자에는 최소값, 두 번째 인자에는 최대값을 입력한다. `repeat()`를 사용하면 첫 번째 인자에는 몇 개의 행 또는 열을 가질 것인지, 두 번째 인자에는 크기를 입력한다.
 
@@ -175,7 +175,7 @@
 
 ## 3. Grid 단위
 
-### 3.1. `fr` 단위
+### 3.1. `fr`
 
 "fraction"의 약어로, 그리드 컨테이너의 여유 공간을 비율로 나눠 설정한다.
 

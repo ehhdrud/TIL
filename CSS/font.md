@@ -38,7 +38,7 @@
 
 기본값인 `normal`값은 1.2~1.5를 주로 사용한다.
 
-## 6. `font` 단축 속성
+## 6. `font` 속성
 
 `font-size`, `font-family`, `font-style`, `font-variant`, `font-weight`, `line-height`의 단축 속성으로, `font-size`, `font-family`는 필수이고 나머지는 옵션이다. 각 속성은 `spacing`으로 구분하고 순서를 지켜야 한다.
 
@@ -82,7 +82,7 @@ line-height: 1.7
 
 가로 길이가 한정된 인라인 요소에는 적용되지 않는다. 이런 경우에는 블록 요소인 태그로 감싸서 `text-indent`을 적용한다.
 
-## 10. `text-decoration` 단축 속성
+## 10. `text-decoration` 속성
 
 `text-decoration-line`, `text-decoration-color`, `text-decoration-style`, `text-decoration-thickness`의 단축 속성으로 `text-decoration-line`은 필수이고 나머지는 옵션이다. 각 속성은 `spacing`으로 구분하고 순서는 상관없다.
 

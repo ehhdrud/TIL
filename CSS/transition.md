@@ -59,21 +59,21 @@
 > > }
 > > ```
 
-## 5. `trasition` 단축 속성
+## 5. `trasition` 속성
 
 `transition-property`, `transition-duration`, `transition-delay`, `transition-timing-function` 의 단축 속성이다.
 
 하나의 시간값을 입력한다면 `transition-duration`으로 적용된다. 두 개의 시간값을 입력했을 때는 앞 쪽에 있는 시간이 `transition-duration`, 뒤 쪽에 있는 시간이 `transition-delay`로 적용된다. 나머지 속성의 순서는 상관없고 `spacing`을 통해 구분한다.
 
-> 📌`transition` 단축 속성 사용법
+> 📌`transition` 속성 사용법
 >
-> 👉HTML 파일
+> HTML 파일
 >
 > > ```html
 > > <div class="box">Hover Me!😊</div>
 > > ```
 >
-> 👉CSS 파일
+> CSS 파일
 >
 > > ```css
 > > .box {
@@ -89,6 +89,6 @@
 > >
 > > .box:hover {
 > >   background-color: indianred;
-> >   /* trasition관련 속성을 이쪽에 입력한다면 마우스를 올릴 때만 transition 발생 */
+> >   /* trasition 관련 속성을 이쪽에 입력한다면 마우스를 올릴 때만 transition 발생 */
 > > }
 > > ```

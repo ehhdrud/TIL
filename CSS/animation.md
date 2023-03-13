@@ -56,13 +56,13 @@
 - `backwards`: 애니메이션은 대상에 적용되는 즉시 첫 번째 키프레임에 정의된 값을 적용하고 `animation-delay`기간동안 이 값을 유지한다. 첫 번째 키프레임은 `animation-direction`의 값에 따라 달라진다.
 - `both`: `forwards`와 `backwards`가 모두 적용된다.
 
-## 10. `animation` 단축 속성
+## 10. `animation` 속성
 
 `animation-name`, `animation-duration`, `animation-delay`, `animation-timing-function`, `animation-iteration-count`, `animation-direction`, `animation-play-state`, `animation-fill-mode`의 단축 속성이다.
 
 하나의 시간값을 입력한다면 `animation-duration`으로 적용된다. 두 개의 시간값을 입력했을 때는 앞 쪽에 있는 시간이 `animation-duration`, 뒤 쪽에 있는 시간이 `animation-delay`로 적용된다. 나머지 속성의 순서는 상관없고 `spacing`을 통해 구분한다.
 
-> 📌애니메이션 사용법
+> **📌 애니메이션 사용법**
 >
 > > 👉HTML 파일
 > >
