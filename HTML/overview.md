@@ -32,7 +32,7 @@ HTML이란 Hyper Text Markup Language의 약어로, World Wide Wep(www)을 위�
 
 블록 요소의 자식으로 블록 요소가 들어오면 구조가 무너질 수 있으므로 권장되지 않는다.
 
-> 📌 블록 태그 종류
+> 📌 블록 요소 종류
 >
 > `<address>`, `<article>`, `<aside>`, `<audio>`, `<blockquote>`, `<canvas>`, `<dd>`, `<div>`, `<dl>`, `<fieldset>`, `<figcaption>`, `<figure>`, `<footer>`, `<form>`, `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`, `<header>`, `<hgroup>`, `<hr>`, `<noscript>`, `<ol>`, `<output>`, `<p>`, `<pre>`, `<section>`, `<table>`, `<ul>`, `<video>`
 
@@ -44,7 +44,7 @@ HTML이란 Hyper Text Markup Language의 약어로, World Wide Wep(www)을 위�
 
 인라인 요소의 자식으로 블록 요소를 포함할 수 없지만, 인라인 요소는 포함할 수 있다.
 
-> 📌 인라인 태그 종류
+> 📌 인라인 요소 종류
 >
 > `<a>`, `<abbr>`, `<acronym>`, `<b>`, `<bdo>`, `<big>`, `<br/>`, `<button>`, `<cite>`, `<code>`, `<dfn>`, `<em>`, `<i>`, `<img>`, `<input>`, `<kbd>`, `<label>`, `<map>`, `<object>`, `<q>`, `<samp>`, `<small>`, `<script>`, `<select>`, `<span>`, `<strong>`, `<sub>`, `<sup>`, `<textarea>`, `<tt>`, `<var>`
 
