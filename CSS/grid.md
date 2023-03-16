@@ -63,9 +63,9 @@
 
 ### 1.5. `gap` 단축 속성
 
-`row-gap`, `column-gap`의 단축 속성이다.
+`row-gap`, `column-gap`의 단축 속성으로, 레이아웃에서 아이템 사이의 간격을 설정하는 데 사용된다.
 
-앞 속성값이 `row-gap`, 뒤 속성값이 `column-gap`이다.
+앞 속성값이 `row-gap`, 뒤 속성값이 `column-gap`이다. 하나의 속성값을 사용하면 두 속성 모두 적용된다.
 
 ### 1.6 `grid-auto-rows`와 `grid-auto-columns` 속성
 
