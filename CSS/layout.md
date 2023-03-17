@@ -87,7 +87,7 @@ CSS3에서 `flex`가 추가됨에 따라 사용빈도는 줄어들었다.
 
 ### 4.2. `relative`
 
-요소를 Normal Flow에 따라 배치하는데, `top`, `right`, `bottom`, `left` 속성을 사용하여 *자기 자신*을 기준으로 이동 배치할 수 있다.
+요소를 Normal Flow에 따라 배치하는데, `top`, `right`, `bottom`, `left` 속성을 사용하여 자기 자신을 기준으로 이동 배치할 수 있다.
 
 자식 요소의 `absolute`를 동작시키기 위한 목적으로 사용되기도 한다. (기본값인 `static`에서는 자식 요소의 `absolute`가 동작하지 않기 때문 !)
 
