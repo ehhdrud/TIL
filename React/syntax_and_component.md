@@ -113,7 +113,7 @@ function App() {
 
 AND, OR 논리 연산자를 이용해 조건문을 표현할 수 있다.
 
-자바스크립트에서 논리 연산자 `&&`는 `true && expression`일 때 `expression`으로 평가되고, `false && expression`일 때 `false`로 평가된다. 즉, 첫 번째 피연산자가 `true`라면 두 번째 피연산자(`expression`)가 반환되고, 첫 번째 피연산자가 `false`라면 첫 번째 피연산자(`false`)가 반환되는 것이다. 여기서 주의할 점은 'falsy'한 표현식이 반환된다면, React는 여전히 조건문을 건너뛰지만, falsy한 표현식이 그대로 출력된다는 것이다.
+자바스크립트에서 논리 연산자 `&&`는 `true && expression`일 때 `expression`으로 평가되고, `false && expression`일 때 `false`로 평가된다. 즉, 첫 번째 피연산자가 `true`라면 두 번째 피연산자(`expression`)가 반환되고, 첫 번째 피연산자가 `false`라면 첫 번째 피연산자(`false`)가 반환되는 것이다. 여기서 주의할 점은, 조건이 'falsy'한 표현식이라 falsy한 표현식이 반환된다면, React는 여전히 조건문을 건너뛰지만, falsy한 표현식이 그대로 출력된다는 것이다. 해당 조건 앞에 NOT 연산자 두개(`!!`)를 붙여서 확실히 false값으로 만들어주면 falsy한 표현식이 그대로 출력되는 것을 방지할 수 있다.
 
 ```jsx
 render() {
