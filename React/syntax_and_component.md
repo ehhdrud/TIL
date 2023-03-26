@@ -142,3 +142,142 @@ render() {
 ```
 
 이처럼 논리 연산자를 통해 삼항 연산자를 대체할 수도 있다.
+
+## 2. 컴포넌트
+
+컴포넌트를 통해 UI를 여러 조각으로 나누고, 각 조각을 개별적으로 살펴볼 수 있다.
+
+컴포넌트는 항상 대문자로 시작하도록 작성한다.
+
+다음은 'App.js'에서 'Header' 컴포넌트를 가져오는 예제이다.
+
+> 💬 `Header.js`
+>
+> ```js
+> import logo from "../logo.svg";
+>
+> export default function Header() {
+>   const name = "seodongkyeong";
+>   const count = 0;
+>
+>   return (
+>     <div>
+>       <header className="App-header">
+>         <img src={logo} className="App-logo" alt="logo" />
+>         <p>
+>           Edit <code>src/App.js</code> and save to reload.
+>         </p>
+>         <a
+>           className="App-link"
+>           href="https://reactjs.org"
+>           target="_blank"
+>           rel="noopener noreferrer"
+>         >
+>           {(name === "dongkyeong" && `Hello, ${name}! Learn React`) ||
+>             `Welcome, ${name}! Learn React`}
+>           <div>{count && <h1>Messages: {count}</h1>}</div>
+>         </a>
+>       </header>
+>     </div>
+>   );
+> }
+> ```
+
+> 💬 `App.js`
+>
+> ```js
+> import "./App.css";
+> import Header from "./component/Header";
+>
+> export default function App() {
+>   return (
+>     <div className="App" tabIndex="0">
+>       <Header />
+>       <input type="checkbox" name="agreement" id="agreement-el"></input>
+>       <label htmlFor="agreement-el">동의</label>
+>     </div>
+>   );
+> }
+> ```
+
+### 2.1. 컴포넌트를 정의하는 방법
+
+#### 2.1.1. 함수 컴포넌트
+
+```js
+function Hello(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+```
+
+#### 2.2.2. 클래스 컴포넌트
+
+```js
+class Hello extends React.Componet {
+  render() {
+    return <h1>Hello, {this.props.name}!</h1>;
+  }
+}
+```
+
+### 2.2. `props`
+
+React 컴포넌트의 `props`는 컴포넌트 내부에서 사용되는 속성값들을 의미한다. 컴포넌트가 사용되는 곳에서 해당 컴포넌트에 대한 설정 정보를 전달하거나, 데이터를 전달하는 등의 역할을 한다.
+
+HTML 파일에서 React 컴포넌트에 props 값을 전달할 때, 중괄호({})를 사용하고, JS 파일에서 이를 읽어올 때는 해당 컴포넌트를 사용하는 부모 컴포넌트의 매개변수에 `props`를 전달해주어야 한다.
+
+아래의 'Header_props.js', 'App.js'를 통해 `props` 사용 방법을 확인할 수 있다.
+
+> 💬 `Header_props.js`
+>
+> ```js
+> import logo from "../logo.svg";
+>
+> const Header = (props) => {
+>   return (
+>     <div>
+>       <header className="App-header">
+>         <img src={logo} className="App-logo" alt="logo" />
+>         <p>
+>           Edit <code>src/App.js</code> and save to reload.
+>         </p>
+>         <a
+>           className="App-link"
+>           href="https://reactjs.org"
+>           target="_blank"
+>           rel="noopener noreferrer"
+>         >
+>           {props.title}
+>         </a>
+>       </header>
+>     </div>
+>   );
+> };
+>
+> export default Header;
+> ```
+
+> 💬 `App.js`
+>
+> ```js
+> import "./App.css";
+> import Header from "./component/Header_props";
+>
+> function App() {
+>   return (
+>     <div className="App" tabIndex="0">
+>       <Header title={"Learn React A"} />
+>       <Header title={"Learn React B"} />
+>       <Header title={"Learn React C"} />
+>     </div>
+>   );
+> }
+>
+> export default App;
+> ```
+
+#### 2.2.1. `props.children`
+
+`props.children`은 컴포넌트의 여는 태그와 닫는 태그 사이의 내용을 가르킨다.
+
+예를 들어 `<header> Learn React </header>`와 같은 요소가 있다면 'Learn React'가 Header의 `props.children`이다.
