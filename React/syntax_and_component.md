@@ -226,6 +226,8 @@ React 컴포넌트의 `props`는 컴포넌트 내부에서 사용되는 속성�
 
 HTML 파일에서 React 컴포넌트에 props 값을 전달할 때, 중괄호({})를 사용하고, JS 파일에서 이를 읽어올 때는 해당 컴포넌트를 사용하는 부모 컴포넌트의 매개변수에 `props`를 전달해주어야 한다.
 
+만약 `props`에 아무런 값도 넘기지 않는다면 `true` 값을 가진다.
+
 아래의 'Header_props.js', 'App.js'를 통해 `props` 사용 방법을 확인할 수 있다.
 
 > 💬 `Header_props.js`
@@ -269,6 +271,61 @@ HTML 파일에서 React 컴포넌트에 props 값을 전달할 때, 중괄호({}
 >       <Header title={"Learn React A"} />
 >       <Header title={"Learn React B"} />
 >       <Header title={"Learn React C"} />
+>     </div>
+>   );
+> }
+>
+> export default App;
+> ```
+
+한편 `props`가 아니라 props의 이름을 중괄호를 통해 넘겨주면, 매번 앞에 `props`를 입력하지 않아도 된다. 그렇다면 위 'Header_props.js' 파일은 다음과 같이 수정될 수 있다.
+
+> 💬 `Header_props.js`
+>
+> ```js
+> import logo from "../logo.svg";
+>
+> const Header = ({ title }) => {
+>   return (
+>     <div>
+>       <header className="App-header">
+>         <img src={logo} className="App-logo" alt="logo" />
+>         <p>
+>           Edit <code>src/App.js</code> and save to reload.
+>         </p>
+>         <a
+>           className="App-link"
+>           href="https://reactjs.org"
+>           target="_blank"
+>           rel="noopener noreferrer"
+>         >
+>           {title}
+>         </a>
+>       </header>
+>     </div>
+>   );
+> };
+>
+> export default Header;
+> ```
+
+'App.js'에서 `props`를 정의할 때, 다음과 같이 객체와 전개연산자를 활용할 수 있다.
+
+> 💬 `App.js`
+>
+> ```js
+> import "./App.css";
+> import Header from "./component/Header_props";
+>
+> function App() {
+>   const info = {
+>     firstName: "Dongkyeong",
+>     LastName: "Seo",
+>   };
+>
+>   return (
+>     <div className="App" tabIndex="0">
+>       <Header {...info} />
 >     </div>
 >   );
 > }
