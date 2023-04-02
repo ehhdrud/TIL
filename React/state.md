@@ -1,10 +1,10 @@
-# State(상태)
+# state(상태)
 
-리액트의 State를 이해하려면, 우선 리액트의 작동 방식을 알아볼 필요가 있다. 리액트는 자바스크립트의 라이브러리로, 자바스크립트 코드를 사용하지만, 일반적인 자바스크립트와는 다른 작동 방식을 갖는다. 자바스크립트는 웹페이지가 로드될 때 한번 실행되고, 이벤트가 발생할 때마다 자바스크립트 코드를 실행한다. 하지만 리액트는 '상태를 변경'하면 가상 DOM(Virtual DOM)을 생성하여, 이전의 가상 DOM과 생성된 새로운 가상 DOM을 비교하여 변경된 부분만 업데이트한다. 따라서 실제 DOM 조작을 최소화하기 때문에 성능 향상에 도움이 된다.
+리액트의 state를 이해하려면, 우선 리액트의 작동 방식을 알아볼 필요가 있다. 리액트는 자바스크립트의 라이브러리로, 자바스크립트 코드를 사용하지만, 일반적인 자바스크립트와는 다른 작동 방식을 갖는다. 자바스크립트는 웹페이지가 로드될 때 한번 실행되고, 이벤트가 발생할 때마다 자바스크립트 코드를 실행한다. 하지만 리액트는 '상태를 변경'하면 가상 DOM(Virtual DOM)을 생성하여, 이전의 가상 DOM과 생성된 새로운 가상 DOM을 비교하여 변경된 부분만 업데이트한다. 따라서 실제 DOM 조작을 최소화하기 때문에 성능 향상에 도움이 된다.
 
-State는 컴포넌트 내부에서 관리되는 데이터를 의미한다. State는 컴포넌트가 렌더링될 때, 그리고 사용자와의 상호작용으로 인해 변경될 때 사용된다. 그러므로 리액트에서 브라우저에 어떤 변화를 주기 위해선 State를 조작해야 한다.
+state는 컴포넌트 내부에서 관리되는 데이터를 의미한다. state는 컴포넌트가 렌더링될 때, 그리고 사용자와의 상호작용으로 인해 변경될 때 사용된다. 그러므로 리액트에서 브라우저에 어떤 변화를 주기 위해선 state를 조작해야 한다.
 
-만약 State를 조작하는 것이 아닌, 이벤트를 발생시켜 화면에 변화를 주는 코드를 실행한다면 어떻게 동작할까?
+만약 state를 조작하는 것이 아닌, 이벤트를 발생시켜 화면에 변화를 주는 코드를 실행한다면 어떻게 동작할까?
 
 > 💬 `Counter.js`
 >
@@ -40,9 +40,9 @@ State는 컴포넌트 내부에서 관리되는 데이터를 의미한다. State
 > export default App;
 > ```
 
-예상한대로 버튼을 클릭하더라도 의도한 대로 'count'가 증가하지 않는다. 왜냐하면 리액트에서는 이벤트가 발생한다고해서 코드가 실행되지 않기 때문에 처음에 렌더링됐던 0이 계속 남아있게 된다. 그러므로 State를 조작하여 데이터를 관리해야 한다.
+예상한대로 버튼을 클릭하더라도 의도한 대로 'count'가 증가하지 않는다. 왜냐하면 리액트에서는 이벤트가 발생한다고해서 코드가 실행되지 않기 때문에 처음에 렌더링됐던 0이 계속 남아있게 된다. 그러므로 state를 조작하여 데이터를 관리해야 한다.
 
-State는 클래스 컴포넌트와 함수형 컴포넌트에서 모두 사용될 수 있다. 클래스 컴포넌트에서는 State를 클래스 내부에서 선언하고, 함수형 컴포넌트에서는 Hook 함수 중 하나인 `useState`를 사용한다.
+state는 클래스 컴포넌트와 함수형 컴포넌트에서 모두 사용될 수 있다. 클래스 컴포넌트에서는 state를 클래스 내부에서 선언하고, 함수형 컴포넌트에서는 Hook 함수 중 하나인 `useState`를 사용한다.
 
 ## 1. `useState`
 
@@ -53,9 +53,9 @@ useState는 React 훅(Hook) 중 하나로, 함수 컴포넌트에서 상태를 �
 import React, { useState } from "react";
 ```
 
-`useState`는 배열을 반환한다. 일반적으로 `const [state, setState] = useState(initialState)` 형태로 표현한다. 첫 번째 요소는 '현재의 상태값'이고, 두 번째 요소는 '상태를 변경할 때 쓰는 함수'로 리렌더링을 발생시킨다. 매개변수인 'initialState'에는 상태의 초기값을 할당해준다.
+`useState`는 배열을 반환한다. 일반적으로 `const [state, setState] = useState(initialstate)` 형태로 표현한다. 첫 번째 요소는 '현재의 상태값'이고, 두 번째 요소는 '상태를 변경할 때 쓰는 함수'로 리렌더링을 발생시킨다. `state`에 직접 접근해서 속성을 수정해서는 안되고, `setState`를 이용하여 조작해야 한다. 매개변수인 'initialstate'에는 상태의 초기값을 할당해준다.
 
-아래는 State를 사용해 'Counter.js'를 수정한 코드이다.
+아래는 state를 사용해 'Counter.js'를 수정한 코드이다.
 
 ```js
 import React, { useState } from "react";
@@ -74,11 +74,11 @@ export default function Counter() {
 
 이제는 버튼을 클릭하면 'count'가 증가한다. 이를 통해 React의 상태 관리는 `useState`를 활용해야 한다는 것을 확인할 수 있다.
 
-## 2. State 불변성
+## 2. state 불변성
 
 불변성이란 '메모리 영역의 값을 직접적으로 변경하지 않는다'는 의미를 지닌다.
 
-리액트가 리렌더링될 때 이전 State와 이후 State를 비교한다. 이때 메모리 영역의 값을 직접 변경하면, 즉, 불변성을 지키지 않으면 리액트는 State가 바뀌었다고 인지하지 못한다. 왜냐하면 리액트는 자바스크립트와 마찬가지로 '얕은 비교'가 기본이기 때문이다. 즉 리액트에서 변화를 인식하려면 메모리 영역의 값을 직접 변경하는 방식이 아닌, 메모리 영역 자체를 바꿔야 한다.
+리액트가 리렌더링될 때 이전 state와 이후 state를 비교한다. 이때 메모리 영역의 값을 직접 변경하면, 즉, 불변성을 지키지 않으면 리액트는 state가 바뀌었다고 인지하지 못한다. 왜냐하면 리액트는 자바스크립트와 마찬가지로 '얕은 비교'가 기본이기 때문이다. 즉 리액트에서 변화를 인식하려면 메모리 영역의 값을 직접 변경하는 방식이 아닌, 메모리 영역 자체를 바꿔야 한다.
 
 > **📌 얕은 비교(Shallow Compare)란?**
 >
@@ -249,10 +249,84 @@ export default function Counter() {
 
 만약 변경하고자 하는 데이터가 배열이라면, `setState([...state, newItem])`를 사용하여 불변성을 가지게 할 수 있다.
 
-## props와 state 비교
+## 3. props와 state 비교
 
 props는 부모 컴포넌트가 자식 컴포넌트에게 전달하는 값으로, 값을 자신(자식 컴포넌트)이 변경할 수 없다.
 
 state는 자신(컴포넌트)가 스스로 관리하는 값으로, 값을 자신이 변경할 수 있다.
 
 props를 통해 값을 내려 받거나 state에 변경이 발생하면 컴포넌트 렌더링이 발생한다는 공통점이 있다.
+
+## 4. 비동기로 이루어지는 setState
+
+React는 성능을 위해 여러 `setState()` 호출을 단일 업데이트로 한꺼번에 처리할 수 있다. 즉 `setState()` 호출은 비동기적으로 이뤄진다.
+
+다음 코드를 살펴보자.
+
+```js
+import React, { useState } from "react";
+
+export default function App() {
+  const [number, setNumber] = useState(1);
+
+  const add = () => setNumber(number + 1);
+  const subtract = () => setNumber(number - 1);
+  const multiplyBy2 = () => setNumber(number * 2);
+  const multiplyBy2AndAddBy1 = () => {
+    multiplyBy2();
+    add();
+  };
+
+  return (
+    <div>
+      <h1>Number : {number}</h1>
+      <div>
+        <button onClick={add}>+ 1</button>
+        <button onClick={subtract}>- 1</button>
+        <button onClick={multiplyBy2}>*2</button>
+        <button onClick={multiplyBy2AndAddBy1}>*2 + 1</button>
+      </div>
+    </div>
+  );
+}
+```
+
+위 코드에서 '\*2 + 1' 버튼을 눌러도 `multiplyBy2()`, `add()` 모두 실행되는 것이 아니라, `add()`만 실행되는 것을 확인할 수 있다. 이러한 오류는 state의 업데이트가 동기적으로 실행되는 것이 아니라 여러 업데이트가 예약되어 나중에 일괄적으로 처리되기 때문에 발생한다. 즉 마지막으로 호출된 `add()` 함수에서 사용되는 'number' 변수는 `multiplyBy2()`의 결과값이 아니라 multiplyBy2()에서도 사용되었던 'number'의 값이다. 만약 초기값이 '5'라면, 결과적으로 `multiplyBy2AndAddBy1()` 함수는 { 5, 10, 6 } 이라는 3개의 Number를 가지게 되고 마지막 결과값인 6이라는 결과로 덮어씌워져 출력되는 것이다.
+
+이러한 문제는 setState의 인자를 넘겨줄 때 콜백 함수를 넘겨주면 해결된다. 콜백 함수를 전달하면, setState 함수는 이전 값을 매개변수로 받아서, 이전 값에 대해 즉시 새로운 값을 계산한다. 아래 코드는 setState에 대한 수정이다.
+
+```js
+import React, { useState } from "react";
+
+export default function App() {
+  const [number, setNumber] = useState(1);
+
+  const add = () => setNumber((number) => number + 1);
+  const subtract = () => setNumber((number) => number - 1);
+  const multiplyBy2 = () => setNumber((number) => number * 2);
+  const multiplyBy2AndAddBy1 = () => {
+    multiplyBy2();
+    add();
+  };
+
+  return (
+    <div>
+      <h1>Number : {number}</h1>
+      <div>
+        <button onClick={add}>+ 1</button>
+        <button onClick={subtract}>- 1</button>
+        <button onClick={multiplyBy2}>*2</button>
+        <button onClick={multiplyBy2AndAddBy1}>*2 + 1</button>
+      </div>
+    </div>
+  );
+}
+```
+
+이렇게 setState의 인자로 콜백 함수가 들어간 코드를 실행하면 정상적으로 `multiplyBy2AndAddBy1()` 함수가 실행되는 것을 확인할 수 있다.
+
+## 5. 단방향 데이트 흐름
+
+컴포넌트는 자신의 state를 자식 컴포넌트에 props로 전달할 수 있다. 이를 '하향식' 또는 '단방향식' 데이터 흐름이라고 한다. 모든 state는 항상 특정한 컴포넌트가 소유하고 있으며 그 state로 부터 파생된 UI 또는 데이터는 오직 트리구조에서 자신의 아래에 있는 컴포넌트에만 영향을 미친다.
+
+## 6. state 끌어올리기
