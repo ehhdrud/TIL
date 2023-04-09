@@ -46,7 +46,7 @@ state는 클래스 컴포넌트와 함수형 컴포넌트에서 모두 사용될
 
 ## 1. `useState`
 
-useState는 React 훅(Hook) 중 하나로, 함수 컴포넌트에서 상태를 관리하는 데 사용된다. 해당 훅을 사용하려면 다음과 같이 React 모듈에서 `useState` 함수를 가져와야 한다.
+useState는 React Hook 중 하나로, 함수 컴포넌트에서 상태를 관리하는 데 사용된다. 해당 훅을 사용하려면 다음과 같이 React 모듈에서 `useState` 함수를 가져와야 한다.
 
 ```js
 //`useState`와 같이 React 모듈에서 내보낸 기능은 default export가 아닌, named exports이므로 중괄호를 사용하여 가져와야 한다.
