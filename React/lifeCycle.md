@@ -60,7 +60,7 @@ export default class Clock extends React.Component {
 }
 ```
 
-## 함수형 컴포넌트에서 생명주기
+## 2. 함수형 컴포넌트에서 생명주기
 
 함수형 컴포넌트에서는 `useEffect`라는 Hook을 사용하여 클래스형 컴포넌트의 여러 생명주기 메서드를 대체할 수 있다.
 
@@ -70,7 +70,7 @@ export default class Clock extends React.Component {
 
 의존성 배열과 함께 사용한 `useEffect`는 '빈 의존성 배열을 사용했을 경우'에는 클래스형 컴포넌트의 `componentDidMount`처럼 동작하는데, 의존성 배열에 '특정값을 넣어준 경우' 입력한 특정값이 변경되었을 때만 `componentDidUpdate`처럼 동작하게 된다.
 
-한편, `useEffect`에 첫 번째 인자인 함수에서 함수를 리턴하면 `componentWillUnmount`처럼 동작하게 된다.
+한편, `useEffect`에 첫 번째 인자인 함수에서 함수를 리턴하면 `componentWillUnmount`처럼 동작하여 정리(clean-up) 기능을 수행하게 된다. 이는 의존성 배열처럼 필요에 따라 생략 가능하다.
 
 다음은 위 클래스형 컴포넌트 예제를 함수형 컴포넌트로 수정한 예제이다.
 
@@ -107,6 +107,33 @@ export default function FunctionClock() {
     <div>
       <h1>Hello, world!</h1>
       <h2>It is {date.toLocaleTimeString()}.</h2>
+    </div>
+  );
+}
+```
+
+React에서는 컴포넌트에서 리턴하는 JSX 요소를 바탕으로 Virtual DOM이 생성된다. 컴포넌트가 처음으로 렌더링되기 전에는 실제 DOM이 존재하지 않기 때문에 DOM에 대한 접근을 할 수 없고, 비동기 요청을 처리할 수도 없다. 즉 이러한 동작을 구현하려면 컴포넌트가 렌더링된 상태를 보장해야 하기 때문에 `useEffect`를 사용할 수 있다.
+
+다음은 `useEffect`를 통해 DOM에 접근하는 예제이다.
+
+```js
+import { useState, useEffect } from "react";
+
+export default function Example() {
+  const [text, setText] = useState("initial");
+
+  useEffect(() => {
+    // DOM에 대한 접근은 실제 DOM이 생성된 후에 진행되도록 useEffect 내부에 작성한다.
+    const heading = document.querySelector("#my-heading");
+    if (heading) {
+      heading.innerText = "DOM updated!";
+    }
+  }, []);
+
+  return (
+    <div>
+      <h1 id="my-heading">{text}</h1>
+      <button onClick={() => setText("updated")}>Update button</button>
     </div>
   );
 }
