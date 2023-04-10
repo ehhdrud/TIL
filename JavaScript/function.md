@@ -10,11 +10,11 @@
 
 선언과 동시에 함수가 생성된다. 이로 인해 함수 호이스팅이 일어나 선언 전(선언부 윗단)에도 함수를 사용할 수 있다. 그래서 함수 표현식이 권장된다.
 
-`function func (arg1,arg2,…,argN){expression;}`
+`function func (arg1,arg2,…,argN){expression};`
 
 ### 1.2. 함수 표현식
 
-`const func = function (arg1,arg2,…,argN){expression;}`
+`const func = function (arg1,arg2,…,argN){expression};`
 
 ### 1.3. 화살표 함수
 

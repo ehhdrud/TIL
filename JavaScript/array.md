@@ -147,7 +147,9 @@ console.log(fruits); //[ 'watermelon', 'orange', 'melon' ]
 console.log(ret); //3
 ```
 
-#### 3.3.2. 특정 위치 배열 삭제,추가: `Array.splice(index,deleteCount,elem1,…,elemN)`
+#### 3.3.2. `Array.splice(index,deleteCount,elem1,…,elemN)`
+
+특정 위치 배열을 삭제 혹은 삭제와 추가를 동시에 하는 메서드이다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -162,7 +164,9 @@ console.log(fruits.splice(1, 1, "mango", "kiwi")); //[ 'melon' ] //index:1부터
 console.log(fruits); //[ 'apple', 'mango', 'kiwi', 'strawberry' ]
 ```
 
-#### 3.3.3 배열 사이즈가 그대로인 배열 요소 삭제: `delete array[index]`
+#### 3.3.3 `delete array[index]`
+
+배열 사이즈가 그대로인 배열 요소를 삭제하는 메서드이다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -174,7 +178,9 @@ console.log(fruits.length); //3
 
 ### 3.4. 원본 데이터에 영향이 없는 배열 조작
 
-#### 3.4.1 특정 위치 배열 삭제: `Array.slice(start,end)`
+#### 3.4.1 `Array.slice(start,end)`
+
+특정 위치 배열을 삭제하는 메서드이다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -186,7 +192,9 @@ console.log(fruits.slice(1, 2)); //[ 'orange' ] //index:1만 반환한다.
 console.log(fruits.slice(-2)); //[ 'orange', 'melon' ] //뒤에서 2번째부터 반환한다.
 ```
 
-#### 3.4.2. 배열 병합: `Array.concat(arg1, arg2…)`
+#### 3.4.2. `Array.concat(arg1, arg2…)`
+
+배열을 병합하는 메서드이다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -208,9 +216,9 @@ console.log(["grape"].concat(fruits)); //[ 'grape', 'apple', 'orange', 'melon' ]
 
 ### 3.5. 배열 탐색
 
-- `Array.indexOf(item, from)`: 앞에서 해당 item의 index를 탐색한다.
-- `Array.lastIndexOf(item, from)`: 뒤에서 해당 item의 index를 탐색한다.
-- `Array.includes(item, from)`: 값 포함 여부를 확인한다.
+- `Array.indexOf(item, from)`: 앞에서 해당 item의 index를 탐색하는 메서드이다.
+- `Array.lastIndexOf(item, from)`: 뒤에서 해당 item의 index를 탐색하는 메서드이다.
+- `Array.includes(item, from)`: 값 포함 여부를 확인하는 메서드이다.
 
 ```javascript
 let fruits = ["apple", "orange", "banana", "orange", "melon"];
@@ -229,9 +237,9 @@ console.log(fruits.includes(0)); //false
 
 ### 3.6. 배열 변형
 
-- `Array.sort()`: 배열을 정렬한다.
-- `Array.reverse()`: 배열을 반전시킨다.
-- `Array.join("separator")`: 배열을 문자열로 변환한다.
+- `Array.sort()`: 배열을 임의로 정렬시키는 메서드이다.
+- `Array.reverse()`: 배열을 반전시키는 메서드이다.
+- `Array.join("separator")`: 배열을 문자열로 변환하는 메서드이다.
 
 ```javascript
 let nums = [1, -1, 4, 5, 2, 0];
@@ -252,7 +260,9 @@ console.log(str_separator); //orange;melon;banana;apple
 
 하나 이상의 함수를 매개 변수로 취하거나 또는 함수를 결과로 반환하는 함수(매개 변수로 전달되는 함수는 콜백함수)를 고차함수라고 한다.
 
-### 4.1. 임의 정렬: `Array.sort(function)`
+### 4.1. `Array.sort(function)`
+
+배열을 임의로 정렬시키는 메서드이다.
 
 #### 4.1.1 **기존 정렬의 문제점**
 
@@ -374,9 +384,9 @@ console.log(fruits.sort(decending_order)); //[ 'Orange', 'orange', 'melon', 'app
 > console.log(sortArr); //[ 'a', 'b', 'c', 'd', 'e' ]
 > ```
 
-### 4.2. 반복 작업: `Array.forEach(function(item, index, array){});`
+### 4.2. `Array.forEach(function(item, index, array){});`
 
-배열에 포함되는 요소를 차례대로 꺼내 콜백 함수에 전달한다.
+배열에 포함되는 요소를 차례대로 꺼내 콜백 함수에 전달하여 반복 작업을 수행하는 메서드이다.
 
 ```javascript
 let nums = [0, 1, 2];
@@ -386,7 +396,9 @@ nums.forEach(function (i) {
 });
 ```
 
-### 4.3. 콜백함수 결과를 배열로 반환: `Array.map(function(item, index, array){});`
+### 4.3. `Array.map(function(item, index, array){});`
+
+콜백함수 결과를 배열로 반환하는 메서드이다.
 
 ```javascript
 let nums = [1, 2, 3, 4, 5];
@@ -399,7 +411,9 @@ console.log(useMap); //[ 2, 4, 6, 8, 10 ]
 
 ### 4.4. 조건을 만족하는 값을 반환
 
-#### 4.4.1. 조건을 만족하는 하나의 값을 반환: `Array.find(function(item, index, array){},accumulator_initial);`
+#### 4.4.1. `Array.find(function(item, index, array){},accumulatorInitial);`
+
+조건을 만족하는 단 하나의 첫 번째 값을 반환하는 메서드이다.
 
 ```javascript
 let users = [
@@ -419,7 +433,9 @@ let find_age = users.find(function (user) {
 console.log(find_age); //{ name: 'dong', age: 26, job: false }
 ```
 
-#### 4.4.2. 조건을 만족하는 하나의 값의 위치를 반환: `Array.findIndex(function(item){})`
+#### 4.4.2. `Array.findIndex(function(item){})`
+
+조건을 만족하는 단 하나의 첫 번째 값의 위치를 반환하는 메서드이다.
 
 ```javascript
 let members = ["엄마", "아빠", "누나", "동경"];
@@ -430,7 +446,9 @@ let result = members.findIndex(function (member) {
 console.log(result); //3
 ```
 
-#### 4.4.3. 모든 값을 배열로 변환: `Array.filter(function(item){});`
+#### 4.4.3. `Array.filter(function(item){});`
+
+배열의 요소를 필터링하여 새로운 배열을 반환하는 메서드이다. 콜백 함수를 사용하여 각 요소를 평가하고, 콜백 함수가 true를 반환하는 요소만으로 이루어진 새로운 배열을 반환한다.
 
 ```javascript
 let users = [
@@ -450,11 +468,11 @@ let find_age = users.filter(function (user) {
 console.log(find_age); //[ { name: 'dong', age: 26, job: false }, { name: 'seo', age: 29, job: true } ]
 ```
 
-### 4.5. 누적 결과값 변환: `Array.reduce(function(accumulator, item, index, array){},accumulator_initial);`
+### 4.5. `Array.reduce(function(accumulator, item, index, array){},accumulatorInitial);`
 
 요소 별 함수 수행 후 누적된 결과값을 반환한다.
 
-초기값 입력이 없다면 1부터 시작한다.
+`accumulatorInitial`를 생략한다면, 배열의 첫 번째 요소가 `accumulator`의 초기값이 된다.
 
 ```javascript
 let nums = [1, 2, 3, 4, 5];
