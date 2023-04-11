@@ -42,7 +42,7 @@ function App() {
 
 JSX가 DOM 요소를 리턴할 때 기본적으로 요소들이 가지고 있던 표준 속성들을 모두 사용할 수 있다.
 
-JSX는 HTML 보다는 JS에 가깝기 때문에, React DOM은 HTML 어트리뷰트 이름 대신 카멜 표기법에 따른 프로퍼티 명명 규칙을 따른다. 예를 들어 'tabindex'는 'tabIndex'가 된다. 'class', 'for' 등은 이미 자바스크립트의 예약어이기 때문에, 각각 'className', 'htmlFor'로 사용한다.
+JSX는 HTML 보다는 JS에 가깝기 때문에, React DOM은 HTML 어트리뷰트 이름 대신 카멜 표기법에 따른 프로퍼티 명명 규칙을 따른다. 예를 들어 'onclick'은 'onClick'이, 'tabindex'는 'tabIndex'가 된다. 'class', 'for' 등은 이미 자바스크립트의 예약어이기 때문에, 각각 'className', 'htmlFor'로 사용한다.
 
 ```js
 function App() {
