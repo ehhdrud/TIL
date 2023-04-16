@@ -1,6 +1,38 @@
-# 리액트에서의 `<form>` 요소
+# 리액트의 `<form>` 요소
 
-`<input>`, `<label>`, `<textarea>`, `<select>` 등의 HTML 폼 엘리먼트들은 자체적으로 상태를 관리한다. 예를 들어, `<input>` 요소의 경우에는 사용자가 입력한 값을 내부적으로 유지하고, 이 값을 폼 전송 시에 서버로 전송한다. 리액트에서 이를 관리하려면 '제어 컴포넌트(Controlled Component)' 기술을 사용해야 한다. 제어 컴포넌트를 사용하면, 폼 엘리먼트의 값을 React 컴포넌트의 state로 저장하고, 이를 업데이트하는 방식으로 값을 관리할 수 있다.
+`<input>`, `<label>`, `<textarea>`, `<select>` 등의 HTML 폼 엘리먼트들은 자체적으로 상태를 관리한다. 예를 들어, `<input>` 요소의 경우에는 사용자가 입력한 값을 내부적으로 유지하고, 이 값을 폼 전송 시에 서버로 전송한다.
+
+> **📌 리액트에서의 `<teaxarea>`**
+>
+> 리액트에서 `<textarea>` 요소는 자식으로 텍스트를 포함시키는 것이 아니라, value 속성을 사용하여 텍스트를 설정한다.
+>
+> ```js
+> // <textarea>hello world</textarea>
+> <textarea value="hello world" />
+> ```
+
+> **📌 리액트에서의 `<select>`**
+>
+> 리액트에서는 제어 컴포넌트를 위하여 selected 속성보다 value 속성을 사용하여 select 요소의 선택된 값을 설정하는 것이 권장된다.
+>
+> ```js
+> /*
+> <select>
+>   <option value="apple">사과</option>
+>   <option value="banana">바나나</option>
+>   <option selected value="orange">오렌지</option>
+> </select>
+> */
+> <select value="orange">
+>   <option value="apple">사과</option>
+>   <option value="banana">바나나</option>
+>   <option value="orange">오렌지</option>
+> </select>
+> ```
+
+## 1. 제어 컴포넌트(Controlled Component)
+
+리액트에서 폼 앨리먼트의 값을 관리하려면 '제어 컴포넌트(Controlled Component)' 기술을 사용해야 한다. 제어 컴포넌트를 사용하면, 폼 엘리먼트의 값(value)을 React 컴포넌트의 state로 저장하고, 이를 업데이트하여 조작하는 방식으로 값을 관리할 수 있다.
 
 아래는 제어 컴포넌트 기술을 이용하여 폼 엘리먼트의 값을 관리하는 예제이다.
 
@@ -73,4 +105,142 @@ export default class NameForm extends React.Component {
     );
   }
 }
+```
+
+아래는 제어 컴포넌트를 이용해 여러개의 입력을 제어하는 예제이다.
+
+```js
+import React, { useState } from "react";
+
+export default function Lonin() {
+  // const [id, setId] = useState("");
+  // const [password, setPassword] = useState("");
+  const [input, setInput] = useState({
+    id: "",
+    password: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { id, password } = input;
+    alert(`아이디: ${id}, 패스워드: ${password}`);
+  };
+
+  const handleChange = (e) => {
+    // if (e.target.name === "id") return setId(e.target.value);
+    // setpassword(e.target.value);
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>아이디 : </label>
+      <input
+        type="text"
+        name="id"
+        onChange={handleChange}
+        // value={id}
+        value={input.id}
+      />
+      <label>패스워드 : </label>
+      <input
+        type="text"
+        name="password"
+        onChange={handleChange}
+        // value={password}
+        value={input.password}
+      />
+      <input type="submit" value="확인" />
+    </form>
+  );
+}
+```
+
+## 2. 비제어 컴포넌트(Uncontrolled Component)
+
+리액트에서 폼 구현시 제어 컴포넌트를 사용하는 것이 좋지만, 모든 이벤트 핸들러를 등록하고, 모든 입력을 연결해야하기 때문에 다소 번거롭게 느껴질 수도 있다. 이럴 때 대안으로 고려할 수 있는 기술이 '비제어 컴포넌트(Uncontrolled Component)'이다.
+
+제어 컴포넌트는 폼 데이터를 리액트 컴포넌트에서 다루지만, 비제어 컴포넌트는 DOM 자체에서 폼 데이터가 다루어진다. 예를 들어, `<input>` 요소의 value 속성은 상태로 관리하는 것이 아니라 DOM에서 직접 값을 가져와 처리하도록 한다. DOM 요소에 직접적으로 접근하기 위해서는 `ref`를 사용한다.
+
+함수형 컴포넌트에서는 `useRef`, 클래스형 컴포넌트에서는 `createRef`를 사용하여 비제어 컴포넌트를 구현한다. `useRef`는 함수형 컴포넌트에서 사용할 수 있으며, `useRef()` 메서드를 사용하여 ref 객체를 생성한다. 생성한 ref 객체는 `ref.current` 형태로 사용할 수 있다. `createRef`는 클래스형 컴포넌트에서 사용할 수 있으며, `React.createRef()` 메서드를 사용하여 ref 객체를 생성한다. 생성한 ref 객체는 `this.refName` 형태로 사용할 수 있다.
+
+ref 속성은 React 속성으로, 다른 속성과 마찬가지로 컴포넌트에 전달된다. ref 속성을 사용하여 React 엘리먼트 또는 컴포넌트의 인스턴스에 접근할 수 있다.
+
+아래는 함수형 컴포넌트에서 `useRef`를 사용하여 비제어 컴포넌트를 구현한 예제이다.
+
+```js
+import React, { useRef } from "react";
+
+export default function UncontrolledForm() {
+  // useRef() 훅을 사용하여 ref 객체 생성
+  const inputRef = useRef();
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
+  console.log(inputRef);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    // inputRef.current를 사용하여 <input> 요소의 값에 접근
+    alert(inputRef.current.value);
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>닉네임 : </label>
+      {/* inputRef를 <input> 요소의 ref 속성으로 전달하여 ref 생성 */}
+      <input
+        type="text"
+        name="nickname"
+        onChange={handleChange}
+        ref={inputRef}
+      />
+      <input type="submit" value="제출" />
+    </form>
+  );
+}
+```
+
+아래는 클래스형 컴포넌트에서 `createRef`를 사용하여 비제어 컴포넌트를 구현한 예제이다.
+
+```js
+import React, { Component } from "react";
+
+class UncontrolledForm extends Component {
+  constructor(props) {
+    super(props);
+    // React.createRef() 메소드를 사용하여 ref 객체 생성
+    this.inputRef = React.createRef();
+  }
+
+  handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    // this.inputRef.current를 사용하여 <input> 요소의 값에 접근
+    alert(this.inputRef.current.value);
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>닉네임 : </label>
+        {/* this.inputRef를 <input> 요소의 ref 속성으로 전달하여 ref 생성 */}
+        <input
+          type="text"
+          name="nickname"
+          onChange={this.handleChange}
+          ref={this.inputRef}
+        />
+        <input type="submit" value="제출" />
+      </form>
+    );
+  }
+}
+
+export default UncontrolledForm;
 ```
