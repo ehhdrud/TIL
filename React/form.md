@@ -172,29 +172,30 @@ ref 속성은 React 속성으로, 다른 속성과 마찬가지로 컴포넌트�
 import React, { useRef } from "react";
 
 export default function UncontrolledForm() {
-  // useRef() 훅을 사용하여 ref 객체 생성
+  // useRef() 훅을 사용하여 ref 객체를 생성한다.
   const inputRef = useRef();
 
   const handleChange = (e) => {
     console.log(e.target.value);
   };
 
-  console.log(inputRef);
-
   function handleSubmit(e) {
     e.preventDefault();
-    // inputRef.current를 사용하여 <input> 요소의 값에 접근
+    // inputRef.current를 사용하여 <input> 요소의 값에 접근한다.
     alert(inputRef.current.value);
+    // ref.current.focus()는 React에서 사용되는 함수 중 하나로, 해당 ref가 가리키는 DOM 노드(element)에 포커스를 설정하는 역할을 한다.
+    inputRef.current.focus();
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>닉네임 : </label>
-      {/* inputRef를 <input> 요소의 ref 속성으로 전달하여 ref 생성 */}
       <input
         type="text"
         name="nickname"
         onChange={handleChange}
+        // inputRef를 <input> 요소의 ref 속성으로 전달한다.
+        // 함수 컴포넌트에서 ref 속성을 사용할 수는 없지만, 함수 컴포넌트 내부에서 DOM 요소나 클래스형 컴포넌트에 인스턴스에 접근하기 위해 ref 속성을 사용하는 것은 가능 !
         ref={inputRef}
       />
       <input type="submit" value="제출" />
@@ -211,7 +212,7 @@ import React, { Component } from "react";
 class UncontrolledForm extends Component {
   constructor(props) {
     super(props);
-    // React.createRef() 메소드를 사용하여 ref 객체 생성
+    // React.createRef() 메소드를 사용하여 ref 객체를 생성한다.
     this.inputRef = React.createRef();
   }
 
@@ -221,7 +222,7 @@ class UncontrolledForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // this.inputRef.current를 사용하여 <input> 요소의 값에 접근
+    // this.inputRef.current를 사용하여 <input> 요소의 값에 접근한다.
     alert(this.inputRef.current.value);
   };
 
@@ -229,11 +230,11 @@ class UncontrolledForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>닉네임 : </label>
-        {/* this.inputRef를 <input> 요소의 ref 속성으로 전달하여 ref 생성 */}
         <input
           type="text"
           name="nickname"
           onChange={this.handleChange}
+          // inputRef를 <input> 요소의 ref 속성으로 전달한다.
           ref={this.inputRef}
         />
         <input type="submit" value="제출" />
@@ -244,3 +245,33 @@ class UncontrolledForm extends Component {
 
 export default UncontrolledForm;
 ```
+
+## 3. ref 속성
+
+ref 속성을 React 컴포넌트에서 사용할 때는 함수형 컴포넌트와 클래스형 컴포넌트에서 다르게 사용된다.
+
+ref 속성은 React 컴포넌트가 마운트되면 해당 컴포넌트의 인스턴스를 가리키는 객체를 반환한다. 이 인스턴스는 클래스형 컴포넌트에서 생성되며, 클래스형 컴포넌트에서만 ref 속성를 사용할 수 있다. 그러나, 함수 컴포넌트에서는 인스턴스 개념이 존재하지 않기 때문에, 함수 컴포넌트에는 ref 속성을 사용할 수 없다. (함수 컴포넌트 내부에서 DOM 요소나 클래스형 컴포넌트에 인스턴스에 접근하기 위해 사용하는 것은 가능!)
+
+```js
+class AutoFocusTextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.textInput = React.createRef();
+  }
+
+  componentDidMount() {
+    // 자식 컴포넌트의 메서드를 부모에서 실행시킬 수 있다 !
+    this.textInput.current.focusTextInput();
+  }
+
+  render() {
+    return (
+      // CustomTextInput 컴포넌트가 클래스형 컴포넌트일 경우 ref 속성을 사용할 수 있다.
+      // 만약 CustomTextInput 컴포넌트가 함수형 컴포넌트라면 동작하지 않는다.
+      <CustomTextInput ref={this.textInput} />
+    );
+  }
+}
+```
+
+### 3.1. forwardRef
