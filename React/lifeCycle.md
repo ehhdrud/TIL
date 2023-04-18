@@ -68,7 +68,7 @@ export default class Clock extends React.Component {
 
 의존성 배열 없이 사용한 `useEffect`는 `componentDidMount`와 `componentDidUpdate`를 합친 것처럼 동작한다. 즉 Mount, Update 시 모두 동작하므로, "렌더링"될 때의 동작을 정의할 수 있다.
 
-의존성 배열과 함께 사용한 `useEffect`는 '빈 의존성 배열을 사용했을 경우'에는 클래스형 컴포넌트의 `componentDidMount`처럼 동작하는데, 의존성 배열에 '특정값을 넣어준 경우' 입력한 특정값이 변경되었을 때만 `componentDidUpdate`처럼 동작하게 된다.
+의존성 배열과 함께 사용한 `useEffect`는 '빈 의존성 배열을 사용했을 경우'에는 클래스형 컴포넌트의 `componentDidMount`처럼 동작하고, '의존성 배열에 특정값을 넣어 사용했을 경우'에는 입력한 특정값이 변경되었을 때만 `componentDidUpdate`처럼 동작하게 된다.
 
 한편, `useEffect`에 첫 번째 인자인 함수에서 함수를 리턴하면 `componentWillUnmount`처럼 동작하여 정리(clean-up) 기능을 수행하게 된다. 이는 의존성 배열처럼 필요에 따라 생략 가능하다.
 

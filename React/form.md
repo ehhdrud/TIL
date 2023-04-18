@@ -274,4 +274,76 @@ class AutoFocusTextInput extends React.Component {
 }
 ```
 
-### 3.1. forwardRef
+### 3.1. `forwardRef()`
+
+`forwardRef()`을 이용하여 부모 컴포넌트가 자식 컴포넌트의 ref를 자신의 ref로서 외부에 노출시키게 함으로써 함수형 컴포넌트에서도 ref을 사용할 수 있다.
+
+아래는 `forwardRef()`을 사용하여 함수형 컴포넌트인 자식 컴포넌트에서 ref 속성을 사용하여 자식 컴포넌트에 접근하는 예제이다.
+
+> 📌 부모 컴포넌트 'ParentCat'
+>
+> ```js
+> import React, { useRef } from "react";
+> import Cat from "./Cat";
+>
+> export default function CatParent() {
+>   const catRef = useRef(); // useRef()를 사용하여 catRef를 생성한다.
+>
+>   console.log("부모 컴포넌트 CatParent");
+>   console.log(catRef); // current: undefined
+>
+>   return (
+>     <div>
+>       <h4> 고양이가 세상을 구한다 ️</h4>
+>       <div>
+>         // catRef를 Cat 컴포넌트의 ref 속성으로 전달한다.
+>         <Cat a="a" ref={catRef} />
+>         <button
+>           onClick={() => {
+>             alert(catRef.current.height);
+>           }}
+>         >
+>           고양이의 크기를 알고싶어
+>         </button>
+>       </div>
+>     </div>
+>   );
+> }
+> ```
+
+> 📌 자식 컴포넌트 'Cat'
+>
+> ```js
+> import React, { forwardRef, useEffect } from "react";
+>
+> // 자식 컴포넌트는 forwardRef()를 사용하여 ref를 받는다.
+> const Cat = forwardRef((props, ref) => {
+>   console.log("자식 컴포넌트 Cat");
+>   console.log(ref); // current: undefined
+>
+>   useEffect(() => {
+>     console.log("useEffect in Cat");
+>     console.log(ref); // current: img
+>   }, []);
+>
+>   return (
+>     <div>
+>       <img
+>         src="https://static01.nyt.com/images/2016/03/30/universal/ko/well_cat-korean/well_cat-superJumbo-v2.jpg?quality=90&auto=webp"
+>         alt="cat"
+>         style={{ width: "150px" }}
+>         // Cat 컴포넌트는 img 요소를 반환하고, ref 속성을 img 요소에 전달한다.
+>         ref={ref}
+>       ></img>
+>     </div>
+>   );
+> });
+>
+> export default Cat;
+> ```
+
+이렇게 ref 속성이 전달되면, CatParent 컴포넌트에서 'catRef.current'를 통해 Cat 컴포넌트에 대한 참조를 얻을 수 있다. 따라서 'catRef.current.height'와 같은 방법으로 Cat 컴포넌트의 img 요소의 높이를 얻을 수 있다.
+
+### 3.2. `useImperativeHandle()`
+
+한편 `forwardRef()`를 사용하여 자식 컴포넌트의 인스턴스를 부모 컴포넌트에 전달할 수 있는데, 자식 컴포넌트의 모든 메서드나 속성이 부모 컴포넌트에서 직접적으로 사용될 필요는 없다. 이때, `useImperativeHandle()`을 사용하면 부모 컴포넌트에서 사용할 메서드나 속성만 선택적으로 노출시킬 수 있다.
