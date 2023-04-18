@@ -347,3 +347,64 @@ class AutoFocusTextInput extends React.Component {
 ### 3.2. `useImperativeHandle()`
 
 한편 `forwardRef()`를 사용하여 자식 컴포넌트의 인스턴스를 부모 컴포넌트에 전달할 수 있는데, 자식 컴포넌트의 모든 메서드나 속성이 부모 컴포넌트에서 직접적으로 사용될 필요는 없다. 이때, `useImperativeHandle()`을 사용하면 부모 컴포넌트에서 사용할 메서드나 속성만 선택적으로 노출시킬 수 있다.
+
+### 3.3. 변경 가능한 ref 객체
+
+`useRef()`는 current 속성으로 전달된 인자(initialValue)로 초기화된 '변경 가능한 ref 객체'를 반환한다. 즉, `useRef()`는 current 속성에 변경 가능한 값을 담고 있는 "상자"와 같은 것이다. 그렇다면 `useRef()` 역시 `useState()`처럼 상태값을 관리하기 위한 용도로 사용할 수도 있다.
+
+`useRef()`는 내용이 변경될 때 그것을 알려주지는 않는다. current 속성을 변형하는 것이 리렌더링을 발생시키지는 않습니다. 이는 장점이 될 수도 있고, 단점이 될 수도 있다. 만약 리액트가 DOM 노드에 ref를 attach하거나 detach할 때 어떤 코드를 실행하고 싶다면 대신 '콜백 ref'를 사용한다.
+
+아래 예제는 useRef의 특성을 잘 보여주는 예제이다.
+
+```js
+import React, { useRef, useState } from "react";
+import Cat from "./Cat";
+
+export default function CatParent() {
+  const catRef = useRef();
+
+  console.log("부모 컴포넌트 CatParent");
+  console.log(catRef);
+
+  const ageRef = useRef(1);
+  const [state, setState] = useState(1);
+
+  console.log(ageRef.current);
+
+  return (
+    <div>
+      <h4> 고양이가 세상을 구한다 ️</h4>
+      <div>
+        <Cat a="a" ref={catRef} />
+        <h4>나이: {ageRef.current}</h4>
+        <h4>상태값: {state}</h4>
+        <button
+          onClick={() => {
+            alert(catRef.current.height);
+          }}
+        >
+          고양이의 크기를 알고싶어
+        </button>
+        <button
+          onClick={() => {
+            ageRef.current = ageRef.current + 1;
+          }}
+        >
+          새해
+        </button>
+        <button
+          onClick={() => {
+            setState(state + 1);
+          }}
+        >
+          리렌더링
+        </button>
+      </div>
+    </div>
+  );
+}
+```
+
+'새해' 버튼을 클릭하더라도 나이는 변경되지 않지만 '리렌더링' 버튼을 클릭하면 클릭한 횟수만큼 나이가 올라가는 것을 확인할 수 있다. 이는 값에 변경이 이뤄지기는 하지만 리렌더링되지는 않는 useRef의 특성을 잘 보여준다.
+
+## 3.4. 콜백 ref
