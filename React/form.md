@@ -280,7 +280,7 @@ class AutoFocusTextInput extends React.Component {
 
 아래는 `forwardRef()`을 사용하여 함수 컴포넌트인 자식 컴포넌트에서 ref 속성을 사용하여 자식 컴포넌트에 접근하는 예제이다.
 
-> 📌 부모 컴포넌트 'ParentCat'
+> 📌 부모 컴포넌트 'CatParent'
 >
 > ```js
 > import React, { useRef } from "react";
@@ -296,9 +296,8 @@ class AutoFocusTextInput extends React.Component {
 >     <div>
 >       <h4> 고양이가 세상을 구한다 ️</h4>
 >       <div>
->         // 생성한 catRef를 Cat 컴포넌트의 ref 속성으로 전달한다. // 아래의 Cat
->         컴포넌트는 함수 컴포넌트지만, 해당 컴포넌트에서 forwardRef을 사용하고
->         있으므로, ref 속성을 사용할 수 있다.
+>         {/* 생성한 catRef를 Cat 컴포넌트의 ref 속성으로 전달한다.  */}
+>         {/* 아래의 Cat 컴포넌트는 함수 컴포넌트지만, 해당 컴포넌트에서 forwardRef을 사용하고 있으므로, ref 속성을 사용할 수 있다. */}
 >         <Cat a="a" ref={catRef} />
 >         <button
 >           onClick={() => {
@@ -410,3 +409,93 @@ export default function CatParent() {
 '새해' 버튼을 클릭하더라도 나이는 변경되지 않지만 '리렌더링' 버튼을 클릭하면 클릭한 횟수만큼 나이가 올라가는 것을 확인할 수 있다. 이는 값에 변경이 이뤄지기는 하지만 리렌더링되지는 않는 useRef의 특성을 잘 보여준다.
 
 ## 3.4. 콜백 ref
+
+📌 부모 컴포넌트 'CallbackParentCat'
+
+```js
+import React, { useRef, useState } from "react";
+import CallbackCat from "./CallbackCat";
+
+export default function CallbackCatParent() {
+  const [height, setHeight] = useState(1);
+  // node 매개변수는 전달된 ref 객체가 연결되는 DOM 엘리먼트를 의미한다.
+  // node가 null이 아닌 경우에만 setHeight 함수가 실행되므로, DOM 엘리먼트가 실제로 마운트된 이후에 해당 높이 값을 가져온다.
+  const callbackCatRef = (node) => {
+    if (node !== null) {
+      setHeight(node.getBoundingClientRect().height);
+    }
+  };
+
+  return (
+    <div>
+      <h4> 고양이가 세상을 구한다 ️</h4>
+      <div>
+        {/* 원래는 ref 속성에 ref 객체를 넣었는데, ref 콜백 함수를 넣는 것으로 변경 */}
+        <CallbackCat a="a" ref={callbackCatRef} />
+        <h4>키: {height}</h4>
+      </div>
+    </div>
+  );
+}
+```
+
+📌 자식 컴포넌트 'CallbackCat'
+
+```js
+import React, { forwardRef, useEffect, useState } from "react";
+
+const CallbackCat = forwardRef((props, ref) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div>
+      <img
+        src="https://static01.nyt.com/images/2016/03/30/universal/ko/well_cat-korean/well_cat-superJumbo-v2.jpg?quality=90&auto=webp"
+        alt="cat"
+        style={{ width: "150px" }}
+        ref={loaded ? ref : undefined}
+        // 이미지가 로드되는 시점에 height가 일시적으로 0으로 출력되어 파생되는 문제를 해결하기 위한 onload 속성
+        onLoad={() => {
+          alert("onload");
+          setLoaded(true);
+        }}
+      ></img>
+    </div>
+  );
+});
+
+export default CallbackCat;
+```
+
+위와 같은 방식으로 콜백함수인 'callbackCatRef'를 'CallbackCat'의 ref으로 전달하여 렌더링을 유도할 수 있다.
+
+한편 `onLoad()` 함수에 이벤트 핸들러를 인라인 형식으로 넘기는 방식은 간편하지만, 매번 렌더링 될 때마다 새로운 함수를 생성하기 때문에 성능 문제가 발생할 수 있다. 아래와 같이 useCallback Hook을 사용하여 이러한 성능 문제를 해결할 수 있다.
+
+```js
+import React, { forwardRef, useCallback, useEffect, useState } from "react";
+
+const CallbackCat = forwardRef((props, ref) => {
+  const [loaded, setLoaded] = useState(false);
+
+  const handleLoad = useCallback(() => {
+    alert("onload");
+    setLoaded(true);
+  }, []);
+
+  return (
+    <div>
+      <img
+        src="https://static01.nyt.com/images/2016/03/30/universal/ko/well_cat-korean/well_cat-superJumbo-v2.jpg?quality=90&auto=webp"
+        alt="cat"
+        style={{ width: "150px" }}
+        ref={loaded ? ref : undefined}
+        onLoad={handleLoad}
+      />
+    </div>
+  );
+});
+
+export default CallbackCat;
+```
+
+콜백 함수를 `useCallback()`으로 감싸면 최초 렌더링 시 함수를 생성하고, 다음 렌더링 시에는 이전에 생성된 함수를 재사용한다. 이렇게 메모리제이션된 함수는 새로운 참조값을 가지지 않기 때문에, 부모 컴포넌트에서 콜백 함수가 변경되어도 자식 컴포넌트에서 불필요한 리렌더링이 발생하지 않는다.
