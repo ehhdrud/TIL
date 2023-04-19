@@ -162,11 +162,9 @@ export default function Lonin() {
 
 제어 컴포넌트는 폼 데이터를 리액트 컴포넌트에서 다루지만, 비제어 컴포넌트는 DOM 자체에서 폼 데이터가 다루어진다. 예를 들어, `<input>` 요소의 value 속성은 상태로 관리하는 것이 아니라 DOM에서 직접 값을 가져와 처리하도록 한다. DOM 요소에 직접적으로 접근하기 위해서는 `ref`를 사용한다.
 
-함수형 컴포넌트에서는 `useRef`, 클래스형 컴포넌트에서는 `createRef`를 사용하여 비제어 컴포넌트를 구현한다. `useRef`는 함수형 컴포넌트에서 사용할 수 있으며, `useRef()` 메서드를 사용하여 ref 객체를 생성한다. 생성한 ref 객체는 `ref.current` 형태로 사용할 수 있다. `createRef`는 클래스형 컴포넌트에서 사용할 수 있으며, `React.createRef()` 메서드를 사용하여 ref 객체를 생성한다. 생성한 ref 객체는 `this.refName` 형태로 사용할 수 있다.
+함수 컴포넌트에서는 `useRef()`, 클래스 컴포넌트에서는 `createRef()`를 사용하여 비제어 컴포넌트를 구현한다. 함수 컴포넌트에서는 `useRef()` 메서드를 사용하여 ref 객체를 생성하고, 생성한 ref 객체는 `ref.current` 형태로 접근할 수 있다. 클래스 컴포넌트에서는 `React.createRef()` 메서드를 사용하여 ref 객체를 생성하고, 생성한 ref 객체는 `this.refName` 형태로 접근할 수 있다.
 
-ref 속성은 React 속성으로, 다른 속성과 마찬가지로 컴포넌트에 전달된다. ref 속성을 사용하여 React 엘리먼트 또는 컴포넌트의 인스턴스에 접근할 수 있다.
-
-아래는 함수형 컴포넌트에서 `useRef`를 사용하여 비제어 컴포넌트를 구현한 예제이다.
+아래는 함수 컴포넌트에서 `useRef`를 사용하여 비제어 컴포넌트를 구현한 예제이다.
 
 ```js
 import React, { useRef } from "react";
@@ -195,7 +193,7 @@ export default function UncontrolledForm() {
         name="nickname"
         onChange={handleChange}
         // inputRef를 <input> 요소의 ref 속성으로 전달한다.
-        // 함수 컴포넌트에서 ref 속성을 사용할 수는 없지만, 함수 컴포넌트 내부에서 DOM 요소나 클래스형 컴포넌트에 인스턴스에 접근하기 위해 ref 속성을 사용하는 것은 가능 !
+        // 함수 컴포넌트에서 ref 속성을 사용할 수는 없지만, 함수 컴포넌트 내부에서 DOM 요소나 클래스 컴포넌트에 인스턴스에 접근하기 위해 ref 속성을 사용하는 것은 가능 !
         ref={inputRef}
       />
       <input type="submit" value="제출" />
@@ -204,7 +202,7 @@ export default function UncontrolledForm() {
 }
 ```
 
-아래는 클래스형 컴포넌트에서 `createRef`를 사용하여 비제어 컴포넌트를 구현한 예제이다.
+아래는 클래스 컴포넌트에서 `createRef`를 사용하여 비제어 컴포넌트를 구현한 예제이다.
 
 ```js
 import React, { Component } from "react";
@@ -248,9 +246,11 @@ export default UncontrolledForm;
 
 ## 3. ref 속성
 
-ref 속성을 React 컴포넌트에서 사용할 때는 함수형 컴포넌트와 클래스형 컴포넌트에서 다르게 사용된다.
+ref 속성은 컴포넌트의 DOM 요소나 컴포넌트 인스턴스에 대한 참조 가져와서 해당 요소의 속성을 수정하거나 메서드를 호출하는 등의 작업을 수행할 수 있다. 또한 ref 속성은 React의 가상 DOM과 실제 DOM을 연결하는 역할을 한다. ref 속성을 사용하면 컴포넌트 외부에서 해당 컴포넌트의 DOM 요소에 직접적인 접근이 가능해지며, 이를 통해 input 요소에 포커스를 주거나, 특정 컴포넌트의 메서드를 호출하는 등 다양한 작업이 가능하게 한다.
 
-ref 속성은 React 컴포넌트가 마운트되면 해당 컴포넌트의 인스턴스를 가리키는 객체를 반환한다. 이 인스턴스는 클래스형 컴포넌트에서 생성되며, 클래스형 컴포넌트에서만 ref 속성를 사용할 수 있다. 그러나, 함수 컴포넌트에서는 인스턴스 개념이 존재하지 않기 때문에, 함수 컴포넌트에는 ref 속성을 사용할 수 없다. (함수 컴포넌트 내부에서 DOM 요소나 클래스형 컴포넌트에 인스턴스에 접근하기 위해 사용하는 것은 가능!)
+ref 속성을 리액트 컴포넌트에서 사용할 때는 함수 컴포넌트와 클래스 컴포넌트에서 다르게 사용된다. ref 속성은 리액트 컴포넌트가 마운트되면 해당 컴포넌트의 인스턴스를 가리키는 객체를 반환한다. 이 인스턴스는 클래스 컴포넌트에서 생성되며, 클래스 컴포넌트에서만 ref 속성를 사용할 수 있다. 그러나, 함수 컴포넌트에서는 인스턴스 개념이 존재하지 않기 때문에, 함수 컴포넌트에는 ref 속성을 사용할 수 없다. (함수 컴포넌트 내부에서 DOM 요소나 클래스 컴포넌트에 인스턴스에 접근하기 위해 사용하는 것은 가능!)
+
+ref 속성은 다른 속성과 마찬가지로 컴포넌트에 전달된다. ref 속성을 사용하여 React 엘리먼트 또는 컴포넌트의 인스턴스에 접근할 수 있다.
 
 ```js
 class AutoFocusTextInput extends React.Component {
@@ -266,8 +266,8 @@ class AutoFocusTextInput extends React.Component {
 
   render() {
     return (
-      // CustomTextInput 컴포넌트가 클래스형 컴포넌트일 경우 ref 속성을 사용할 수 있다.
-      // 만약 CustomTextInput 컴포넌트가 함수형 컴포넌트라면 동작하지 않는다.
+      // CustomTextInput 컴포넌트가 클래스 컴포넌트일 경우 ref 속성을 사용할 수 있다.
+      // 만약 CustomTextInput 컴포넌트가 함수 컴포넌트라면 동작하지 않는다.
       <CustomTextInput ref={this.textInput} />
     );
   }
@@ -276,9 +276,9 @@ class AutoFocusTextInput extends React.Component {
 
 ### 3.1. `forwardRef()`
 
-`forwardRef()`을 이용하여 부모 컴포넌트가 자식 컴포넌트의 ref를 자신의 ref로서 외부에 노출시키게 함으로써 함수형 컴포넌트에서도 ref을 사용할 수 있다.
+`forwardRef()`을 이용하여 부모 컴포넌트가 자식 컴포넌트의 ref를 자신의 ref로서 외부에 노출시키게 함으로써 함수 컴포넌트에서도 ref을 사용할 수 있다.
 
-아래는 `forwardRef()`을 사용하여 함수형 컴포넌트인 자식 컴포넌트에서 ref 속성을 사용하여 자식 컴포넌트에 접근하는 예제이다.
+아래는 `forwardRef()`을 사용하여 함수 컴포넌트인 자식 컴포넌트에서 ref 속성을 사용하여 자식 컴포넌트에 접근하는 예제이다.
 
 > 📌 부모 컴포넌트 'ParentCat'
 >
@@ -296,7 +296,9 @@ class AutoFocusTextInput extends React.Component {
 >     <div>
 >       <h4> 고양이가 세상을 구한다 ️</h4>
 >       <div>
->         // catRef를 Cat 컴포넌트의 ref 속성으로 전달한다.
+>         // 생성한 catRef를 Cat 컴포넌트의 ref 속성으로 전달한다. // 아래의 Cat
+>         컴포넌트는 함수 컴포넌트지만, 해당 컴포넌트에서 forwardRef을 사용하고
+>         있으므로, ref 속성을 사용할 수 있다.
 >         <Cat a="a" ref={catRef} />
 >         <button
 >           onClick={() => {
@@ -316,7 +318,7 @@ class AutoFocusTextInput extends React.Component {
 > ```js
 > import React, { forwardRef, useEffect } from "react";
 >
-> // 자식 컴포넌트는 forwardRef()를 사용하여 ref를 받는다.
+> // 자식 컴포넌트는 forwardRef()를 사용하여 ref 속성을 전달받는다.
 > const Cat = forwardRef((props, ref) => {
 >   console.log("자식 컴포넌트 Cat");
 >   console.log(ref); // current: undefined
@@ -332,7 +334,7 @@ class AutoFocusTextInput extends React.Component {
 >         src="https://static01.nyt.com/images/2016/03/30/universal/ko/well_cat-korean/well_cat-superJumbo-v2.jpg?quality=90&auto=webp"
 >         alt="cat"
 >         style={{ width: "150px" }}
->         // Cat 컴포넌트는 img 요소를 반환하고, ref 속성을 img 요소에 전달한다.
+>         // 전달받은 ref 속성에 img 요소가 연결된다.
 >         ref={ref}
 >       ></img>
 >     </div>
@@ -342,7 +344,7 @@ class AutoFocusTextInput extends React.Component {
 > export default Cat;
 > ```
 
-이렇게 ref 속성이 전달되면, CatParent 컴포넌트에서 'catRef.current'를 통해 Cat 컴포넌트에 대한 참조를 얻을 수 있다. 따라서 'catRef.current.height'와 같은 방법으로 Cat 컴포넌트의 img 요소의 높이를 얻을 수 있다.
+이렇게 CatRef 속성, ref 속성, img 속성이 연결되면, CatParent 컴포넌트에서 'catRef.current'를 통해 Cat 컴포넌트 내부의 img 요소에 대한 참조를 얻을 수 있다. 따라서 'catRef.current.height'와 같은 방법으로 Cat 컴포넌트의 img 요소의 height를 얻을 수 있다.
 
 ### 3.2. `useImperativeHandle()`
 
@@ -352,9 +354,9 @@ class AutoFocusTextInput extends React.Component {
 
 `useRef()`는 current 속성으로 전달된 인자(initialValue)로 초기화된 '변경 가능한 ref 객체'를 반환한다. 즉, `useRef()`는 current 속성에 변경 가능한 값을 담고 있는 "상자"와 같은 것이다. 그렇다면 `useRef()` 역시 `useState()`처럼 상태값을 관리하기 위한 용도로 사용할 수도 있다.
 
-`useRef()`는 내용이 변경될 때 그것을 알려주지는 않는다. current 속성을 변형하는 것이 리렌더링을 발생시키지는 않습니다. 이는 장점이 될 수도 있고, 단점이 될 수도 있다. 만약 리액트가 DOM 노드에 ref를 attach하거나 detach할 때 어떤 코드를 실행하고 싶다면 대신 '콜백 ref'를 사용한다.
+`useRef()`는 내용이 변경될 때 그것을 알려주지는 않는다. current 속성을 변형하는 것이 리렌더링을 발생시키지는 않는다. 이는 장점이 될 수도 있고, 단점이 될 수도 있다. 만약 리액트가 DOM 노드에 ref를 attach하거나 detach할 때 어떤 코드를 실행하고 싶다면 대신 '콜백 ref'를 사용한다.
 
-아래 예제는 useRef의 특성을 잘 보여주는 예제이다.
+아래 예제는 이러한 `useRef()`의 특성을 잘 보여주는 예제이다.
 
 ```js
 import React, { useRef, useState } from "react";
