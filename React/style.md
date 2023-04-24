@@ -13,9 +13,9 @@ JSX에서 인라인으로 스타일을 주고자할 때, '문자열'을 사용�
 **📌 JSX**
 
 ```js
-<h1 style={color: "red", backgroundColor: "yellow", height: "10",}>Hello World</h1>
+<h1 style={color: "red", backgroundColor: "yellow", height: "10"}>Hello World</h1>
 
-const divStyle = {color: "blue", backgroundColor: "green", height: "10",};
+const divStyle = {color: "blue", backgroundColor: "green", height: "10"};
 <div style={divStyle}>Hello World</div>
 ```
 
@@ -60,7 +60,9 @@ function Menu(props) {
 
 'Create React App'으로 생성한 리액트 폴더에 `[name].module.css`라는 이름을 가진 CSS 파일을 작성하고 해당 파일을 `import`하여 CSS 모듈을 사용할 수 있다. 만약 'styles'라는 이름으로 모듈화하였고 'className'이라는 클래스를 사용하여 스타일을 적용하고자 한다면, `styles.className`이라는 이름으로 간편하게 스타일을 적용할 수 있다.
 
-해당 방법은 클래스 이름 충돌을 방지하고, 지역 스코프 사용으로 스코프로 인한 오류를 줄이고, 클래스 이름을 해시값을 통해 저장하기 때문에 클래스 이름 작명에 시간을 쓸 필요가 없고 코드의 유지 보수 측면에서도 이점을 가져온다. 가독성을 높이기 위해 카멜 표기법으로 클래스 이름을 작성하는 것이 권장된다.
+CSS 모듈은 클래스 이름 충돌을 방지하고, 지역 스코프 사용으로 스코프로 인한 오류를 줄이고, 클래스 이름을 해시값을 통해 저장하기 때문에 클래스 이름을 설정하는데에 긴 시간을 쓸 필요가 없고 코드의 유지 보수 측면에서도 이점을 가져온다.
+
+가독성을 높이기 위해 카멜 표기법으로 클래스 이름을 작성하는 것이 권장된다.
 
 > **📌 Button.module.css**
 >
@@ -100,3 +102,62 @@ CSS 모듈과 일반 CSS 파일 간 클래스 이름 충돌이 발생하지 않�
 ```html
 <button class="Button_error_ax7yz">Error Button</button>
 ```
+
+## CSS-in-JS
+
+CSS-in-JS란 외부의 파일에 CSS를 정의하는 대신 자바스크립트와 결합하는 패턴을 의미한다. 이러한 기능은 리액트에 포함된 기능이 아니라, 'styled-components' 등의 별도의 라이브러리를 통해 제공된다.
+
+CSS-in-JS를 사용하면 컴포넌트별로 스타일을 작성하여 사용할 수 있다. 또한 CSS 모듈과 마찬가지로 해시값을 이용해 동적인 클래스 이름을 만들고 해당 요소와 연결해주어 클래스 이름 충돌을 방지한다. 또한 CSS-in-JS는 컴포넌트에 props를 전달하여 스타일을 동적으로 생성할 수 있다는 장점이 있다.
+
+아래 명령어를 실행하여 styled-components 라이브러리를 설치한다.
+
+```bash
+npm install styled-components
+```
+
+styled-components 라이브러리에서는 CSS 스타일 코드를 자바스크립트 파일로 분리하여 사용한다. 분리할 파일은 `[name].styles.js`라는 이름을 가진다. 코드가 간결하다면 기존 자바스크립트 파일에서 분리하지 않고 바로 사용하기도 한다.
+
+> **📌 ProductsTable.styles.js**
+>
+> ```js
+> import styled from "styled-components";
+>
+> export const Category = styled.td`
+>   font-weight: bold;
+> `;
+>
+> export const ProductName = styled.td`
+>   color: ${(props) => (props.stocked ? "black" : "red")};
+> `;
+> ```
+
+> **📌 ProductsTable.js**
+>
+> ```jsx
+> import React from "react";
+> import * as S from "./ProductsTable.style";
+>
+> export default function ProductsTable(props) {
+>   const { category, items, inStockOnly } = props;
+>   const filteredItems = inStockOnly
+>     ? items.filter((item) => item.stocked)
+>     : items;
+>
+>   return (
+>     <table>
+>       <tr>
+>         <S.Category>{category}</S.Category>
+>       </tr>
+>
+>       {filteredItems.map((item, idx) => (
+>         <tr key={idx}>
+>           <S.ProductName stocked={item.stocked}>{item.name}</S.ProductName>
+>             {item.name}
+>           </td>
+>           <td>{item.price}</td>
+>         </tr>
+>       ))}
+>     </table>
+>   );
+> }
+> ```
