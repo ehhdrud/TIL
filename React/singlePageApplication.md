@@ -1,0 +1,28 @@
+# 싱글 페이지 애플리케이션(Single-page application, SPA)
+
+리액트는 싱글 페이지 애플리케이션을 구현하기 적합한 프레임 워크이다. 싱글 페이지 애플리케이션, SPA란 말 그대로 하나의 HTML 페이지를 가진 애플리케이션을 말한다. 여러개의 HTML 페이지를 가지는 전통적인 웹 애플리케이션은 URL이 변경될 경우 매번 새로운 페이지를 로드하기 때문에 서버의 부담이 컸다. 그러나 SPA를 사용함으로써 URL이 변경되더라도 새로운 HTML을 서버에 요청하지 않고 Client에서 그리는 것(Clinet Side Rendering, CSR)이 가능해졌다. 그러므로 초기 로딩 시간을 줄이고, 페이지 이동 없이 필요한 데이터만 동적으로 로드하여 사용자에게 보여줄 수 있게 되었다. 또한 SPA는 모바일 기기에서 빠른 성능과 좋은 사용자 경험을 제공하는 데도 적합하다.
+
+SPA로 웹 애플리케이션을 구축할 때, HTML은 하나지만 유저가 볼 수 있는 화면은 여러가지여야 한다. 이렇게 여러 화면을 동적으로 생성하기 위해 '라우팅(Routing)'이라는 방법을 사용한다. 라우팅은 URL에 따라 알맞은 콘텐츠(UI)를 전달해주는 기능이다.
+
+SPA에서 라우팅을 구현하기 위해서는 브라우저의 History API를 사용한다. History API는 HTML5에서 추가된 브라우저 API 중 하나로, history 객체를 이용하여 브라우저의 세션 기록을 조작할 수 있는 방법을 제공한다. 이를 이용하면 SPA에서 URL을 변경하거나 브라우저의 뒤로 가기, 앞으로 가기 등의 기능을 구현할 수 있습니다.
+
+## React Router
+
+React Router는 리액트 애플리케이션에서 라우팅을 구현할 때 사용하는 라이브러리이다. React Router는 SPA에서 여러 화면을 렌더링하고 URL 경로에 따라 다른 컴포넌트를 렌더링하는 것을 쉽게 구현할 수 있도록 도와준다.
+
+react-router 패키지를 기반으로 하는 react-router-dom 패키지는 브라우저에서 사용되는 라우팅을 지원한다. 아래 명령어를 통해 react-router-dom을 설치한다. 명령어에서 '@6'는 버전을 의미한다.
+
+```bash
+npm install react-router-dom@6
+```
+
+아래는 react-router-dom의 주요 컴포넌트이다. import를 통해 사용할 수 있다.
+
+- BrowserRouter  
+  : HTML5의 History API를 사용하여 브라우저의 주소와 UI를 동기화시키는 라우터 컴포넌트이다. `<BrowserRouter>` 컴포넌트로 앱을 감싸주면 브라우저의 URL에 따라 적절한 컴포넌트가 렌더링되도록 할 수 있다.
+
+- Routes  
+  : `<Routes>` 컴포넌트는 하나 이상의 `<Route>` 컴포넌트를 렌더링한다. `<Routes>` 컴포넌트는 URL 경로를 확인하고 적절한 `<Route>` 컴포넌트를 렌더링한다.
+
+- Route  
+  : `<Route>` 컴포넌트는 경로와 경로와 일치하는 URL에 렌더링할 컴포넌트를 정의한다. 예를 들어, `<Route path="/about" component={About} />`와 같이 사용하면 URL 경로가 "/about"인 경우 About 컴포넌트가 렌더링된다. `<Route>` 컴포넌트는 path와 component 속성을 가지며, path 속성에는 렌더링할 경로를, component 속성에는 렌더링할 컴포넌트를 지정한다.
