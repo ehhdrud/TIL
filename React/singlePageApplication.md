@@ -18,11 +18,28 @@ npm install react-router-dom@6
 
 아래는 react-router-dom의 주요 컴포넌트이다. import를 통해 사용할 수 있다.
 
-- BrowserRouter  
-  : HTML5의 History API를 사용하여 브라우저의 주소와 UI를 동기화시키는 라우터 컴포넌트이다. `<BrowserRouter>` 컴포넌트로 앱을 감싸주면 브라우저의 URL에 따라 적절한 컴포넌트가 렌더링되도록 할 수 있다.
+- `<BrowserRouter>`  
+  : `<BrowserRouter>` 컴포넌트는 HTML5의 History API를 사용하여 브라우저의 주소와 UI를 동기화시키는 라우터 컴포넌트이다. 이 컴포넌트로 앱을 감싸주면 브라우저의 URL에 따라 적절한 컴포넌트가 렌더링되도록 할 수 있다.
 
-- Routes  
-  : `<Routes>` 컴포넌트는 하나 이상의 `<Route>` 컴포넌트를 렌더링한다. `<Routes>` 컴포넌트는 URL 경로를 확인하고 적절한 `<Route>` 컴포넌트를 렌더링한다.
+- `<Routes>`  
+  : `<Routes>` 컴포넌트는 URL 경로를 확인하고 하나 이상의 `<Route>` 컴포넌트를 렌더링한다.
 
-- Route  
-  : `<Route>` 컴포넌트는 경로와 경로와 일치하는 URL에 렌더링할 컴포넌트를 정의한다. 예를 들어, `<Route path="/about" component={About} />`와 같이 사용하면 URL 경로가 "/about"인 경우 About 컴포넌트가 렌더링된다. `<Route>` 컴포넌트는 path와 component 속성을 가지며, path 속성에는 렌더링할 경로를, component 속성에는 렌더링할 컴포넌트를 지정한다.
+- `<Route>`  
+  : `<Route>` 컴포넌트는 경로와 경로와 일치하는 URL에 렌더링할 컴포넌트를 정의한다. 예를 들어, `<Route path="/about" component={About} />`와 같이 사용하면 URL 경로가 "/about"인 경우 About 컴포넌트가 렌더링된다. `<Route>` 컴포넌트는 path와 component 속성을 가지며, path 속성에는 렌더링할 경로를, component 속성에는 렌더링할 컴포넌트를 지정한다. 한편 `path="/"`는 index 속성을 사용한 것과 동일하다. `<Route>` 컴포넌트의 자식 요소로 `<Route>` 컴포넌트를 사용하는 것도 가능하다.
+
+- `<Link>`  
+  : `<Link>` 컴포넌트는 to 속성을 사용하여 이동할 경로를 지정할 수 있다. to 속성은 문자열이나 객체 형태로 지정한다. `<a>`와 달리 새로운 요청을 보내지 않는다.
+
+- `<Outlet>`
+  : `<Outlet>` 컴포넌트는 매칭된 컴포넌트를 렌더링할 수 있도록 도와준다. 이는 중첩 `<Route>`에서 필수이며 상위 컴포넌트 내부에 작성한다.
+
+아래는 react-router-dom의 주요 Hook이다. 마찬가지로 import하여 사용할 수 있다.
+
+- `useHistory()`  
+  : 현재 브라우저 세션의 기록을 조작하고, 이전/다음 페이지로 이동하거나 페이지를 교체할 수 있다.
+
+- `useParams()`  
+  : URL 경로에서 추출한 매개변수를 읽어오기 위해 사용된다.
+
+- `useNavigate()`  
+  : 프로그래밍 방식으로 페이지를 이동시키는 데 사용된다. 예를 들어, 사용자가 어떤 작업을 수행한 후에 특정 경로로 이동해야 할 경우 사용될 수 있다.
