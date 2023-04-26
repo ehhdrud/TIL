@@ -35,7 +35,7 @@
 
 콜백 함수를 호출하는 함수(고차함수)에 비동기적 처리를 포함시키면 해당 고차 함수가 실행이 완료되지 않더라도 자바스크립트는 다음 코드를 읽어들일 수 있다.
 
-콜백함수를 갖는, 그 자체로 비동기적인 함수는 대표적으로 setTimeout, setInterval, addEventListener 등이 있다.
+콜백 함수를 갖는, 그 자체로 비동기적인 함수는 대표적으로 setTimeout, setInterval, addEventListener 등이 있다.
 
 - setTimeout(callback, delay): 콜백 함수(callback)를 일정한 시간(delay) 뒤에 실행시키는 함수
 
@@ -75,27 +75,39 @@
 
 #### 2.2.2. Promise를 "제공"하는 메서드
 
+resolve와 reject는 Promise 콜백 함수의 매개 변수인 동시에 Promise를 제공하는 메서드이다.
+
 ##### 2.2.2.1. `Promise.resolve(value)`
 
-`resolve(value)`에서 Value는 성공적으로 실행했을 때의 반환값을 나타낸다.
+이행 상태일 때 처리 결과값을 가지는 Promise를 제공하는 메서드이다.
+
+인자로 Fullfilled State일 때의 처리 결과값을 정의한다.
 
 실행 시 state는 fulfilled, result에는 value가 들어간다.
 
 ##### 2.2.2.2. `Promise.reject(error)`
 
-`reject(error)`의 error는 실행에 실패했을 때의 반환값을 나타낸다.
+실패 상태일 때 처리 결과값을 가지는 Promise를 제공하는 메서드이다.
+
+인자로 Rejected State일 때의 처리 결과값을 정의한다.
 
 실행 시 state는 rejected, result에는 error가 들어간다.
 
 #### 2.2.3. Promise를 "소비"하는 메서드
 
+Promise는 결과를 반환하지는 않기 때문에 Promise를 소비하는 메서드로 결과를 얻는다.
+
 ##### 2.2.3.1. `Promise.then`
 
-fullfiled 상태가 되면 `Promise.then`을 통해 처리 결과값을 받을 수 있다.
+Fullfiled State가 되면 해당 메서드를 실행하여 처리 결과값을 반환받을 수 있다.
+
+두 개의 콜백 함수를 인자로 가질 수 있다. Fullfilled State일 때 실행될 콜백 함수를 첫 번째 인자에, Rejected State일 때 실행될 콜백 함수를 두 번째 인자에 정의할 수 있다. 인자를 사용하지 않으면 Fullfilled State가 되어도 처리 결과값을 반환받을 뿐 어떤 동작을 하지는 않는다.
 
 ##### 2.2.3.2. `Promise.catch`
 
-rejected 상태가 되면 `Promise.catch`를 통해 처리 결과값을 받을 수 있다.
+Rejected State가 되면 해당 메서드를 실행하여 처리 결과값을 반환받을 수 있다.
+
+Rejected State일 때 실행될 콜백 함수를 인자에 정의할 수 있다.
 
 #### 2.2.4. 기타 메서드
 
@@ -139,6 +151,8 @@ console.log(asyncFunc()); // Promise { 1 }
 `async`로 선언된 함수 내부에서만 사용 가능하다.
 
 `Promise.then`의 기능을 대체할 수 있다. `await`을 사용하는 것이 가독성 측면에서 유리하다.
+
+`async` 함수 내부 `await` 뒤에 위치하는 코드는 결과가 반환될 때까지 기다리지만, `async` 함수 외부의 코드는 영향받지 않고 그대로 실행된다.
 
 ```js
 async function foo() {
