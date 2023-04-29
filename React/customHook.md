@@ -57,3 +57,45 @@ function ChatRecipientPicker() {
   );
 }
 ```
+
+API 호출을 간편하게 처리할 수 있도록 도와주는 기능을 하는 훅이 대표적인 커스텀 훅으로, 통상 'useFetch'라는 이름으로 사용한다. 아래는 Fetch 함수를 이용해 useFetch 커스텀 훅을 작성한 예시이다.
+
+```js
+import { useState, useEffect } from "react";
+
+function useFetch(url) {
+  // data, error, loading 상태 값을 useState Hook을 사용하여 정의한다.
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // useEffect Hook을 사용하여, URL 값이 변경될 때마다 API 호출을 수행하고, 결과를 상태 값으로 업데이트한다.
+  useEffect(() => {
+    // fetchData 함수를 async 함수로 정의한다.
+    async function fetchData() {
+      try {
+        // fetch 함수를 사용하여 URL에 대한 API 호출을 수행한다.
+        const response = await fetch(url);
+        // API 호출 결과를 JSON 형태로 반환한다.
+        const json = await response.json();
+        // JSON 데이터를 상태 값으로 설정한다.
+        setData(json);
+        // 로딩 상태를 false로 설정한다.
+        setLoading(false);
+      } catch (error) {
+        // 에러가 발생하면, 에러 객체를 상태 값으로 설정하고, 로딩 상태를 false로 설정한다.
+        setError(error);
+        setLoading(false);
+      }
+    }
+
+    // fetchData 함수를 호출한다.
+    fetchData();
+  }, [url]);
+
+  // data, error, loading 상태 값을 반환한다.
+  return { data, error, loading };
+}
+
+export default useFetch;
+```
