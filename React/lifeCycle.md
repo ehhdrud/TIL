@@ -60,7 +60,7 @@ export default class Clock extends React.Component {
 }
 ```
 
-## 2. 함수형 컴포넌트에서 생명주기
+## 2. 함수형 컴포넌트에서 생명주기, useEffect
 
 함수형 컴포넌트에서는 `useEffect`라는 Hook을 사용하여 클래스형 컴포넌트의 여러 생명주기 메서드를 대체할 수 있다.
 
