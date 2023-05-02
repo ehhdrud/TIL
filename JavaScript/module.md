@@ -93,23 +93,33 @@ CommonJS의 `module.exports`와 `exports`, AMD의 `define`을 사용해 모듈�
 
 #### 4.1.1. `export default`: 하나만 내보내기
 
+기본적으로 내보낼 하나의 모둘을 정의한다.
+
 ```js
 export default function hello() {
   return "hello";
 }
+
+// `import hello from './example.js';`로 가져옴!
 ```
 
 #### 4.1.2. `export`: 여러 개 내보내기
 
-##### 4.1.2.1. 개별적으로 내보내는 방법
+여러 개의 모듈을 내보낼 때 사용한다. `export default`와 같이 사용할 수도 있다.
 
 ```js
 export const a = "a";
+export const b = "b";
 
-export funtion hello(){
+export default funtion hello(){
     return "hello";
 }
+
+// `import { a, b } from './example.js';`
+// `import hello from './example.js';`로 가져옴!
 ```
+
+##### 4.1.2.1. 개별적으로 내보내는 방법
 
 ##### 4.1.2.2. 한번에 내보낼 수 있는 방법
 
