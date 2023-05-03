@@ -55,3 +55,65 @@ export default function BlogPage() {
   );
 }
 ```
+
+## 2. Redux
+
+> **📌 useReducer를 사용한 예제**
+>
+> > **💬 user.js**
+> >
+> > ```js
+> > import React, { createContext, useReducer } from "react";
+> >
+> > export const UserContext = createContext();
+> >
+> > const reducer = (state, action) => {
+> >   switch (action.type) {
+> >     case "changeJob":
+> >       return { ...state, job: action.text };
+> >
+> >     default:
+> >       throw new Error();
+> >   }
+> > };
+> > const initialUser = {
+> >   name: "seodongkeyong",
+> >   job: "FE-developer",
+> > };
+> >
+> > export default function UserStore(props) {
+> >   const [user, dispatch] = useReducer(reducer, initialUser);
+> >   console.log(user);
+> >
+> >   return (
+> >     <UserContext.Provider value={dispatch}>
+> >       {props.children}
+> >     </UserContext.Provider>
+> >   );
+> > }
+> > ```
+>
+> > **💬 blogPage.js**
+> >
+> > ```js
+> > import React, { useContext } from "react";
+> > import { UserContext } from "../store/user";
+> >
+> > export default function BlogPage() {
+> >   const dispatch = useContext(UserContext);
+> >   console.log(dispatch);
+> >
+> >   return (
+> >     <div>
+> >       <h1>BlogPage</h1>
+> >       <button
+> >         onClick={() =>
+> >           dispatch({ type: "changeJob", text: "BE-developer" })
+> >         }
+> >       >
+> >         ChangeJob
+> >       </button>
+> >     </div>
+> >   );
+> > }
+> > ```
