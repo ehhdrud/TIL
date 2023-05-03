@@ -144,3 +144,44 @@ Store 객체는 subscribe, dispatch, getState 메서드를 가진다.
 
 - getState  
   : 스토어의 현재 상태를 반환하는 메서드이다. 이를 통해 현재 상태를 확인할 수 있다.
+
+### 2.1. Redux Toolkit
+
+Redux Toolkit은 Redux 개발을 단순화하고 개발 생산성을 향상시키는 데 도움을 주는 공식적인 Redux 패키지다.
+
+Redux Toolkit은 설치가 필요하다.
+
+```bash
+npm install @reduxjs/toolkit
+```
+
+다음은 Redux Toolkit의 대표적인 함수이다.
+
+#### 2.1.1. `configureStore()`
+
+Redux Store를 생성하는 데 사용되는 기능이다. 이를 사용하면 일반적인 Redux Store를 구성하는 데 필요한 작업들을 자동으로 처리할 수 있다.
+
+configureStore는 다음과 같은 인자(key)를 가진다.
+
+- reducer  
+  : 리듀서 함수를 전달한다. 리덕스 스토어의 상태를 변경하는 역할을 한다.
+- **middleware**  
+  : 미들웨어 함수나 배열을 전달한다. 액션 디스패치와 리듀서의 실행 사이에 실행되는 함수로, 리덕스의 동작을 확장하거나 변경하는 역할을 한다.
+- devTools  
+  : Redux DevTools를 사용하기 위한 설정이다. true로 설정하면 Redux DevTools Extension을 사용할 수 있고, false로 설정하면 Redux DevTools를 사용하지 않는다.
+- preloadedState  
+  : 스토어의 초기 상태를 설정할 수 있다.
+- enhancer  
+  : 스토어를 보강하는 역할을 하는 함수이다. 보통 Redux DevTools Extension과 같은 추가 기능을 사용할 때 활용된다.
+
+### 2.2. `createReducer()`
+
+일반적으로 Redux에서는 액션의 타입별로 분기를 처리하는 switch문으로 리듀서를 작성한다. 그러나 이렇게 작성된 리듀서는 코드량이 많아지면 유지보수가 어렵고, 코드의 가독성이 떨어지는 단점이 있다. createReducer는 이러한 문제점을 개선하기 위해, 간단한 객체 형태로 리듀서를 작성할 수 있도록 도와준다. 객체 형태로 작성된 리듀서는 각각의 액션 타입에 해당하는 함수를 가지며, 이 함수는 이전 상태를 인자로 받아서 새로운 상태를 반환한다.
+
+### 2.3. `createSlice()`
+
+Reducer와 Action Creator를 한 번에 생성하는 기능이다. 이를 사용하면 보일러플레이트 코드를 줄일 수 있고 Redux 리듀서를 쉽게 작성할 수 있다.
+
+createSlice 함수는 리듀서 함수(creatReducer)와 액션 생성자 함수(createAction)를 모두 생성합니다. 이 함수를 사용하여, 슬라이스(slice)라는 개념을 도입하고, 슬라이스 별로 리듀서를 관리할 수 있습니다. 슬라이스는 애플리케이션의 상태(state)에서 특정한 영역을 담당합니다.
+
+createSlice 함수의 첫 번째 인자(key)로는 슬라이스의 이름과 초기 상태를 객체 형태로 전달한다. 두 번째 인자로는 객체 형태의 리듀서 케이스와 미들웨어 함수를 전달할 수 있다. 슬라이스 이름은 name 속성으로, 초기 상태는 initialState 속성으로 정의한다. 리듀서 케이스는 reducers 속성으로 전달한다.
