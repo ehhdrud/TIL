@@ -40,6 +40,8 @@ export default function UserStore(props) {
 
 useContext는 Context 객체의 값을 가져오는 훅이다. Context 객체를 인자로 받아 해당 Context 객체의 값을 반환한다.
 
+useContext 훅이 추가된 이후로는 Consumer 컴포넌트를 사용하지 않고도 Context 값을 간편하게 받아올 수 있다.
+
 ```js
 import React, { useContext } from "react";
 import { UserContext } from "../store/user";
@@ -56,64 +58,89 @@ export default function BlogPage() {
 }
 ```
 
+## 1.3. Context API와 useReducer를 이용한 전역 상태 관리
+
+위는 useState를 통해 전역 상태를 관리한 예제라면, 아래는 useReducer를 통해서 전역 상태를 관리할 수 있다. useReducer를 이용한다면 상태를 사용하는 컴포넌트의 수가 많을 때, 혹은 복잡한 로직을 구현할 때 더 적합하다.
+
+> **💬 user.js**
+>
+> ```js
+> import React, { createContext, useReducer } from "react";
+>
+> export const UserContext = createContext();
+>
+> const reducer = (state, action) => {
+>   switch (action.type) {
+>     case "changeJob":
+>       return { ...state, job: action.text };
+>
+>     default:
+>       throw new Error();
+>   }
+> };
+> const initialUser = {
+>   name: "seodongkeyong",
+>   job: "FE-developer",
+> };
+>
+> export default function UserStore(props) {
+>   const [user, dispatch] = useReducer(reducer, initialUser);
+>   console.log(user);
+>
+>   return (
+>     <UserContext.Provider value={{ user, dispatch }}>
+>       {props.children}
+>     </UserContext.Provider>
+>   );
+> }
+> ```
+
+> **💬 blogPage.js**
+>
+> ```js
+> import React, { useContext } from "react";
+> import { UserContext } from "../store/user";
+>
+> export default function BlogPage() {
+>   const { dispatch } = useContext(UserContext);
+>   console.log(dispatch);
+>
+>   return (
+>     <div>
+>       <h1>BlogPage</h1>
+>       <button
+>         onClick={() => dispatch({ type: "changeJob", text: "BE-developer" })}
+>       >
+>         ChangeJob
+>       </button>
+>     </div>
+>   );
+> }
+> ```
+
+Context API와 useReducer를 이용한 전역 상태 관리 예제이다. 위 코드에서 BlogPage 컴포넌트는 Context 객체인 UserContext에서 dispatch만을 가져와 사용하고 있는데, 만약 user에 변경이 일어나서 BlogPage가 리렌더링된다면 불필요한 리렌더링이 발생하는 것이다. (이 문제는 Context API와 useState를 이용한 전역 상태 관리에서도 마찬가지이다!)
+
+이 문제를 해결하려면 사용할 각 속성을 하나하나의 컴포넌트로 나눠서 관리하거나 Redux를 사용해야 한다.
+
 ## 2. Redux
 
-> **📌 useReducer를 사용한 예제**
->
-> > **💬 user.js**
-> >
-> > ```js
-> > import React, { createContext, useReducer } from "react";
-> >
-> > export const UserContext = createContext();
-> >
-> > const reducer = (state, action) => {
-> >   switch (action.type) {
-> >     case "changeJob":
-> >       return { ...state, job: action.text };
-> >
-> >     default:
-> >       throw new Error();
-> >   }
-> > };
-> > const initialUser = {
-> >   name: "seodongkeyong",
-> >   job: "FE-developer",
-> > };
-> >
-> > export default function UserStore(props) {
-> >   const [user, dispatch] = useReducer(reducer, initialUser);
-> >   console.log(user);
-> >
-> >   return (
-> >     <UserContext.Provider value={dispatch}>
-> >       {props.children}
-> >     </UserContext.Provider>
-> >   );
-> > }
-> > ```
->
-> > **💬 blogPage.js**
-> >
-> > ```js
-> > import React, { useContext } from "react";
-> > import { UserContext } from "../store/user";
-> >
-> > export default function BlogPage() {
-> >   const dispatch = useContext(UserContext);
-> >   console.log(dispatch);
-> >
-> >   return (
-> >     <div>
-> >       <h1>BlogPage</h1>
-> >       <button
-> >         onClick={() =>
-> >           dispatch({ type: "changeJob", text: "BE-developer" })
-> >         }
-> >       >
-> >         ChangeJob
-> >       </button>
-> >     </div>
-> >   );
-> > }
-> > ```
+Redux는 React 애플리케이션에서 상태를 효율적으로 관리하기 위한 상태 관리 라이브러리이자, Redux는 Flux 아키텍처(단방향 데이터 흐름을 강제하는 애플리케이션)의 구현체 중 하나이다. Redux는 전역적인 상태를 관리하며 React 컴포넌트 간에 데이터를 공유하는 데 유용하므로 React의 컴포넌트 기반 설계와 함께 사용하기에 적합하다. Redux를 사용하면 상태를 중앙 집중적으로 관리할 수 있으며, React 컴포넌트는 오직 필요한 데이터만을 props로 전달받아 사용할 수 있다. 또한 애플리케이션의 복잡도를 낮출 수 있으며, 개발자가 애플리케이션의 상태를 쉽게 추적하고 디버그할 수 있다.
+
+Redux는 설치가 필요하다.
+
+```bash
+npm install redux
+```
+
+Rudux는 useReducer와 마찬가지로 Reducer 함수를 사용하고, 상태 변화를 일으키는 정보를 포함하는 action 객체를 사용한다. 초기 상태를 정의할 때 초기값을 인자로 전달하는 것이 아니라 createStore 함수를 통해 Store 객체를 생성하여 초기 상태를 정의한다(이는 createContext와 유사한 방식!).
+
+Store 객체는 subscribe, dispatch, getState 메서드를 가진다.
+
+- subscribe  
+  : 스토어의 상태가 업데이트될 때마다 호출되는 콜백 함수를 등록하는 메서드이다. 이를 통해 스토어의 변화를 확인할 수 있다.
+
+- dispatch
+  : 스토어에 액션을 보내서 상태를 변경하는 메서드이다. 액션은 애플리케이션에서 발생하는 이벤트나 사용자 입력과 같은 것들을 나타내며, 반드시 type이라는 프로퍼티를 가지고 있어야 한다. useReducer에서 사용하는 dispatch와 동일이다.
+
+- getState  
+  : 스토어의 현재 상태를 반환하는 메서드이다. 이를 통해 현재 상태를 확인할 수 있다.
