@@ -46,7 +46,7 @@ state는 클래스 컴포넌트와 함수형 컴포넌트에서 모두 사용될
 
 ## 1. 상태 관리 Hook
 
-### 1.1. `useState`
+### 1.1. useState Hook
 
 useState는 React Hook 중 하나로, 함수 컴포넌트에서 상태를 관리하는 데 사용된다. 해당 훅을 사용하려면 다음과 같이 React 모듈에서 `useState` 함수를 가져와야 한다.
 
@@ -76,7 +76,7 @@ export default function Counter() {
 
 이제는 버튼을 클릭하면 'count'가 증가한다. 이를 통해 React의 상태 관리는 `useState`를 활용해야 한다는 것을 확인할 수 있다.
 
-### 1.2. useReducer
+### 1.2. useReducer Hook
 
 useReducer는 React 훅 중 하나로, useState처럼 상태값을 관리하는 데 사용된다. useState는 이전 상태값을 새로운 값으로 대체하는 방식으로 동작하고, 이 때 새로운 상태값은 이전 상태값에 의존적으로 계산될 수 있다. 반면, useReducer는 상태값 업데이트 로직을 현재 상태값과 액션 객체를 인자로 받아서 새로운 상태값을 반환하는 reducer 함수로 분리하여 관리한다. 즉 useReducer는 단순히 값을 대체할 때보다 이전 상태를 기반으로 새로운 상태를 계산하기에 적합하고, 복잡한 상태 업데이트 로직을 구현하기에도 유용하다.
 
