@@ -383,3 +383,61 @@ function MyApp() {
 >
 > - Context + State라는 의미로, Context API를 기반으로 단점을 보완한 상태 관리 라이브러리
 > - 다른 라이브러리들과는 달리, 컴포넌트 내부에서 상태와 관련된 로직을 함께 작성하여, 코드의 가독성을 높일 수 있음
+
+## 4. React-Query
+
+비동기적 전역 상태 관리를 위해 redux-thunk, createAsyncThunk, recoil 등을 다 사용해봐도 너무 코드가 비대해지는 것 같다면, React-Query가 효율적인 대안이 될 수 있다.
+
+React-Query는 서버로부터 데이터를 가져오고 관리하기 위한 라이브러리로, 데이터에 대한 '패칭, 캐싱, 동기화, 업데이트'의 기능을 가진다. 이 라이브러리는 컴포넌트 수준에서 데이터를 관리할 수 있도록 하고, 비동기 데이터를 가져오는 로직을 컴포넌트에서 분리하여 관리하므로 코드가 더 간결해지고 유지보수가 용이해진다.
+
+### 4.1. React-Query의 핵심 개념
+
+#### 4.1.1. Queries
+
+Query는 서버로부터 데이터를 가져오는, 고유한 키와 연결된 요청을 의미한다. Query는 Promise 기반의 모든 메서드(GET 및 POST 메서드 포함)와 함께 사용하여 서버에서 데이터를 가져오는 데 사용될 수 있다. React-Query에서는 useQuery 훅을 사용하여 데이터를 가져오는데, useQuery는 데이터를 요청하고, 캐싱하며, 리프레시를 관리한다. 또한 데이터를 다시 가져올 필요가 있을 때 자동으로 데이터를 재요청한다.
+
+#### 4.1.2. Mutation
+
+서버에 데이터를 수정하는 요청을 의미한다. React-Query에서는 useMutation 훅을 사용하여 데이터를 수정한다. useMutation은 데이터를 수정하고, 캐시를 업데이트하며, 성공 및 실패에 대한 상태를 반환한다.
+
+#### 4.1.3. Query Invalidation
+
+서버 데이터의 변경으로 인해 캐시된 데이터가 더 이상 유효하지 않을 때, 이전 데이터를 업데이트해야 하는데 이를 Query Invalidation이라고 한다. React-Query에서는 Query Invalidation을 위해 queryKey와 staleTime 등의 개념을 사용한다. queryKey는 서버 데이터의 변경 여부를 확인하기 위해 사용되며, staleTime은 데이터가 캐시에서 얼마나 오래된 상태로 유지될 수 있는지를 설정한다.
+
+### 4.2. 주요 Hook
+
+#### 4.2.1. `useQuery`
+
+React 컴포넌트에서 데이터를 가져오기 위한 훅이며, query의 결과물을 가져와서 렌더링할 수 있다.
+
+useQuery의 첫 번째 인자로는 고유한 키 값인 query key가 들어간다. 이 키는 캐시와 연결되며, 쿼리가 변경되거나 업데이트될 때마다 새로운 데이터를 가져오도록 트리거한다. 보통 이 키는 문자열 또는 배열로 구성된다. 선택적으로 사용 가능한 두 번째 인자에는 데이터를 가져오기 위해 비동기 작업을 실행하는 함수를 전달할 수 있다. 이 함수는 Promise를 반환해야 하며, useQuery가 자동으로 이 Promise를 처리하여 데이터를 캐시한다. 이 함수를 생략하면 useQuery는 첫 번째 인자로 전달된 query key에 해당하는 캐시된 데이터를 가져온다. 그러나 캐시된 데이터가 없으면, useQuery는 자동으로 query key에 해당하는 비동기 함수를 찾은 후 실행하여 데이터를 가져와 캐시한다.
+
+useQuery가 반환하는 객체는 React 컴포넌트 내에서 사용될 수 있는 `data`, `isLoading`, `isError`와 같은 속성을 가지고 있다. data는 비동기적으로 받아온 데이터이고, isLoading은 데이터를 가져오는 중인지 여부를 나타내며, isError는 데이터를 가져오는 동안 오류가 발생했는지 여부를 나타낸다.
+
+#### 4.2.2. `useMutation`
+
+데이터를 생성, 변경하거나 서버에서 어떤 일을 수행하는 데에 사용하는 훅으로, React-Query의 핵심 개념인 'Mutation'를 위한 훅이다.
+
+useMutation은 첫 번째 인자로 콜백 함수를 받는데, 이 콜백 함수는 데이터를 변경하기 위한 API 요청을 수행하며, Promise 객체를 반환한다.
+
+두 번째 인자는 객체 형태의 옵션으로, 이 옵션은 `onSuccess`, `onError` 등의 속성을 통해 useMutation에서 사용되는 mutate 함수의 동작을 세부적으로 제어할 수 있도록 해준다.
+
+##### 4.2.2.1. `mutate()`
+
+useMutation로 반환한 객체의 메서드로, 해당 객체를 처리하여 캐시를 업데이트하고 화면을 다시 렌더링하는 역할을 한다. mutate 함수의 인자는 useMutation의 콜백함수의 인자로 사용된다.
+
+#### 4.2.3. `QueryClient`
+
+new 연산자와 함께 사용하여 query client 인스턴스를 생성하는 컴포넌트이다.
+
+#### 4.2.4. `useQueryClient`
+
+query client를 가져오는데 사용하는 훅이다. query client를 이용해 캐시된 데이터를 가져올 수 있다.
+
+#### 4.2.4.2. `invalidateQueries()`
+
+useQueryClient로 반환한 객체의 메서드로, React-Query의 핵심 개념인 'Query Invalidation'를 위한 메서드이다. 쿼리의 기존 데이터가 더 이상 유효하지 않을 때 invalidateQueries 메서드는 해당 쿼리의 데이터를 만료 처리하고, 해당 쿼리를 다시 가져오는 작업을 수행한다. 이 때, 만료된 쿼리가 다른 컴포넌트에서 사용되고 있다면, 해당 컴포넌트도 자동으로 다시 렌더링된다.
+
+#### 4.2.5. `QueryClientProvider`
+
+query client를 하위 컴포넌트에서 사용할 수 있도록 제공해주는 Provider 컴포넌트이다. QueryClient로 생성한 객체를 client 속성의 인자로 넣어서 사용한다.
