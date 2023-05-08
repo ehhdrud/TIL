@@ -412,11 +412,17 @@ Query는 서버로부터 데이터를 가져오는, 고유한 키와 연결된 �
 
 React 컴포넌트에서 데이터를 가져오기 위한 훅이며, query의 결과물을 가져와서 렌더링할 수 있다.
 
-useQuery의 첫 번째 인자로는 고유한 키 값인 query key가 들어간다. 이 키는 캐시와 연결되며, 쿼리가 변경되거나 업데이트될 때마다 새로운 데이터를 가져오도록 트리거한다. 보통 이 키는 문자열 또는 배열로 구성된다. 선택적으로 사용 가능한 두 번째 인자에는 데이터를 가져오기 위해 비동기 작업을 실행하는 함수를 전달할 수 있다. 이 함수는 Promise를 반환해야 하며, useQuery가 자동으로 이 Promise를 처리하여 데이터를 캐시한다. 이 함수를 생략하면 useQuery는 첫 번째 인자로 전달된 query key에 해당하는 캐시된 데이터를 가져온다. 그러나 캐시된 데이터가 없으면, useQuery는 자동으로 query key에 해당하는 비동기 함수를 찾은 후 실행하여 데이터를 가져와 캐시한다. 마찬가지로 선택적으로 사용 가능한 세 번째 인자를 통해 다양한 설정값을 가질 수 있다. (두 번째 인자를 생략하면서 세 번째 인자를 사용하고자 할 때는 두 번째 인자에 undefined를 넣지만 이런 식으로 사용할 일은 적다.)
+useQuery의 첫 번째 인자로는 고유한 키 값인 queryKey가 들어간다. 이 키는 캐시와 연결되며, 쿼리가 변경되거나 업데이트될 때마다 새로운 데이터를 가져오도록 트리거한다. 보통 이 키는 문자열 또는 배열로 구성된다. 두 번째 인자는 데이터를 가져오기 위해 비동기 작업을 실행하는 함수인 queryFn를 전달할 수 있다. 이 함수는 Promise를 반환해야 하며, useQuery가 자동으로 이 Promise를 처리하여 데이터를 캐시한다. 이 함수를 생략하면 useQuery는 첫 번째 인자로 전달된 queryKey에 해당하는 캐시된 데이터를 가져온다. 그러나 캐시된 데이터가 없으면, useQuery는 자동으로 queryKey에 해당하는 비동기 함수를 찾은 후 실행하여 데이터를 가져와 캐시한다. 이외에도 옵션에는 staleTime, cacheTime 등 다양한 설정이 가능하다.
 
 useQuery가 반환하는 객체는 React 컴포넌트 내에서 사용될 수 있는 `data`, `isLoading`, `isError`와 같은 속성을 가지고 있다. data는 비동기적으로 받아온 데이터이고, isLoading은 데이터를 가져오는 중인지 여부를 나타내며, isError는 데이터를 가져오는 동안 오류가 발생했는지 여부를 나타낸다.
 
-#### 4.2.2. `useMutation`
+#### 4.2.2. `useQueries`
+
+useQueries 훅은 여러개의 Query를 처리하는데 사용된다. useQuery와 같은 인자를 배열을 사용하여 설정한다. 이 배열은 개별 Query를 정의하는 객체들로 구성된다.
+
+useQuery는 기본적으로 병렬적으로 동작하지만 Suspense Mode로 사용하면 useQuery는 병렬적으로 동작하지 않는다. 이 때, useQueries를 사용하면 병렬 처리를 구현할 수 있다.
+
+#### 4.2.3. `useMutation`
 
 데이터를 생성, 변경하거나 서버에서 어떤 일을 수행하는 데에 사용하는 훅으로, React-Query의 핵심 개념인 'Mutation'를 위한 훅이다.
 
@@ -424,23 +430,23 @@ useMutation은 첫 번째 인자로 콜백 함수를 받는데, 이 콜백 함�
 
 두 번째 인자는 객체 형태의 옵션으로, 이 옵션은 `onSuccess`, `onError` 등의 속성을 통해 useMutation에서 사용되는 mutate 함수의 동작을 세부적으로 제어할 수 있도록 해준다.
 
-##### 4.2.2.1. `mutate()`
+##### 4.2.3.1. `mutate()`
 
 useMutation로 반환한 객체의 메서드로, 해당 객체를 처리하여 캐시를 업데이트하고 화면을 다시 렌더링하는 역할을 한다. mutate 함수의 인자는 useMutation의 콜백함수의 인자로 사용된다.
 
-#### 4.2.3. `QueryClient`
+#### 4.2.4. `QueryClient`
 
 new 연산자와 함께 사용하여 query client 인스턴스를 생성하는 컴포넌트이다.
 
-#### 4.2.4. `useQueryClient`
+#### 4.2.5. `useQueryClient`
 
 query client를 가져오는데 사용하는 훅이다. query client를 이용해 캐시된 데이터를 가져올 수 있다.
 
-#### 4.2.4.2. `invalidateQueries()`
+#### 4.2.6.2. `invalidateQueries()`
 
 useQueryClient로 반환한 객체의 메서드로, React-Query의 핵심 개념인 'Query Invalidation'를 위한 메서드이다. 쿼리의 기존 데이터가 더 이상 유효하지 않을 때 invalidateQueries 메서드는 해당 쿼리의 데이터를 만료 처리하고, 해당 쿼리를 다시 가져오는 작업을 수행한다. 이 때, 만료된 쿼리가 다른 컴포넌트에서 사용되고 있다면, 해당 컴포넌트도 자동으로 다시 렌더링된다.
 
-#### 4.2.5. `QueryClientProvider`
+#### 4.2.7. `QueryClientProvider`
 
 query client를 하위 컴포넌트에서 사용할 수 있도록 제공해주는 Provider 컴포넌트이다. QueryClient로 생성한 객체를 client 속성의 인자로 넣어서 사용한다.
 
