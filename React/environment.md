@@ -12,13 +12,13 @@
 
 **🔎 2단계: 스크립트 추가**
 
-편집할 HTML 파일의 `</body>` 앞에 3개의 `<script>` 요소를 추가한다. 첫번째 라인은 'React', 두번째 라인은 'ReactDOM', 세번째 라인은 '컴포넌트'를 가져온다.
+편집할 HTML 파일의 `<body>` 내부 마지막 라인에 세 줄의 `<script>` 를 작성한다. 첫 번째 줄은 'React', 두 번째 줄은 'ReactDOM', 세 번째 줄은 '컴포넌트'를 가져온다.
 
 ```html
   <!-- ... 다른 HTML ... -->
 
   <!-- React를 실행. -->
-  <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+  <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체 ! -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
@@ -30,7 +30,7 @@
 
 **🔎 3단계: 리액트 컴포넌트 만들기**
 
-'follow_button.js'라는 이름으로 HTML 페이지 옆에 새 자바스크립트 파일을 만든다. 해당 파일에 원하는 동작을 구현하고, 맨 뒷줄에 다음 코드 세 줄을 추가한다. 여기서 'FollowButton'은 윗단에서 따로 정의가 필요하고, `e()`는 `React.creatElement()`와 동일하다.
+'follow_button.js'라는 이름으로 HTML 페이지 옆에 새 자바스크립트 파일을 만든다. 해당 파일에 원하는 동작을 구현하고, 맨 뒷줄에 다음 코드 세 줄을 추가한다. 여기서 'FollowButton'은 윗단에서 따로 정의가 필요하고, `e()`는 `React.createElement()`와 동일하다.
 
 ```js
 const domContainer = document.querySelector("#follow_button_container");
@@ -40,9 +40,9 @@ root.render(e(FollowButton), domContainer);
 
 > **📌 주요 리액트 API**
 >
-> `React.creatElement(component, props, ...children)`는 ReactElement를 반환한다. 'component'가 문자열이라면 HTML 요소를 의미하고, 문자열이 아니라면 리액트 컴포넌트를 의미한다. 'props'는 해당 컴포넌트의 속성을 의미하고 객체 형태로 넣어준다. 'children'은 컴포넌트의 내부 자식 요소를 의미하므로 텍스트 혹은 다른 컴포넌트를 넣어줄 수 있다.
+> `React.creatElement(component, props, ...children)`는 reactElement를 반환한다. 'component'가 문자열이라면 HTML 요소를 의미하고, 문자열이 아니라면 리액트 컴포넌트를 의미한다. 'props'는 해당 컴포넌트의 속성을 의미하고 객체 형태로 넣어준다. 'children'은 컴포넌트의 내부 자식 요소를 의미하므로 텍스트 혹은 다른 컴포넌트를 넣어줄 수 있다.
 >
-> `ReactDOM.render(reactComponent, container)`는 ReactElement를 루트의 DOM 노드에 렌더링한다. containers는 렌더링될 요소이다. 두번째 인자를 생략한다면 `<body>` 요소를 렌더링될 대상으로 삼는다. 그러나, 해당 문법보다 `ReactDOM.createRoot(container).render(reactComponent)`가 더 최신 문법이므로, 해당 문법에 더 익숙해지자.
+> `ReactDOM.render(reactComponent, container)`는 reactElement를 루트의 DOM 노드에 렌더링한다. containers는 렌더링될 요소가 들어갈 HTML 요소이다. 두번째 인자를 생략한다면 'public/index.html' 파일의 `<body>` 내부에 있는 `<div id="root"></div>` 요소에 렌더링된다. 그러나, 두번째 인자를 사용하는 문법보다 `ReactDOM.createRoot(container).render(reactComponent)`가 더 최신 문법이므로, 해당 문법에 더 익숙해지자.
 >
 > > 💬 그러나 보통 리액트 API를 사용하는 것보다 JSX 문법을 통해 가독성을 높혀 작성한 후, CRA나 Babel 등의 환경을 통해 JS 문법으로 변환하는 것이 일반적이다.
 
