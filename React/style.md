@@ -1,6 +1,6 @@
 # 리액트 스타일링
 
-## `style` 속성을 이용한 인라인 스타일
+## 1. `style` 속성을 이용한 인라인 스타일
 
 JSX에서 인라인으로 스타일을 주고자할 때, '문자열'을 사용하는 HTML과는 다르게 '객체'를 사용한다. 그러므로 여러 개의 속성을 사용할 시 쉼표가 아닌 세미콜론으로 구분한다. 또한 속성의 이름에서 `-`를 사용하지 않고 대신 카멜 표기법을 사용한다. 그리고 숫자 인라인 프로퍼티는 `px` 접미사를 자동으로 추가한다는 특징이 있다.
 
@@ -21,13 +21,13 @@ const divStyle = {color: "blue", backgroundColor: "green", height: "10"};
 
 다만, 리액트에서도 인라인 방식은 간단한 스타일링이나 테스트용으로 적합하고 가독성, 재사용성, 성능 등을 고려해 CSS 클래스를 이용하는 것이 권장된다.
 
-## CSS 클래스
+## 2. CSS 클래스
 
-CSS 클래스를 사용하기 위해 `className`이라는 props를 이용한다. 작성법에 따라 `className`를 통해 CSS 클래스 이름을 지정해주고, HTML에서 사용하던 방식대로 CSS 파일을 외부에 작성한다.
+CSS 클래스를 사용하기 위해 `className`이라는 props를 이용한다. 클래스 이름를 가진 CSS 파일을 외부에 작성한 후 해당 CSS 파일을 프로젝트에 import한다. 그리고 `className`를 통해 CSS 클래스 이름을 지정하여 스타일링을 적용한다.
 
 ```js
 render() {
-  return <span className="menu navigation-menu">Menu</span>
+  return <span className="menu menu-active"">Menu</span>
 }
 ```
 
@@ -56,7 +56,7 @@ function Menu(props) {
 
 이러한 방법은 장점이 많지만, 다른 CSS 파일과 클래스 이름 간의 충돌 문제, 전역 스코프를 가짐으로써 발생하는 문제, 클래스 이름 관리 등의 측면에서 단점이 존재한다. 이를 보완하기 위해 'CSS 모듈'을 사용할 수 있다.
 
-## CSS 모듈
+## 3. CSS 모듈
 
 'Create React App'으로 생성한 리액트 폴더에 `[name].module.css`라는 이름을 가진 CSS 파일을 작성하고 해당 파일을 `import`하여 CSS 모듈을 사용할 수 있다. 만약 'styles'라는 이름으로 모듈화하였고 'className'이라는 클래스를 사용하여 스타일을 적용하고자 한다면, `styles.className`이라는 이름으로 간편하게 스타일을 적용할 수 있다.
 
