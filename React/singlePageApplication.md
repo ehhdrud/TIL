@@ -21,11 +21,17 @@ npm install react-router-dom@6
 - `<BrowserRouter>`  
   : `<BrowserRouter>` 컴포넌트는 HTML5의 History API를 사용하여 브라우저의 주소와 UI를 동기화시키는 라우터 컴포넌트이다. 이 컴포넌트로 앱을 감싸주면 브라우저의 URL에 따라 적절한 컴포넌트가 렌더링되도록 할 수 있다. 이 컴포넌트는 최상위 컴포넌트인 App.js에서 사용한다.
 
+- `<Router>`  
+  : 라우팅 기능을 구현하는 컴포넌트이지만, 일반적으로 개발자는 직접 Router 컴포넌트를 사용하기보다 BrowserRouter 컴포넌트를 사용하는 것이 편리하다. BrowserRouter 컴포넌트는 Router 컴포넌트를 상속받은 구현체로, HTML5의 History API를 활용하여 브라우저의 주소와 상호작용한다.
+
 - `<Routes>`  
   : `<Routes>` 컴포넌트는 URL 경로를 확인하고 하나 이상의 `<Route>` 컴포넌트를 렌더링한다.
 
 - `<Route>`  
   : `<Route>` 컴포넌트는 경로와 경로와 일치하는 URL에 렌더링할 컴포넌트를 정의한다. 예를 들어, `<Route path="/about" element={<About/>} />`와 같이 사용하면 URL 경로가 "/about"인 경우 About 컴포넌트가 렌더링된다. `<Route>` 컴포넌트는 path와 element 속성을 가지며, path 속성에는 렌더링할 경로를, element 속성에는 렌더링할 컴포넌트를 지정한다. `<Route>` 컴포넌트의 자식 요소로 `<Route>` 컴포넌트를 사용하는 것도 가능하다.
+
+- `<Switch>`  
+   : 여러 개의 Route 컴포넌트 중에서 가장 처음으로 매칭되는 경로에 해당하는 컴포넌트만 렌더링하는 역할을 수행한다. Switch 컴포넌트는 위에서 아래로 Route 컴포넌트를 순서대로 검사하며, 첫 번째로 매칭되는 경로에 해당하는 컴포넌트를 렌더링하고 나머지는 무시한다. 이를 통해 중복된 경로에 대한 충돌을 방지하고, 하나의 경로에 대해 여러 개의 컴포넌트가 렌더링되는 것을 방지한다.
 
 - `<Link>`  
   : `<Link>` 컴포넌트는 to 속성을 사용하여 이동할 경로를 지정할 수 있다. to 속성은 문자열이나 객체 형태로 지정한다. `<a>`와 달리 새로운 요청을 보내지 않는다.
@@ -33,7 +39,7 @@ npm install react-router-dom@6
 - `<Outlet>`
   : `<Outlet>` 컴포넌트는 매칭된 컴포넌트를 렌더링할 수 있도록 도와준다. 이는 중첩 `<Route>`에서 필수이며 상위 컴포넌트 내부에 작성한다.
 
-아래는 react-router-dom의 주요 Hook이다. 마찬가지로 import하여 사용할 수 있다.
+  아래는 react-router-dom의 주요 Hook이다. 마찬가지로 import하여 사용할 수 있다.
 
 - `useHistory()`  
   : 현재 브라우저 세션의 기록을 조작하고, 이전/다음 페이지로 이동하거나 페이지를 교체할 수 있다.

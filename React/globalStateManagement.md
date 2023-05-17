@@ -14,7 +14,7 @@ Context API는 Provider와 Consumer라는 두 가지 컴포넌트로 이루어�
 
 createContext 함수는 Context 객체를 반환하며, 이 객체는 Provider와 Consumer 컴포넌트를 생성할 때 사용한다. createContext 함수의 인자로는 Context 객체의 초기값을 전달할 수 있다. 이 값은 Provider가 없을 때에 기본값으로 사용된다.
 
-Provider는 value prop을 받아서 이 값을 하위에 있는 컴포넌트에게 전달하며, 값을 전달받을 수 있는 컴포넌트의 수에 제한은 없다. Provider 하위에 또 다른 Provider를 배치하는 것도 가능하며, 이 경우 하위 Provider의 값이 우선시된다. Provider 하위에서 context를 구독하는 모든 컴포넌트는 Provider의 value prop가 바뀔 때마다 다시 렌더링된다.
+Provider는 value prop을 받아서 이 값을 하위에 있는 컴포넌트에게 전달한다. 이 때 값을 전달받을 수 있는 컴포넌트의 수에 제한은 없다. Provider 하위에 또 다른 Provider를 배치하는 것도 가능하며, 이 경우 하위 Provider의 값이 우선시된다. Provider 하위에서 context를 구독하는 모든 컴포넌트는 Provider의 value prop가 바뀔 때마다 다시 렌더링된다.
 
 ```js
 import React, { createContext, useState } from "react";
@@ -450,7 +450,7 @@ useQueryClient로 반환한 객체의 메서드로, React-Query의 핵심 개념
 
 query client를 하위 컴포넌트에서 사용할 수 있도록 제공해주는 Provider 컴포넌트이다. QueryClient로 생성한 객체를 client 속성의 인자로 넣어서 사용한다.
 
-### 4.3. 캐시(Ceche)
+### 4.3. React-Query의 캐시(Ceche)
 
 React-Query에서 전역 상태 관리는 캐시를 이용해서 이루어진다. 캐시는 데이터를 저장하고 관리하는 데 필요한 메모리 공간을 의미하며, React-Query에서는 이 캐시를 이용해서 API 호출 결과 등의 데이터를 저장하고 관리한다. 이 캐시는 React-Query 내부에서 자동으로 관리되며, 이전에 호출한 API의 응답 결과를 저장해서 동일한 요청이 있을 경우 API 호출을 생략하고 캐시된 결과를 반환하는 등의 성능 최적화가 가능하다. 또한, 캐시된 데이터를 인터셉트해서 다양한 방식으로 가공하거나 변형시켜서 사용할 수도 있다.
 
