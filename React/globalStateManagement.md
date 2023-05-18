@@ -10,11 +10,11 @@ React의 Context API는 컴포넌트 간에 전역적으로 데이터를 공유�
 
 Context API는 Provider와 Consumer라는 두 가지 컴포넌트로 이루어져 있다. Provider는 Context의 값을 설정하는 컴포넌트이고, 자식 컴포넌트에게 값을 전달한다. Consumer는 Context의 값을 가져오는 컴포넌트이고, Context의 값을 사용하여 UI를 렌더링한다.
 
-### 1.1. `creatContext()`
+### 1.1. `creatContext()`, `Provider`, `useContext()`
 
-createContext 함수는 Context 객체를 반환하며, 이 객체는 Provider와 Consumer 컴포넌트를 생성할 때 사용한다. createContext 함수의 인자로는 Context 객체의 초기값을 전달할 수 있다. 이 값은 Provider가 없을 때에 기본값으로 사용된다.
+createContext 함수는 Context 객체를 반환하며, 이 객체는 Provider와 ~~Consumer~~(현재는 useContext를 사용!)를 통해 값을 제공받고 제공한다. createContext 함수의 인자로는 Context 객체의 초기값을 전달할 수 있다. 이 값은 Provider가 없을 때에 기본값으로 사용된다.
 
-Provider는 value prop을 받아서 이 값을 하위에 있는 컴포넌트에게 전달한다. 이 때 값을 전달받을 수 있는 컴포넌트의 수에 제한은 없다. Provider 하위에 또 다른 Provider를 배치하는 것도 가능하며, 이 경우 하위 Provider의 값이 우선시된다. Provider 하위에서 context를 구독하는 모든 컴포넌트는 Provider의 value prop가 바뀔 때마다 다시 렌더링된다.
+Provider는 value를 통해 하위에 있는 컴포넌트에게 값을 전달한다. Provider 하위에 또 다른 Provider를 배치하는 것도 가능하며, 이 경우 하위 Provider의 값이 우선시된다. Provider 하위에서 context를 구독하는 모든 컴포넌트는 Provider의 value prop가 바뀔 때마다 다시 렌더링된다.이 때 값을 전달받을 수 있는 컴포넌트의 수에 제한은 없다.
 
 ```js
 import React, { createContext, useState } from "react";
@@ -35,8 +35,6 @@ export default function UserStore(props) {
   );
 }
 ```
-
-### 1.2. `useContext()`
 
 useContext는 Context 객체의 값을 가져오는 훅이다. Context 객체를 인자로 받아 해당 Context 객체의 값을 반환한다.
 
