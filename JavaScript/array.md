@@ -113,8 +113,8 @@ console.log(fruits); //[ 'apple', 'kiwi', 'melon' ]
 
 ##### 3.3.1.1. 뒤에서 추가/삭제
 
-- `Array.push(element)`: Array에 요소 추가, 추가한 배열의 크기를 반환한다.
-- `Array.pop()`: Array에서 요소 삭제, 삭제한 element를 반환한다.
+- `Array.push(element)`: Array 뒤쪽에서 요소를 추가하고, 추가한 배열의 크기를 반환한다.
+- `Array.pop()`: Array 뒤쪽에서 요소를 삭제하고, 삭제한 element를 반환한다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
@@ -131,8 +131,8 @@ console.log(ret); //watermelon
 
 ##### 3.3.1.2. 앞에서 추가/삭제
 
-- `Array.unShift(element)`: Array에 요소 추가, 추가한 배열의 크기를 반환한다.
-- `Array.shift()`: Array에서 요소 삭제, 삭제한 element를 반환한다.
+- `Array.unShift(element)`: Array 앞쪽에서 요소를 추가하고, 추가한 배열의 크기를 반환한다.
+- `Array.shift()`: Array 앞쪽에서 요소를 삭제하고, 삭제한 element를 반환한다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
