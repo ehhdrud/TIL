@@ -180,7 +180,7 @@ console.log(fruits.length); //3
 
 #### 3.4.1 `Array.slice(start,end)`
 
-특정 위치 배열을 삭제하는 메서드이다.
+특정 위치 배열을 제외하고 반환하는 메서드이다.
 
 ```javascript
 let fruits = ["apple", "orange", "melon"];
