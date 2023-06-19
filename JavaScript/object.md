@@ -13,7 +13,7 @@ const obj = {
 };
 ```
 
-### 1.2. Object 생성자 함수
+### 1.2. Object - 내장 생성자 함수
 
 ```javascript
 const obj = new Object();
@@ -37,15 +37,25 @@ const obj = Object.create(Object.prototype, {
 });
 ```
 
-### 1.4. 생성자 함수(`new`연산자로 호출)
+### 1.4. 생성자 함수(Constructor Function)
 
-여러 유사한 객체를 만들 때 사용한다. 같은 목적으로 *클래스*를 사용할 수 있다.
+비슷한 유형의 객체를 찍어낼 수 있고 재사용 가능한 코드를 통해 비교적 규모가 큰 웹 페이지를 구현할 때 유용하다.
+
+생성자 함수의 상속은 프로토타입을 통해 구현된다.
+
+생성자 함수는 다음과 같은 특징을 가진다.
+
+- 대문자로 시작하는 함수명을 가진다.
+- `new` 연산자를 통해 함수를 호출하여 객체를 찍어낸다.
+- 이를 통해 찍어낸 객체는 `constuctor` 속성을 갖는데, 이 속성을 통해 원본 객체인 생성자 함수를 참조할 수 있다.
 
 ```javascript
 function NewObject(name) {
   this.name = name;
 }
 const obj = new NewObject("seo");
+console.log(obj.name); // seo
+console.log(obj.constructor); // NewObject
 ```
 
 ## 2. 객체의 추가, 삭제
