@@ -36,7 +36,7 @@ Fetch 함수는 Promise를 반환하며, Promise가 이행될 때 Response 객�
 >   .catch((error) => console.error(error));
 > ```
 
-> **📌 Fetch 실사용 예시**
+> **📌 예시**
 >
 > ```js
 > // ...some codes
@@ -98,7 +98,7 @@ Axios는 설치가 필요하다.
 >   .catch((error) => console.error(error));
 > ```
 
-> **📌 Axios 실사용 예시**
+> **📌 예시**
 >
 > ```js
 > // ...some codes
