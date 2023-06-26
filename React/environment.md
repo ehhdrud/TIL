@@ -53,7 +53,7 @@ CRA(Creat-React-App)를 이용하면 리액트앱을 만들기 위한 필수 개
 다음 명령어를 통해
 
 ```bash
-npx create-react-app react-app
+  npx create-react-app [projectName]
 ```
 
 'react-app'에서 다음 명령어를 통해 리액트 개발 환경을 활성화한다.
