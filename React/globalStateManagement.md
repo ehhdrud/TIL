@@ -2,63 +2,71 @@
 
 전역 상태 관리는 애플리케이션의 상태를 관리하고 각 컴포넌트 간의 데이터 전달을 보다 쉽고 효율적으로 처리하기 위한 방법이다.
 
-일반적으로, React에서는 props를 사용하여 컴포넌트 간에 데이터를 전달한다. 그러나 컴포넌트 계층 구조가 복잡하고, 많은 수의 컴포넌트가 중간에 위치할 때 props를 사용하여 데이터를 전달하는 것은 번거롭고, 관리하기 어려울 수 있다. 예를 들어, A-B-C-D 라는 컴포넌트가 아래로 뻗어있다고 생각해보자. D 컴포넌트에서 A 컴포넌트의 상태(데이터)를 받아오려면 B,C 컴포넌트를 거쳐야 한다. 이 때 B,C 컴포넌트는 단순히 데이터를 전달해주는 역할을 하게 되고 이러한 상태 관리는 매우 비효율적이다. 그러나 전역으로 데이터를 관리한다면, A 아래 어떤 자식 컴포넌트든 해당 데이터에 수월하게 접근할 수 있다. 이는 애플리케이션의 유지 보수성을 향상시키고, 코드의 재사용성을 높이는 효과가 있다.
+일반적으로, React에서는 props를 사용하여 컴포넌트 간에 데이터를 전달한다. 그러나 컴포넌트 계층 구조가 복잡하고 많은 수의 컴포넌트가 중간에 위치할 때 props를 사용하여 데이터를 전달하는 것은 번거롭고 관리하기 어려울 수 있다. 예를 들어, A-B-C-D 라는 컴포넌트가 아래로 뻗어있다고 생각해보자. D 컴포넌트에서 A 컴포넌트의 상태(데이터)를 받아오려면 B,C 컴포넌트를 거쳐야 한다. 이 때 B,C 컴포넌트는 단순히 데이터를 전달해주는 역할을 하게 되고 이러한 상태 관리는 매우 비효율적이다.
+
+그러나 전역으로 데이터를 관리한다면 A 아래 어떤 자식 컴포넌트든 해당 데이터에 수월하게 접근할 수 있다. 이는 애플리케이션의 유지 보수성을 향상시키고 코드의 재사용성을 높이는 효과가 있다.
 
 ## 1. Context API
 
 React의 Context API는 컴포넌트 간에 전역적으로 데이터를 공유하는 방법을 제공한다.
 
-Context API는 Provider와 Consumer라는 두 가지 컴포넌트로 이루어져 있다. Provider는 Context의 값을 설정하는 컴포넌트이고, 자식 컴포넌트에게 값을 전달한다. Consumer는 Context의 값을 가져오는 컴포넌트이고, Context의 값을 사용하여 UI를 렌더링한다.
+Context API는 Provider와 Consumer라는 두 가지 컴포넌트로 이루어져 있다. (현재는 Consumer 대신 useContext를 주로 사용한다.) Provider는 Context의 값을 설정하는 컴포넌트이고, 자식 컴포넌트에게 값을 전달한다. Consumer는 Context의 값을 가져오는 컴포넌트이고, Context의 값을 사용하여 UI를 렌더링한다.
 
-### 1.1. `creatContext()`, `Provider`, `useContext()`
+### 1.1. `creatContext` / `Provider` / `useContext`
 
-createContext 함수는 Context 객체를 반환하며, 이 객체는 Provider와 ~~Consumer~~(현재는 useContext를 사용!)를 통해 값을 제공받고 제공한다. createContext 함수의 인자로는 Context 객체의 초기값을 전달할 수 있다. 이 값은 Provider가 없을 때에 기본값으로 사용된다.
+createContext 함수는 Context 객체를 반환하며, 이 객체는 Provider와 useContext를 통해 값을 제공하고 제공받는다. createContext 함수의 인자로는 Context 객체의 초기값을 전달할 수 있다. 이 값은 Provider가 없을 때에 기본값으로 사용된다.
 
-Provider는 value를 통해 하위에 있는 컴포넌트에게 값을 전달한다. Provider 하위에 또 다른 Provider를 배치하는 것도 가능하며, 이 경우 하위 Provider의 값이 우선시된다. Provider 하위에서 context를 구독하는 모든 컴포넌트는 Provider의 value prop가 바뀔 때마다 다시 렌더링된다.이 때 값을 전달받을 수 있는 컴포넌트의 수에 제한은 없다.
+Provider는 value를 통해 하위에 있는 컴포넌트에게 값을 전달한다. Provider 하위에 또 다른 Provider를 배치하는 것도 가능하며, 이 경우 하위 Provider의 값이 우선시된다. Provider 하위에서 context를 구독하는 모든 컴포넌트는 Provider의 value prop가 바뀔 때마다 다시 렌더링된다. 이 때 값을 전달받을 수 있는 컴포넌트의 수에 제한은 없다.
 
-```js
-import React, { createContext, useState } from "react";
+useContext는 Context 객체의 값을 가져오는 훅으로, Context 객체를 인자로 받아 해당 Context 객체의 값을 반환한다. useContext 훅이 추가된 이후로는 Consumer 컴포넌트를 사용하지 않고도 간편하게 Context 값을 받아올 수 있다.
 
-export const UserContext = createContext();
+### 1.2. Context API와 useState()를 이용한 전역 상태 관리
 
-export default function UserStore(props) {
-  const [job, setJob] = useState("FE-developer");
+아래는 Context API와 useState를 이용한 전역 상태 관리 예제이다.
 
-  const user = {
-    name: "seodongkeyong",
-    job,
-    changeJob: (updatedJob) => setJob(updatedJob),
-  };
+> **💬 user.js**
+>
+> ```js
+> import React, { createContext, useState } from "react";
+>
+> export const UserContext = createContext();
+>
+> export default function UserStore(props) {
+>   const [job, setJob] = useState("FE-developer");
+>
+>   const user = {
+>     name: "seodongkeyong",
+>     job,
+>     changeJob: (updatedJob) => setJob(updatedJob),
+>   };
+>
+>   return (
+>     <UserContext.Provider value={user}>{props.children}</UserContext.Provider>
+>   );
+> }
+> ```
 
-  return (
-    <UserContext.Provider value={user}>{props.children}</UserContext.Provider>
-  );
-}
-```
+> **💬 blogPage.js**
+>
+> ```js
+> import React, { useContext } from "react";
+> import { UserContext } from "../store/user";
+>
+> export default function BlogPage() {
+>   const userInfo = useContext(UserContext);
+>   console.log(userInfo);
+>
+>   return (
+>     <div>
+>       <h1>BlogPage</h1>
+>     </div>
+>   );
+> }
+> ```
 
-useContext는 Context 객체의 값을 가져오는 훅이다. Context 객체를 인자로 받아 해당 Context 객체의 값을 반환한다.
+### 1.3. Context API와 useReducer()를 이용한 전역 상태 관리
 
-useContext 훅이 추가된 이후로는 Consumer 컴포넌트를 사용하지 않고도 Context 값을 간편하게 받아올 수 있다.
-
-```js
-import React, { useContext } from "react";
-import { UserContext } from "../store/user";
-
-export default function BlogPage() {
-  const userInfo = useContext(UserContext);
-  console.log(userInfo);
-
-  return (
-    <div>
-      <h1>BlogPage</h1>
-    </div>
-  );
-}
-```
-
-## 1.3. Context API와 `useReducer()`를 이용한 전역 상태 관리
-
-위는 useState를 통해 전역 상태를 관리한 예제라면, 아래는 useReducer를 통해서 전역 상태를 관리할 수 있다. useReducer를 이용한다면 상태를 사용하는 컴포넌트의 수가 많을 때, 혹은 복잡한 로직을 구현할 때 더 적합하다.
+아래는 useState 대신 useReducer를 사용해서 전역 상태를 관리하는 예제이다. useReducer를 이용한다면 상태를 사용하는 컴포넌트의 수가 많을 때 혹은 복잡한 로직을 구현할 때 더 적합하다.
 
 > **💬 user.js**
 >
@@ -116,7 +124,7 @@ export default function BlogPage() {
 > }
 > ```
 
-Context API와 useReducer를 이용한 전역 상태 관리 예제이다. 위 코드에서 BlogPage 컴포넌트는 Context 객체인 UserContext에서 dispatch만을 가져와 사용하고 있는데, 만약 user에 변경이 일어나서 BlogPage가 리렌더링된다면 불필요한 리렌더링이 발생하는 것이다. (이 문제는 Context API와 useState를 이용한 전역 상태 관리에서도 마찬가지이다!)
+위 코드에서 BlogPage 컴포넌트는 Context 객체인 UserContext에서 dispatch만을 가져와 사용하고 있는데, 만약 user에 변경이 일어나서 BlogPage가 리렌더링된다면 불필요한 렌더링이 발생하는 것이다. 이 문제는 Context API와 useState를 이용한 전역 상태 관리에서도 마찬가지이다.
 
 이 문제를 해결하려면 사용할 각 속성을 하나하나의 컴포넌트로 나눠서 관리하거나 Redux를 사용해야 한다.
 
@@ -130,7 +138,7 @@ Redux는 설치가 필요하다.
 npm install redux
 ```
 
-Rudux는 useReducer와 마찬가지로 Reducer 함수를 사용하고, 상태 변화를 일으키는 정보를 포함하는 action 객체를 사용한다. 초기 상태를 정의할 때 초기값을 인자로 전달하는 것이 아니라 `createStore()` 함수를 통해 Store 객체를 생성하여 초기 상태를 정의한다. 이 때 미들웨어(Middleware)를 사용하고자 한다면, 다음과 같이 createStore의 두번째 인자에 `applyMiddleware()` 함수로 가져온 미들웨어를 넣어준다.
+Rudux는 useReducer와 마찬가지로 Reducer 함수를 사용하고, 상태 변화를 일으키는 정보를 포함하는 action 객체를 사용한다. 초기 상태를 정의할 때 초기값을 인자로 전달하는 것이 아니라 `createStore()` 함수를 통해 Store 객체를 생성하여 초기 상태를 정의한다. 이 때 "미들웨어(Middleware)"를 사용하고자 한다면, 다음과 같이 createStore의 두번째 인자에 `applyMiddleware()` 함수로 가져온 미들웨어를 넣어준다.
 
 ```js
 import { createStore, applyMiddleware } from "redux";
@@ -168,6 +176,12 @@ export default rootReducer;
 >
 > react-redux 모듈은 React 애플리케이션과 Redux store를 연결하는 데에 특화되어 있다. react-redux 모듈을 사용하면 React 컴포넌트에서 Redux store의 상태를 가져오거나 액션을 디스패치하여 Redux 상태를 업데이트할 수 있다.
 >
+> react-redux 역시 설치가 필요하다.
+>
+> ```bash
+> npm install react-redux
+> ```
+>
 > 다음은 주요 리액트 함수이다.
 >
 > - `Provider`
@@ -180,12 +194,6 @@ export default rootReducer;
 >   : 액션을 디스패치하는 함수를 가져올 때 사용하는 함수이다.
 > - `useStore()`
 >   : Redux 스토어를 가져올 때 사용하는 함수이다.
->
-> react-redux 역시 설치가 필요하다.
->
-> ```bash
-> npm install react-redux
-> ```
 
 ### 2.1. Redux Toolkit
 
@@ -295,8 +303,6 @@ Recoil을 사용하면 Atoms에서 Selectors를 거쳐 React 컴포넌트로 내
 
 상태 업데이트가 발생하면 관련된 컴포넌트들이 자동으로 업데이트되도록 설계되어 있다.
 
-Recoil은
-
 Recoil은 설치가 필요하다
 
 ```bash
@@ -384,7 +390,7 @@ function MyApp() {
 
 ## 4. React-Query
 
-비동기적 전역 상태 관리를 위해 redux-thunk, createAsyncThunk, recoil 등을 다 사용해봐도 너무 코드가 비대해지는 것 같다면, React-Query가 효율적인 대안이 될 수 있다.
+비동기적 전역 상태 관리를 위해 redux-thunk, createAsyncThunk, recoil 등을 다 사용해봐도 너무 코드가 비대해지는 것 같다면, React-Query이 효율적인 대안이다.
 
 React-Query는 서버로부터 데이터를 가져오고 관리하기 위한 라이브러리로, 데이터에 대한 '패칭, 캐싱, 동기화, 업데이트'의 기능을 가진다. 이 라이브러리는 컴포넌트 수준에서 데이터를 관리할 수 있도록 하고, 비동기 데이터를 가져오는 로직을 컴포넌트에서 분리하여 관리하므로 코드가 더 간결해지고 유지보수가 용이해진다.
 
