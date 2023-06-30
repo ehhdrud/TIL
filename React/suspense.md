@@ -43,7 +43,7 @@ Suspense Mode는 Suspense 컴포넌트를 사용하여 구현되며, Suspense �
 </QueryClientProvider>
 ```
 
-useQuery는 기본적으로 병렬적으로 동작하지만 Suspense Mode로 사용하면 useQuery는 병렬적으로 동작하지 않는다. 이를 해결하기 위해 useQuery말고 useQueries를 통해 병렬 처리를 구현한다.
+useQuery는 기본적으로 병렬적으로 동작하지만 Suspense Mode로 사용하면 useQuery는 병렬적으로 동작하지 않는다. 이를 해결하기 위해 아래와 같이 useQuery 대신 useQueries를 통해 병렬 처리를 구현할 수 있다.
 
 ```js
 const results = useQueries([
