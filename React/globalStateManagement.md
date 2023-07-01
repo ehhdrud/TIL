@@ -24,6 +24,43 @@ useContext는 Context 객체의 값을 가져오는 훅으로, Context 객체를
 
 아래는 Context API와 useState를 이용한 전역 상태 관리 예제이다.
 
+> **💬 App.js**
+>
+> ```js
+> import { BrowserRouter, Routes, Route } from "react-router-dom";
+> import MainPage from "./components/MainPage";
+> import TechPage from "./components/TechPage";
+> import BlogPage from "./components/BlogPage";
+> import JavascriptPage from "./components/JavascriptPage";
+> import ReactPage from "./components/ReactPage";
+> import ReactDocPage from "./components/ReactDocPage";
+> import Logo from "./components/Logo";
+> import UserStore from "./store/user";
+>
+> function App() {
+>   return (
+>     <UserStore>
+>       <BrowserRouter>
+>         <Routes>
+>           <Route path={"/"} element={<Logo />}>
+>             <Route path={"/"} element={<MainPage />} />
+>             <Route path={"tech"} element={<TechPage />}>
+>               <Route path="javascript" element={<JavascriptPage />} />
+>               <Route path="react" element={<ReactPage />}>
+>                 <Route path=":docId" element={<ReactDocPage />} />
+>               </Route>
+>             </Route>
+>             <Route path={"blog"} element={<BlogPage />} />
+>           </Route>
+>         </Routes>
+>       </BrowserRouter>
+>     </UserStore>
+>   );
+> }
+>
+> export default App;
+> ```
+
 > **💬 user.js**
 >
 > ```js
@@ -130,7 +167,9 @@ useContext는 Context 객체의 값을 가져오는 훅으로, Context 객체를
 
 ## 2. Redux
 
-Redux는 React 애플리케이션에서 상태를 효율적으로 관리하기 위한 상태 관리 라이브러리이자, Redux는 Flux 아키텍처(단방향 데이터 흐름을 강제하는 애플리케이션)의 구현체 중 하나이다. Redux는 전역적인 상태를 관리하며 React 컴포넌트 간에 데이터를 공유하는 데 유용하므로 React의 컴포넌트 기반 설계와 함께 사용하기에 적합하다. Redux를 사용하면 상태를 중앙 집중적으로 관리할 수 있으며, React 컴포넌트는 오직 필요한 데이터만을 props로 전달받아 사용할 수 있다. 또한 애플리케이션의 복잡도를 낮출 수 있으며, 개발자가 애플리케이션의 상태를 쉽게 추적하고 디버그할 수 있다.
+Redux는 React 애플리케이션에서 상태를 효율적으로 관리하기 위한 상태 관리 라이브러리이자, Redux는 Flux 아키텍처(단방향 데이터 흐름을 강제하는 애플리케이션)의 구현체 중 하나이다.
+
+Redux는 전역적인 상태를 관리하며 React 컴포넌트 간에 데이터를 공유하는 데 유용하므로 React의 컴포넌트 기반 설계와 함께 사용하기에 적합하다. Redux를 사용하면 상태를 중앙 집중적으로 관리할 수 있으며, React 컴포넌트는 오직 필요한 데이터만을 props로 전달받아 사용할 수 있다. 또한 애플리케이션의 복잡도를 낮출 수 있으며, 개발자가 애플리케이션의 상태를 쉽게 추적하고 디버그할 수 있다.
 
 Redux는 설치가 필요하다.
 
