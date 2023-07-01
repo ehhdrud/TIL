@@ -8,7 +8,7 @@
 
 ## 1. Context API
 
-React의 Context API는 컴포넌트 간에 전역적으로 데이터를 공유하는 방법을 제공한다.
+React의 Context API는 컴포넌트 간에 전역적으로 데이터를 공유하는 방법을 제공한다. **상태를 트리 구조로 전파하는 방식으로 동작하며, 컴포넌트마다 개별적인 상태를 가질 수 있다**
 
 Context API는 Provider와 Consumer라는 두 가지 컴포넌트로 이루어져 있다. (현재는 Consumer 대신 useContext를 주로 사용한다.) Provider는 Context의 값을 설정하는 컴포넌트이고, 자식 컴포넌트에게 값을 전달한다. Consumer는 Context의 값을 가져오는 컴포넌트이고, Context의 값을 사용하여 UI를 렌더링한다.
 
@@ -104,7 +104,9 @@ useContext는 Context 객체의 값을 가져오는 훅으로, Context 객체를
 
 ### 1.3. Context API와 useReducer()를 이용한 전역 상태 관리
 
-아래는 useState 대신 useReducer를 사용해서 전역 상태를 관리하는 예제이다. useReducer를 이용한다면 상태를 사용하는 컴포넌트의 수가 많을 때 혹은 복잡한 로직을 구현할 때 더 적합하다.
+추가로, useReducer를 사용하여 상태를 사용하는 컴포넌트의 수가 많을 때 혹은 복잡한 로직을 더 효율적으로 관리할 수 있다. 또한 Reducer 함수는 항상 동일한 입력에 대해 동일한 출력을 보장하므로, 상태 변화가 예측 가능하고 디버깅이 용이하며 시간에 따라 상태의 변경 히스토리를 쉽게 추적할 수 있다.
+
+아래는 useState 대신 useReducer를 사용해서 전역 상태를 관리하는 예제이다.
 
 > **💬 user.js**
 >
@@ -170,7 +172,7 @@ useContext는 Context 객체의 값을 가져오는 훅으로, Context 객체를
 
 Redux는 React 애플리케이션에서 상태를 효율적으로 관리하기 위한 상태 관리 라이브러리이자, Redux는 Flux 아키텍처(단방향 데이터 흐름을 강제하는 애플리케이션)의 구현체 중 하나이다.
 
-Redux는 전역적인 상태를 관리하며 React 컴포넌트 간에 데이터를 공유하는 데 유용하므로 React의 컴포넌트 기반 설계와 함께 사용하기에 적합하다. Redux를 사용하면 상태를 중앙 집중적으로 관리할 수 있으며, React 컴포넌트는 오직 필요한 데이터만을 props로 전달받아 사용할 수 있다. 또한 애플리케이션의 복잡도를 낮출 수 있으며, 개발자가 애플리케이션의 상태를 쉽게 추적하고 디버그할 수 있다.
+Redux를 사용하면 **하나의 중앙 집중화된 스토어(store)에 상태를 저장하고 관리할 수 있으며**, React 컴포넌트는 오직 필요한 데이터만을 props로 전달받아 사용할 수 있다. 또한 애플리케이션의 복잡도를 낮출 수 있으며, 개발자가 애플리케이션의 상태를 쉽게 추적하고 디버그할 수 있다.
 
 Redux는 설치가 필요하다.
 
@@ -178,7 +180,7 @@ Redux는 설치가 필요하다.
 npm install redux
 ```
 
-Rudux는 useReducer와 마찬가지로 Reducer 함수를 사용하고, 상태 변화를 일으키는 정보를 포함하는 action 객체를 사용한다. 초기 상태를 정의할 때 초기값을 인자로 전달하는 것이 아니라 `createStore()` 함수를 통해 Store 객체를 생성하여 초기 상태를 정의한다. 이 때 "미들웨어(Middleware)"를 사용하고자 한다면, 다음과 같이 createStore의 두번째 인자에 `applyMiddleware()` 함수로 가져온 미들웨어를 넣어준다.
+Rudux는 **useReducer를 사용하지 않고도 Reducer 함수를 통해 상태를 관리할 수 있다.** 초기 상태를 정의할 때 초기값을 인자로 전달하는 것이 아니라 `createStore()` 함수를 통해 Store 객체를 생성하여 초기 상태를 정의한다. 이 때 "미들웨어(Middleware)"를 사용하고자 한다면, 다음과 같이 `createStore()`의 두번째 인자에 `applyMiddleware()` 함수로 가져온 미들웨어를 넣어준다. (미들웨어에 대한 설명은 아래에서 다룸.)
 
 ```js
 import { createStore, applyMiddleware } from "redux";
@@ -186,7 +188,7 @@ import { createStore, applyMiddleware } from "redux";
 const store = createStore(rootReducer, applyMiddleware(middleware));
 ```
 
-그 외의 중요 함수로 `combineReducers()` 함수가 있다. 이 함수는 여러 개의 reducer를 하나로 합쳐 하나의 reducer, 즉 'rootReducer'를 만드는 역할을 한다.
+그 외의 중요 함수로 `combineReducers()` 함수가 있다. 이 함수는 여러 개의 reducer를 하나로 합친 'rootReducer'를 만드는 역할을 한다.
 
 ```js
 import { combineReducers } from "redux";
@@ -203,13 +205,13 @@ export default rootReducer;
 
 > **📌 Store 객체의 메서드**
 >
-> - subscribe  
+> - `subscribe`  
 >   : 스토어의 상태가 업데이트될 때마다 호출되는 콜백 함수를 등록하는 메서드이다. 이를 통해 스토어의 변화를 확인할 수 있다.
 >
-> - dispatch
+> - `dispatch`
 >   : 스토어에 액션을 보내서 상태를 변경하는 메서드이다. 액션은 애플리케이션에서 발생하는 이벤트나 사용자 입력과 같은 것들을 나타내며, 반드시 type이라는 프로퍼티를 가지고 있어야 한다. useReducer에서 사용하는 dispatch와 동일이다.
 >
-> - getState  
+> - `getState`  
 >   : 스토어의 현재 상태를 반환하는 메서드이다. 이를 통해 현재 상태를 확인할 수 있다.
 
 > **📌 react-redux**
@@ -237,7 +239,7 @@ export default rootReducer;
 
 ### 2.1. Redux Toolkit
 
-Redux Toolkit은 Redux 개발을 단순화하고 개발 생산성을 향상시키는 데 도움을 주는 공식적인 Redux 패키지다.
+Redux의 또 다른 장점은 **Redux Toolkit이라는 Redux 공식 패키지를 통해 개발 생산성을 향상**시킬 수 있다는 점이다.
 
 Redux Toolkit은 설치가 필요하다.
 
@@ -270,7 +272,7 @@ configureStore는 다음과 같은 인자(key)를 가진다.
 
 Reducer와 Action Creator를 한 번에 생성하는 기능이다. 이를 사용하면 보일러플레이트 코드를 줄일 수 있고 Redux 리듀서를 쉽게 작성할 수 있다.
 
-createSlice 함수는 리듀서 함수(creatReducer)와 액션 생성자 함수(createAction)를 모두 생성한다. 이 함수를 사용하여, 슬라이스(slice)라는 개념을 도입하고, 슬라이스 별로 리듀서를 관리할 수 있다. 슬라이스는 애플리케이션의 상태(state)에서 특정한 영역을 담당한다.
+createSlice 함수는 리듀서 함수(creatReducer)와 액션 생성자 함수(createAction)를 모두 생성한다. 이 함수를 사용하여, 슬라이스(slice)라는 개념을 도입하고, 슬라이스 별로 리듀서를 관리할 수 있다. 슬라이스는 애플리케이션의 상태에서 특정한 영역을 담당한다.
 
 createSlice 함수의 첫 번째 인자(key)로는 슬라이스의 이름과 초기 상태를 객체 형태로 전달한다. 두 번째 인자로는 객체 형태의 리듀서 케이스와 미들웨어 함수를 전달할 수 있다. 슬라이스 이름은 name 속성으로, 초기 상태는 initialState 속성으로 정의한다. 리듀서 케이스는 reducers 속성으로 전달한다.
 
@@ -280,7 +282,7 @@ createSlice 함수의 첫 번째 인자(key)로는 슬라이스의 이름과 초
 
 ### 2.2. 미들웨어(Middleware)
 
-미들웨어는 Redux와 같은 상태 관리 라이브러리에서 애플리케이션의 상태를 변경하기 전에 사용되는 함수이다.
+Redux는 **다양한 미들웨어를 제공**한다. 미들웨어는 Redux와 같은 상태 관리 라이브러리에서 애플리케이션의 상태를 변경하기 전에 사용되는 함수로, 액션이 디스패치되는 과정에서 추가적인 동작을 수행하고 상태 변화를 제어할 수 있는 확장 기능이다.
 
 로깅, 에러 처리와 같은 비동기 작업들은 액션을 전달하는 역할을 하는 dispatch 함수에 작성하여 처리하는 것은 가독성을 떨어뜨리고 유지보수도 어렵게 만든다. 한편 Reducer 함수는 '순수 함수(동일한 인자가 주어졌을 때, 동일한 결과를 반환하는 함수!)'로 작성되어야 하는데, 비동기 처리 작업은 같은 입력에 대해 다른 결과를 만들어내기 때문에 순수 함수의 조건을 위반하므로 Reducer에서는 아예 처리할 수는 없다. 이러한 이유 때문에 미들웨어는 Action과 Reducer 사이에서 위치하여 비동기 작업을 처리한다.
 
@@ -339,9 +341,7 @@ createSlice 함수의 첫 번째 인자(key)로는 슬라이스의 이름과 초
 
 Facebook에서 개발된 상태 관리 라이브러리로, 전역 상태 관리를 지원한다.
 
-Recoil을 사용하면 Atoms에서 Selectors를 거쳐 React 컴포넌트로 내려가는 data-flow graph를 만들 수 있다. Atoms는 컴포넌트가 구독할 수 있는 상태의 단위다. Selectors는 Atoms 상태 값을 동기 또는 비동기 방식을 통해 변환하여 필요한 데이터를 만들어낸다. Atoms는 React의 로컬 컴포넌트의 상태 대신 사용할 수 있다. 동일한 Atom이 여러 컴포넌트에서 사용되는 경우 모든 컴포넌트는 상태를 공유한다.
-
-상태 업데이트가 발생하면 관련된 컴포넌트들이 자동으로 업데이트되도록 설계되어 있다.
+Recoil을 사용하면 **Atoms에서 Selectors를 거쳐 React 컴포넌트로 내려가는 data-flow graph를 만들 수 있다**. Atoms는 컴포넌트가 구독할 수 있는 상태의 단위다. Selectors는 Atoms 상태 값을 동기 또는 비동기 방식을 통해 변환하여 필요한 데이터를 만들어낸다. Atoms는 React의 로컬 컴포넌트의 상태 대신 사용할 수 있다. 동일한 Atom이 여러 컴포넌트에서 사용되는 경우 모든 컴포넌트는 상태를 공유한다. 상태 업데이트가 발생하면 관련된 컴포넌트들이 자동으로 업데이트되도록 설계되어 있다.
 
 Recoil은 설치가 필요하다
 
@@ -380,7 +380,7 @@ function MyApp() {
 }
 ```
 
-Recoil의 가장 강력한 점은 아래와 같이 비동기 데이터 쿼리를 통해 함수들이 비동기로 동작하는 기능을 제공한다는 것이다. 위 코드를 아래와 같이 비동기로 작성할 수 있다.
+Recoil의 가장 강력한 점은 아래와 같이 **비동기 데이터 쿼리를 통해 함수들이 비동기로 동작하는 기능을 제공한다**는 것이다. 위 코드를 아래와 같이 비동기로 작성할 수 있다.
 
 ```js
 const currentUserIDState = atom({
@@ -413,7 +413,9 @@ function MyApp() {
 }
 ```
 
-추가적인 특징으로는, Recoil은 promise가 resolve 되기 전에 보류중인 데이터를 다루기 위해, React Suspense와 함께 동작하도록 디자인되어 있다는 점이다. 또한 Selector는 컴포넌트에서 특정 값을 사용하려고 할 때에 어떤 에러가 생길지에 대한 에러를 던질 수 있는데, 이는 `<ErrorBoundary>`를 이용하여 쉽게 처리할 수 있다.
+추가적인 특징으로는, Recoil은 **promise가 resolve 되기 전에 보류중인 데이터를 다루기 위해 React Suspense와 함께 동작하도록 디자인되어 있다**는 점이다.
+
+또한 **에러 처리 과정의 이점**도 있다. Selector는 컴포넌트에서 특정 값을 사용하려고 할 때에 어떤 에러가 생길지에 대한 에러를 던질 수 있는데, 이는 `<ErrorBoundary>`를 이용하여 쉽게 처리할 수 있다.
 
 > 📌 그 외 (전역)상태 관리 라이브러리
 >
@@ -432,9 +434,9 @@ function MyApp() {
 
 비동기적 전역 상태 관리를 위해 redux-thunk, createAsyncThunk, recoil 등을 다 사용해봐도 너무 코드가 비대해지는 것 같다면, React-Query이 효율적인 대안이다.
 
-React-Query는 서버로부터 데이터를 가져오고 관리하기 위한 라이브러리로, 데이터에 대한 '패칭, 캐싱, 동기화, 업데이트'의 기능을 가진다. 이 라이브러리는 컴포넌트 수준에서 데이터를 관리할 수 있도록 하고, 비동기 데이터를 가져오는 로직을 컴포넌트에서 분리하여 관리하므로 코드가 더 간결해지고 유지보수가 용이해진다.
+React-Query는 **서버로부터 데이터를 가져오고 관리하기 위한 라이브러리로, 데이터에 대한 '패칭, 캐싱, 동기화, 업데이트'의 기능**을 가진다. 이 라이브러리는 **컴포넌트 수준에서 데이터를 관리할 수 있도록 하고, 비동기 데이터를 가져오는 로직을 컴포넌트에서 분리하여 관리하므로 코드가 더 간결해지고 유지보수가 용이**해진다.
 
-React-Query는 전역 상태를 사용하여 데이터와 관련된 상태를 관리하지만, 이를 중앙 집중적으로 관리하지는 않는다. 즉, 상태 관리를 위한 별도의 store나 reducer가 필요하지 않으며, 전역 상태를 관리하기 위해 QueryClient라는 객체를 사용하고 컴포넌트 내부에서 필요한 Queries와 Mutation을 직접 정의하고 사용한다. QueryClient 객체는 캐시와 쿼리의 상태를 관리하며, 전역으로 데이터를 저장하는 역할을 수행한다. useQuery와 useMutation 훅에서는 QueryClient 객체에 접근하여 캐시된 데이터를 가져오거나, 새로운 데이터를 쿼리하거나, 새로운 데이터를 변경하는 등의 작업을 수행한다. 이러한 방식은 Redux나 Recoil과는 다르다.
+React-Query는 전역 상태를 사용하여 데이터와 관련된 상태를 관리하지만, 이를 중앙 집중적으로 관리하지는 않는다. 즉, **상태 관리를 위한 별도의 store나 reducer가 필요하지 않으며, 전역 상태를 관리하기 위해 QueryClient라는 객체를 사용하고 컴포넌트 내부에서 필요한 Queries와 Mutation을 직접 정의하고 사용**한다. QueryClient 객체는 캐시와 쿼리의 상태를 관리하며, 전역으로 데이터를 저장하는 역할을 수행한다. useQuery와 useMutation 훅에서는 QueryClient 객체에 접근하여 캐시된 데이터를 가져오거나, 새로운 데이터를 쿼리하거나, 새로운 데이터를 변경하는 등의 작업을 수행한다. 이러한 방식은 Redux나 Recoil과는 다르다.
 
 ### 4.1. React-Query의 핵심 개념
 
