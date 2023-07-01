@@ -92,6 +92,7 @@ useContext는 Context 객체의 값을 가져오는 훅으로, Context 객체를
 > export default function BlogPage() {
 >   const userInfo = useContext(UserContext);
 >   console.log(userInfo);
+>   // name: "seodongkeyong", job: "FE-developer", changeJob: updatedJob => setJob(updatedJob)
 >
 >   return (
 >     <div>
@@ -146,7 +147,6 @@ useContext는 Context 객체의 값을 가져오는 훅으로, Context 객체를
 >
 > export default function BlogPage() {
 >   const { dispatch } = useContext(UserContext);
->   console.log(dispatch);
 >
 >   return (
 >     <div>
@@ -154,6 +154,7 @@ useContext는 Context 객체의 값을 가져오는 훅으로, Context 객체를
 >       <button
 >         onClick={() => dispatch({ type: "changeJob", text: "BE-developer" })}
 >       >
+>         {/* 버튼을 누르면 job을 변경하는 기능 추가 */}
 >         ChangeJob
 >       </button>
 >     </div>
