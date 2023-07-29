@@ -386,7 +386,7 @@ console.log(fruits.sort(decending_order)); //[ 'Orange', 'orange', 'melon', 'app
 
 ### 4.2. `Array.forEach(function(item, index, array){});`
 
-배열에 포함되는 요소를 차례대로 꺼내 콜백 함수에 전달하여 반복 작업을 수행하는 메서드이다.
+배열에 포함되는 요소를 차례대로 꺼내 **콜백 함수에 전달하여 반복 작업을 수행**하는 메서드이다.
 
 ```javascript
 let nums = [0, 1, 2];
@@ -398,7 +398,7 @@ nums.forEach(function (i) {
 
 ### 4.3. `Array.map(function(item, index, array){});`
 
-콜백함수 결과를 배열로 반환하는 메서드이다.
+**콜백함수 결과**를 **배열로 반환**하는 메서드이다.
 
 ```javascript
 let nums = [1, 2, 3, 4, 5];
