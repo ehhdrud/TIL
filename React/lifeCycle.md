@@ -72,6 +72,8 @@ export default class Clock extends React.Component {
 
 한편, `useEffect`에 첫 번째 인자인 함수에서 함수를 리턴하면 `componentWillUnmount`처럼 동작하여 정리(clean-up) 기능을 수행하게 된다. 이는 의존성 배열처럼 필요에 따라 생략 가능하다.
 
+useEffect 내에서 반환 함수(return문)은 컴포넌트가 언마운트될 때 실행된다.
+
 다음은 위 클래스형 컴포넌트 예제를 함수형 컴포넌트로 수정한 예제이다.
 
 ```js
