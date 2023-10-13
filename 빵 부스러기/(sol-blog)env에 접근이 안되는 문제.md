@@ -5,7 +5,7 @@ Next.js 프로젝트 중 api키를 직접 입력했을 때는 firebase가 잘 �
 알고보니 env의 변수명도 신경써서 작성해야 했다.
 
 ```
-// ❌
+❌
 FB_API_KEY
 FB_AUTH_DOMAIN
 FB_PROJECT_ID
@@ -18,7 +18,7 @@ FB_MEASUREMENT_ID
 기존 변수명을 이렇게 설정했는데, 아무렇게나 설정하면 안되는 것이었다.
 
 ```
-// ✅
+✅
 NEXT_PUBLIC_FB_API_KEY
 NEXT_PUBLIC_FB_AUTH_DOMAIN
 NEXT_PUBLIC_FB_PROJECT_ID

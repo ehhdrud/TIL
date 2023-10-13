@@ -1,4 +1,4 @@
-# 리액트에서 문자열로 출력되는 HTML을 DOM요소에 삽입할 때
+# 리액트에서 문자열로 출력되는 HTML을 DOM 요소에 삽입할 때 XSS 방지
 
 1. 리액트에서 `innerHTML`을 사용하면 에러가 출력된다. Cross Site Scripting, 줄여서 XSS 공격을 막기 위함이다. XSS 보안 취약점이 생긴다면 관리자가 아닌 사람도 웹 페이지에 악성 스크립트를 삽입할 수 있다.
 2. `innerHTML` 대신 `dangerouslySetInnerHTML`를 사용하면 에러 없이 잘 실행된다. 그러나 XSS 보안 취약점은 여전히 그대로이기 때문에 위험하다. 추가적인 조치가 필요하다.
