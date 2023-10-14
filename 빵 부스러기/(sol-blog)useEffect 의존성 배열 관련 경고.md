@@ -1,14 +1,10 @@
-# (sol-blog)useEffect의 의존성 배열 관련 경고
-
 > **에러 로그**
 >
-> ```
 > React Hook useEffect has missing dependencies: ... Either include them or remove the dependency array react-hooks/exhaustive-deps
-> ```
 
 ## 해결 방법
 
-1. 주석을 통해 경고를 무시 (근본적인 해결 방법 X)
+**1. 주석을 통해 경고를 무시 (근본적인 해결 방법 X)**
 
 ```js
 useEffect(() => {
@@ -23,7 +19,7 @@ useEffect(() => {
 }, [getAccountAndNetwork]);
 ```
 
-2. 해당 함수, 변수를 의존성 배열에 넣어주기
+**2. 해당 함수, 변수를 의존성 배열에 넣어주기**
 
 ```js
 useEffect(() => {
@@ -37,7 +33,7 @@ useEffect(() => {
 }, [getAccountAndNetwork]);
 ```
 
-3. 해당 함수, 변수를 useEffect Hook에서 정의하기
+**3. 해당 함수, 변수를 useEffect Hook에서 정의하기**
 
 ```js
 useEffect(() => {
@@ -53,17 +49,17 @@ useEffect(() => {
 }, []);
 ```
 
-**추가 에러 로그**
+### 추가 에러 로그
 
 2번 방법을 실행했을 경우, 아래와 같은 추가 오류 발생.
 
-```
-The '...' function makes the dependencies of useEffect Hook (at line 90) change on every render. Move it inside the useEffect callback. Alternatively, wrap the definition of '...' in its own useCallback() Hook react-hooks/exhaustive-deps
-```
+> **에러 로그**
+>
+> The '...' function makes the dependencies of useEffect Hook (at line 90) change on every render. Move it inside the useEffect callback. Alternatively, wrap the definition of '...' in its own useCallback() Hook react-hooks/exhaustive-deps
 
 의존성 배열의 함수로 인해 매 렌더링마다 useEffect의 종속성을 변화시킨다는 내용이다. JavaScript는 '참조 동등성'을 기반으로 작동하기 때문에, 매 렌더링마다 새롭게 생성되는 함수가 항상 다르다고 받아들여 useEffect를 실행하는 것이다. 이를 해결하기 위해 `useCallback` hook을 사용한다. `useCallback`의 의존성 배열에는 사용하는 변수를 넣어주어야 한다.
 
-나는 아래와 같이 getAccountAndNetwork 함수를 작성하였다.
+그래서 아래와 같이 getAccountAndNetwork 함수를 다시 작성하였다.
 
 ```js
 const getAccountAndNetwork = useCallback(async () => {

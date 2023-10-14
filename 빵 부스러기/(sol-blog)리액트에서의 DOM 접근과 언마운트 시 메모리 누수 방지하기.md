@@ -1,5 +1,3 @@
-# 리액트에서의 DOM 접근과 언마운트 시 메모리 누수 방지하기
-
 ## 리액트에서 DOM 접근
 
 리액트에서 DOM에 직접 접근하기 위해서는 id나 class를 통해 접근하는 DOM API를 사용하지 않는다. 대신 `useRef` 훅을 사용하여 접근해야 한다. 리액트는 가상 DOM을 사용하지만 DOM API를 사용하면 React의 가상 DOM과의 조화가 어려울 수 있으며, 성능 저하의 가능성이 높아진다. Ref를 사용하면 리액트의 가상 DOM과 조화롭게 동작하면서도 필요한 DOM 요소에 접근할 수 있다.
@@ -65,9 +63,9 @@ useEffect(() => {
 
 그러나 아래와 같은 경고가 출력된다.
 
-```
-The ref value 'metaFoxRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'metaFoxRef.current' to a variable inside the effect, and use that variable in the cleanup function.
-```
+> **에러 로그**
+>
+> The ref value 'metaFoxRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'metaFoxRef.current' to a variable inside the effect, and use that variable in the cleanup function.
 
 이 경고는 useEffect 함수 내에서 참조된 metaFoxRef.current가 정리 함수 내에서 다를 가능성이 있다는 것을 나타낸다.
 
@@ -87,43 +85,43 @@ useEffect(() => {
 }, []);
 ```
 
-> **최종 코드**
->
-> ```js
-> import { useEffect, useRef } from 'react';
-> import MetaFox from '@metamask/logo';
->
-> const MetaFoxLogo = () => {
->     const metaFoxRef = useRef(null);
->     const isMetaFoxOn = useRef(false);
->
->     useEffect(() => {
->         let metaFoxRefCurrent = metaFoxRef.current;
->
->         if (window.document && !isMetaFoxOn.current) {
->             const metaFoxInstance = MetaFox({
->                 pxNotRatio: true,
->                 width: 42.5,
->                 height: 42.5,
->                 followMouse: true,
->             });
->
->             const divMetaFox = metaFoxRefCurrent;
->
->             if (divMetaFox) {
->                 divMetaFox.appendChild(metaFoxInstance.container);
->             }
->
->             isMetaFoxOn.current = true;
->         }
->
->         return () => {
->             metaFoxRefCurrent = null;
->         };
->     }, []);
->
->     return <div ref={metaFoxRef} />;
-> };
->
-> export default MetaFoxLogo;
-> ```
+그래서 최종 코드는 아래와 같이 작성되었다.
+
+```js
+import { useEffect, useRef } from 'react';
+import MetaFox from '@metamask/logo';
+
+const MetaFoxLogo = () => {
+    const metaFoxRef = useRef(null);
+    const isMetaFoxOn = useRef(false);
+
+    useEffect(() => {
+        let metaFoxRefCurrent = metaFoxRef.current;
+
+        if (window.document && !isMetaFoxOn.current) {
+            const metaFoxInstance = MetaFox({
+                pxNotRatio: true,
+                width: 42.5,
+                height: 42.5,
+                followMouse: true,
+            });
+
+            const divMetaFox = metaFoxRefCurrent;
+
+            if (divMetaFox) {
+                divMetaFox.appendChild(metaFoxInstance.container);
+            }
+
+            isMetaFoxOn.current = true;
+        }
+
+        return () => {
+            metaFoxRefCurrent = null;
+        };
+    }, []);
+
+    return <div ref={metaFoxRef} />;
+};
+
+export default MetaFoxLogo;
+```

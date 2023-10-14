@@ -1,5 +1,3 @@
-# Next.js에서 웹 스토리지를 사용할 때 발생하는 문제
-
 Next.js에서 웹 스토리지에 상태를 저장하기 위해 recoil, recoil-persist를 사용하여 atoms.ts를 아래와 같이 작성하였다.
 
 ```ts

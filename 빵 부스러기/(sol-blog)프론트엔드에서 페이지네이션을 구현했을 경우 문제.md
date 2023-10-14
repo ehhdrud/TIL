@@ -1,5 +1,3 @@
-# 클라이언트측 페이지네이션의 문제
-
 백엔드에서 다수의 게시글 데이터를 받아 이를 효율적으로 보여주기 위해 페이지네이션을 구현했다.
 
 ```js
@@ -8,7 +6,7 @@ const PostList: React.FC = () => {
     const [postListData, setPostListData] = useState(postListDataState); // 게시글 데이터
 
     const [page, setPage] = useState < number > 1; // 현재 페이지
-    const dataArrayLength: number = postListData ? postListData.length : 0; // 데이터 배열의 길이. 즉, 총 PostListItem 수
+    const dataArrayLength: number = postListData ? postListData.length : 0; // 총 게시글 수
     const offset: number = (page - 1) * limit; // 각 페이지의 첫번째 PostlistItem의 Index
     const numPages: number = Math.ceil(dataArrayLength / limit); // 총 페이지 수
     const limit: number = 5; // 한 페이지에 담길 수 있는 최대 PostListItem
