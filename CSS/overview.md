@@ -32,20 +32,20 @@ HTML 문서 외부에 작성된 CSS 파일을 `<link>`를 사용하여 가져온
 
 ### 3.1. 스타일 적용 우선순위
 
-- **선언된 환경**: 동일한 스타일이라도 선언된 환경에 따라서 우선순위가 정해진다.
-  1. 사용자가 구성한 스타일
-  2. 개발자가 선언한 스타일
-  3. 브라우저에 정의된 스타일
-- **명시도**: 적용 범위가 적을 수록, 즉 명시도가 클수록 우선시 된다. 명시도에 차이가 있다면 코드 위치는 상관하지 않는다.
-  1. `!important`
-  2. Inline
-  3. ID
-  4. Class/Attribute/Psuedo Class
-  5. Tag
-  6. `*`
-  7. `inherited`
-- **코드 위치**  
-  : 선언이 중복되면 뒤 선언으로 덮어쓴다.
+-   **출처**
+    1. 제작자
+    2. 사용자
+    3. 브라우저
+-   **명시도**: 적용 범위가 적을 수록, 즉 명시도가 클수록 우선시 된다. 명시도에 차이가 있다면 코드 위치는 상관하지 않는다.
+    1. `!important`
+    2. Inline
+    3. ID
+    4. Class/Attribute/Psuedo Class
+    5. Tag
+    6. `*`
+    7. `inherited`
+-   **코드 위치**  
+    : 선언이 중복되면 뒤 선언으로 덮어쓴다.
 
 ### 3.2. 스타일 상속
 
@@ -55,9 +55,9 @@ HTML 문서 외부에 작성된 CSS 파일을 `<link>`를 사용하여 가져온
 
 > **📌 상속되지 않는 속성**
 >
-> - 대부분의 박스 모델 속성들: width, height, margin, padding, border, box-sizing 등
-> - 배경(background) 속성들: background-color, background-image, background-repeat, background-position, background-size 등
-> - 위치(position) 속성들: position, top, bottom, left, right 등
-> - 부동 속성(floating)들: float, clear 등
-> - 보이는 여부(visibility)와 투명도(opacity) 속성들: visibility, opacity 등
-> - 기타 다양한 속성들: display, cursor, z-index, table-layout, transform, animation
+> -   대부분의 박스 모델 속성들: width, height, margin, padding, border, box-sizing 등
+> -   배경(background) 속성들: background-color, background-image, background-repeat, background-position, background-size 등
+> -   위치(position) 속성들: position, top, bottom, left, right 등
+> -   부동 속성(floating)들: float, clear 등
+> -   보이는 여부(visibility)와 투명도(opacity) 속성들: visibility, opacity 등
+> -   기타 다양한 속성들: display, cursor, z-index, table-layout, transform, animation
