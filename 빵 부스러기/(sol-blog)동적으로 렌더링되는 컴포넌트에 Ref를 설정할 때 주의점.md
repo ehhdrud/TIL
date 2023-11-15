@@ -2,15 +2,15 @@
 
 ```js
 // ... 코드 생략
-const timerRefs = useRef<{ [key: string]: TimerComponentType | null }>({});
-const [createRestTimeInput, setCreateRestTimeInput] = useState<boolean>(false);
-const [restTime, setRestTime] = useState<number>(0);
+const timerRef = (useRef < TimerComponentType) | (null > null);
+const [createRestTimeInput, setCreateRestTimeInput] = useState < boolean > false;
+const [restTime, setRestTime] = useState < number > 0;
 
 const Log = () => {
-    const handleEditRestTime = (e: React.KeyboardEvent<HTMLInputElement>, workoutIndex: number, workoutName: string) => {
+    const handleEditRestTime = (e: React.KeyboardEvent<HTMLInputElement>, workoutIndex: number) => {
         if (e.key === 'Enter') {
             // ... 코드 생략
-            timerRefs.current[workoutName]?.editTimer(restTime); // 📌변경 부분
+            timerRef.current?.editTimer(restTime);
 
             setCreateRestTimeInput(false);
             setRestTime(0);
@@ -27,17 +27,9 @@ const Log = () => {
                         placeholder="seconds..."
                         autoFocus
                         onChange={(e) => setRestTime(Number(e.target.value))}
-                        onKeyDown={(e) => handleEditRestTime(e, index, String(Object.keys(item)))}
+                        onKeyDown={(e) => handleEditRestTime(e, index)}
                     />
-                    <Timer
-                        restTime={Object.values(item)[0].restTime}
-                        // 📌변경 부분
-                        ref={(timerRef) => {
-                            if (timerRef) {
-                                timerRefs.current[String(Object.keys(item))] = timerRef;
-                            }
-                        }}
-                    />
+                    <Timer restTime={Object.values(item)[0].restTime} ref={timerRef} />
                 </div>
             ))}
         </div>
