@@ -2,15 +2,15 @@
 
 ```js
 // ... 코드 생략
-const timerRefs = useRef < any > {};
-const [createRestTimeInput, setCreateRestTimeInput] = useState < boolean > false;
-const [restTime, setRestTime] = useState < number > 0;
+const timerRefs = useRef<{ [key: string]: TimerComponentType | null }>({});
+const [createRestTimeInput, setCreateRestTimeInput] = useState<boolean>(false);
+const [restTime, setRestTime] = useState<number>(0);
 
 const Log = () => {
-    const handleEditRestTime = (e: any, workoutIndex: number) => {
+    const handleEditRestTime = (e: React.KeyboardEvent<HTMLInputElement>, workoutIndex: number, workoutName: string) => {
         if (e.key === 'Enter') {
             // ... 코드 생략
-            timerRefs.current.editTimer(restTime);
+            timerRefs.current[workoutName]?.editTimer(restTime); // 📌변경 부분
 
             setCreateRestTimeInput(false);
             setRestTime(0);
@@ -20,7 +20,7 @@ const Log = () => {
     return (
         <div>
             {workoutData?.map((item, index) => (
-                <div>
+                <div key={index}>
                     <input
                         className="rest-time-input"
                         type="text"
@@ -29,7 +29,15 @@ const Log = () => {
                         onChange={(e) => setRestTime(Number(e.target.value))}
                         onKeyDown={(e) => handleEditRestTime(e, index, String(Object.keys(item)))}
                     />
-                    <Timer restTime={Object.values(item)[0].restTime} ref={timerRef} />
+                    <Timer
+                        restTime={Object.values(item)[0].restTime}
+                        // 📌변경 부분
+                        ref={(timerRef) => {
+                            if (timerRef) {
+                                timerRefs.current[String(Object.keys(item))] = timerRef;
+                            }
+                        }}
+                    />
                 </div>
             ))}
         </div>
@@ -37,9 +45,9 @@ const Log = () => {
 };
 ```
 
-나는 위 코드에서 input에서 일어나는 onChange, onKeyDown 이벤트는 모두 인접 요소에 있는 Timer에 처리될 줄 알았지만 아니었다. 여러개의 요소가 생성되었을 때, 항상 마지막 Timer에만 작용되었다.
+Array.map 메서드를 통해서 여러 컴포넌트를 생성한 후 각 컴포넌트에게 참조 객체를 설정할 때 생성된 여러개의 컴포넌트를 식별하지 않았고, 그 결과 Ref.current를 통해 컴포넌트에 접근하려고 할 때 마지막으로 생성된 컴포넌트만을 참조하였다.
 
-그래서 아래와 같이 Ref를 통해 Timer 컴포넌트를 식별해주었다.
+그래서 아래와 같이 Ref 속성을 설정할 때, 여러개의 Timer 컴포넌트를 식별해주었다.
 
 ```js
 // ... 코드 생략
@@ -73,6 +81,7 @@ const Log = () => {
                     <Timer
                         restTime={Object.values(item)[0].restTime}
                         // 📌변경 부분
+                        // timerRef는 Timer 컴포넌트의 인스턴스
                         ref={(timerRef) => {
                             if (timerRef) {
                                 timerRefs.current[String(Object.keys(item))] = timerRef;
@@ -86,4 +95,4 @@ const Log = () => {
 };
 ```
 
-위와 같이 Ref를 컴포넌트의 특정 키와 연결한다면 Ref를 객체 내에서 동적으로 관리할 수 있고 쉽게 구별할 수 있다.
+위와 같이 참조할 컴포넌트가 생성될 때 마다 key값으로 구분하여 참조 객체에 저장하면, 각 컴포넌트를 구분할 수 있다.
