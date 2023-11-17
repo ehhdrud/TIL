@@ -4,16 +4,16 @@ this란 특정 객체에 접근할 수 있는 "예약어"이다.
 
 ```js
 let user = {
-  name: "user",
+    name: 'user',
 };
 
 let admin = {
-  name: "admin",
+    name: 'admin',
 };
 
 //함수 내부 this값은 런타임에 결정된다.
 function hello_func() {
-  console.log("hello " + this.name);
+    console.log('hello ' + this.name);
 }
 
 user.func = hello_func;
@@ -39,7 +39,7 @@ this가 특정 공간을 가리키는 것을 "바인딩"이라고 한다.
 
 ```js
 const func = function () {
-  console.log(this);
+    console.log(this);
 };
 
 func(); // window
@@ -51,9 +51,9 @@ func(); // window
 
 ```js
 const obj = {
-  func: function () {
-    console.log(this);
-  },
+    func: function () {
+        console.log(this);
+    },
 };
 
 obj.func(); // Object
@@ -63,10 +63,10 @@ obj.func(); // Object
 
 ```js
 function Workout(name) {
-  this.name = name;
+    this.name = name;
 }
 
-const squat = new Workout("Squat");
+const squat = new Workout('Squat');
 console.log(squat); // // Workout { name: 'Squat' } // 즉 this는 instance인 squat를 가르킴!
 ```
 
@@ -82,14 +82,14 @@ this에 바인딩될 객체를 명시적으로 지정하고, 함수의 매개변
 
 ```js
 const workout = {
-  name: "Squat",
-  todayWorkout: function () {
-    return `오늘의 운동: ${this.name} / `;
-  },
+    name: 'Squat',
+    todayWorkout: function () {
+        return `오늘의 운동: ${this.name} / `;
+    },
 };
 
 function getInfo(kg, sets, reps) {
-  return this.todayWorkout() + `${kg}KG ${sets}SETS ${reps}REPS`;
+    return this.todayWorkout() + `${kg}KG ${sets}SETS ${reps}REPS`;
 }
 
 const strengthTraining = getInfo.call(workout, 140, 3, 5);
@@ -107,14 +107,14 @@ this에 바인딩될 객체를 명시적으로 지정하고, 함수의 매개변
 
 ```js
 const workout = {
-  name: "Squat",
-  todayWorkout: function () {
-    return "오늘의 운동: " + this.name + " / ";
-  },
+    name: 'Squat',
+    todayWorkout: function () {
+        return `오늘의 운동: ${this.name} / `;
+    },
 };
 
 function getInfo(kg, sets, reps) {
-  return `오늘의 운동: ${this.name} / `;
+    return this.todayWorkout() + `${kg}KG ${sets}SETS ${reps}REPS`;
 }
 
 const hypertrophyTraining = getInfo.apply(workout, [100, 3, 12]);
@@ -132,14 +132,14 @@ console.log(hypertrophyTraining);
 
 ```js
 const workout = {
-  name: "Squat",
-  todayWorkout: function () {
-    return `오늘의 운동: ${this.name} / `;
-  },
+    name: 'Squat',
+    todayWorkout: function () {
+        return `오늘의 운동: ${this.name} / `;
+    },
 };
 
 function getInfo(kg, sets, reps) {
-  return this.todayWorkout() + `${kg}KG ${sets}SETS ${reps}REPS`;
+    return this.todayWorkout() + `${kg}KG ${sets}SETS ${reps}REPS`;
 }
 
 const endurance = getInfo.bind(workout);
@@ -160,14 +160,14 @@ console.log(enduranceTraining);
 
 ```js
 const fn = {
-  title: "Hello World!",
-  tags: [1, 2, 3],
-  showTags() {
-    this.tags.forEach(function (tag) {
-      console.log(tag);
-      console.log(this); // window
-    });
-  },
+    title: 'Hello World!',
+    tags: [1, 2, 3],
+    showTags() {
+        this.tags.forEach(function (tag) {
+            console.log(tag);
+            console.log(this); // window
+        });
+    },
 };
 fn.showTags();
 /**
@@ -187,14 +187,14 @@ fn.showTags();
 
 ```js
 const fn = {
-  title: "Hello World!",
-  tags: [1, 2, 3],
-  showTags() {
-    this.tags.forEach(function (tag) {
-      console.log(tag);
-      console.log(this); // fn
-    }, this); // 여기는 일반 함수 바깥! 👉 fn 객체를 참조할 수 있다.
-  },
+    title: 'Hello World!',
+    tags: [1, 2, 3],
+    showTags() {
+        this.tags.forEach(function (tag) {
+            console.log(tag);
+            console.log(this); // fn
+        }, this); // 여기는 일반 함수 바깥! 👉 fn 객체를 참조할 수 있다.
+    },
 };
 fn.showTags();
 /**
@@ -222,14 +222,14 @@ fn.showTags();
 
 ```js
 const fn = {
-  title: "Hello World!",
-  tags: [1, 2, 3],
-  showTags() {
-    this.tags.forEach((tag) => {
-      console.log(tag);
-      console.log(this); //fn //화살표 함수가 선언된 위치의 상위 스코프(showTags())의 this는 fn을 가리킨다.
-    });
-  },
+    title: 'Hello World!',
+    tags: [1, 2, 3],
+    showTags() {
+        this.tags.forEach((tag) => {
+            console.log(tag);
+            console.log(this); //fn //화살표 함수가 선언된 위치의 상위 스코프(showTags())의 this는 fn을 가리킨다.
+        });
+    },
 };
 fn.showTags();
 /**
