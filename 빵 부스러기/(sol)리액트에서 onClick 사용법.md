@@ -1,4 +1,4 @@
-# onClick={handleClick(param)} vs onClick={() => handleClick(param)}
+# 리액트에서 onClick 사용법
 
 리액트에서 onClick으로 매개변수를 포함한 함수를 실행하고자 할 때 문제 상황 발생
 

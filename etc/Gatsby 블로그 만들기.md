@@ -1,4 +1,4 @@
-# Gatsby 블로그 만들기
+## Gatsby 블로그 만들기
 
 1.  Gatsby Install
 
