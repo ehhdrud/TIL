@@ -12,3 +12,10 @@
 ## 커밋 되돌리기
 
 `git reset --hard "번호"`
+
+## 커밋 합치기
+
+1. `git rebase -i HEAD~n`로 편집기 열기
+2. 편집기 최상단에 위치한 커밋 pick, 나머지 아래 커밋 s로 설정 > esc + :wq > esq + :wq
+3. `git commit --amend -m "새 커밋 메시지"`
+4. `git push -f origin main `
