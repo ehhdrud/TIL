@@ -4,50 +4,50 @@
 
 Indexed Collection
 
-- Array
-- Typed Array
+-   Array
+-   Typed Array
 
 keyed Collection
 
-- Object
-- **Map**
-- **Set**
-- Weak Map
-- Weak Set
+-   Object
+-   **Map**
+-   **Set**
+-   Weak Map
+-   Weak Set
 
 ## 1. Map
 
 다양한 자료형의 key를 허용하고, keys⇒values 형태의 자료형을 저장할 수 있는 Collection이다.
 
-Map은 Object 대비 다양한 key의 사용을 허용하고, 값의 추가/삭제는 `[]`, `.`/`delete`가 아니라 메서드를 이용한다.
+Map은 Object 대비 다양한 key의 사용을 허용한다.
 
 ### 1.1. 대표 속성(property) 및 메서드(method)
 
-- `new Map()`: 맵 생성
-- `Map.size`: 개수 확인
-- `Map.set(keye, value)`: 요소 추가
-- `Map.get(key)`: 요소 접근
-- `Map.delete(key)`: 요소 삭재
-- `Map.clear()`: 요소 전체 삭제
-- `Map.has(key)`: 요소 존재 여부 확인
-- `Map.keys()`, `Map.values()`, `Map.entires()`: 이터러블 객체를 반환
+-   `new Map()`: 맵 생성
+-   `Map.size`: 개수 확인
+-   `Map.set(keye, value)`: 요소 추가
+-   `Map.get(key)`: 요소 접근
+-   `Map.delete(key)`: 요소 삭재
+-   `Map.clear()`: 요소 전체 삭제
+-   `Map.has(key)`: 요소 존재 여부 확인
+-   `Map.keys()`, `Map.values()`, `Map.entires()`: 이터러블 객체를 반환
 
 ```javascript
 let map = new Map();
 
-map.set("name", "john"); //string key
+map.set('name', 'john'); //string key
 map.set(123, 456); //number key
-map.set(true, "bool_type"); //boolean key
+map.set(true, 'bool_type'); //boolean key
 
 console.log(map); //Map(3) { 'name' => 'john', 123 => 456, true => 'bool_type' }
 console.log(map.size); //3
 console.log(map.get(123)); //456
-console.log(map.get("name")); //john
+console.log(map.get('name')); //john
 
 map.clear();
 console.log(map); //Map(0) {}
 
-map.set("name", "alice").set(123, 456).set(false, "bool_type"); //map이 반환되므로 체이닝(chaining)이 가능하다.
+map.set('name', 'alice').set(123, 456).set(false, 'bool_type'); //map이 반환되므로 체이닝(chaining)이 가능하다.
 console.log(map); //Map(3) { 'name' => 'alice', 123 => 456, false => 'bool_type' }
 ```
 
@@ -57,19 +57,19 @@ Collection 객체인 Map의 Iterator 속성을 이용하여 `for … of` 구문�
 
 ```javascript
 let recipe_juice = new Map([
-  ["strawberry", 50],
-  ["banana", 100],
-  ["ice", 150],
+    ['strawberry', 50],
+    ['banana', 100],
+    ['ice', 150],
 ]);
 
 for (let entity of recipe_juice) {
-  console.log(entity);
+    console.log(entity);
 } //[ 'strawberry', 50 ] [ 'banana', 100 ] [ 'ice', 150 ]
 for (let item of recipe_juice.keys()) {
-  console.log(item);
+    console.log(item);
 } //strawberry banana ice
 for (let amount of recipe_juice.values()) {
-  console.log(amount);
+    console.log(amount);
 } //50 100 150
 
 console.log(recipe_juice); //Map(3) { 'strawberry' => 50, 'banana' => 100, 'ice' => 150 }
@@ -78,14 +78,14 @@ console.log(recipe_juice.entries); //[Function: entries]s
 
 ### 1.3. Map-Object 변환
 
-- `Object.entry(Object)`: 객체를 keys, values형태로 변환
-- `Object.fromEntres(Map)`: Map을 객체로 변환
+-   `Object.entry(Object)`: 객체를 keys, values형태로 변환
+-   `Object.fromEntres(Map)`: Map을 객체로 변환
 
 ```javascript
 let recipe_juice = new Map([
-  ["strawberry", 50],
-  ["banana", 100],
-  ["ice", 150],
+    ['strawberry', 50],
+    ['banana', 100],
+    ['ice', 150],
 ]);
 
 let recipe_juice_obj = Object.fromEntries(recipe_juice); //object로 변환한다.
@@ -104,18 +104,18 @@ value만을 저장하며 중복값을 허용하지 않는 Collection이다.
 
 ### 2.1. 대표 속성(property) 및 메서드(method)
 
-- `new Set()`: 셋 생성
-- `Set.size`: 개수 확인
-- `Set.add(value)`: 요소 추가
-- `Set.delete(value)`: 요소 삭제
-- `Set.clear`: 요소 전체 삭제
-- `Set.has(key)`: 요소 존재 여부 확인
-- `Set.keys()`, `Set.values()`, `Set.entires()`: 이터러블 객체를 반환
+-   `new Set()`: 셋 생성
+-   `Set.size`: 개수 확인
+-   `Set.add(value)`: 요소 추가
+-   `Set.delete(value)`: 요소 삭제
+-   `Set.clear`: 요소 전체 삭제
+-   `Set.has(key)`: 요소 존재 여부 확인
+-   `Set.keys()`, `Set.values()`, `Set.entires()`: 이터러블 객체를 반환
 
 ```javascript
 let set = new Set();
 let num = new Set([1, 2, 3, 4, 5]);
-let str = new Set("Hello!");
+let str = new Set('Hello!');
 
 console.log(set); //Set(0) {}
 console.log(num); //Set(5) { 1, 2, 3, 4, 5 }
@@ -136,7 +136,7 @@ console.log(set); //Set(2) { 10, 20 }
 Collection 객체인 Set의 Iterator 속성을 이용하여 `for … of` 구문을 통해 순회한다.
 
 ```javascript
-let str = new Set("Hello!");
+let str = new Set('Hello!');
 
 console.log(str); //Set(5) { 'H', 'e', 'l', 'o', '!' }
 
