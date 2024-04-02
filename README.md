@@ -1,6 +1,6 @@
 # Today I learned
 
-📌똥 쌀 때, 밥 먹을 때, 운동할 때 볼 TIL 겸 Wiki
+📌TIL 겸 Wiki
 
 📌학습 내용을 내 언어로 정리하면서 이해하기
 
