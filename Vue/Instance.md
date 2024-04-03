@@ -24,8 +24,3 @@
 - `beforeMount`, `mounted`: 마운트(with 렌더링)의 전후
 - `beforeUpdate`, `updated`: 업데이트 전후
 - `beforeUnmount`, `unmounted`: 언마운트 전후
-
-### 컴포넌트
-
-- 재사용 가능한 코드 조각
-- setup 키워드를 통해 Composition API를 사용하면 import만 하면 사용 가능!
