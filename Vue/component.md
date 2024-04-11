@@ -52,6 +52,6 @@
 - null로 초기화한 ref 변수를 정의하고 요소의 ref 속성에 해당 변수를 넣어준다.
 - ref처럼 value를 통해 요소 자체에 접근할 수 있다.
 
-> template Ref
+> **template Ref vs v-model**
 >
 > template Ref는 요소 자체에 접근할 때, v-model은 요소의 value에 접근할 때 사용한다.
