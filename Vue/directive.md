@@ -24,8 +24,9 @@
 > **예시**
 >
 > ```js
-> <p v-for="element in arrayData" :key="element.id"/>{{element}}</p>
 > <p v-for="(element, index) in arrayData" :key="element.id"/>{{index}}:{{element}}</p>
+> <p v-for="(value, key, index) in objectData" :key="element.id"/>{{index}}:{{element}}</p>
+> <p v-for="idx in 4" :key="idx" />{{idx}}<p>
 > ```
 
 ### v-model
