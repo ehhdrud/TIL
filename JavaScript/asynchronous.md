@@ -31,19 +31,11 @@
 
 ## 2. 비동기 처리 방법
 
+비동기 코드는 Callstack이 빈 경우에 처리된다. 즉 다른 코드가 모두 실행이 완료된 뒤에 가장 후순위로 처리된다. 이러한 특성을 고려하여 아래 방법을 통한 비동기 처리가 필요하다.
+
 ### 2.1. 콜백(Callback)
 
-콜백 함수를 호출하는 함수(고차함수)에 비동기적 처리를 포함시키면 해당 고차 함수가 실행이 완료되지 않더라도 자바스크립트는 다음 코드를 읽어들일 수 있다.
-
-콜백 함수를 갖는, 그 자체로 비동기적인 함수는 대표적으로 setTimeout, setInterval, addEventListener 등이 있다.
-
-- setTimeout(callback, delay): 콜백 함수(callback)를 일정한 시간(delay) 뒤에 실행시키는 함수
-
-- setInterval(callback, interval): 콜백 함수(callback)를 일정한 시간 간격(interval)을 두고 반복해서 실행하는 함수
-
-- addEventListener(eventType, callback): 특정 이벤트(eventType)가 발생할 때 콜백 함수(callback)를 실행하는 함수
-
-비동기로 동작하는 함수는 Call Stack으로 바로 들어가서 실행되지 않고, Web API를 거쳐 콜백 함수를 Queue에서 대기시킨다. 대기 중인 콜백 함수의 실행은 Call Stack이 비어있는 상태여야만 비로소 Call Stack으로 넘어가서 완료된다.
+비동기 함수가 완료될 때 데이터를 반환하는 것이 아니라 콜백 함수가 호출되도록 하여 비동기 결과에 대한 핸들링이 가능하도록 한다.
 
 과도한 들여쓰기로 인한 "콜백 지옥"이 발생할 수 있다. 이는 Promise나 async/await를 통해 해결할 수 있다.
 
@@ -53,7 +45,7 @@
 
 주로 서버에서 받아온 데이터를 화면에 표시할 때 사용한다.
 
-비동기 연산이 종료된 이후에 결과값의 상태를 pending(대기), fullfilled(이행), rejected(실패)로 알려준다.
+비동기 연산이 종료된 이후에 결과값의 상태를 pending(대기), Fulfilled(이행), rejected(실패)로 알려준다.
 
 콜백 지옥을 해결할 수 있지만, Promise 메서드 체인으로 인한 then 지옥에 빠질 수 있다. then 지옥은 async/await를 사용하면 해결된다.
 
@@ -81,7 +73,7 @@ resolve와 reject는 Promise 콜백 함수의 매개 변수인 동시에 Promise
 
 이행 상태일 때 처리 결과값을 가지는 Promise를 제공하는 메서드이다.
 
-인자로 Fullfilled State일 때의 처리 결과값을 정의한다.
+인자로 Fulfilled State일 때의 처리 결과값을 정의한다.
 
 실행 시 state는 fulfilled, result에는 value가 들어간다.
 
@@ -99,9 +91,9 @@ Promise는 결과를 반환하지는 않기 때문에 Promise를 소비하는 �
 
 ##### 2.2.3.1. `Promise.then`
 
-Fullfiled State가 되면 해당 메서드를 실행하여 처리 결과값을 반환받을 수 있다.
+Fulfilled State가 되면 해당 메서드를 실행하여 처리 결과값을 반환받을 수 있다.
 
-두 개의 콜백 함수를 인자로 가질 수 있다. Fullfilled State일 때 실행될 콜백 함수를 첫 번째 인자에, Rejected State일 때 실행될 콜백 함수를 두 번째 인자에 정의할 수 있다. 인자를 사용하지 않으면 Fullfilled State가 되어도 처리 결과값을 반환받을 뿐 어떤 동작을 하지는 않는다.
+두 개의 콜백 함수를 인자로 가질 수 있다. Fulfilled State일 때 실행될 콜백 함수를 첫 번째 인자에, Rejected State일 때 실행될 콜백 함수를 두 번째 인자에 정의할 수 있다. 인자를 사용하지 않으면 Fulfilled State가 되어도 처리 결과값을 반환받을 뿐 어떤 동작을 하지는 않는다.
 
 ##### 2.2.3.2. `Promise.catch`
 
@@ -156,8 +148,9 @@ console.log(asyncFunc()); // Promise { 1 }
 
 ```js
 async function foo() {
-function addOne(number) {
-  return Promise.resolve(number + 1);
+  function addOne(number) {
+    return Promise.resolve(number + 1);
+  }
 }
 
 async function addOneAsync(number) {
@@ -173,9 +166,7 @@ async function addTwoAsync(number) {
 }
 
 // Promise.then을 사용하는 경우
-addOne(10)
-  .then(addTwo)
-  .then(console.log); // 13
+addOne(10).then(addTwo).then(console.log); // 13
 
 // async/await를 사용하는 경우
 async function addThreeAsync() {
