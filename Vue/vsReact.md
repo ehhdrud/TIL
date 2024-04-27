@@ -13,7 +13,7 @@
 ### MVVM(Vue)
 
 - 모든 데이터를 서버에서 처리하는 것이 부담스러워져 웹에서 실시간으로 데이터를 처리하여 동적으로 View를 변화시킬 수 있도록 하는 MVVM 패턴이 등장한다.
-- Model은 도메인 특화 데이터를 처리하고 ViewModel은 상태 데이터를 담당하는데 이 상태 데이터는 '데이터 바인딩'이라는 개념을 통해 변경 즉시 자동으로 Vew에 반영된다.
+- Model은 도메인 특화 데이터를 처리하고 ViewModel은 상태 데이터를 담당하는데 이 상태 데이터는 '데이터 바인딩'이라는 개념을 통해 변경 즉시 자동으로 View에 반영된다.
 - MVP 패턴처럼 View와 Model 사이에 의존성이 없다. 다만 ViewModel의 설계가 쉽지 않다.
 
 ### Flux(React)
@@ -41,9 +41,9 @@
 ```vue
 <!-- 원시 타입인 경우-->
 <script setup>
-import { reactive } from 'vue';
+import { reactive } from "vue";
 // const msg = reactive("") // 변화 감지 불가!!
-const msg = reactive({ value: '' });
+const msg = reactive({ value: "" });
 </script>
 
 <template>
@@ -57,18 +57,18 @@ const msg = reactive({ value: '' });
 ```vue
 <!-- 객체 타입인 경우-->
 <script setup>
-import { reactive } from 'vue';
+import { reactive } from "vue";
 
 // const list = reactive([]) // 변화 감지 불가!!
 const list = reactive({ a: [] });
 const onClick = () => {
-  list = [...list, 'a'];
+  list = [...list, "a"];
 };
 </script>
 
 <template>
   <!--<h1> List: {{ list.join(', ')  }} </h1>-->
-  <h1>List: {{ list.a.join(', ') }}</h1>
+  <h1>List: {{ list.a.join(", ") }}</h1>
   <button @click="onClick">add</button>
 </template>
 ```
