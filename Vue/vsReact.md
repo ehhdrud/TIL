@@ -1,4 +1,4 @@
-## 디자인 패턴
+## 📌 디자인 패턴
 
 ### 1. MVC
 
@@ -13,14 +13,18 @@
 ### MVVM(Vue)
 
 - 모든 데이터를 서버에서 처리하는 것이 부담스러워져 웹에서 실시간으로 데이터를 처리하여 동적으로 View를 변화시킬 수 있도록 하는 MVVM 패턴이 등장한다.
-- Model은 도메인 특화 데이터를 처리하고 ViewModel은 상태 데이터를 담당하는데 이 상태 데이터는 '데이터 바인딩'이라는 개념을 통해 변경 즉시 자동으로 View에 반영된다.
+- Model은 도메인 특화 데이터를 처리하고 ViewModel은 상태 데이터를 담당하는데 이 상태 데이터는 '데이터 바인딩'이라는 개념을 통해 변경 즉시 자동으로 Vew에 반영된다.
 - MVP 패턴처럼 View와 Model 사이에 의존성이 없다. 다만 ViewModel의 설계가 쉽지 않다.
 
 ### Flux(React)
 
 - 위 패턴들과는 다르게 단방향 데이터 흐름을 가진다. 데이터는 항상 Dispatcher에서 Store로 Store에서 View로 View에서 다시 Action을 통해 Dispatcher로 흘러간다. 이러한 데이터 흐름은 구조적으로 단순하여 디버깅 시 용이하다.
 
-## 상태 변화
+> **MVVM과 Flux를 가장 잘 보여주는 예시**
+>
+> React에서는 HTML Element의 value를 바인딩하기 위해 이벤트를 감지하여 상태를 변경해주고 해당 상태를 value로 사용해야 한다. 반면 Vue에서는 v-model이라는 directive를 사용하여 한 쪽에서 데이터가 변경되면 다른 쪽도 변경되도록 할 수 있다.
+
+## 📌 상태 변화
 
 ### React의 상태 변화(state)
 
@@ -37,9 +41,9 @@
 ```vue
 <!-- 원시 타입인 경우-->
 <script setup>
-import { reactive } from "vue";
+import { reactive } from 'vue';
 // const msg = reactive("") // 변화 감지 불가!!
-const msg = reactive({ value: "" });
+const msg = reactive({ value: '' });
 </script>
 
 <template>
@@ -53,18 +57,18 @@ const msg = reactive({ value: "" });
 ```vue
 <!-- 객체 타입인 경우-->
 <script setup>
-import { reactive } from "vue";
+import { reactive } from 'vue';
 
 // const list = reactive([]) // 변화 감지 불가!!
 const list = reactive({ a: [] });
 const onClick = () => {
-  list = [...list, "a"];
+  list = [...list, 'a'];
 };
 </script>
 
 <template>
   <!--<h1> List: {{ list.join(', ')  }} </h1>-->
-  <h1>List: {{ list.a.join(", ") }}</h1>
+  <h1>List: {{ list.a.join(', ') }}</h1>
   <button @click="onClick">add</button>
 </template>
 ```
@@ -73,3 +77,11 @@ const onClick = () => {
 
 - ref가 해주는 일은 위 꼼수를 자동으로 처리해준다. 즉 데이터의 `value`안에 값을 넣어주고 `object`로 변경해준다. 이를 통해 value에 주소값이 부여되며 Proxy를 사용할 수 있는 것이다.
 - 이를 통해 원시 타입의 변화를 감지할 수도 있고, 객체 타입에서 복사 개념을 활용할 수도 있다.
+
+## 📌 상태 갱신
+
+- React는 상태가 변경되면 해당 컴포넌트부터 이하의 자식 컴포넌트가 모두 리렌더링되지만, Vue는 렌더링 중 컴포넌트의 종속성이 자동 추적되기 때문에 렌더링되어야 하는 컴포넌트만 렌더링된다.
+
+## 📌 렌더링 성능
+
+- 둘 다 가상돔을 사용하기 때문에 DOM 조작 수 측면에서는 차이가 없지만, DOM 조작 시 오버헤드를 최소화하는 측면에서 Vue가 훨씬 빠르다.
