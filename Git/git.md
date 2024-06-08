@@ -9,9 +9,13 @@
 5. `git remote add origin https://github.com/ehhdrud/~.git`
 6. `git push -u origin main`
 
+## `git pull` 안될 때
+
+- `git branch --set-upstream-to=origin/main main`
+
 ## 커밋 되돌리기
 
-`git reset --hard "번호"`
+- `git reset --hard "번호"`
 
 ## 커밋 합치기
 
